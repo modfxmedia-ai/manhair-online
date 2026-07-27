@@ -14,6 +14,8 @@ import {
   BeforeAfterCard,
   CountUp,
   ParallaxY,
+  ProgressBar,
+  ProgressRing,
   Reveal,
   RevealGrid,
   SplitLines,
@@ -27,22 +29,21 @@ const PAGE = getPageMeta("/")!;
 export const metadata: Metadata = toMetadata(PAGE);
 
 /* ------------------------------------------------------------------
- * Home — dark editorial redesign (UNBRKN-inspired layout).
+ * Home — light editorial redesign ("paper white" theme).
  *
- * The section flow mirrors the reference: a cinematic photo hero
- * with a mono "//" kicker + giant display headline + copper accent
- * underline, a scrolling ticker, a big 4-stat row, an editorial
- * two-column "standard" block with a numbered list, numbered
- * capability cards, a "why" grid, image-backed program cards, a
- * founder-style pull-quote, a client grid, an image + checklist
- * process split, a founding-offer pricing panel, FAQ + locations,
- * a blog teaser, and a final CTA + newsletter.
+ * A premium, professional white layout: a pure-white canvas with a
+ * single warm "paper" surface for alternating bands, off-black
+ * editorial type, and a disciplined antique-gold accent. The whole
+ * body is wrapped in `.mh-light`, which re-points the warm ink
+ * ladder to a white-forward palette so every token-driven component
+ * re-tints automatically. Two sub-contexts stay on a dark ground —
+ * the cinematic hero video and the `.mh-cinema` pull-quote — for
+ * contrast; their text stays cream via a scoped light ink ladder.
  *
- * Colour: the whole page body is wrapped in `.mh-dark`, which
- * inverts the warm ink ladder to a near-black canvas with cream
- * text while keeping the copper/gold accent. All verbatim SEO copy
- * from the live site is preserved. Motion is CSS-first and every
- * long-running keyframe respects `prefers-reduced-motion`.
+ * Motion is CSS-first (Reveal / CountUp / AuroraBlobs) plus animated
+ * "motion graph" infographics (ProgressRing / ProgressBar). All
+ * long-running keyframes respect `prefers-reduced-motion`. Every
+ * verbatim SEO copy string from the live site is preserved.
  * ------------------------------------------------------------------ */
 
 // Local hero + showcase photography.
@@ -80,6 +81,21 @@ const STATS = [
   { to: 200, suffix: "+", key: "Men transformed", sub: "across FL & GA" },
   { to: 100, suffix: "%", key: "Real human hair", sub: "never synthetic" },
   { to: 2, suffix: "", key: "Studios", sub: "Jacksonville · Atlanta" },
+];
+
+// Animated "motion graph" infographics — trust metrics as
+// ProgressRing dials + ProgressBar meters.
+const RINGS = [
+  { value: 100, label: <>Real human<br />hair</> },
+  { value: 98, label: <>Client<br />satisfaction</> },
+  { value: 100, label: <>Undetectable<br />finish</> },
+];
+
+const METERS = [
+  { k: "Natural, undetectable look", v: "100%", value: 100 },
+  { k: "Non-surgical · zero downtime", v: "100%", value: 100 },
+  { k: "Custom-matched to you", v: "100%", value: 100 },
+  { k: "Lifetime one-on-one servicing", v: "Included", value: 96 },
 ];
 
 // "The standard" — numbered principles.
@@ -198,95 +214,114 @@ export default function HomePage() {
   });
 
   return (
-    <div className="mh-dark">
+    <div className="mh-light">
       <JsonLd data={graph} />
 
       {/* ============================================================
-       * 1. HERO — cinematic photo + giant display headline
+       * 1. HERO — modern editorial split (copy + framed video)
        * ============================================================ */}
-      <section className="mh-hero-cine">
-        <div className="mh-hero-cine-media">
-          <video
-            className="mh-hero-video"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            poster={IMG_HERO}
-            aria-hidden="true"
-          >
-            <source src="/videos/4178139-hd_1920_1080_30fps.mp4" type="video/mp4" />
-          </video>
-        </div>
+      <section className="mh-hero2">
+        <AuroraBlobs className="opacity-[0.45]" />
 
-        <div className="mh-container relative z-[2] w-full pb-14 pt-32 md:pb-24 md:pt-40">
-          <Reveal direction="up" duration={0.6}>
-            <p className="mh-kicker">
-              Custom men&rsquo;s hair replacement &middot; Jacksonville &amp; Atlanta
-            </p>
-          </Reveal>
+        <div className="mh-container mh-hero2-grid">
+          {/* Copy column */}
+          <div>
+            <Reveal direction="up" duration={0.6}>
+              <p className="mh-kicker">
+                Custom men&rsquo;s hair replacement &middot; Jacksonville &amp; Atlanta
+              </p>
+            </Reveal>
 
-          <Reveal direction="up" delay={0.1} duration={0.7}>
-            <h1 className="mh-hero-word mt-6">
-              Real human hair.
-              <span className="mh-hero-word-accent">Made just for you.</span>
-            </h1>
-          </Reveal>
+            <Reveal direction="up" delay={0.1} duration={0.7}>
+              <h1 className="mh-hero2-title mt-6">
+                Real human hair.
+                <span className="accent">Made just for you.</span>
+              </h1>
+            </Reveal>
 
-          <Reveal direction="up" delay={0.28}>
-            <span aria-hidden="true" className="mh-hero-underline mt-9" />
-          </Reveal>
+            <Reveal direction="up" delay={0.24}>
+              <p className="mh-hero2-sub mt-7 text-lg leading-relaxed">
+                Custom men&rsquo;s hair replacement systems in Jacksonville, FL &amp;
+                Atlanta, GA — giving you the perfect system to regain your
+                confidence and look your absolute best.
+              </p>
 
-          <Reveal direction="up" delay={0.36}>
-            <h2 className="mt-9 max-w-2xl font-display text-xl font-light leading-snug text-[color:var(--mh-ink-900)] md:text-2xl">
-              Custom men&rsquo;s{" "}
-              <span className="font-semibold text-[color:var(--mh-ink-950)]">
-                hair replacement systems
-              </span>{" "}
-              in{" "}
-              <span className="text-[color:var(--mh-copper-300)]">
-                Jacksonville, FL &amp; Atlanta, GA.
-              </span>
-            </h2>
-            <p className="mt-5 max-w-xl text-[color:var(--mh-ink-800)] md:text-lg">
-              Our main focus is giving you the perfect hair replacement system
-              allowing you to regain your confidence, and look your absolute best.
-            </p>
+              <div className="mt-9 flex flex-wrap items-center gap-3">
+                <Button href="/contact/" size="lg">
+                  Book an Appointment
+                </Button>
+                <Button href="/how-it-works/" variant="ghost" size="lg">
+                  How It Works
+                </Button>
+              </div>
+            </Reveal>
 
-            <div className="mt-9 flex flex-wrap items-center gap-3">
-              <Button href="/contact/" size="lg">
-                Book an Appointment
-              </Button>
-              <Button href="/how-it-works/" variant="ghost" size="lg">
-                How It Works
-              </Button>
-            </div>
-          </Reveal>
-
-          <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-[color:var(--mh-border)] pt-6">
-            <p className="mh-scroll-tag">Scroll_to_transform</p>
-            <div className="flex items-center gap-3">
-              <span className="mh-avatar-stack">
-                {[TESTIMONIALS[0], TESTIMONIALS[1], TESTIMONIALS[3]].map((t) => (
-                  <span key={t.name} className="relative block h-8 w-8">
-                    <Image src={t.photo} alt="" fill sizes="32px" className="object-cover" />
+            <Reveal direction="up" delay={0.36}>
+              <div className="mh-hero2-trust mt-10">
+                <span className="mh-avatar-stack">
+                  {[TESTIMONIALS[0], TESTIMONIALS[1], TESTIMONIALS[3]].map((t) => (
+                    <span key={t.name} className="relative block h-9 w-9">
+                      <Image src={t.photo} alt="" fill sizes="36px" className="object-cover" />
+                    </span>
+                  ))}
+                  <span className="relative flex h-9 w-9 items-center justify-center rounded-full bg-[color:var(--mh-copper-500)] font-display text-[0.6rem] font-bold text-[color:var(--mh-on-accent)]">
+                    +200
                   </span>
-                ))}
-                <span className="relative flex h-8 w-8 items-center justify-center bg-[color:var(--mh-copper-500)] font-display text-[0.6rem] font-bold text-[color:var(--mh-on-accent)]">
-                  +200
+                </span>
+                <div>
+                  <p className="text-sm tracking-[0.18em] text-[color:var(--mh-copper-500)]" aria-label="Rated 5.0 out of 5">
+                    ★★★★★
+                  </p>
+                  <p className="text-[0.62rem] font-semibold uppercase leading-tight tracking-[0.18em] text-[color:var(--mh-ink-700)]">
+                    Trusted by 200+ men across FL &amp; GA
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+
+          {/* Media column — framed video + floating glass stat badges */}
+          <Reveal direction="up" delay={0.18} duration={0.8} className="mh-hero2-media">
+            <div className="mh-hero2-frame">
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+                poster={IMG_HERO}
+                aria-hidden="true"
+              >
+                <source src="/videos/4178139-hd_1920_1080_30fps.mp4" type="video/mp4" />
+              </video>
+
+              <span className="mh-hero2-badge bl">
+                <span className="fig">100%</span>
+                <span className="lab">
+                  Real human
+                  <br />
+                  hair
                 </span>
               </span>
-              <div>
-                <p className="text-[color:var(--mh-copper-300)]" aria-label="Rated 5.0 out of 5">
-                  ★★★★★
-                </p>
-                <p className="text-[0.6rem] font-semibold uppercase leading-tight tracking-[0.2em] text-[color:var(--mh-ink-700)]">
-                  Trusted by 200+ men across FL &amp; GA
-                </p>
-              </div>
             </div>
-          </div>
+
+            <span className="mh-hero2-badge tl">
+              <span className="fig">10+</span>
+              <span className="lab">
+                Years of
+                <br />
+                mastery
+              </span>
+            </span>
+            <span className="mh-hero2-badge mr">
+              <span className="fig">5.0</span>
+              <span className="lab">
+                Client
+                <br />
+                rating
+              </span>
+            </span>
+          </Reveal>
         </div>
       </section>
 
@@ -329,6 +364,50 @@ export default function HomePage() {
               </div>
             ))}
           </RevealGrid>
+        </div>
+      </section>
+
+      {/* ============================================================
+       * 3B. MOTION GRAPHS — animated trust infographics
+       * ============================================================ */}
+      <section className="relative isolate overflow-hidden border-t border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-24 md:py-32">
+        <div className="mh-container">
+          <div className="mh-graphband">
+            <Reveal direction="right">
+              <p className="mh-kicker">By the numbers</p>
+              <Display as={2} size="xl" className="mt-4">
+                Confidence you can <Italic>measure.</Italic>
+              </Display>
+              <p className="mt-6 max-w-xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
+                Every ManHair system is built on the same non-negotiables — 100%
+                real human hair, an undetectable finish, and lifetime one-on-one
+                servicing. Here is what that commitment looks like as numbers.
+              </p>
+
+              <ul className="mh-meterlist">
+                {METERS.map((m) => (
+                  <li key={m.k} className="mh-meterrow">
+                    <div className="mh-meterhead">
+                      <span className="k">{m.k}</span>
+                      <span className="v">{m.v}</span>
+                    </div>
+                    <ProgressBar value={m.value} />
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+
+            <Reveal direction="left" delay={0.1}>
+              <div className="mh-ringrow">
+                {RINGS.map((r) => (
+                  <ProgressRing key={r.value + String(r.label)} value={r.value} label={r.label} />
+                ))}
+              </div>
+              <p className="mt-10 text-center font-sans text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[color:var(--mh-ink-600)]">
+                Ten years · Two studios · Zero surgical procedures
+              </p>
+            </Reveal>
+          </div>
         </div>
       </section>
 
