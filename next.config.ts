@@ -1,7 +1,60 @@
 import type { NextConfig } from "next";
 
+// Live production origin whose assets we mirror during the migration.
+// All references to /wp-content/uploads/* in existing content resolve here
+// so the historical image URLs never 404 on the new deployment.
+const LIVE_ORIGIN = "https://www.manhaironline.com";
+
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Every URL on the live site ends with a trailing slash. Preserve that.
+  trailingSlash: true,
+
+  // Image optimization: allow next/image to source from the live origin
+  // (used until we finish migrating assets to first-party storage).
+  //
+  // NOTE: `unoptimized: true` bypasses Next's built-in optimizer for
+  // all <Image> instances. We do this because our /wp-content/* URLs
+  // are served through the rewrite fallback below — the optimizer
+  // fetches internally (not through the rewrite pipeline), which
+  // produces spurious 400s. Once assets are moved off the WP origin
+  // this flag can be removed and remotePatterns takes over.
+  images: {
+    unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "www.manhaironline.com",
+        pathname: "/wp-content/**",
+      },
+      {
+        protocol: "https",
+        hostname: "manhaironline.com",
+        pathname: "/wp-content/**",
+      },
+    ],
+  },
+
+  // Fallback rewrite: any /wp-content/* request that isn't served locally
+  // is transparently proxied to the live origin so no historical asset URL
+  // breaks during migration.
+  async rewrites() {
+    return {
+      beforeFiles: [],
+      afterFiles: [],
+      fallback: [
+        {
+          source: "/wp-content/:path*",
+          destination: `${LIVE_ORIGIN}/wp-content/:path*`,
+        },
+      ],
+    };
+  },
+
+  // 301 safety-net redirect map. Intentionally empty — every historical URL
+  // is served at its original path. Populate this only if a slug must change.
+  async redirects() {
+    return [];
+  },
 };
 
 export default nextConfig;

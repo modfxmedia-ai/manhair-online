@@ -1,0 +1,214 @@
+import type { SVGProps } from "react";
+
+/**
+ * Icon set — minimal, single-color SVGs sized to the 24×24 viewBox
+ * so they scale cleanly and inherit `currentColor`. Brand marks are
+ * simplified enough to render at 18–20px without artifacts.
+ *
+ * The three utility icons (`Phone`, `Mail`, `Arrow`) are used across
+ * the site chrome. The brand map exports a component per platform
+ * plus a `SocialIcon` lookup keyed by `platform` from `lib/site.ts`.
+ */
+
+type IconProps = SVGProps<SVGSVGElement> & { size?: number };
+
+function Base({ size = 20, children, ...rest }: IconProps & { children: React.ReactNode }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width={size}
+      height={size}
+      aria-hidden="true"
+      focusable="false"
+      {...rest}
+    >
+      {children}
+    </svg>
+  );
+}
+
+/** Utility icons ---------------------------------------------------- */
+
+export function PhoneIcon(p: IconProps) {
+  return (
+    <Base {...p}>
+      <path
+        fill="currentColor"
+        d="M6.6 10.8c1.4 2.7 3.6 4.9 6.3 6.3l2.1-2.1c.3-.3.7-.4 1-.3 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.1 21 3 13.9 3 5.3c0-.6.4-1 1-1h3.7c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.3 1L6.6 10.8Z"
+      />
+    </Base>
+  );
+}
+
+export function MailIcon(p: IconProps) {
+  return (
+    <Base {...p}>
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M4 6.5h16v11H4zM4 7l8 6 8-6"
+      />
+    </Base>
+  );
+}
+
+export function ArrowRightIcon(p: IconProps) {
+  return (
+    <Base {...p}>
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M5 12h14M13 5l7 7-7 7"
+      />
+    </Base>
+  );
+}
+
+/** Brand marks ----------------------------------------------------- */
+
+export function FacebookIcon(p: IconProps) {
+  return (
+    <Base {...p}>
+      <path
+        fill="currentColor"
+        d="M13.5 21v-8H16l.5-3.4h-3V7.4c0-1 .3-1.6 1.7-1.6h1.4V2.8c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.1H8v3.4h2.7V21h2.8Z"
+      />
+    </Base>
+  );
+}
+
+export function InstagramIcon(p: IconProps) {
+  return (
+    <Base {...p}>
+      <rect
+        x="3.5"
+        y="3.5"
+        width="17"
+        height="17"
+        rx="4.5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      />
+      <circle
+        cx="12"
+        cy="12"
+        r="3.6"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      />
+      <circle cx="17.2" cy="6.8" r="1" fill="currentColor" />
+    </Base>
+  );
+}
+
+export function TwitterIcon(p: IconProps) {
+  // Legacy Twitter bird — matches the `twitter.com/ManHair_Online` link.
+  return (
+    <Base {...p}>
+      <path
+        fill="currentColor"
+        d="M21 5.9c-.7.3-1.4.5-2.1.6.8-.5 1.4-1.2 1.6-2-.7.4-1.5.7-2.4.9-.7-.8-1.7-1.2-2.8-1.2-2.1 0-3.9 1.7-3.9 3.9 0 .3 0 .6.1.9C8.2 8.8 5.2 7.2 3.3 4.9c-.3.6-.5 1.3-.5 2 0 1.4.7 2.6 1.8 3.3-.7 0-1.3-.2-1.9-.5v.1c0 1.9 1.4 3.5 3.2 3.9-.3.1-.7.1-1 .1-.3 0-.5 0-.7-.1.5 1.6 2 2.7 3.7 2.7-1.3 1-3 1.7-4.9 1.7H2c1.7 1.1 3.7 1.8 5.9 1.8 7.1 0 11-5.9 11-11v-.5c.8-.5 1.4-1.2 2.1-2Z"
+      />
+    </Base>
+  );
+}
+
+export function XIcon(p: IconProps) {
+  return (
+    <Base {...p}>
+      <path
+        fill="currentColor"
+        d="M17.5 3H21l-7.5 8.6L22 21h-6.9l-5.4-6.6L3.5 21H0l8-9.2L0 3h7.1l4.9 6L17.5 3Zm-1.2 16h1.9L7.8 5H5.8l10.5 14Z"
+      />
+    </Base>
+  );
+}
+
+export function TikTokIcon(p: IconProps) {
+  return (
+    <Base {...p}>
+      <path
+        fill="currentColor"
+        d="M17 3h-3v12.2c0 1.3-1 2.3-2.3 2.3s-2.3-1-2.3-2.3 1-2.3 2.3-2.3c.2 0 .5 0 .7.1v-3.1c-.2 0-.5 0-.7 0-3 0-5.4 2.4-5.4 5.4S8.8 21 11.7 21c3 0 5.4-2.4 5.4-5.4V9.9c1 .6 2.2 1 3.5 1v-3c-1.4 0-2.7-.5-3.6-1.5-.8-.9-1.3-2-1.4-3.4h1.4Z"
+      />
+    </Base>
+  );
+}
+
+export function LinkedInIcon(p: IconProps) {
+  return (
+    <Base {...p}>
+      <path
+        fill="currentColor"
+        d="M4.8 3.5c1 0 1.8.8 1.8 1.8s-.8 1.8-1.8 1.8S3 6.3 3 5.3s.8-1.8 1.8-1.8Zm-1.6 5.7h3.2V21H3.2V9.2Zm5.2 0h3.1v1.6h.1c.4-.8 1.5-1.7 3-1.7 3.2 0 3.8 2.1 3.8 4.9V21h-3.2v-6c0-1.4 0-3.3-2-3.3s-2.3 1.6-2.3 3.2V21H8.4V9.2Z"
+      />
+    </Base>
+  );
+}
+
+export function YouTubeIcon(p: IconProps) {
+  return (
+    <Base {...p}>
+      <path
+        fill="currentColor"
+        d="M21.6 7.4a2.5 2.5 0 0 0-1.7-1.7C18.3 5.3 12 5.3 12 5.3s-6.3 0-7.9.4A2.5 2.5 0 0 0 2.4 7.4C2 9 2 12 2 12s0 3 .4 4.6a2.5 2.5 0 0 0 1.7 1.7c1.6.4 7.9.4 7.9.4s6.3 0 7.9-.4a2.5 2.5 0 0 0 1.7-1.7c.4-1.6.4-4.6.4-4.6s0-3-.4-4.6ZM10 15V9l5 3-5 3Z"
+      />
+    </Base>
+  );
+}
+
+export function PinterestIcon(p: IconProps) {
+  return (
+    <Base {...p}>
+      <path
+        fill="currentColor"
+        d="M12 2.4c-5.3 0-9.6 4.3-9.6 9.6 0 4 2.5 7.5 6 8.9-.1-.8-.2-1.9 0-2.7l1.3-5.4s-.3-.7-.3-1.6c0-1.6.9-2.7 2.1-2.7 1 0 1.5.7 1.5 1.6 0 1-.6 2.5-.9 3.8-.3 1.1.6 2.1 1.7 2.1 2 0 3.6-2.1 3.6-5.2 0-2.7-2-4.6-4.8-4.6-3.3 0-5.2 2.4-5.2 5 0 1 .4 2 .9 2.6l.1.4c-.1.3-.3 1-.3 1.2-.1.2-.2.3-.4.2-1.4-.7-2.3-2.8-2.3-4.5 0-3.6 2.6-6.9 7.6-6.9 4 0 7.1 2.8 7.1 6.6 0 4-2.5 7.2-6 7.2-1.2 0-2.3-.6-2.7-1.4l-.7 2.9c-.3 1-1 2.3-1.4 3 1 .3 2 .5 3.1.5 5.3 0 9.6-4.3 9.6-9.6C21.6 6.7 17.3 2.4 12 2.4Z"
+      />
+    </Base>
+  );
+}
+
+export function MySpaceIcon(p: IconProps) {
+  // Simplified "myspace" mark — three ascending profile blocks.
+  return (
+    <Base {...p}>
+      <circle cx="6" cy="8" r="2.4" fill="currentColor" />
+      <rect x="3" y="12" width="6" height="6" rx="1.5" fill="currentColor" />
+      <circle cx="13" cy="6" r="1.6" fill="currentColor" />
+      <rect x="10.5" y="9" width="5" height="9" rx="1.3" fill="currentColor" />
+      <circle cx="19.2" cy="4.4" r="1.1" fill="currentColor" />
+      <rect x="17.2" y="6.5" width="4" height="11.5" rx="1" fill="currentColor" />
+    </Base>
+  );
+}
+
+export const SocialIcon: Record<
+  | "facebook"
+  | "instagram"
+  | "twitter"
+  | "x"
+  | "tiktok"
+  | "linkedin"
+  | "youtube"
+  | "pinterest"
+  | "myspace",
+  (p: IconProps) => React.ReactElement
+> = {
+  facebook: FacebookIcon,
+  instagram: InstagramIcon,
+  twitter: TwitterIcon,
+  x: XIcon,
+  tiktok: TikTokIcon,
+  linkedin: LinkedInIcon,
+  youtube: YouTubeIcon,
+  pinterest: PinterestIcon,
+  myspace: MySpaceIcon,
+};
