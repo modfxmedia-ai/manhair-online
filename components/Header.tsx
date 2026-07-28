@@ -53,14 +53,9 @@ export function Header() {
             Free Consultation &middot; In-Home or In-Studio
           </p>
           <div className="flex items-center gap-5">
-            <a href={CONTACT.jacksonville.phoneHref} className="mh-topbar-link">
+            <a href={CONTACT.studio.phoneHref} className="mh-topbar-link">
               <PhoneIcon size={12} />
-              {CONTACT.jacksonville.label}: {CONTACT.jacksonville.phone}
-            </a>
-            <span aria-hidden="true" className="h-3 w-px bg-[color:var(--mh-border-strong)]" />
-            <a href={CONTACT.atlanta.phoneHref} className="mh-topbar-link">
-              <PhoneIcon size={12} />
-              {CONTACT.atlanta.label}: {CONTACT.atlanta.phone}
+              {CONTACT.studio.label}: {CONTACT.studio.phone}
             </a>
             <span aria-hidden="true" className="h-3 w-px bg-[color:var(--mh-border-strong)]" />
             <div className="flex items-center gap-1.5">
@@ -108,9 +103,9 @@ export function Header() {
         row at those widths and duplicates the drawer's own CTA. */}
         <div className="flex items-center gap-2 md:gap-3">
           <a
-            href={CONTACT.jacksonville.phoneHref}
+            href={CONTACT.studio.phoneHref}
             className="mh-icon-btn !h-10 !w-10 border !border-[color:var(--mh-border-strong)]"
-            aria-label={`Call ${CONTACT.jacksonville.phone}`}
+            aria-label={`Call ${CONTACT.studio.phone}`}
           >
             <PhoneIcon size={16} />
           </a>
@@ -347,24 +342,18 @@ const MEGA_MENU: Record<string, MegaConfig> = {
         ],
       },
       {
-        eyebrow: "Studios",
+        eyebrow: "Studio",
         items: [
           {
-            label: "Jacksonville, FL",
-            href: "/jacksonville-florida/",
-            desc: "1845 Town Center Blvd, Fleming Island.",
-            Icon: MapPinIcon,
-          },
-          {
-            label: "Atlanta, GA",
-            href: "/atlanta-georgia/",
-            desc: "1570 Holcomb Bridge RD, Roswell.",
+            label: "Orange County, CA",
+            href: "/orange-county-ca/",
+            desc: "By-appointment studio serving Orange County.",
             Icon: MapPinIcon,
           },
           {
             label: "All Locations",
             href: "/locations/",
-            desc: "Both studios: hours, maps, and phones.",
+            desc: "Hours, map, and phone.",
             Icon: CompassIcon,
           },
         ],

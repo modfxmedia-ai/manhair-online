@@ -13,7 +13,7 @@ const CALENDLY = "https://calendly.com/manhaironline";
 const CTA_TICKER = [
   "Book A Discovery Call",
   "100% Free",
-  "Jacksonville & Atlanta",
+  "Orange County, CA",
   "Mon\u2013Fri · 10:30\u20136:00",
   "We Come To You",
 ];
@@ -91,7 +91,7 @@ export default function Page() {
        * ============================================================ */}
       <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-12 md:py-28">
         <div className="mh-container">
-          <RevealGrid className="grid gap-4 md:grid-cols-3" gap={0.08}>
+          <RevealGrid className="mx-auto grid max-w-2xl gap-4 md:grid-cols-2" gap={0.08}>
             <article className="mh-index-card">
               <p className="flex items-center gap-3 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-[color:var(--mh-copper-400)]">
                 Working Hours
@@ -113,45 +113,22 @@ export default function Page() {
             <article className="mh-index-card">
               <p className="flex items-center gap-3 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-[color:var(--mh-copper-400)]">
                 <span className="mh-pin" />
-                Jacksonville, FL
+                Orange County, CA
               </p>
               <p className="font-display text-2xl text-[color:var(--mh-ink-950)]">
-                ManHair Jacksonville
+                ManHair Orange County
               </p>
               <p className="text-[color:var(--mh-ink-800)]">
-                {CONTACT.jacksonville.streetLine1}
+                {CONTACT.studio.streetLine1}
                 <br />
-                {CONTACT.jacksonville.streetLine2}
+                {CONTACT.studio.streetLine2}
               </p>
               <p>
                 <a
-                  href={CONTACT.jacksonville.phoneHref}
+                  href={CONTACT.studio.phoneHref}
                   className="font-semibold text-[color:var(--mh-copper-300)] hover:underline"
                 >
-                  {CONTACT.jacksonville.phone}
-                </a>
-              </p>
-            </article>
-
-            <article className="mh-index-card">
-              <p className="flex items-center gap-3 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-[color:var(--mh-copper-400)]">
-                <span className="mh-pin" />
-                Atlanta, GA
-              </p>
-              <p className="font-display text-2xl text-[color:var(--mh-ink-950)]">
-                ManHair Atlanta
-              </p>
-              <p className="text-[color:var(--mh-ink-800)]">
-                {CONTACT.atlanta.streetLine1}
-                <br />
-                {CONTACT.atlanta.streetLine2}
-              </p>
-              <p>
-                <a
-                  href={CONTACT.atlanta.phoneHref}
-                  className="font-semibold text-[color:var(--mh-copper-300)] hover:underline"
-                >
-                  {CONTACT.atlanta.phone}
+                  {CONTACT.studio.phone}
                 </a>
               </p>
             </article>

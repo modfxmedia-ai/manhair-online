@@ -62,14 +62,14 @@ function og(
 export const PAGES: PageMeta[] = [
   {
     path: "/",
-    title: "Professional Men Toupee Hairstylists, Jacksonville | ManHair",
+    title: "Professional Men Toupee Hairstylists, Orange County | ManHair",
     description:
-      "Professional men toupee hairstylists. ManHair is the most trusted hair replacement clinic in Jacksonville. Trust our restoration experts for hair loss solutions.",
+      "Professional men toupee hairstylists. ManHair is the most trusted hair replacement clinic in Orange County, CA. Trust our restoration experts for hair loss solutions.",
     canonical: `${SITE.origin}/`,
     robots: R,
     og: og(
-      "Professional Men Toupee Hairstylists, Jacksonville | ManHair",
-      "Professional men toupee hairstylists. ManHair is the most trusted hair replacement clinic in Jacksonville. Trust our restoration experts for hair loss solutions.",
+      "Professional Men Toupee Hairstylists, Orange County | ManHair",
+      "Professional men toupee hairstylists. ManHair is the most trusted hair replacement clinic in Orange County, CA. Trust our restoration experts for hair loss solutions.",
       "/",
       `${SITE.origin}/wp-content/uploads/2022/10/unnamed.jpg`
     ),
@@ -77,27 +77,27 @@ export const PAGES: PageMeta[] = [
   },
   {
     path: "/how-it-works/",
-    title: "How It Works | Jacksonville's Leading Hair Loss Solution for Men",
+    title: "How It Works | Orange County's Leading Hair Loss Solution for Men",
     description:
-      "ManHair is the leading hair loss solution for men in Jacksonville. Unique and personalized services every man deserves.",
+      "ManHair is the leading hair loss solution for men in Orange County, CA. Unique and personalized services every man deserves.",
     canonical: `${SITE.origin}/how-it-works/`,
     robots: R,
     og: og(
-      "How It Works | Jacksonville's Leading Hair Loss Solution for Men",
-      "ManHair is the leading hair loss solution for men in Jacksonville. Unique and personalized services every man deserves.",
+      "How It Works | Orange County's Leading Hair Loss Solution for Men",
+      "ManHair is the leading hair loss solution for men in Orange County, CA. Unique and personalized services every man deserves.",
       "/how-it-works/"
     ),
     twitterCard: "summary_large_image",
   },
   {
     path: "/about-us/",
-    title: "About ManHair Online - Fast Hair Loss Solution In Jacksonville",
+    title: "About ManHair Online - Fast Hair Loss Solution In Orange County",
     description:
       "ManHair Online offers a fast and affordable solution for any mens hair type. Learn about ManHair Online to discover your solution now.",
     canonical: `${SITE.origin}/about-us/`,
     robots: R,
     og: og(
-      "About ManHair Online - Fast Hair Loss Solution In Jacksonville",
+      "About ManHair Online - Fast Hair Loss Solution In Orange County",
       "ManHair Online offers a fast and affordable solution for any mens hair type. Learn about ManHair Online to discover your solution now.",
       "/about-us/"
     ),
@@ -119,14 +119,14 @@ export const PAGES: PageMeta[] = [
   },
   {
     path: "/before-after/",
-    title: "Before and after | Jacksonville's Leading Hair Loss Solution for Men",
+    title: "Before and after | Orange County's Leading Hair Loss Solution for Men",
     description:
-      "ManHair is the leading hair loss solution for men in Jacksonville. Unique and personalized services every man deserves.",
+      "ManHair is the leading hair loss solution for men in Orange County, CA. Unique and personalized services every man deserves.",
     canonical: `${SITE.origin}/before-after/`,
     robots: R,
     og: og(
-      "Before and after | Jacksonville's Leading Hair Loss Solution for Men",
-      "ManHair is the leading hair loss solution for men in Jacksonville. Unique and personalized services every man deserves.",
+      "Before and after | Orange County's Leading Hair Loss Solution for Men",
+      "ManHair is the leading hair loss solution for men in Orange County, CA. Unique and personalized services every man deserves.",
       "/before-after/"
     ),
     twitterCard: "summary_large_image",
@@ -149,12 +149,12 @@ export const PAGES: PageMeta[] = [
     path: "/contact/",
     title: "Contact Man Hair Online To Find A Hair Doctor Near Me",
     description:
-      "ManHair Online helps men find the best hair doctor near me around Jacksonville and Tampa Bay. Call today to begin 904-526-8500",
+      "ManHair Online helps men find the best hair doctor near me around Orange County, CA. Call today to begin 904-526-8500",
     canonical: `${SITE.origin}/contact/`,
     robots: R,
     og: og(
       "Contact Man Hair Online To Find A Hair Doctor Near Me",
-      "ManHair Online helps men find the best hair doctor near me around Jacksonville and Tampa Bay. Call today to begin 904-526-8500",
+      "ManHair Online helps men find the best hair doctor near me around Orange County, CA. Call today to begin 904-526-8500",
       "/contact/"
     ),
     twitterCard: "summary_large_image",
@@ -163,54 +163,40 @@ export const PAGES: PageMeta[] = [
     path: "/locations/",
     title: "ManHair Online - Man Hair Replacement System For Hair Loss",
     description:
-      "ManHair is Jacksonville's leading, innovative non-surgical Man Hair Replacement System. Get Started Today - Call (904) 526-8500",
+      "ManHair is Orange County's leading, innovative non-surgical Man Hair Replacement System. Get Started Today - Call (904) 526-8500",
     canonical: `${SITE.origin}/locations/`,
     robots: R,
     og: og(
       "ManHair Online - Man Hair Replacement System For Hair Loss",
-      "ManHair is Jacksonville's leading, innovative non-surgical Man Hair Replacement System. Get Started Today - Call (904) 526-8500",
+      "ManHair is Orange County's leading, innovative non-surgical Man Hair Replacement System. Get Started Today - Call (904) 526-8500",
       "/locations/"
     ),
     twitterCard: "summary_large_image",
   },
   {
-    path: "/jacksonville-florida/",
+    path: "/orange-county-ca/",
     title: "ManHair Online - Man Hair Replacement System For Hair Loss",
     description:
-      "ManHair is Jacksonville's leading, innovative non-surgical Man Hair Replacement System. Get Started Today - Call (904) 526-8500",
-    canonical: `${SITE.origin}/jacksonville-florida/`,
+      "ManHair is Orange County's leading, innovative non-surgical Man Hair Replacement System. Get Started Today - Call (904) 526-8500",
+    canonical: `${SITE.origin}/orange-county-ca/`,
     robots: R,
     og: og(
       "ManHair Online - Man Hair Replacement System For Hair Loss",
-      "ManHair is Jacksonville's leading, innovative non-surgical Man Hair Replacement System. Get Started Today - Call (904) 526-8500",
-      "/jacksonville-florida/"
-    ),
-    twitterCard: "summary_large_image",
-  },
-  {
-    path: "/atlanta-georgia/",
-    title: "ManHair Online - Man Hair Replacement System For Hair Loss",
-    description:
-      "ManHair is Jacksonville's leading, innovative non-surgical Man Hair Replacement System. Get Started Today - Call (904) 526-8500",
-    canonical: `${SITE.origin}/atlanta-georgia/`,
-    robots: R,
-    og: og(
-      "ManHair Online - Man Hair Replacement System For Hair Loss",
-      "ManHair is Jacksonville's leading, innovative non-surgical Man Hair Replacement System. Get Started Today - Call (904) 526-8500",
-      "/atlanta-georgia/"
+      "ManHair is Orange County's leading, innovative non-surgical Man Hair Replacement System. Get Started Today - Call (904) 526-8500",
+      "/orange-county-ca/"
     ),
     twitterCard: "summary_large_image",
   },
   {
     path: "/products/",
-    title: "Hair Products | Jacksonville's Leading Hair Loss Solution for Men",
+    title: "Hair Products | Orange County's Leading Hair Loss Solution for Men",
     description:
-      "ManHair is the leading hair loss solution for men in Jacksonville, Florida. View our hair products online and get started from home.",
+      "ManHair is the leading hair loss solution for men in Orange County, California. View our hair products online and get started from home.",
     canonical: `${SITE.origin}/products/`,
     robots: R,
     og: og(
-      "Hair Products | Jacksonville's Leading Hair Loss Solution for Men",
-      "ManHair is the leading hair loss solution for men in Jacksonville, Florida. View our hair products online and get started from home.",
+      "Hair Products | Orange County's Leading Hair Loss Solution for Men",
+      "ManHair is the leading hair loss solution for men in Orange County, California. View our hair products online and get started from home.",
       "/products/"
     ),
     twitterCard: "summary_large_image",
@@ -245,28 +231,28 @@ export const PAGES: PageMeta[] = [
   },
   {
     path: "/mens-hair-styles/",
-    title: "Toupee Hair System Jacksonville | Hair Pieces for Men",
+    title: "Toupee Hair System Orange County | Hair Pieces for Men",
     description:
-      "Toupee Hair System, Jacksonville. Shop for hair pieces for men. Check out these mens hair style trend at ManHair Online.10+ years of knowledge & experience.",
+      "Toupee Hair System, Orange County. Shop for hair pieces for men. Check out these mens hair style trend at ManHair Online.10+ years of knowledge & experience.",
     canonical: `${SITE.origin}/mens-hair-styles/`,
     robots: R,
     og: og(
-      "Toupee Hair System Jacksonville | Hair Pieces for Men",
-      "Toupee Hair System, Jacksonville. Shop for hair pieces for men. Check out these mens hair style trend at ManHair Online.10+ years of knowledge & experience.",
+      "Toupee Hair System Orange County | Hair Pieces for Men",
+      "Toupee Hair System, Orange County. Shop for hair pieces for men. Check out these mens hair style trend at ManHair Online.10+ years of knowledge & experience.",
       "/mens-hair-styles/"
     ),
     twitterCard: "summary_large_image",
   },
   {
     path: "/receding-hairline-restoration/",
-    title: "Non Surgical Hair Replacement for Men, Jacksonville | ManHair",
+    title: "Non Surgical Hair Replacement for Men, Orange County | ManHair",
     description:
-      "Acclaimed non surgical hair replacement for men in Jacksonville. we have the best hair replacement systems. Discover real solutions for receding hairline patients.",
+      "Acclaimed non surgical hair replacement for men in Orange County. we have the best hair replacement systems. Discover real solutions for receding hairline patients.",
     canonical: `${SITE.origin}/receding-hairline-restoration/`,
     robots: R,
     og: og(
-      "Non Surgical Hair Replacement for Men, Jacksonville | ManHair",
-      "Acclaimed non surgical hair replacement for men in Jacksonville. we have the best hair replacement systems. Discover real solutions for receding hairline patients.",
+      "Non Surgical Hair Replacement for Men, Orange County | ManHair",
+      "Acclaimed non surgical hair replacement for men in Orange County. we have the best hair replacement systems. Discover real solutions for receding hairline patients.",
       "/receding-hairline-restoration/"
     ),
     twitterCard: "summary_large_image",
@@ -274,12 +260,12 @@ export const PAGES: PageMeta[] = [
   {
     path: "/free-consultation/",
     title:
-      "Schedule Your Free Consultation | ManHair | Hair Restoration Jacksonville and Atlanta",
+      "Schedule Your Free Consultation | ManHair | Hair Restoration Orange County, CA",
     description: null,
     canonical: `${SITE.origin}/free-consultation/`,
     robots: R,
     og: og(
-      "Schedule Your Free Consultation | ManHair | Hair Restoration Jacksonville and Atlanta",
+      "Schedule Your Free Consultation | ManHair | Hair Restoration Orange County, CA",
       null,
       "/free-consultation/"
     ),
@@ -289,12 +275,12 @@ export const PAGES: PageMeta[] = [
     path: "/book-my-appointment/",
     title: "Contact Man Hair Online To Find A Hair Doctor Near Me",
     description:
-      "ManHair Online helps men find the best hair doctor near me around Jacksonville and Tampa Bay. Call today to begin 904-526-8500",
+      "ManHair Online helps men find the best hair doctor near me around Orange County, CA. Call today to begin 904-526-8500",
     canonical: `${SITE.origin}/book-my-appointment/`,
     robots: R,
     og: og(
       "Contact Man Hair Online To Find A Hair Doctor Near Me",
-      "ManHair Online helps men find the best hair doctor near me around Jacksonville and Tampa Bay. Call today to begin 904-526-8500",
+      "ManHair Online helps men find the best hair doctor near me around Orange County, CA. Call today to begin 904-526-8500",
       "/book-my-appointment/"
     ),
     twitterCard: "summary_large_image",
@@ -302,12 +288,12 @@ export const PAGES: PageMeta[] = [
   {
     path: "/select-your-appointment-date/",
     title:
-      "Select Your Appointment Date and Time | ManHair | Hair Restoration Jacksonville and Atlanta",
+      "Select Your Appointment Date and Time | ManHair | Hair Restoration Orange County, CA",
     description: null,
     canonical: `${SITE.origin}/select-your-appointment-date/`,
     robots: R,
     og: og(
-      "Select Your Appointment Date and Time | ManHair | Hair Restoration Jacksonville and Atlanta",
+      "Select Your Appointment Date and Time | ManHair | Hair Restoration Orange County, CA",
       null,
       "/select-your-appointment-date/"
     ),
@@ -315,13 +301,13 @@ export const PAGES: PageMeta[] = [
   },
   {
     path: "/payment-plans/",
-    title: "payment Plans | ManHair | Hair Restoration Jacksonville and Atlanta",
+    title: "payment Plans | ManHair | Hair Restoration Orange County, CA",
     description:
       "Cherry is a payment plan designed for health, beauty, and wellness procedures. Easy monthly payments, no hard credit check, 60-second approval.",
     canonical: `${SITE.origin}/payment-plans/`,
     robots: R,
     og: og(
-      "payment Plans | ManHair | Hair Restoration Jacksonville and Atlanta",
+      "payment Plans | ManHair | Hair Restoration Orange County, CA",
       "Cherry is a payment plan designed for health, beauty, and wellness procedures. Easy monthly payments, no hard credit check, 60-second approval.",
       "/payment-plans/"
     ),
@@ -329,13 +315,13 @@ export const PAGES: PageMeta[] = [
   },
   {
     path: "/partnerprogram/",
-    title: "ManHair Online Franchise - Fast Hair Loss Solution In Jacksonville",
+    title: "ManHair Online Franchise - Fast Hair Loss Solution In Orange County",
     description:
       "ManHair Online offers a fast and affordable solution for any mens hair type. Learn about ManHair Online to discover your solution now.",
     canonical: `${SITE.origin}/partnerprogram/`,
     robots: R,
     og: og(
-      "ManHair Online Franchise - Fast Hair Loss Solution In Jacksonville",
+      "ManHair Online Franchise - Fast Hair Loss Solution In Orange County",
       "ManHair Online offers a fast and affordable solution for any mens hair type. Learn about ManHair Online to discover your solution now.",
       "/partnerprogram/"
     ),
@@ -343,42 +329,42 @@ export const PAGES: PageMeta[] = [
   },
   {
     path: "/privacy-policy/",
-    title: "Privacy Policy | Jacksonville's Leading Hair Loss Solution for Men",
+    title: "Privacy Policy | Orange County's Leading Hair Loss Solution for Men",
     description:
-      "ManHair is the leading hair loss solution for men in Jacksonville, Florida. Unique and personalized services for every hair type.",
+      "ManHair is the leading hair loss solution for men in Orange County, California. Unique and personalized services for every hair type.",
     canonical: `${SITE.origin}/privacy-policy/`,
     robots: R,
     og: og(
-      "Privacy Policy | Jacksonville's Leading Hair Loss Solution for Men",
-      "ManHair is the leading hair loss solution for men in Jacksonville, Florida. Unique and personalized services for every hair type.",
+      "Privacy Policy | Orange County's Leading Hair Loss Solution for Men",
+      "ManHair is the leading hair loss solution for men in Orange County, California. Unique and personalized services for every hair type.",
       "/privacy-policy/"
     ),
     twitterCard: "summary_large_image",
   },
   {
     path: "/refund-policy/",
-    title: "Refund Policy | Jacksonville's Leading Hair Loss Solution for Men",
+    title: "Refund Policy | Orange County's Leading Hair Loss Solution for Men",
     description:
-      "ManHair is the leading hair loss solution for men in Jacksonville, Florida. Unique and personalized services for every hair type.",
+      "ManHair is the leading hair loss solution for men in Orange County, California. Unique and personalized services for every hair type.",
     canonical: `${SITE.origin}/refund-policy/`,
     robots: R,
     og: og(
-      "Refund Policy | Jacksonville's Leading Hair Loss Solution for Men",
-      "ManHair is the leading hair loss solution for men in Jacksonville, Florida. Unique and personalized services for every hair type.",
+      "Refund Policy | Orange County's Leading Hair Loss Solution for Men",
+      "ManHair is the leading hair loss solution for men in Orange County, California. Unique and personalized services for every hair type.",
       "/refund-policy/"
     ),
     twitterCard: "summary_large_image",
   },
   {
     path: "/terms-of-service/",
-    title: "Terms of Service | Jacksonville's Leading Hair Loss Solution for Men",
+    title: "Terms of Service | Orange County's Leading Hair Loss Solution for Men",
     description:
-      "ManHair is the leading hair loss solution for men in Jacksonville, Florida. Unique and personalized services for every hair type.",
+      "ManHair is the leading hair loss solution for men in Orange County, California. Unique and personalized services for every hair type.",
     canonical: `${SITE.origin}/terms-of-service/`,
     robots: R,
     og: og(
-      "Terms of Service | Jacksonville's Leading Hair Loss Solution for Men",
-      "ManHair is the leading hair loss solution for men in Jacksonville, Florida. Unique and personalized services for every hair type.",
+      "Terms of Service | Orange County's Leading Hair Loss Solution for Men",
+      "ManHair is the leading hair loss solution for men in Orange County, California. Unique and personalized services for every hair type.",
       "/terms-of-service/"
     ),
     twitterCard: "summary_large_image",
@@ -386,53 +372,27 @@ export const PAGES: PageMeta[] = [
   {
     path: "/landing-page/",
     title:
-      "Manhair Landing Page | Jacksonville's Leading Hair Loss Solution for Men",
+      "Manhair Landing Page | Orange County's Leading Hair Loss Solution for Men",
     description:
-      "ManHair is the leading hair loss solution for men in Jacksonville, Florida. Unique and personalized services for every hair type.",
+      "ManHair is the leading hair loss solution for men in Orange County, California. Unique and personalized services for every hair type.",
     canonical: `${SITE.origin}/landing-page/`,
     robots: R,
     og: og(
-      "Manhair Landing Page | Jacksonville's Leading Hair Loss Solution for Men",
-      "ManHair is the leading hair loss solution for men in Jacksonville, Florida. Unique and personalized services for every hair type.",
+      "Manhair Landing Page | Orange County's Leading Hair Loss Solution for Men",
+      "ManHair is the leading hair loss solution for men in Orange County, California. Unique and personalized services for every hair type.",
       "/landing-page/"
-    ),
-    twitterCard: "summary_large_image",
-  },
-  {
-    path: "/cherry/",
-    title: "Treat Now & Pay Later! | ManHair | Hair Restoration Jacksonville and Atlanta",
-    description: null,
-    canonical: `${SITE.origin}/cherry/`,
-    robots: R,
-    og: og(
-      "Treat Now & Pay Later! | ManHair | Hair Restoration Jacksonville and Atlanta",
-      null,
-      "/cherry/"
-    ),
-    twitterCard: "summary_large_image",
-  },
-  {
-    path: "/cherry-atlanta/",
-    title: "Cherry Atlanta | ManHair | Hair Restoration Jacksonville and Atlanta",
-    description: null,
-    canonical: `${SITE.origin}/cherry-atlanta/`,
-    robots: R,
-    og: og(
-      "Cherry Atlanta | ManHair | Hair Restoration Jacksonville and Atlanta",
-      null,
-      "/cherry-atlanta/"
     ),
     twitterCard: "summary_large_image",
   },
   // Category archives
   {
     path: "/category/hair-loss/",
-    title: "Hair Loss Archives | ManHair | Hair Restoration Jacksonville and Atlanta",
+    title: "Hair Loss Archives | ManHair | Hair Restoration Orange County, CA",
     description: null,
     canonical: `${SITE.origin}/category/hair-loss/`,
     robots: R,
     og: og(
-      "Hair Loss Archives | ManHair | Hair Restoration Jacksonville and Atlanta",
+      "Hair Loss Archives | ManHair | Hair Restoration Orange County, CA",
       null,
       "/category/hair-loss/"
     ),
@@ -442,12 +402,12 @@ export const PAGES: PageMeta[] = [
   {
     path: "/category/hair-replacement/",
     title:
-      "Hair Replacement Archives | ManHair | Hair Restoration Jacksonville and Atlanta",
+      "Hair Replacement Archives | ManHair | Hair Restoration Orange County, CA",
     description: null,
     canonical: `${SITE.origin}/category/hair-replacement/`,
     robots: R,
     og: og(
-      "Hair Replacement Archives | ManHair | Hair Restoration Jacksonville and Atlanta",
+      "Hair Replacement Archives | ManHair | Hair Restoration Orange County, CA",
       null,
       "/category/hair-replacement/"
     ),
@@ -456,12 +416,12 @@ export const PAGES: PageMeta[] = [
   },
   {
     path: "/category/uncategorized/",
-    title: "Uncategorized Archives | ManHair | Hair Restoration Jacksonville and Atlanta",
+    title: "Uncategorized Archives | ManHair | Hair Restoration Orange County, CA",
     description: null,
     canonical: `${SITE.origin}/category/uncategorized/`,
     robots: R,
     og: og(
-      "Uncategorized Archives | ManHair | Hair Restoration Jacksonville and Atlanta",
+      "Uncategorized Archives | ManHair | Hair Restoration Orange County, CA",
       null,
       "/category/uncategorized/"
     ),

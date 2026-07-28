@@ -136,7 +136,7 @@ export default function Page() {
                   hair restoration treatments. Each of these treatments can help
                   to restore hair growth, but they vary in cost and effectiveness.
                   If you&rsquo;re looking for hair restoration treatments near
-                  Jacksonville, Florida, you&rsquo;re looking for a non-surgical
+                  Orange County, California, you&rsquo;re looking for a non-surgical
                   hair replacement system or a professional hair restoration near
                   you, ManHairOnline has you covered. We offer a full range of hair
                   restoration treatments, from non-surgical hair replacement
@@ -179,7 +179,7 @@ export default function Page() {
       </section>
 
       {/* ============================================================
-       * NON-SURGICAL, JACKSONVILLE — DisplayHeading + verbatim body
+       * NON-SURGICAL, ORANGE COUNTY — DisplayHeading + verbatim body
        * ============================================================ */}
       <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-12 md:py-28">
         <div className="mh-container">
@@ -188,7 +188,7 @@ export default function Page() {
               <div className="mh-image-frame relative aspect-[4/5] overflow-hidden rounded-[var(--mh-radius-md)]">
                 <Image
                   src={IMG_REPLACEMENT}
-                  alt="Non surgical hair replacement, Jacksonville"
+                  alt="Non surgical hair replacement, Orange County"
                   fill
                   sizes="(max-width: 1024px) 100vw, 42vw"
                   className="object-cover"
@@ -196,9 +196,9 @@ export default function Page() {
               </div>
             </Reveal>
             <Reveal className="order-1 lg:order-2 lg:col-span-7">
-              <p className="mh-kicker">Jacksonville, Florida</p>
+              <p className="mh-kicker">Orange County, California</p>
               <Display as={2} size="lg" className="mt-4">
-                Non Surgical Hair Replacement, <Italic>Jacksonville</Italic>
+                Non Surgical Hair Replacement, <Italic>Orange County</Italic>
               </Display>
               <div className="mt-6 space-y-5 text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
                 <p>
@@ -215,7 +215,7 @@ export default function Page() {
                 </p>
                 <p>
                   Hair restoration treatments are also available at ManHairOnline
-                  Jacksonville, Florida. Our treatments involve stimulating hair
+                  Orange County, California. Our treatments involve stimulating hair
                   growth through the use of medications and other products. The
                   most popular treatments for hair restoration include minoxidil,
                   finasteride, and laser therapy. These treatments can be

@@ -150,7 +150,7 @@ export function MobileNav() {
           </p>
           <div className="mt-2 grid grid-cols-1 gap-2">
             <a
-              href={CONTACT.jacksonville.phoneHref}
+              href={CONTACT.studio.phoneHref}
               className="mh-mnav-contact"
               onClick={close}
             >
@@ -158,21 +158,8 @@ export function MobileNav() {
                 <PhoneIcon size={14} />
               </span>
               <span className="mh-mnav-contact-body">
-                <span className="mh-mnav-contact-label">Jacksonville, FL</span>
-                <span className="mh-mnav-contact-value">{CONTACT.jacksonville.phone}</span>
-              </span>
-            </a>
-            <a
-              href={CONTACT.atlanta.phoneHref}
-              className="mh-mnav-contact"
-              onClick={close}
-            >
-              <span className="mh-mnav-contact-icon">
-                <PhoneIcon size={14} />
-              </span>
-              <span className="mh-mnav-contact-body">
-                <span className="mh-mnav-contact-label">Atlanta, GA</span>
-                <span className="mh-mnav-contact-value">{CONTACT.atlanta.phone}</span>
+                <span className="mh-mnav-contact-label">Orange County, CA</span>
+                <span className="mh-mnav-contact-value">{CONTACT.studio.phone}</span>
               </span>
             </a>
           </div>

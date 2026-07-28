@@ -10,14 +10,14 @@ export const SITE = {
   /** Business / organization display name (from Organization JSON-LD). */
   orgName: "Man Hair - Hair Replacement Solutions",
   /** Verbatim site name from og:site_name / <title> suffix. */
-  siteName: "ManHair | Hair Restoration Jacksonville and Atlanta",
+  siteName: "ManHair | Hair Restoration Orange County, CA",
   /** Short brand mark used in tight layouts. */
   brandMark: "ManHair",
   /** Verbatim tagline from JSON-LD WebSite.description. */
-  tagline: "Hair Restoration Jacksonville",
+  tagline: "Hair Restoration Orange County",
   /** Public-facing brand statement used in hero / footer marketing copy. */
   brandStatement:
-    "The leading non-surgical hair replacement system for men in Jacksonville, FL and Atlanta, GA.",
+    "The leading non-surgical hair replacement system for men in Orange County, CA.",
   logo: {
     url: "/wp-content/uploads/2018/08/MH-Logo.png",
     width: 615,
@@ -28,21 +28,13 @@ export const SITE = {
 } as const;
 
 export const CONTACT = {
-  jacksonville: {
-    label: "Jacksonville, FL",
-    streetLine1: "1845 Town Center Blvd Suite 205A",
-    streetLine2: "Fleming Island, FL 32003",
+  studio: {
+    label: "Orange County, CA",
+    streetLine1: "Orange County",
+    streetLine2: "California",
     phone: "(904) 526-8500",
     phoneHref: "tel:1-904-526-8500",
-    region: "FL",
-  },
-  atlanta: {
-    label: "Atlanta, GA",
-    streetLine1: "1570 Holcomb Bridge RD STE 130-103",
-    streetLine2: "Roswell, GA 30076",
-    phone: "678-664-9493",
-    phoneHref: "tel:678-664-9493",
-    region: "GA",
+    region: "CA",
   },
   email: "info@manhaironline.com",
   emailHref: "mailto:info@manhaironline.com",
@@ -161,14 +153,7 @@ export const PRIMARY_NAV: NavItem[] = [
       { label: "FAQ", href: "/faq/" },
       { label: "Blog", href: "/blog/" },
       { label: "Contact", href: "/contact/" },
-      {
-        label: "Locations",
-        href: "#",
-        children: [
-          { label: "Atlanta Georgia", href: "/atlanta-georgia/" },
-          { label: "Jacksonville Florida", href: "/jacksonville-florida/" },
-        ],
-      },
+      { label: "Locations", href: "/locations/" },
     ],
   },
   {
@@ -210,7 +195,7 @@ export const SERVICES_NAV: Array<{ label: string; href: string }> = [
 export const FOOTER_QUICK_LINKS: Array<{ label: string; href: string }> = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about-us/" },
-  { label: "Treat Now & Pay Later", href: "/cherry/" },
+  { label: "Treat Now & Pay Later", href: "/payment-plans/" },
   { label: "Franchise", href: "/partnerprogram/" },
   { label: "Locations", href: "/locations/" },
   { label: "Blog", href: "/blog/" },
@@ -226,6 +211,6 @@ export const FOOTER_LEGAL = {
   disclaimer:
     "**Disclaimer:  Image credit to their respectful owners.  Images used on this site are for example purposes only.  It is up to you to achieve the final look you want.**",
   copyright:
-    "Copyright © 2026 ManHair | Hair Restoration Jacksonville and Atlanta via JK Ingram Enterprises LLC",
+    "Copyright © 2026 ManHair | Hair Restoration Orange County, CA via JK Ingram Enterprises LLC",
   poweredBy: "Powered by ModFXMedia",
 };

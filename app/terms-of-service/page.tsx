@@ -81,7 +81,7 @@ If in our sole judgment you fail, or we suspect that you have failed, to comply 
 These Terms of Service and any policies or operating rules posted by us on this site or in respect to The Service constitutes the entire agreement and understanding between you and us and govern your use of the Service, superseding any prior or contemporaneous agreements, communications and proposals, whether oral or written, between you and us (including, but not limited to, any prior versions of the Terms of Service).<br>
 Any ambiguities in the interpretation of these Terms of Service shall not be construed against the drafting party.</p>
 <p>SECTION 18 – GOVERNING LAW</p>
-<p>These Terms of Service and any separate agreements whereby we provide you Services shall be governed by and construed in accordance with the laws of MANHAIR 1845 Town Center Blvd, Ste 205 A, Fleming Island, FL 32003</p>
+<p>These Terms of Service and any separate agreements whereby we provide you Services shall be governed by and construed in accordance with the laws of the State of California, MANHAIR, Orange County, CA</p>
 <p>SECTION 19 – CHANGES TO TERMS OF SERVICE</p>
 <p>You can review the most current version of the Terms of Service at any time at this page.<br>
 We reserve the right, at our sole discretion, to update, change or replace any part of these Terms of Service by posting updates and changes to our website. It is your responsibility to check our website periodically for changes. Your continued use of or access to our website or the Service following the posting of any changes to these Terms of Service constitutes acceptance of those changes.</p>

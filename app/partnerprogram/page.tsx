@@ -342,7 +342,7 @@ export default function Page() {
               </Display>
               <p className="mt-5 text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
                 Your journey will begin with initial partnership training at our
-                corporate office located in Jacksonville, FL. Ongoing training
+                corporate office located in Orange County, CA. Ongoing training
                 classes will be hosted throughout the year via live webinars,
                 conference calls and online training. Supporting our partners is
                 the backbone of our success. We look forward to helping you build
@@ -360,13 +360,13 @@ export default function Page() {
       <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-12 md:py-28">
         <div className="mh-container">
           <Reveal>
-            <p className="mh-kicker">Headquarters in Jacksonville, FL</p>
+            <p className="mh-kicker">Headquarters in Orange County, CA</p>
             <Display as={2} size="lg" className="mt-4">
               ManHair Preferred Partnership <Italic>Support</Italic>
             </Display>
             <p className="mt-6 max-w-3xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
               At ManHair we offer a full in-house support team located at our
-              headquarters in Jacksonville, FL. Expertise in supporting our
+              headquarters in Orange County, CA. Expertise in supporting our
               partners that include:
             </p>
           </Reveal>

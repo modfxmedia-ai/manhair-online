@@ -6,12 +6,12 @@ import { JsonLd, buildPageGraph } from "@/components/JsonLd";
 import { SITE, SOCIAL, CONTACT } from "@/lib/site";
 import { getPageMeta, toMetadata } from "@/lib/pages";
 
-const PAGE = getPageMeta("/jacksonville-florida/")!;
+const PAGE = getPageMeta("/orange-county-ca/")!;
 export const metadata: Metadata = toMetadata(PAGE);
 
 const HERO_IMG = "/wp-content/uploads/2022/05/IMG-4430.jpg";
 const MAP =
-  "https://maps.google.com/maps?q=1845%20Town%20Center%20Blvd%20Suite%20205A%2C%20Fleming%20Island%2C%20FL%2032003&t=m&z=12&output=embed&iwloc=near";
+  "https://maps.google.com/maps?q=Orange+County%2C+CA&t=m&z=10&output=embed&iwloc=near";
 
 const EXPERIENCE = [
   {
@@ -37,8 +37,7 @@ const EXPERIENCE = [
 ];
 
 const CTA_TICKER = [
-  "Jacksonville, FL",
-  "Fleming Island",
+  "Orange County, CA",
   "Mon\u2013Fri 10:30 AM \u2013 6:00 PM",
   "We Come To You",
   "NO COST Consultations",
@@ -53,7 +52,7 @@ export default function Page() {
     image: PAGE.og.image,
     breadcrumbs: [
       { name: "Home", path: "/" },
-      { name: "Jacksonville Florida" },
+      { name: "Orange County CA" },
     ],
     organization: {
       name: SITE.orgName,
@@ -82,9 +81,9 @@ export default function Page() {
         <div className="mh-container relative z-10">
           <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
             <Reveal className="lg:col-span-6">
-              <p className="mh-kicker">Jacksonville, FL</p>
+              <p className="mh-kicker">Orange County, CA</p>
               <Display as={1} size="hero" className="mt-5">
-                Man Hair <Italic>Jacksonville,</Italic> Florida
+                Man Hair <Italic>Orange County,</Italic> California
               </Display>
               <p className="mt-6 text-sm font-semibold uppercase tracking-[0.2em] text-[color:var(--mh-copper-300)]">
                 Why Man Hair Online?
@@ -112,7 +111,7 @@ export default function Page() {
                 <Button href="/book-my-appointment/" size="lg">
                   Book Appointment
                 </Button>
-                <Button href="/cherry/" variant="ghost" size="lg">
+                <Button href="/payment-plans/" variant="ghost" size="lg">
                   Treat Now &amp; Pay Later
                 </Button>
               </div>
@@ -141,7 +140,7 @@ export default function Page() {
           <Reveal>
             <p className="mh-kicker">Branch Address</p>
             <Display as={2} size="lg" className="mt-4">
-              Visit us in <Italic>Fleming Island.</Italic>
+              Visit us in <Italic>Orange County.</Italic>
             </Display>
           </Reveal>
           <div className="mt-12 grid gap-6 lg:grid-cols-2 lg:items-stretch">
@@ -150,7 +149,7 @@ export default function Page() {
                 <div className="aspect-[16/11] w-full overflow-hidden">
                   <iframe
                     src={MAP}
-                    title="1845 Town Center Blvd Suite 205A, Fleming Island, FL 32003"
+                    title="Orange County, CA"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                     className="h-full w-full grayscale-[0.35]"
@@ -166,9 +165,9 @@ export default function Page() {
                   Address
                 </p>
                 <p className="mt-3 leading-relaxed text-[color:var(--mh-ink-800)]">
-                  {CONTACT.jacksonville.streetLine1}
+                  {CONTACT.studio.streetLine1}
                   <br />
-                  {CONTACT.jacksonville.streetLine2}
+                  {CONTACT.studio.streetLine2}
                 </p>
               </article>
               <article className="mh-index-card">
@@ -176,10 +175,10 @@ export default function Page() {
                   Phone
                 </p>
                 <a
-                  href={CONTACT.jacksonville.phoneHref}
+                  href={CONTACT.studio.phoneHref}
                   className="mt-3 inline-block font-display text-2xl font-semibold text-[color:var(--mh-copper-300)] hover:underline"
                 >
-                  {CONTACT.jacksonville.phone}
+                  {CONTACT.studio.phone}
                 </a>
               </article>
               <article className="mh-index-card sm:col-span-2 lg:col-span-1">
@@ -281,8 +280,8 @@ export default function Page() {
                   10:30 AM &ndash; 6:00 PM
                 </p>
                 <p className="mt-4 text-sm text-[color:var(--mh-ink-800)]">
-                  Address: {CONTACT.jacksonville.streetLine1},{" "}
-                  {CONTACT.jacksonville.streetLine2}
+                  Address: {CONTACT.studio.streetLine1},{" "}
+                  {CONTACT.studio.streetLine2}
                 </p>
               </article>
             </Reveal>

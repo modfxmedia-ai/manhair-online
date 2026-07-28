@@ -22,8 +22,8 @@ export function PagePlaceholder({
   // Derive the H1 from the meta title by stripping the site suffix.
   const suffixes = [
     ` | ${SITE.siteName}`,
-    ` | ManHair | Hair Restoration Jacksonville and Atlanta`,
-    ` | Jacksonville's Leading Hair Loss Solution for Men`,
+    ` | ManHair | Hair Restoration Orange County, CA`,
+    ` | Orange County's Leading Hair Loss Solution for Men`,
     ` | ManHair`,
     ` - ${SITE.siteName}`,
   ];
@@ -50,10 +50,10 @@ export function PagePlaceholder({
               Book an Appointment
             </Link>
             <a
-              href={CONTACT.jacksonville.phoneHref}
+              href={CONTACT.studio.phoneHref}
               className="mh-btn mh-btn-ghost"
             >
-              Call {CONTACT.jacksonville.phone}
+              Call {CONTACT.studio.phone}
             </a>
           </div>
         </div>

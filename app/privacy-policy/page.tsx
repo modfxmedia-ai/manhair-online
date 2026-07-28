@@ -47,7 +47,7 @@ If after you opt-in, you change your mind, you may withdraw your consent for us 
 2 In order for the items to be partial refunded or exchanged the goods must be returned within the 14 day period, received in an unworn, unused condition. We are not obliged to provide refunds on any items returned to us without packaging, damaged packaging, returned in un-cared for condition. We may return the goods back to you.<br>
 3 The goods are your responsibility until they reach us. You will be liable to pay the cost of returning unwanted goods back to us unless the item has a manufacturing defect or received in error. For your protection we recommend you use a postal service that insures you for the value of the goods you are returning.</p>
 <p><strong>Our returns address is:</strong></p>
-<p>ManHair 1845 Town Center Blvd, Ste 205 A, Fleming Island, FL 32003</p>
+<p>ManHair, Orange County, CA</p>
 <p><strong>SECTION 9 – DISCLOSURE</strong></p>
 <p>We may disclose your personal information if we are required by law to do so or if you violate our Terms of Service.</p>
 <p><strong>SECTION 11 – SECURITY</strong></p>

@@ -12,34 +12,20 @@ const CALENDLY = "https://calendly.com/manhaironline";
 
 const LOCATIONS = [
   {
-    name: "Man Hair – Atlanta, Georgia",
-    streetLine1: CONTACT.atlanta.streetLine1,
-    streetLine2: CONTACT.atlanta.streetLine2,
-    phone: CONTACT.atlanta.phone,
-    phoneHref: CONTACT.atlanta.phoneHref,
-    booking:
-      "https://api.leadconnectorhq.com/widget/bookings/inhkfgxngs98xfgnaxit-0e5652ed-a332-4ad5-b464-5c59d5ddb6d5",
-    details: "/atlanta-georgia/",
-    schedule:
-      "https://api.leadconnectorhq.com/widget/bookings/wxn5qbpbwtfy1x2dpxa3-c7d315b3-8178-4202-974d-44cf85caf1bd",
-    scheduleLabel: "Schedule a Call in Atlanta, GA",
-  },
-  {
-    name: "Man Hair – Jacksonville, Florida",
-    streetLine1: CONTACT.jacksonville.streetLine1,
-    streetLine2: CONTACT.jacksonville.streetLine2,
-    phone: CONTACT.jacksonville.phone,
-    phoneHref: CONTACT.jacksonville.phoneHref,
+    name: "Man Hair – Orange County, California",
+    streetLine1: CONTACT.studio.streetLine1,
+    streetLine2: CONTACT.studio.streetLine2,
+    phone: CONTACT.studio.phone,
+    phoneHref: CONTACT.studio.phoneHref,
     booking: "https://api.leadconnectorhq.com/widget/bookings/wxn5qbpbwtfy1x2dpxa3",
-    details: "/jacksonville-florida/",
+    details: "/orange-county-ca/",
     schedule: "https://api.leadconnectorhq.com/widget/bookings/wxn5qbpbwtfy1x2dpxa3",
-    scheduleLabel: "Schedule a Call in Jacksonville, FL",
+    scheduleLabel: "Schedule a Call in Orange County, CA",
   },
 ];
 
 const CTA_TICKER = [
-  "Jacksonville, FL",
-  "Roswell, GA",
+  "Orange County, CA",
   "Mon–Fri 10:30 AM – 6:00 PM",
   "100% Free Discovery Call",
   "We Come To You",
@@ -97,7 +83,7 @@ export default function Page() {
        * ============================================================ */}
       <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-12 md:py-28">
         <div className="mh-container">
-          <RevealGrid className="grid gap-6 md:grid-cols-2" gap={0.1}>
+          <RevealGrid className="mx-auto grid max-w-xl gap-6" gap={0.1}>
             {LOCATIONS.map((loc) => (
               <article key={loc.name} className="mh-price-panel flex flex-col gap-6 p-8 md:p-10">
                 <div>
@@ -140,7 +126,7 @@ export default function Page() {
        * ============================================================ */}
       <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-12 md:py-28">
         <div className="mh-container">
-          <RevealGrid className="grid gap-4 md:grid-cols-3" gap={0.1}>
+          <RevealGrid className="grid gap-4 md:grid-cols-2" gap={0.1}>
             <article className="mh-index-card">
               <p className="flex items-center gap-3 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-[color:var(--mh-copper-400)]">
                 Working Hours
@@ -160,36 +146,18 @@ export default function Page() {
             <article className="mh-index-card">
               <p className="flex items-center gap-3 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-[color:var(--mh-copper-400)]">
                 <span className="mh-pin" />
-                Jacksonville, FL
+                Orange County, CA
               </p>
               <p className="text-[color:var(--mh-ink-800)]">
-                {CONTACT.jacksonville.streetLine1}
+                {CONTACT.studio.streetLine1}
                 <br />
-                {CONTACT.jacksonville.streetLine2}
+                {CONTACT.studio.streetLine2}
               </p>
               <a
-                href={CONTACT.jacksonville.phoneHref}
+                href={CONTACT.studio.phoneHref}
                 className="font-semibold text-[color:var(--mh-copper-300)] hover:underline"
               >
-                {CONTACT.jacksonville.phone}
-              </a>
-            </article>
-
-            <article className="mh-index-card">
-              <p className="flex items-center gap-3 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-[color:var(--mh-copper-400)]">
-                <span className="mh-pin" />
-                Roswell, GA
-              </p>
-              <p className="text-[color:var(--mh-ink-800)]">
-                {CONTACT.atlanta.streetLine1}
-                <br />
-                {CONTACT.atlanta.streetLine2}
-              </p>
-              <a
-                href={CONTACT.atlanta.phoneHref}
-                className="font-semibold text-[color:var(--mh-copper-300)] hover:underline"
-              >
-                {CONTACT.atlanta.phone}
+                {CONTACT.studio.phone}
               </a>
             </article>
           </RevealGrid>

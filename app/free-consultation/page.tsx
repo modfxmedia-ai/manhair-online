@@ -12,7 +12,7 @@ const CTA_TICKER = [
   "100% Free Consultation",
   "Strictly Confidential",
   "In-Home or In-Studio",
-  "Jacksonville & Atlanta",
+  "Orange County, CA",
   "No Pressure, Ever",
 ];
 

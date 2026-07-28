@@ -131,7 +131,7 @@ export default function Page() {
             <div className="mx-auto max-w-4xl text-center">
               <Display as={2} size="xl">
                 ManHair Online has fast hair loss solutions for men in{" "}
-                <Italic>Jacksonville</Italic>
+                <Italic>Orange County</Italic>
               </Display>
               <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
                 At ManHair, our top priority is your 100% satisfaction. At ManHair,

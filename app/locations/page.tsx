@@ -11,22 +11,13 @@ export const metadata: Metadata = toMetadata(PAGE);
 
 const LOCATIONS = [
   {
-    name: "Man Hair \u2013 Atlanta, Georgia",
-    streetLine1: CONTACT.atlanta.streetLine1,
-    streetLine2: CONTACT.atlanta.streetLine2,
-    phone: "(678) 664-9493",
-    phoneHref: "tel:678-664-9493",
-    detailsHref: "/atlanta-georgia/",
-    map: "https://maps.google.com/maps?q=1570%20Holcomb%20Bridge%20RD%20STE%20130-103&t=m&z=11&output=embed&iwloc=near",
-  },
-  {
-    name: "Man Hair \u2013 Jacksonville, Florida",
-    streetLine1: CONTACT.jacksonville.streetLine1,
-    streetLine2: CONTACT.jacksonville.streetLine2,
-    phone: "(904) 526-8500",
-    phoneHref: "tel:1-904-526-8500",
-    detailsHref: "/jacksonville-florida/",
-    map: "https://maps.google.com/maps?q=1845%20Town%20Center%20Blvd%20Suite%20205A%2C%20Fleming%20Island%2C%20FL%2032003&t=m&z=11&output=embed&iwloc=near",
+    name: "Man Hair – Orange County, California",
+    streetLine1: CONTACT.studio.streetLine1,
+    streetLine2: CONTACT.studio.streetLine2,
+    phone: CONTACT.studio.phone,
+    phoneHref: CONTACT.studio.phoneHref,
+    detailsHref: "/orange-county-ca/",
+    map: "https://maps.google.com/maps?q=Orange+County%2C+CA&t=m&z=10&output=embed&iwloc=near",
   },
 ];
 
@@ -54,8 +45,7 @@ const EXPERIENCE = [
 ];
 
 const CTA_TICKER = [
-  "Jacksonville, FL",
-  "Roswell, GA",
+  "Orange County, CA",
   "Mon\u2013Fri 10:30 AM \u2013 6:00 PM",
   "We Come To You",
   "NO COST Consultations",
@@ -101,10 +91,10 @@ export default function Page() {
             <div className="mx-auto max-w-4xl text-center">
               <p className="mh-kicker justify-center">Locations</p>
               <Display as={1} size="hero" className="mt-5">
-                Two studios. <Italic>One promise.</Italic>
+                One studio. <Italic>One promise.</Italic>
               </Display>
               <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
-                Serving men across Jacksonville, FL and Atlanta, GA with
+                Serving men across Orange County, CA with
                 non-surgical hair replacement. Find the studio nearest you.
               </p>
             </div>
@@ -117,7 +107,7 @@ export default function Page() {
        * ============================================================ */}
       <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-12 md:py-28">
         <div className="mh-container">
-          <RevealGrid className="grid gap-6 lg:grid-cols-2" gap={0.1}>
+          <RevealGrid className="mx-auto grid max-w-xl gap-6" gap={0.1}>
             {LOCATIONS.map((loc) => (
               <article
                 key={loc.name}
@@ -215,7 +205,7 @@ export default function Page() {
        * ============================================================ */}
       <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-12 md:py-28">
         <div className="mh-container">
-          <RevealGrid className="grid gap-4 md:grid-cols-3" gap={0.1}>
+          <RevealGrid className="mx-auto grid max-w-2xl gap-4 md:grid-cols-2" gap={0.1}>
             <article className="mh-index-card">
               <p className="text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-[color:var(--mh-copper-400)]">
                 Working Hours
@@ -231,36 +221,18 @@ export default function Page() {
             <article className="mh-index-card">
               <p className="flex items-center gap-3 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-[color:var(--mh-copper-400)]">
                 <span className="mh-pin" />
-                Jacksonville, FL
+                Orange County, CA
               </p>
               <p className="mt-3 text-[color:var(--mh-ink-800)]">
-                {CONTACT.jacksonville.streetLine1}
+                {CONTACT.studio.streetLine1}
                 <br />
-                {CONTACT.jacksonville.streetLine2}
+                {CONTACT.studio.streetLine2}
               </p>
               <a
-                href={CONTACT.jacksonville.phoneHref}
+                href={CONTACT.studio.phoneHref}
                 className="mt-2 inline-block font-semibold text-[color:var(--mh-copper-300)] hover:underline"
               >
-                {CONTACT.jacksonville.phone}
-              </a>
-            </article>
-
-            <article className="mh-index-card">
-              <p className="flex items-center gap-3 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-[color:var(--mh-copper-400)]">
-                <span className="mh-pin" />
-                Roswell, GA
-              </p>
-              <p className="mt-3 text-[color:var(--mh-ink-800)]">
-                {CONTACT.atlanta.streetLine1}
-                <br />
-                {CONTACT.atlanta.streetLine2}
-              </p>
-              <a
-                href={CONTACT.atlanta.phoneHref}
-                className="mt-2 inline-block font-semibold text-[color:var(--mh-copper-300)] hover:underline"
-              >
-                {CONTACT.atlanta.phone}
+                {CONTACT.studio.phone}
               </a>
             </article>
           </RevealGrid>

@@ -66,7 +66,7 @@ export function IntroSplash() {
           height={76}
           className="mh-intro-logo"
         />
-        <p className="mh-intro-name">Hair Restoration &middot; Jacksonville &amp; Atlanta</p>
+        <p className="mh-intro-name">Hair Restoration &middot; Orange County, CA</p>
         <span className="mh-intro-bar" aria-hidden="true">
           <span />
         </span>

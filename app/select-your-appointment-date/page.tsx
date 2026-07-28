@@ -13,7 +13,7 @@ const CTA_TICKER = [
   "We\u2019ll Reach Out Soon",
   "Book Now, Skip The Wait",
   "100% Free Consultation",
-  "Jacksonville & Atlanta",
+  "Orange County, CA",
 ];
 
 export default function Page() {

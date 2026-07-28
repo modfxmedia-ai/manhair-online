@@ -73,9 +73,9 @@ export default function Page() {
 
 function deriveHeading(title) {
   const suffixes = [
-    " | ManHair | Hair Restoration Jacksonville and Atlanta",
-    " | Jacksonville's Leading Hair Loss Solution for Men",
-    " - Fast Hair Loss Solution In Jacksonville",
+    " | ManHair | Hair Restoration Orange County, CA",
+    " | Orange County's Leading Hair Loss Solution for Men",
+    " - Fast Hair Loss Solution In Orange County",
     " | ManHair",
     " | Hair Replacement for Men | ManHair",
     " - Best Hair Transplant In USA",
@@ -83,7 +83,7 @@ function deriveHeading(title) {
     " - Man Hair Replacement System For Hair Loss",
     " - Learn About Men's Hair Transplant Alternative Options",
     " To Find A Hair Doctor Near Me",
-    " Archives | ManHair | Hair Restoration Jacksonville and Atlanta",
+    " Archives | ManHair | Hair Restoration Orange County, CA",
   ];
   let h = title;
   for (const s of suffixes) if (h.endsWith(s)) h = h.slice(0, -s.length);

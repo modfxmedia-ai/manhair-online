@@ -18,7 +18,7 @@ import {
  *   1. Brand column: wordmark + verbatim "Hair Loss Solutions." tagline
  *      + follow-us paragraph.
  *   2. Quick Links column (verbatim from live footer menu).
- *   3. Locations column: both Jacksonville, FL and Atlanta, GA addresses.
+ *   3. Locations column: the Orange County, CA address.
  *   4. Working Hours block.
  *   5. Contact chips row: two phone numbers + email, styled as
  *      bordered dark buttons with copper icons.
@@ -74,34 +74,18 @@ export function Footer() {
           <ul className="mt-5 space-y-6">
             <li>
               <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-[color:var(--mh-copper-700)]">
-                {CONTACT.jacksonville.label}
+                {CONTACT.studio.label}
               </p>
               <address className="mt-2 not-italic text-sm leading-relaxed text-[color:var(--mh-ink-800)]">
-                {CONTACT.jacksonville.streetLine1}
+                {CONTACT.studio.streetLine1}
                 <br />
-                {CONTACT.jacksonville.streetLine2}
+                {CONTACT.studio.streetLine2}
               </address>
               <a
-                href={CONTACT.jacksonville.phoneHref}
+                href={CONTACT.studio.phoneHref}
                 className="mt-2 inline-block text-sm text-[color:var(--mh-ink-700)] transition-colors hover:text-[color:var(--mh-copper-700)]"
               >
-                {CONTACT.jacksonville.phone}
-              </a>
-            </li>
-            <li>
-              <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-[color:var(--mh-copper-700)]">
-                {CONTACT.atlanta.label}
-              </p>
-              <address className="mt-2 not-italic text-sm leading-relaxed text-[color:var(--mh-ink-800)]">
-                {CONTACT.atlanta.streetLine1}
-                <br />
-                {CONTACT.atlanta.streetLine2}
-              </address>
-              <a
-                href={CONTACT.atlanta.phoneHref}
-                className="mt-2 inline-block text-sm text-[color:var(--mh-ink-700)] transition-colors hover:text-[color:var(--mh-copper-700)]"
-              >
-                {CONTACT.atlanta.phone}
+                {CONTACT.studio.phone}
               </a>
             </li>
           </ul>
@@ -129,17 +113,10 @@ export function Footer() {
           <div className="flex flex-wrap gap-3">
             <ContactChip
               icon={<PhoneIcon size={18} />}
-              label="Jacksonville"
-              value={CONTACT.jacksonville.phone}
-              href={CONTACT.jacksonville.phoneHref}
-              ariaLabel={`Call our Jacksonville office at ${CONTACT.jacksonville.phone}`}
-            />
-            <ContactChip
-              icon={<PhoneIcon size={18} />}
-              label="Atlanta"
-              value={CONTACT.atlanta.phone}
-              href={CONTACT.atlanta.phoneHref}
-              ariaLabel={`Call our Atlanta office at ${CONTACT.atlanta.phone}`}
+              label="Orange County"
+              value={CONTACT.studio.phone}
+              href={CONTACT.studio.phoneHref}
+              ariaLabel={`Call our Orange County office at ${CONTACT.studio.phone}`}
             />
             <ContactChip
               icon={<MailIcon size={18} />}

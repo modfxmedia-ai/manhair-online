@@ -29,12 +29,12 @@ If you’ve done all of this and you still have not received your refund yet, pl
 <p>Sale items (if applicable)<br>
 Only regular priced items may be refunded, unfortunately sale items cannot be refunded.</p>
 <p>Exchanges (if applicable)<br>
-We only replace items if they are defective or damaged. If you need to exchange it for the same item, send us an email at info@manhaironline.com and send your item to: MANHAIR 25 N Market St #102, Jacksonville, FL 32203</p>
+We only replace items if they are defective or damaged. If you need to exchange it for the same item, send us an email at info@manhaironline.com and send your item to: MANHAIR, Orange County, CA</p>
 <p>Gifts<br>
 If the item was marked as a gift when purchased and shipped directly to you, you’ll receive a gift credit for the value of your return. Once the returned item is received, a gift certificate will be mailed to you.</p>
 <p>If the item wasn’t marked as a gift when purchased, or the gift giver had the order shipped to themselves to give to you later, we will send a refund to the gift giver and he will find out about your return.</p>
 <p>Shipping<br>
-To return your product, you should mail your product to: MANHAIR 1845 Town Center Blvd, Ste 205 A, Fleming Island, FL 32003</p>
+To return your product, you should mail your product to: MANHAIR, Orange County, CA</p>
 <p>You will be responsible for paying for your own shipping costs for returning your item. Shipping costs are non-refundable. If you receive a refund, the cost of return shipping will be deducted from your refund.</p>
 <p>Depending on where you live, the time it may take for your exchanged product to reach you, may vary.</p>
 <p>If you are shipping an item over $75, you should consider using a trackable shipping service or purchasing shipping insurance. We don’t guarantee that we will receive your returned item.</p>
@@ -49,7 +49,7 @@ To return your product, you should mail your product to: MANHAIR 1845 Town Cente
 2 In order for the items to be partial refunded or exchanged the goods must be returned within the 14 day period, received in an unworn, unused condition. We are not obliged to provide refunds on any items returned to us without packaging, damaged packaging, returned in un-cared for condition. We may return the goods back to you.<br>
 3 The goods are your responsibility until they reach us. You will be liable to pay the cost of returning unwanted goods back to us unless the item has a manufacturing defect or received in error. For your protection we recommend you use a postal service that insures you for the value of the goods you are returning.</p>
 <p><strong>Our returns address is:</strong></p>
-<p>MANHAIR 25 N Market St #102, Jacksonville, FL 32203</p>
+<p>MANHAIR, Orange County, CA</p>
 `;
 
 export default function Page() {

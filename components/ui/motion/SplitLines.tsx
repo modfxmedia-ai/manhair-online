@@ -10,7 +10,7 @@ import { cn } from "@/lib/cn";
  *
  *   <SplitLines lines={[
  *     "Man Hair Replacement",
- *     "System in Jacksonville",
+ *     "System in Orange County",
  *   ]} />
  */
 export function SplitLines({

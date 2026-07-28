@@ -344,7 +344,7 @@ export default function Page() {
               <div className="space-y-5 text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
                 <p>
                   We are a full service hair loss solution provider located in
-                  Jacksonville, FL. Our top priority is 100% client satisfaction.
+                  Orange County, CA. Our top priority is 100% client satisfaction.
                   To accomplish that goal we take care of every aspect of our
                   clients&rsquo; hair experience &ndash; starting with a FREE
                   personalized consultation to help guide you in the right direction

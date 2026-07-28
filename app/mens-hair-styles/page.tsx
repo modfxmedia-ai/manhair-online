@@ -100,14 +100,14 @@ export default function Page() {
         <div className="mh-container">
           <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
             <Reveal className="lg:col-span-7">
-              <p className="mh-kicker">A one-stop shop in Jacksonville</p>
+              <p className="mh-kicker">A one-stop shop in Orange County</p>
               <Display as={2} size="lg" className="mt-4">
                 Introducing ManHairOnline: A One-Stop Shop for Men&rsquo;s Hair
-                Styles in <Italic>Jacksonville</Italic>
+                Styles in <Italic>Orange County</Italic>
               </Display>
               <div className="mt-6 space-y-5 text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
                 <p>
-                  When it comes to mens hair styles in Jacksonville, ManHairOnline
+                  When it comes to mens hair styles in Orange County, ManHairOnline
                   is the go-to destination. We offer a wide selection of
                   contemporary and classic toupee hair systems, hair pieces for
                   men, and toupee haircuts. With our vast array of styles and
@@ -217,13 +217,13 @@ export default function Page() {
           <div className="mh-container relative">
             <Reveal>
               <p className="mh-kicker">
-                Visit ManHairOnline for the Best Toupee Hair Styles in Jacksonville
+                Visit ManHairOnline for the Best Toupee Hair Styles in Orange County
               </p>
             </Reveal>
             <Reveal delay={0.15}>
               <blockquote className="mt-8 max-w-4xl text-[clamp(1.5rem,2.2vw+0.75rem,2.5rem)] font-light leading-[1.25] text-[#FDF6E4]">
                 If you&rsquo;re looking for the best toupee hair styles in
-                Jacksonville, ManHairOnline is the place to go. We offer a wide
+                Orange County, ManHairOnline is the place to go. We offer a wide
                 selection of toupee hair systems, hair pieces for men, and toupee
                 haircuts.
               </blockquote>

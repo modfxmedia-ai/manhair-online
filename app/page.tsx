@@ -126,10 +126,10 @@ const STATS: Array<{
   {
     to: 2,
     suffix: "",
-    key: "Studios",
-    sub: "Jacksonville · Atlanta",
+    key: "Studio",
+    sub: "Orange County, CA",
     variant: "pins",
-    kicker: "Locations",
+    kicker: "Location",
   },
 ];
 
@@ -251,26 +251,15 @@ const RECENT_POSTS = POSTS.slice(0, 3);
 
 const MAP_LOCATIONS = [
   {
-    label: "Jacksonville, FL",
-    name: "ManHair Jacksonville",
-    streetLine1: CONTACT.jacksonville.streetLine1,
-    streetLine2: CONTACT.jacksonville.streetLine2,
-    phone: CONTACT.jacksonville.phone,
-    phoneHref: CONTACT.jacksonville.phoneHref,
-    detailsHref: "/jacksonville-florida/",
-    directionsHref: "https://maps.google.com/maps?q=1845%20Town%20Center%20Blvd%20Suite%20205A%2C%20Fleming%20Island%2C%20FL%2032003",
-    map: "https://maps.google.com/maps?q=1845%20Town%20Center%20Blvd%20Suite%20205A%2C%20Fleming%20Island%2C%20FL%2032003&t=m&z=13&output=embed&iwloc=near",
-  },
-  {
-    label: "Atlanta, GA",
-    name: "ManHair Atlanta",
-    streetLine1: CONTACT.atlanta.streetLine1,
-    streetLine2: CONTACT.atlanta.streetLine2,
-    phone: CONTACT.atlanta.phone,
-    phoneHref: CONTACT.atlanta.phoneHref,
-    detailsHref: "/atlanta-georgia/",
-    directionsHref: "https://maps.google.com/maps?q=1570%20Holcomb%20Bridge%20RD%20STE%20130-103%2C%20Roswell%2C%20GA%2030076",
-    map: "https://maps.google.com/maps?q=1570%20Holcomb%20Bridge%20RD%20STE%20130-103&t=m&z=13&output=embed&iwloc=near",
+    label: "Orange County, CA",
+    name: "ManHair Orange County",
+    streetLine1: CONTACT.studio.streetLine1,
+    streetLine2: CONTACT.studio.streetLine2,
+    phone: CONTACT.studio.phone,
+    phoneHref: CONTACT.studio.phoneHref,
+    detailsHref: "/orange-county-ca/",
+    directionsHref: "https://maps.google.com/maps?q=Orange+County%2C+CA",
+    map: "https://maps.google.com/maps?q=Orange+County%2C+CA&t=m&z=10&output=embed&iwloc=near",
   },
 ];
 
@@ -465,13 +454,13 @@ export default function HomePage() {
             <Reveal direction="up" duration={0.6}>
               <div className="mh-hero2-status">
                 <span aria-hidden="true" className="mh-hero2-status-dot" />
-                Now booking &mdash; Jax + Atlanta
+                Now booking &mdash; Orange County, CA
               </div>
             </Reveal>
 
             <Reveal direction="up" delay={0.06} duration={0.6}>
               <p className="mh-kicker mt-4">
-                Custom men&rsquo;s hair replacement &middot; Jacksonville &amp; Atlanta
+                Custom men&rsquo;s hair replacement &middot; Orange County, CA
               </p>
             </Reveal>
 
@@ -484,8 +473,8 @@ export default function HomePage() {
 
             <Reveal direction="up" delay={0.28}>
               <p className="mh-hero2-sub mt-7 text-lg leading-relaxed">
-                Custom men&rsquo;s hair replacement systems in Jacksonville, FL &amp;
-                Atlanta, GA, giving you the perfect system to regain your
+                Custom men&rsquo;s hair replacement systems in Orange County,
+                CA, giving you the perfect system to regain your
                 confidence and look your absolute best.
               </p>
 
@@ -1061,12 +1050,12 @@ export default function HomePage() {
             <Reveal delay={0.5}>
               <p className="mt-10 max-w-2xl text-lg leading-relaxed text-[#F5EFE3]/85">
                 Ten years of building custom systems for men who&rsquo;d given up.
-                Two studios. Zero surgical procedures. One promise: you walk in
+                One studio in Orange County. Zero surgical procedures. One promise: you walk in
                 nervous, you walk out looking like the version of yourself you
                 remember.
               </p>
               <p className="mt-8 font-sans text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[color:var(--mh-copper-300)]">
-                ManHair &mdash; Jacksonville &amp; Atlanta
+                ManHair &mdash; Orange County, CA
               </p>
             </Reveal>
           </div>
@@ -1233,7 +1222,7 @@ export default function HomePage() {
                     <span className="per">/ consultation</span>
                   </div>
                   <p className="mt-4 font-sans text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-[color:var(--mh-ink-700)]">
-                    In-home or in-studio · Jacksonville &amp; Atlanta
+                    In-home or in-studio · Orange County, CA
                   </p>
                   <ul className="mh-offer-check">
                     <li>100% real human hair, custom ordered to match you</li>
@@ -1286,47 +1275,27 @@ export default function HomePage() {
           </Reveal>
 
           <Reveal direction="left" className="md:col-span-5">
-            <p className="mh-kicker">Locations</p>
+            <p className="mh-kicker">Location</p>
             <Display as={2} size="lg" className="mt-4">
-              Two studios. One <Italic>promise.</Italic>
+              One studio. One <Italic>promise.</Italic>
             </Display>
             <div className="mt-8 space-y-4">
               <article className="mh-index-card">
                 <p className="flex items-center gap-3 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-[color:var(--mh-copper-400)]">
                   <span className="mh-pin" />
-                  Jacksonville, FL
+                  Orange County, CA
                 </p>
                 <p className="font-display text-2xl text-[color:var(--mh-ink-950)]">
-                  ManHair Jacksonville
+                  ManHair Orange County
                 </p>
                 <p className="text-[color:var(--mh-ink-800)]">
-                  {CONTACT.jacksonville.streetLine1}
+                  {CONTACT.studio.streetLine1}
                   <br />
-                  {CONTACT.jacksonville.streetLine2}
+                  {CONTACT.studio.streetLine2}
                 </p>
                 <p>
-                  <a href={CONTACT.jacksonville.phoneHref} className="font-semibold text-[color:var(--mh-copper-300)] hover:underline">
-                    {CONTACT.jacksonville.phone}
-                  </a>
-                </p>
-              </article>
-
-              <article className="mh-index-card">
-                <p className="flex items-center gap-3 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-[color:var(--mh-copper-400)]">
-                  <span className="mh-pin" />
-                  Atlanta, GA
-                </p>
-                <p className="font-display text-2xl text-[color:var(--mh-ink-950)]">
-                  ManHair Atlanta
-                </p>
-                <p className="text-[color:var(--mh-ink-800)]">
-                  {CONTACT.atlanta.streetLine1}
-                  <br />
-                  {CONTACT.atlanta.streetLine2}
-                </p>
-                <p>
-                  <a href={CONTACT.atlanta.phoneHref} className="font-semibold text-[color:var(--mh-copper-300)] hover:underline">
-                    {CONTACT.atlanta.phone}
+                  <a href={CONTACT.studio.phoneHref} className="font-semibold text-[color:var(--mh-copper-300)] hover:underline">
+                    {CONTACT.studio.phone}
                   </a>
                 </p>
               </article>
@@ -1480,10 +1449,10 @@ export default function HomePage() {
               <div>
                 <p className="mh-kicker">Find us</p>
                 <Display as={2} size="xl" className="mt-4">
-                  Two studios. <Italic>Easy to find.</Italic>
+                  Orange County. <Italic>Easy to find.</Italic>
                 </Display>
                 <p className="mt-5 max-w-xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
-                  Drop by in Jacksonville or Atlanta, or let us come to you.
+                  Drop by in Orange County, or let us come to you.
                   Either way, a free consultation is one map-tap away.
                 </p>
               </div>
@@ -1493,7 +1462,7 @@ export default function HomePage() {
             </div>
           </Reveal>
 
-          <RevealGrid className="grid gap-7 lg:grid-cols-2" gap={0.12}>
+          <RevealGrid className="grid gap-7 max-w-2xl" gap={0.12}>
             {MAP_LOCATIONS.map((loc) => (
               <article key={loc.label} className="mh-mapcard group">
                 <div className="mh-mapcard-frame">
@@ -1551,9 +1520,7 @@ export default function HomePage() {
             <div className="mh-tape-group">
               <span>Free Consultation</span>
               <span className="mh-tape-dot" />
-              <span>{CONTACT.jacksonville.phone} · Jacksonville</span>
-              <span className="mh-tape-dot" />
-              <span>{CONTACT.atlanta.phone} · Atlanta</span>
+              <span>{CONTACT.studio.phone} · Orange County, CA</span>
               <span className="mh-tape-dot" />
               <span>Undetectable Fit</span>
               <span className="mh-tape-dot" />
@@ -1561,9 +1528,7 @@ export default function HomePage() {
             <div className="mh-tape-group" aria-hidden="true">
               <span>Free Consultation</span>
               <span className="mh-tape-dot" />
-              <span>{CONTACT.jacksonville.phone} · Jacksonville</span>
-              <span className="mh-tape-dot" />
-              <span>{CONTACT.atlanta.phone} · Atlanta</span>
+              <span>{CONTACT.studio.phone} · Orange County, CA</span>
               <span className="mh-tape-dot" />
               <span>Undetectable Fit</span>
               <span className="mh-tape-dot" />

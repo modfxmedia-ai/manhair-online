@@ -36,7 +36,7 @@ export function Wordmark({
     // eslint-disable-next-line @next/next/no-img-element
     <img
       src={LOGO_SRC}
-      alt="ManHair: Hair Restoration Jacksonville & Atlanta"
+      alt="ManHair: Hair Restoration Orange County, CA"
       width={300}
       height={76}
       loading={priority ? "eager" : "lazy"}
