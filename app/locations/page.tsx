@@ -88,13 +88,13 @@ export default function Page() {
   });
 
   return (
-    <div className="mh-dark">
+    <div className="mh-light">
       <JsonLd data={graph} />
 
       {/* ============================================================
        * HERO — EyebrowTag + DisplayHeading
        * ============================================================ */}
-      <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] pb-16 pt-32 md:pb-24 md:pt-40">
+      <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] pb-16 pt-16 md:pb-24 md:pt-40">
         <AuroraBlobs className="opacity-30" />
         <div className="mh-container relative z-10">
           <Reveal>
@@ -115,7 +115,7 @@ export default function Page() {
       {/* ============================================================
        * LOCATION CARDS — map embed + NAP + phone
        * ============================================================ */}
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-20 md:py-28">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-12 md:py-28">
         <div className="mh-container">
           <RevealGrid className="grid gap-6 lg:grid-cols-2" gap={0.1}>
             {LOCATIONS.map((loc) => (
@@ -167,7 +167,7 @@ export default function Page() {
       {/* ============================================================
        * THE MANHAIR EXPERIENCE — FeaturePanel rows
        * ============================================================ */}
-      <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-20 md:py-28">
+      <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-12 md:py-28">
         <AuroraBlobs className="opacity-[0.22]" />
         <div className="mh-container relative z-10">
           <Reveal>
@@ -213,7 +213,7 @@ export default function Page() {
       {/* ============================================================
        * WORKING HOURS + LOCATIONS — info cards
        * ============================================================ */}
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-20 md:py-28">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-12 md:py-28">
         <div className="mh-container">
           <RevealGrid className="grid gap-4 md:grid-cols-3" gap={0.1}>
             <article className="mh-index-card">
@@ -270,7 +270,7 @@ export default function Page() {
       {/* ============================================================
        * CTA — "we come to you" + Book My Appointment
        * ============================================================ */}
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-20 md:py-28">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-12 md:py-28">
         <div className="mh-container">
           <div className="mh-cinema mx-auto max-w-4xl p-10 text-center md:p-16">
             <p className="mh-kicker justify-center">Let&rsquo;s work together</p>

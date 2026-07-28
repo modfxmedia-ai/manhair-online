@@ -43,13 +43,13 @@ export default function Page() {
   });
 
   return (
-    <div className="mh-dark">
+    <div className="mh-light">
       <JsonLd data={graph} />
 
       {/* ============================================================
        * HERO — EyebrowTag + DisplayHeading (real page heading)
        * ============================================================ */}
-      <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] pb-16 pt-32 md:pb-24 md:pt-40">
+      <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] pb-16 pt-16 md:pb-24 md:pt-40">
         <AuroraBlobs className="opacity-30" />
         <div className="mh-container relative z-10">
           <Reveal>
@@ -73,7 +73,7 @@ export default function Page() {
       {/* ============================================================
        * VALUE CARDS — StatCounter-style, grounded in real copy
        * ============================================================ */}
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-20 md:py-28">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-12 md:py-28">
         <div className="mh-container">
           <StatStrip>
             <StatCounter
@@ -98,7 +98,7 @@ export default function Page() {
       {/* ============================================================
        * SCHEDULE A CALL — real H2 + copy + discovery-call CTA
        * ============================================================ */}
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-20 md:py-28">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-12 md:py-28">
         <div className="mh-container">
           <div className="mh-price-panel grid gap-10 p-8 md:grid-cols-12 md:items-center md:p-14">
             <Reveal direction="right" className="md:col-span-8">
@@ -148,7 +148,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="border-t border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-16 md:py-20">
+      <section className="border-t border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-8 md:py-20">
         <div className="mh-container text-center">
           <p className="mh-kicker justify-center">Ready when you are</p>
           <Display as={2} size="lg" className="mt-4">

@@ -121,7 +121,7 @@ export default function Page() {
 
       {/* Hero */}
       <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)]">
-        <div className="mh-container py-20 md:py-24">
+        <div className="mh-container py-10 md:py-24">
           <p className="mh-eyebrow">Legal</p>
           <Display as={2} size="lg" className="mt-6 max-w-3xl">
             Terms of Service
@@ -132,7 +132,7 @@ export default function Page() {
 
       {/* Body */}
       <section className="bg-[color:var(--mh-bg)]">
-        <div className="mh-container py-16 md:py-20">
+        <div className="mh-container py-8 md:py-20">
           <article
             className="mh-prose mx-auto max-w-3xl"
             // eslint-disable-next-line react/no-danger

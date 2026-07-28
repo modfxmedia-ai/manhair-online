@@ -117,13 +117,13 @@ export default function Page() {
   });
 
   return (
-    <div className="mh-dark">
+    <div className="mh-light">
       <JsonLd data={graph} />
 
       {/* ============================================================
        * HERO — Welcome to ManHair (real H1)
        * ============================================================ */}
-      <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] pb-16 pt-32 md:pb-24 md:pt-40">
+      <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] pb-16 pt-16 md:pb-24 md:pt-40">
         <AuroraBlobs className="opacity-30" />
         <div className="mh-container relative z-10">
           <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
@@ -160,7 +160,7 @@ export default function Page() {
       {/* ============================================================
        * INTRO CTA — it is time (verbatim recurring block)
        * ============================================================ */}
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-16 md:py-20">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-8 md:py-20">
         <div className="mh-container text-center">
           <Reveal>
             <Display as={2} size="lg">
@@ -184,7 +184,7 @@ export default function Page() {
       {/* ============================================================
        * THE ULTIMATE HAIR REPLACEMENT SOLUTION — verbatim body
        * ============================================================ */}
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-20 md:py-28">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-12 md:py-28">
         <div className="mh-container">
           <Reveal>
             <p className="mh-kicker">
@@ -268,7 +268,7 @@ export default function Page() {
       {/* ============================================================
        * OUR SERVICES — ChecklistItem list
        * ============================================================ */}
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-20 md:py-28">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-12 md:py-28">
         <div className="mh-container">
           <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
             <Reveal className="lg:col-span-6">
@@ -300,7 +300,7 @@ export default function Page() {
       {/* ============================================================
        * CUSTOMIZED SOLUTIONS FOR ALL HAIR TYPES — verbatim body
        * ============================================================ */}
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-20 md:py-28">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-12 md:py-28">
         <div className="mh-container">
           <Reveal>
             <div className="mx-auto max-w-4xl text-center">
@@ -331,7 +331,7 @@ export default function Page() {
       {/* ============================================================
        * SO WHAT EXACTLY IS MANHAIR — verbatim body + ChecklistItem
        * ============================================================ */}
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-20 md:py-28">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-12 md:py-28">
         <div className="mh-container">
           <Reveal>
             <p className="mh-kicker">So What exactly is manhair?</p>
@@ -378,7 +378,7 @@ export default function Page() {
        * MANHAIR PHILOSOPHY — QuoteBlock pull-quote
        * ============================================================ */}
       <section className="relative">
-        <div className="mh-cinema border-y border-[color:var(--mh-copper-700)]/40 px-6 py-24 md:py-32">
+        <div className="mh-cinema border-y border-[color:var(--mh-copper-700)]/40 px-6 py-14 md:py-32">
           <div className="mh-container relative">
             <Reveal>
               <p className="mh-kicker">
@@ -411,7 +411,7 @@ export default function Page() {
       {/* ============================================================
        * TESTIMONIALS — look what others are saying
        * ============================================================ */}
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-20 md:py-28">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-12 md:py-28">
         <div className="mh-container">
           <Reveal>
             <p className="mh-kicker">look what others are saying about manhair</p>
@@ -458,7 +458,7 @@ export default function Page() {
       {/* ============================================================
        * LIVE WORRY FREE — 3 cards linking to how-it-works
        * ============================================================ */}
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-20 md:py-28">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-12 md:py-28">
         <div className="mh-container">
           <Reveal>
             <p className="mh-kicker">
@@ -504,7 +504,7 @@ export default function Page() {
       {/* ============================================================
        * WORKING HOURS + CONTACT INFO — info cards
        * ============================================================ */}
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-20 md:py-28">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-12 md:py-28">
         <div className="mh-container">
           <Reveal>
             <Display as={2} size="lg" className="max-w-4xl">
@@ -587,7 +587,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="border-t border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-16 md:py-20">
+      <section className="border-t border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-8 md:py-20">
         <div className="mh-container text-center">
           <p className="mh-kicker justify-center">click below to schedule a call</p>
           <Display as={2} size="lg" className="mt-4">

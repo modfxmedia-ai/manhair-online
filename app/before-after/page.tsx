@@ -88,13 +88,13 @@ export default function Page() {
   });
 
   return (
-    <div className="mh-dark">
+    <div className="mh-light">
       <JsonLd data={graph} />
 
       {/* ============================================================
        * HERO — EyebrowTag + DisplayHeading (real page heading)
        * ============================================================ */}
-      <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] pb-16 pt-32 md:pb-24 md:pt-40">
+      <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] pb-16 pt-16 md:pb-24 md:pt-40">
         <AuroraBlobs className="opacity-30" />
         <div className="mh-container relative z-10">
           <Reveal>
@@ -119,7 +119,7 @@ export default function Page() {
       {/* ============================================================
        * GALLERY — clean masonry grid of real before/after images
        * ============================================================ */}
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-20 md:py-28">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-12 md:py-28">
         <div className="mh-container">
           <div className="columns-1 gap-5 sm:columns-2 lg:columns-3">
             {GALLERY.map((g, i) => (
@@ -143,7 +143,7 @@ export default function Page() {
       {/* ============================================================
        * CTA — real closing copy + Book My Appointment
        * ============================================================ */}
-      <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-20 md:py-28">
+      <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-12 md:py-28">
         <AuroraBlobs className="opacity-25" intensity="strong" />
         <div className="mh-container relative z-10 text-center">
           <Reveal>
@@ -190,7 +190,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="border-t border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-16 md:py-20">
+      <section className="border-t border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-8 md:py-20">
         <div className="mh-container text-center">
           <p className="mh-kicker justify-center">See the difference</p>
           <Display as={2} size="lg" className="mt-4">

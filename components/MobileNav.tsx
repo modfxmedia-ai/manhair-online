@@ -1,11 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/cn";
-import { CONTACT, HEADER_CTA, PRIMARY_NAV, type NavItem } from "@/lib/site";
+import { CONTACT, HEADER_CTA, PRIMARY_NAV, SOCIAL, type NavItem } from "@/lib/site";
 import { Wordmark } from "./Wordmark";
+import { Button } from "@/components/ui";
+import { MailIcon, PhoneIcon, SocialIcon } from "./icons";
 
 /**
  * MobileNav — the hamburger button + slide-in off-canvas panel.
@@ -13,15 +16,25 @@ import { Wordmark } from "./Wordmark";
  * - Slides in from the right on top of a dimmed backdrop.
  * - Locks body scroll while open.
  * - Closes on Escape, backdrop click, or route change.
- * - Nested dropdowns use native <details> for a JS-lean disclosure.
- * - Shows the phone number and the "Book Appointment" CTA prominently.
+ * - Nested groups use native <details> for a JS-lean disclosure with
+ *   a rotating chevron indicator.
+ * - Panel is split into 3 vertical regions: brand row, scrolling nav,
+ *   pinned footer (contact cards + Book Appointment CTA + socials).
  *
  * Desktop breakpoint (lg) hides the hamburger and hides the panel
  * entirely, so this component is a no-op above 1024px.
  */
+const DRAWER_SOCIAL = SOCIAL.filter((s) => s.visibleInFooter).slice(0, 4);
+
 export function MobileNav() {
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
+
+  // Portal target only exists after mount (client only).
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Lock body scroll when the panel is open.
   useEffect(() => {
@@ -48,26 +61,23 @@ export function MobileNav() {
     setOpen(false);
   }, [pathname]);
 
-  return (
-    <>
-      <button
-        type="button"
-        aria-label={open ? "Close menu" : "Open menu"}
-        aria-expanded={open}
-        aria-controls="mh-mobile-nav"
-        onClick={() => setOpen((v) => !v)}
-        className="inline-flex h-10 w-10 items-center justify-center rounded-[var(--mh-radius-sm)] border border-[color:var(--mh-border-strong)] text-[color:var(--mh-fg)] transition-colors hover:border-[color:var(--mh-copper-500)] hover:text-[color:var(--mh-copper-700)] lg:hidden"
-      >
-        <HamburgerIcon open={open} />
-        <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
-      </button>
+  const close = () => setOpen(false);
 
+  /**
+   * The drawer + backdrop are portaled to `document.body` so they
+   * escape the sticky/backdrop-filter header's containing block
+   * (position: fixed is otherwise contained by an ancestor with
+   * a `backdrop-filter`). Without the portal the drawer would only
+   * span the header's width.
+   */
+  const overlay = (
+    <>
       {/* Backdrop */}
       <div
         aria-hidden="true"
-        onClick={() => setOpen(false)}
+        onClick={close}
         className={cn(
-          "fixed inset-0 z-40 bg-[color:var(--mh-ink-950)]/50 backdrop-blur-sm transition-opacity duration-200 lg:hidden",
+          "fixed inset-0 z-40 bg-[color:var(--mh-ink-950)]/55 backdrop-blur-sm transition-opacity duration-300 lg:hidden",
           open ? "opacity-100" : "pointer-events-none opacity-0"
         )}
       />
@@ -79,50 +89,144 @@ export function MobileNav() {
         aria-modal="true"
         aria-label="Primary navigation"
         className={cn(
-          "fixed inset-y-0 right-0 z-50 flex w-[90vw] max-w-sm flex-col border-l border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] transition-transform duration-300 ease-out lg:hidden",
-          open ? "translate-x-0" : "translate-x-full"
+          "mh-mnav fixed inset-y-0 right-0 z-50 flex w-[92vw] max-w-[24rem] flex-col bg-[color:var(--mh-bg)] shadow-[0_30px_80px_-20px_rgba(26,19,14,0.35)] transition-transform duration-[420ms] ease-[cubic-bezier(0.16,1,0.3,1)] lg:hidden",
+          open ? "translate-x-0" : "pointer-events-none translate-x-full"
         )}
+        data-open={open ? "true" : "false"}
+        aria-hidden={!open}
       >
-        <div className="flex items-center justify-between border-b border-[color:var(--mh-border)] px-6 py-5">
-          <Link href="/" onClick={() => setOpen(false)} aria-label="ManHair — home">
+        {/* Top hairline gold accent */}
+        <span aria-hidden="true" className="mh-mnav-accent" />
+
+        {/* Brand row */}
+        <div className="flex items-center justify-between px-6 pb-5 pt-6">
+          <Link
+            href="/"
+            onClick={close}
+            aria-label="ManHair home"
+            className="inline-flex focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--mh-copper-500)]"
+          >
             <Wordmark size="sm" />
           </Link>
           <button
             type="button"
             aria-label="Close menu"
-            onClick={() => setOpen(false)}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[color:var(--mh-border-strong)] text-[color:var(--mh-ink-800)] transition-colors hover:border-[color:var(--mh-copper-500)] hover:text-[color:var(--mh-copper-700)]"
+            onClick={close}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--mh-border-strong)] text-[color:var(--mh-ink-800)] transition-colors hover:border-[color:var(--mh-copper-500)] hover:text-[color:var(--mh-copper-700)]"
           >
             <CloseIcon />
             <span className="sr-only">Close menu</span>
           </button>
         </div>
 
-        <nav aria-label="Mobile primary" className="flex-1 overflow-y-auto px-6 py-6">
-          <ul className="flex flex-col gap-1">
-            {PRIMARY_NAV.map((item) => (
-              <MobileItem key={item.label} item={item} onNavigate={() => setOpen(false)} />
+        {/* Eyebrow */}
+        <div className="mh-mnav-eyebrow">
+          <span aria-hidden="true" className="mh-mnav-eyebrow-line" />
+          Menu
+        </div>
+
+        {/* Nav */}
+        <nav
+          aria-label="Mobile primary"
+          className="mh-mnav-scroll flex-1 overflow-y-auto px-4 pb-6 pt-2"
+        >
+          <ul className="flex flex-col gap-0.5">
+            {PRIMARY_NAV.map((item, i) => (
+              <MobileItem
+                key={item.label}
+                item={item}
+                onNavigate={close}
+                index={i}
+              />
             ))}
           </ul>
         </nav>
 
-        <div className="border-t border-[color:var(--mh-border)] px-6 py-6">
-          <a
-            href={CONTACT.jacksonville.phoneHref}
-            className="block text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-[color:var(--mh-copper-700)]"
-            onClick={() => setOpen(false)}
-          >
-            {CONTACT.jacksonville.phone}
-          </a>
-          <Link
-            href={HEADER_CTA.href}
-            onClick={() => setOpen(false)}
-            className="mh-btn mh-btn-primary mh-btn-block mt-4"
-          >
+        {/* Footer — contact + CTA + socials */}
+        <div className="mh-mnav-foot border-t border-[color:var(--mh-border)] px-5 pb-6 pt-5">
+          <p className="mh-mnav-foot-eyebrow">
+            <span aria-hidden="true" className="mh-mnav-eyebrow-line" />
+            Reach us
+          </p>
+          <div className="mt-2 grid grid-cols-1 gap-2">
+            <a
+              href={CONTACT.jacksonville.phoneHref}
+              className="mh-mnav-contact"
+              onClick={close}
+            >
+              <span className="mh-mnav-contact-icon">
+                <PhoneIcon size={14} />
+              </span>
+              <span className="mh-mnav-contact-body">
+                <span className="mh-mnav-contact-label">Jacksonville, FL</span>
+                <span className="mh-mnav-contact-value">{CONTACT.jacksonville.phone}</span>
+              </span>
+            </a>
+            <a
+              href={CONTACT.atlanta.phoneHref}
+              className="mh-mnav-contact"
+              onClick={close}
+            >
+              <span className="mh-mnav-contact-icon">
+                <PhoneIcon size={14} />
+              </span>
+              <span className="mh-mnav-contact-body">
+                <span className="mh-mnav-contact-label">Atlanta, GA</span>
+                <span className="mh-mnav-contact-value">{CONTACT.atlanta.phone}</span>
+              </span>
+            </a>
+          </div>
+
+          <Button href={HEADER_CTA.href} onClick={close} block className="mt-4">
             {HEADER_CTA.label}
-          </Link>
+          </Button>
+
+          <div className="mt-5 flex items-center justify-between gap-3">
+            <a
+              href={CONTACT.emailHref}
+              onClick={close}
+              className="mh-mnav-mail inline-flex items-center gap-1.5"
+            >
+              <MailIcon size={12} />
+              {CONTACT.email}
+            </a>
+            <div className="flex items-center gap-1.5">
+              {DRAWER_SOCIAL.map((s) => {
+                const Icon = SocialIcon[s.platform];
+                return (
+                  <a
+                    key={s.platform}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.label}
+                    className="mh-mnav-social"
+                  >
+                    <Icon size={13} />
+                  </a>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </aside>
+    </>
+  );
+
+  return (
+    <>
+      <button
+        type="button"
+        aria-label={open ? "Close menu" : "Open menu"}
+        aria-expanded={open}
+        aria-controls="mh-mobile-nav"
+        onClick={() => setOpen((v) => !v)}
+        className="mh-mnav-toggle inline-flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--mh-border-strong)] text-[color:var(--mh-fg)] transition-colors hover:border-[color:var(--mh-copper-500)] hover:text-[color:var(--mh-copper-700)] lg:hidden"
+      >
+        <HamburgerIcon open={open} />
+        <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
+      </button>
+      {mounted ? createPortal(overlay, document.body) : null}
     </>
   );
 }
@@ -131,58 +235,68 @@ function MobileItem({
   item,
   onNavigate,
   depth = 0,
+  index = 0,
 }: {
   item: NavItem;
   onNavigate: () => void;
   depth?: number;
+  index?: number;
 }) {
   if (!item.children || item.children.length === 0) {
     return (
-      <li>
+      <li
+        className="mh-mnav-row"
+        style={{ ["--i" as string]: index }}
+      >
         <Link
           href={item.href}
           onClick={onNavigate}
           className={cn(
-            "block py-2.5 text-sm font-semibold uppercase tracking-[0.14em] text-[color:var(--mh-fg)] transition-colors hover:text-[color:var(--mh-copper-700)]",
-            depth > 0 && "text-[color:var(--mh-ink-800)] pl-4"
+            "mh-mnav-link",
+            depth > 0 && "mh-mnav-link--nested"
           )}
         >
-          {item.label}
+          <span className="mh-mnav-link-label">{item.label}</span>
+          <ChevronRightIcon />
         </Link>
       </li>
     );
   }
   return (
-    <li>
-      <details className="group">
-        <summary className="flex cursor-pointer items-center justify-between py-2.5 text-sm font-semibold uppercase tracking-[0.14em] text-[color:var(--mh-fg)] transition-colors hover:text-[color:var(--mh-copper-700)] [&::-webkit-details-marker]:hidden">
-          <span>{item.label}</span>
+    <li
+      className="mh-mnav-row"
+      style={{ ["--i" as string]: index }}
+    >
+      <details className="mh-mnav-details group">
+        <summary className="mh-mnav-summary">
+          <span className="mh-mnav-link-label">{item.label}</span>
           <span
             aria-hidden="true"
-            className="ml-2 inline-flex h-6 w-6 items-center justify-center text-[color:var(--mh-ink-600)] transition-transform group-open:rotate-45"
+            className="mh-mnav-chev inline-flex h-6 w-6 items-center justify-center text-[color:var(--mh-ink-600)] transition-transform duration-300 group-open:rotate-90"
           >
-            +
+            <ChevronRightIcon />
           </span>
         </summary>
-        <ul className="mb-2 mt-1 border-l border-[color:var(--mh-border)] pl-3">
+        <ul className="mh-mnav-sublist">
           {/* Also link to the parent's own href when it's a real page */}
           {item.href && item.href !== "#" ? (
-            <li>
+            <li className="mh-mnav-row">
               <Link
                 href={item.href}
                 onClick={onNavigate}
-                className="block py-2 text-xs uppercase tracking-[0.14em] text-[color:var(--mh-ink-600)] transition-colors hover:text-[color:var(--mh-copper-700)]"
+                className="mh-mnav-sublink"
               >
-                {item.label} overview
+                <span className="mh-mnav-suboverview">Overview</span>
               </Link>
             </li>
           ) : null}
-          {item.children.map((c) => (
+          {item.children.map((c, i) => (
             <MobileItem
               key={c.label}
               item={c}
               onNavigate={onNavigate}
               depth={depth + 1}
+              index={i}
             />
           ))}
         </ul>
@@ -199,7 +313,7 @@ function HamburgerIcon({ open }: { open: boolean }) {
       viewBox="0 0 18 14"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.5"
+      strokeWidth="1.6"
       strokeLinecap="round"
       className="transition-transform"
       aria-hidden="true"
@@ -219,12 +333,30 @@ function CloseIcon() {
       viewBox="0 0 14 14"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.5"
+      strokeWidth="1.6"
       strokeLinecap="round"
       aria-hidden="true"
     >
       <line x1="2" y1="2" x2="12" y2="12" />
       <line x1="12" y1="2" x2="2" y2="12" />
+    </svg>
+  );
+}
+
+function ChevronRightIcon() {
+  return (
+    <svg
+      width="10"
+      height="10"
+      viewBox="0 0 10 10"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <polyline points="3 1.5 6.5 5 3 8.5" />
     </svg>
   );
 }

@@ -64,13 +64,13 @@ export default function BlogIndex() {
   });
 
   return (
-    <div className="mh-dark">
+    <div className="mh-light">
       <JsonLd data={graph} />
 
       {/* ============================================================
        * HERO
        * ============================================================ */}
-      <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] pb-16 pt-32 md:pb-24 md:pt-40">
+      <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] pb-16 pt-16 md:pb-24 md:pt-40">
         <AuroraBlobs className="opacity-30" />
         <div className="mh-container relative z-10">
           <Reveal>
@@ -90,7 +90,7 @@ export default function BlogIndex() {
       {/* ============================================================
        * POST GRID — dark card layout
        * ============================================================ */}
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-16 md:py-24">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-10 md:py-24">
         <div className="mh-container">
           <PostGrid posts={BLOG_POSTS} />
         </div>
@@ -99,7 +99,7 @@ export default function BlogIndex() {
       {/* ============================================================
        * CLOSING CTA
        * ============================================================ */}
-      <section className="border-t border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-16 md:py-20">
+      <section className="border-t border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-8 md:py-20">
         <div className="mh-container text-center">
           <p className="mh-kicker justify-center">
             Get your hair back. Get your confidence back.

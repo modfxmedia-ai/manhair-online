@@ -89,13 +89,13 @@ export default function Page() {
   });
 
   return (
-    <div className="mh-dark">
+    <div className="mh-light">
       <JsonLd data={graph} />
 
       {/* ============================================================
        * HERO — EyebrowTag + DisplayHeading (real page heading)
        * ============================================================ */}
-      <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] pb-16 pt-32 md:pb-24 md:pt-40">
+      <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] pb-16 pt-16 md:pb-24 md:pt-40">
         <AuroraBlobs className="opacity-30" />
         <div className="mh-container relative z-10">
           <Reveal>
@@ -112,8 +112,8 @@ export default function Page() {
       {/* ============================================================
        * WHAT IS A MANHAIR PRODUCT — intro + highlights
        * ============================================================ */}
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-20 md:py-28">
-        <div className="mh-container grid gap-14 md:grid-cols-12 md:gap-12">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-12 md:py-28">
+        <div className="mh-container grid gap-8 md:grid-cols-12 md:gap-12">
           <Reveal direction="right" className="md:col-span-7">
             <p className="mh-kicker">What is a manhair product?</p>
             <p className="mt-6 text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
@@ -145,7 +145,7 @@ export default function Page() {
       {/* ============================================================
        * STATIONS — NumberedRow (giant outline numbers)
        * ============================================================ */}
-      <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-20 md:py-28">
+      <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-12 md:py-28">
         <AuroraBlobs className="opacity-20" />
         <div className="mh-container relative z-10">
           <Reveal>
@@ -178,7 +178,7 @@ export default function Page() {
       {/* ============================================================
        * CTA — real closing copy + Book My Appointment
        * ============================================================ */}
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-20 md:py-28">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-12 md:py-28">
         <div className="mh-container">
           <div className="mh-price-panel grid gap-10 p-8 md:grid-cols-12 md:items-center md:p-14">
             <Reveal direction="right" className="md:col-span-8">
@@ -226,7 +226,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="border-t border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-16 md:py-20">
+      <section className="border-t border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-8 md:py-20">
         <div className="mh-container text-center">
           <p className="mh-kicker justify-center">Ready when you are</p>
           <Display as={2} size="lg" className="mt-4">

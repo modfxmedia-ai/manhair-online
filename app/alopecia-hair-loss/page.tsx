@@ -48,13 +48,13 @@ export default function Page() {
   });
 
   return (
-    <div className="mh-dark">
+    <div className="mh-light">
       <JsonLd data={graph} />
 
       {/* ============================================================
        * HERO — EyebrowTag + DisplayHeading (real H1)
        * ============================================================ */}
-      <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] pb-16 pt-32 md:pb-24 md:pt-40">
+      <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] pb-16 pt-16 md:pb-24 md:pt-40">
         <AuroraBlobs className="opacity-30" />
         <div className="mh-container relative z-10">
           <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
@@ -103,7 +103,7 @@ export default function Page() {
       {/* ============================================================
        * MEDICAL TREATMENTS — DisplayHeading + verbatim body copy
        * ============================================================ */}
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-20 md:py-28">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-12 md:py-28">
         <div className="mh-container">
           <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
             <Reveal className="lg:col-span-7">
@@ -146,7 +146,7 @@ export default function Page() {
       {/* ============================================================
        * HAIR REPLACEMENT SOLUTIONS — DisplayHeading + verbatim body
        * ============================================================ */}
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-20 md:py-28">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-12 md:py-28">
         <div className="mh-container">
           <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
             <Reveal direction="right" className="order-2 lg:order-1 lg:col-span-5">
@@ -193,7 +193,7 @@ export default function Page() {
        * QUOTE BLOCK — pull-quote (confidence statement)
        * ============================================================ */}
       <section className="relative">
-        <div className="mh-cinema border-y border-[color:var(--mh-copper-700)]/40 px-6 py-24 md:py-32">
+        <div className="mh-cinema border-y border-[color:var(--mh-copper-700)]/40 px-6 py-14 md:py-32">
           <div className="mh-container relative">
             <Reveal>
               <p className="mh-kicker">It is time&hellip;</p>
@@ -247,7 +247,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="border-t border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-16 md:py-20">
+      <section className="border-t border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-8 md:py-20">
         <div className="mh-container text-center">
           <p className="mh-kicker justify-center">
             Get your hair back. Get your confidence back.

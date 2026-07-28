@@ -19,6 +19,7 @@ export function CountUp({
   prefix,
   className,
   format,
+  decimals,
   once = true,
 }: {
   to: number;
@@ -28,6 +29,12 @@ export function CountUp({
   prefix?: ReactNode;
   className?: string;
   format?: (n: number) => string;
+  /**
+   * Fixed number of decimal places to display. Server-safe
+   * alternative to `format` (functions can't cross the server →
+   * client boundary). Ignored when `format` is provided.
+   */
+  decimals?: number;
   once?: boolean;
 }) {
   const [ref, inView] = useInView<HTMLSpanElement>({ once, amount: 0.4 });
@@ -50,7 +57,11 @@ export function CountUp({
     return () => cancelAnimationFrame(raf);
   }, [inView, from, to, duration]);
 
-  const text = format ? format(displayed) : Math.round(displayed).toString();
+  const text = format
+    ? format(displayed)
+    : typeof decimals === "number"
+    ? displayed.toFixed(decimals)
+    : Math.round(displayed).toString();
 
   return (
     <span ref={ref} className={cn("inline-flex items-baseline", className)}>

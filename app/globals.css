@@ -318,6 +318,868 @@ body {
   .mh-btn-glow { animation: none; }
 }
 
+/* ============================================================
+ * HEADER — top utility bar, nav underline links, icon buttons,
+ * and the refined dropdown panel. Site-wide (shared, always on
+ * the light/cream palette; see components/Header.tsx).
+ * ============================================================ */
+
+/* Slim utility bar above the main nav row. */
+.mh-topbar {
+  border-bottom: 1px solid var(--mh-border);
+  background: var(--mh-surface);
+}
+.mh-topbar-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mh-ink-700);
+  transition: color var(--mh-dur) var(--mh-ease);
+}
+.mh-topbar-link:hover { color: var(--mh-copper-700); }
+
+/* Circular icon button — phone / social in the header chrome. */
+.mh-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  color: var(--mh-ink-600);
+  border: 1px solid transparent;
+  transition: color var(--mh-dur) var(--mh-ease),
+              border-color var(--mh-dur) var(--mh-ease),
+              background-color var(--mh-dur) var(--mh-ease);
+}
+.mh-icon-btn:hover {
+  color: var(--mh-copper-700);
+  border-color: var(--mh-copper-300);
+  background: var(--mh-copper-50);
+}
+
+/* Main desktop nav link — animated gold underline on hover/focus,
+   grown from the center. Applied to the top-level items only;
+   dropdown parents keep the caret from `Caret()`. */
+.mh-nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding-block: 0.4rem;
+}
+.mh-nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--mh-copper-500);
+  transition: width var(--mh-dur) var(--mh-ease), left var(--mh-dur) var(--mh-ease);
+}
+.mh-nav-link:hover::after,
+.mh-nav-link:focus-visible::after {
+  width: 100%;
+  left: 0;
+}
+
+/* ---------- Dropdown ------------------------------------------------
+ * A polished mega-menu-style panel: rounded card + gold hairline
+ * top accent + soft warm shadow + backdrop blur + a subtle scale +
+ * rise entrance. Every hover interaction uses a *transparent bridge*
+ * (`.mh-navdrop-wrap` padding-top, `.mh-navdrop-side-wrap` padding-left)
+ * so the pointer never crosses an ungrouped gap between trigger and
+ * menu — that's what eliminates the classic dropdown flicker.
+ *
+ * Visibility toggles from `hidden` → `visible` at the end of the exit
+ * transition so a closed menu can't accidentally intercept clicks,
+ * while the transition-delay on close keeps opacity/transform in
+ * sync with visibility.
+ * ------------------------------------------------------------------ */
+
+/* Invisible hover bridge — inherits the group's hover state so
+   the pointer can travel from the trigger link into the menu
+   panel without ever leaving the group scope. */
+.mh-navdrop-wrap,
+.mh-navdrop-side-wrap {
+  pointer-events: none;
+}
+.group\/top:hover .mh-navdrop-wrap,
+.group\/top:focus-within .mh-navdrop-wrap,
+.group\/sub:hover .mh-navdrop-side-wrap,
+.group\/sub:focus-within .mh-navdrop-side-wrap {
+  pointer-events: auto;
+}
+
+/* The actual panel — closed state. */
+.mh-navdrop,
+.mh-navdrop-side {
+  position: relative;
+  background: color-mix(in srgb, var(--mh-bg) 88%, transparent);
+  backdrop-filter: blur(14px) saturate(1.05);
+  -webkit-backdrop-filter: blur(14px) saturate(1.05);
+  border-radius: var(--mh-radius-md);
+  box-shadow:
+    0 24px 60px -28px rgba(56, 40, 12, 0.35),
+    0 4px 12px -4px rgba(26, 19, 14, 0.08);
+  opacity: 0;
+  visibility: hidden;
+  transform-origin: top center;
+  transform: translateY(-6px) scale(0.98);
+  transition:
+    opacity 0.22s var(--mh-ease),
+    transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s linear 0.28s;
+}
+.mh-navdrop-side {
+  transform-origin: left center;
+  transform: translateX(-6px) scale(0.98);
+}
+
+/* Gold hairline top accent */
+.mh-navdrop::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  border-radius: var(--mh-radius-md) var(--mh-radius-md) 0 0;
+  background: linear-gradient(90deg, var(--mh-copper-700), var(--mh-copper-500), var(--mh-copper-300));
+  opacity: 0.9;
+}
+.mh-navdrop-side::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 2px;
+  border-radius: var(--mh-radius-md) 0 0 var(--mh-radius-md);
+  background: linear-gradient(180deg, var(--mh-copper-700), var(--mh-copper-500), var(--mh-copper-300));
+  opacity: 0.9;
+}
+
+/* Open state — from group hover or focus-within. */
+.group\/top:hover .mh-navdrop,
+.group\/top:focus-within .mh-navdrop {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  transition:
+    opacity 0.22s var(--mh-ease),
+    transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s linear 0s;
+}
+.group\/sub:hover .mh-navdrop-side,
+.group\/sub:focus-within .mh-navdrop-side {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0) scale(1);
+  transition:
+    opacity 0.22s var(--mh-ease),
+    transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s linear 0s;
+}
+
+/* Per-item staggered rise using the inline `--i` custom prop.
+   The item's own transition is delayed by `calc(var(--i) * 30ms)`
+   so hovering the trigger unfolds the menu one row at a time. */
+.mh-navdrop-item {
+  opacity: 0;
+  transform: translateY(-4px);
+  transition:
+    opacity 0.22s var(--mh-ease),
+    transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.group\/top:hover .mh-navdrop-item,
+.group\/top:focus-within .mh-navdrop-item,
+.group\/sub:hover .mh-navdrop-item,
+.group\/sub:focus-within .mh-navdrop-item {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: calc(var(--i, 0) * 30ms + 60ms);
+}
+
+/* Row hover — soft gold wash, indent hint, gold text.
+   Uses a pseudo-element scaleX so the hover fill grows FROM the
+   left instead of just fading in — feels more intentional. */
+.mh-navdrop-link {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 0.2s var(--mh-ease), transform 0.25s var(--mh-ease);
+}
+.mh-navdrop-link::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg,
+    color-mix(in srgb, var(--mh-copper-300) 18%, transparent),
+    color-mix(in srgb, var(--mh-copper-300) 4%, transparent));
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mh-navdrop-link:hover,
+.mh-navdrop-link:focus-visible {
+  color: var(--mh-copper-700);
+  transform: translateX(3px);
+}
+.mh-navdrop-link:hover::before,
+.mh-navdrop-link:focus-visible::before {
+  transform: scaleX(1);
+}
+
+/* Nested submenu chevron — nudges right on hover for affordance. */
+.mh-navdrop-chev {
+  display: inline-flex;
+  align-items: center;
+  color: var(--mh-ink-500);
+  transition: transform 0.25s var(--mh-ease), color 0.2s var(--mh-ease);
+}
+.group\/sub:hover .mh-navdrop-chev,
+.mh-navdrop-link:hover .mh-navdrop-chev {
+  transform: translateX(3px);
+  color: var(--mh-copper-500);
+}
+
+/* Top-level trigger caret rotates 180° when the menu is open. */
+.mh-nav-caret {
+  transition: transform 0.25s var(--mh-ease);
+}
+.group\/top:hover .mh-nav-caret,
+.group\/top:focus-within .mh-nav-caret {
+  transform: rotate(-180deg);
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mh-navdrop,
+  .mh-navdrop-side,
+  .mh-navdrop-item,
+  .mh-navdrop-link,
+  .mh-navdrop-link::before,
+  .mh-navdrop-chev,
+  .mh-nav-caret {
+    transition: opacity 0.15s linear !important;
+    transform: none !important;
+    transition-delay: 0s !important;
+  }
+}
+
+/* ---------- Mega menu -----------------------------------------------
+ * Rich multi-column dropdown for `About` and `How It Works`. Reuses
+ * the same "hover bridge" (`.mh-mega-wrap` padding-top) + visibility
+ * pattern as `.mh-navdrop` for zero-flicker enter/exit. Icon rows +
+ * a bright "Featured" tile on the right create real depth.
+ * ------------------------------------------------------------------ */
+.mh-mega-wrap { pointer-events: none; }
+.group\/top:hover .mh-mega-wrap,
+.group\/top:focus-within .mh-mega-wrap { pointer-events: auto; }
+
+.mh-mega {
+  position: relative;
+  width: min(52rem, 88vw);
+  background: color-mix(in srgb, var(--mh-bg) 92%, transparent);
+  backdrop-filter: blur(16px) saturate(1.08);
+  -webkit-backdrop-filter: blur(16px) saturate(1.08);
+  border-radius: var(--mh-radius-md);
+  box-shadow:
+    0 40px 90px -36px rgba(56, 40, 12, 0.42),
+    0 6px 18px -6px rgba(26, 19, 14, 0.08);
+  opacity: 0;
+  visibility: hidden;
+  transform-origin: top center;
+  transform: translateY(-8px) scale(0.985);
+  transition:
+    opacity 0.24s var(--mh-ease),
+    transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s linear 0.32s;
+}
+.mh-mega::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  border-radius: var(--mh-radius-md) var(--mh-radius-md) 0 0;
+  background: linear-gradient(90deg,
+    var(--mh-copper-700) 0%,
+    var(--mh-copper-500) 50%,
+    var(--mh-copper-300) 100%);
+  opacity: 0.95;
+}
+.group\/top:hover .mh-mega,
+.group\/top:focus-within .mh-mega {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  transition:
+    opacity 0.24s var(--mh-ease),
+    transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s linear 0s;
+}
+
+.mh-mega-inner {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) 15rem;
+  gap: 1.75rem;
+  padding: 1.5rem 1.5rem 1.4rem;
+}
+@media (max-width: 900px) {
+  .mh-mega-inner { grid-template-columns: 1fr; gap: 1rem; padding: 1.2rem; }
+}
+
+/* --- Column header ---------------------------------------------- */
+.mh-mega-col > ul { display: flex; flex-direction: column; gap: 0.25rem; }
+.mh-mega-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0 0 0.65rem 0.6rem;
+  font-family: var(--mh-font-sans);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mh-copper-400);
+}
+.mh-mega-eyebrow::before {
+  content: "";
+  width: 0.65rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.7;
+}
+
+/* --- Row items with per-row stagger ------------------------------ */
+.mh-mega-item {
+  opacity: 0;
+  transform: translateY(-4px);
+  transition:
+    opacity 0.24s var(--mh-ease),
+    transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.group\/top:hover .mh-mega-item,
+.group\/top:focus-within .mh-mega-item {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: calc(var(--i, 0) * 32ms + 70ms);
+}
+
+.mh-mega-link {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.7rem 0.75rem;
+  border-radius: var(--mh-radius-sm);
+  color: var(--mh-ink-900);
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 0.22s var(--mh-ease), transform 0.28s var(--mh-ease);
+}
+.mh-mega-link::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg,
+    color-mix(in srgb, var(--mh-copper-300) 22%, transparent),
+    color-mix(in srgb, var(--mh-copper-300) 6%, transparent));
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mh-mega-link:hover,
+.mh-mega-link:focus-visible {
+  color: var(--mh-copper-700);
+  transform: translateX(2px);
+  outline: none;
+}
+.mh-mega-link:hover::before,
+.mh-mega-link:focus-visible::before {
+  transform: scaleX(1);
+}
+
+.mh-mega-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 10px;
+  color: var(--mh-copper-700);
+  background: color-mix(in srgb, var(--mh-copper-300) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--mh-copper-500) 24%, transparent);
+  transition: background 0.24s var(--mh-ease), border-color 0.24s var(--mh-ease),
+              transform 0.32s var(--mh-ease);
+  flex-shrink: 0;
+}
+.mh-mega-link:hover .mh-mega-icon,
+.mh-mega-link:focus-visible .mh-mega-icon {
+  background: linear-gradient(135deg, var(--mh-copper-500), var(--mh-copper-700));
+  border-color: var(--mh-copper-700);
+  color: var(--mh-ink-50);
+  transform: rotate(-6deg);
+}
+
+.mh-mega-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+.mh-mega-title {
+  font-family: var(--mh-font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: currentColor;
+  letter-spacing: -0.005em;
+}
+.mh-mega-desc {
+  font-family: var(--mh-font-sans);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: var(--mh-ink-600);
+}
+
+/* --- Featured promo tile ---------------------------------------- */
+.mh-mega-featured {
+  position: relative;
+  padding: 1.25rem 1.25rem 1.3rem;
+  border-radius: var(--mh-radius-md);
+  background:
+    linear-gradient(160deg,
+      color-mix(in srgb, var(--mh-copper-500) 14%, var(--mh-ink-50)) 0%,
+      color-mix(in srgb, var(--mh-copper-300) 6%, var(--mh-ink-50)) 100%);
+  border: 1px solid color-mix(in srgb, var(--mh-copper-500) 26%, transparent);
+  overflow: hidden;
+  isolation: isolate;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition:
+    opacity 0.28s var(--mh-ease),
+    transform 0.36s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.group\/top:hover .mh-mega-featured,
+.group\/top:focus-within .mh-mega-featured {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: calc(var(--i, 0) * 32ms + 80ms);
+}
+.mh-mega-featured-glow {
+  position: absolute;
+  z-index: -1;
+  right: -30%;
+  top: -30%;
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--mh-copper-300) 40%, transparent),
+    transparent 65%);
+  filter: blur(24px);
+  animation: mh-mega-glow 8s ease-in-out infinite alternate;
+}
+@keyframes mh-mega-glow {
+  0%   { transform: translate(0, 0) scale(1); opacity: 0.9; }
+  100% { transform: translate(-6%, 4%) scale(1.08); opacity: 1; }
+}
+.mh-mega-featured-eyebrow {
+  margin-left: 0;
+  color: var(--mh-copper-700);
+}
+.mh-mega-featured-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 999px;
+  background: var(--mh-ink-950);
+  color: var(--mh-copper-300);
+  box-shadow: 0 8px 20px -8px rgba(20, 14, 6, 0.5);
+}
+.mh-mega-featured-title {
+  font-family: var(--mh-font-display);
+  font-weight: 800;
+  font-size: 1.15rem;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--mh-ink-950);
+  margin-top: 0.4rem;
+  max-width: 11rem;
+}
+.mh-mega-featured-body {
+  margin-top: 0.55rem;
+  font-family: var(--mh-font-sans);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--mh-ink-700);
+}
+.mh-mega-featured-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  background: var(--mh-ink-950);
+  color: var(--mh-ink-50);
+  font-family: var(--mh-font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: background 0.25s var(--mh-ease), transform 0.28s var(--mh-ease),
+              box-shadow 0.3s var(--mh-ease);
+  box-shadow: 0 10px 22px -10px rgba(20, 14, 6, 0.5);
+}
+.mh-mega-featured-cta:hover,
+.mh-mega-featured-cta:focus-visible {
+  background: linear-gradient(90deg, var(--mh-copper-700), var(--mh-copper-500));
+  transform: translateY(-1px);
+  box-shadow: 0 14px 26px -12px rgba(151, 112, 22, 0.55);
+  outline: none;
+}
+.mh-mega-featured-cta > svg { transition: transform 0.28s var(--mh-ease); }
+.mh-mega-featured-cta:hover > svg,
+.mh-mega-featured-cta:focus-visible > svg { transform: translateX(3px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .mh-mega,
+  .mh-mega-item,
+  .mh-mega-featured,
+  .mh-mega-featured-glow,
+  .mh-mega-icon,
+  .mh-mega-link,
+  .mh-mega-link::before,
+  .mh-mega-featured-cta,
+  .mh-mega-featured-cta > svg {
+    animation: none !important;
+    transition: opacity 0.15s linear !important;
+    transform: none !important;
+    transition-delay: 0s !important;
+  }
+}
+
+/* ---------- Mobile slide-in drawer ----------------------------------
+ * Polished off-canvas nav shown below the lg breakpoint. Warm paper
+ * background, gold hairline top accent, cushioned nav rows with
+ * chevron chase-in on hover, contact cards + Book Appointment CTA
+ * pinned to the bottom. Staggered row entrance is keyed off the
+ * `[data-open="true"]` state so animations fire each time the drawer
+ * opens (not just first render).
+ * ------------------------------------------------------------------ */
+.mh-mnav {
+  background:
+    radial-gradient(120% 60% at 100% 0%,
+      color-mix(in srgb, var(--mh-copper-300) 14%, transparent) 0%,
+      transparent 60%),
+    var(--mh-bg);
+  border-left: 1px solid color-mix(in srgb, var(--mh-copper-500) 22%, var(--mh-border));
+}
+/* Tailwind v4 does not always tree-shake `translate-x-full` /
+   `translate-x-0` out of the drawer's `cn(open ? "translate-x-0" :
+   "translate-x-full")` ternary, so we declare the transforms
+   explicitly to guarantee the drawer slides in/out reliably. */
+.mh-mnav.translate-x-full { transform: translateX(100%); }
+.mh-mnav.translate-x-0    { transform: translateX(0); }
+.mh-mnav-accent {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg,
+    var(--mh-copper-700) 0%,
+    var(--mh-copper-500) 45%,
+    var(--mh-copper-300) 100%);
+  opacity: 0.95;
+}
+
+/* Eyebrow labels ("Menu", "Reach us") */
+.mh-mnav-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0 0 0.4rem 1.4rem;
+  font-family: var(--mh-font-sans);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mh-copper-400);
+}
+.mh-mnav-eyebrow-line {
+  display: inline-block;
+  width: 0.65rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.7;
+}
+.mh-mnav-foot-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--mh-font-sans);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mh-copper-400);
+  margin-left: 0.35rem;
+}
+
+/* Nav rows — staggered slide-in when drawer opens */
+.mh-mnav-row {
+  opacity: 0;
+  transform: translateX(12px);
+  transition:
+    opacity 0.35s var(--mh-ease),
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mh-mnav[data-open="true"] .mh-mnav-row {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: calc(var(--i, 0) * 40ms + 120ms);
+}
+
+.mh-mnav-link,
+.mh-mnav-summary,
+.mh-mnav-sublink {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.85rem 1rem;
+  border-radius: var(--mh-radius-sm);
+  font-family: var(--mh-font-sans);
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--mh-ink-900);
+  transition:
+    background-color 0.25s var(--mh-ease),
+    color 0.22s var(--mh-ease),
+    transform 0.3s var(--mh-ease);
+  cursor: pointer;
+  list-style: none;
+}
+.mh-mnav-summary::-webkit-details-marker { display: none; }
+.mh-mnav-link-label {
+  position: relative;
+  padding-left: 0.85rem;
+}
+.mh-mnav-link-label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) scaleY(0);
+  width: 3px;
+  height: 1rem;
+  border-radius: 2px;
+  background: linear-gradient(180deg, var(--mh-copper-500), var(--mh-copper-700));
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mh-mnav-link:hover,
+.mh-mnav-link:focus-visible,
+.mh-mnav-summary:hover,
+.mh-mnav-summary:focus-visible,
+.mh-mnav-sublink:hover,
+.mh-mnav-sublink:focus-visible,
+.mh-mnav-details[open] > .mh-mnav-summary {
+  background: color-mix(in srgb, var(--mh-copper-300) 10%, transparent);
+  color: var(--mh-copper-700);
+  outline: none;
+}
+.mh-mnav-link:hover .mh-mnav-link-label::before,
+.mh-mnav-link:focus-visible .mh-mnav-link-label::before,
+.mh-mnav-summary:hover .mh-mnav-link-label::before,
+.mh-mnav-summary:focus-visible .mh-mnav-link-label::before,
+.mh-mnav-details[open] > .mh-mnav-summary .mh-mnav-link-label::before {
+  transform: translateY(-50%) scaleY(1);
+}
+.mh-mnav-link svg,
+.mh-mnav-summary svg,
+.mh-mnav-sublink svg {
+  transition: transform 0.28s var(--mh-ease);
+  color: var(--mh-copper-500);
+  flex-shrink: 0;
+}
+.mh-mnav-link:hover svg,
+.mh-mnav-link:focus-visible svg {
+  transform: translateX(3px);
+  color: var(--mh-copper-700);
+}
+
+/* Nested submenu list */
+.mh-mnav-sublist {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin: 0.35rem 0 0.55rem 0.75rem;
+  padding-left: 0.85rem;
+  border-left: 1px solid color-mix(in srgb, var(--mh-copper-500) 22%, var(--mh-border));
+  overflow: hidden;
+  animation: mh-mnav-sub-in 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mh-mnav-sublink {
+  padding: 0.6rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--mh-ink-700);
+}
+.mh-mnav-sublink .mh-mnav-suboverview {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mh-copper-400);
+}
+@keyframes mh-mnav-sub-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Contact cards */
+.mh-mnav-contact {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--mh-radius-sm);
+  background: color-mix(in srgb, var(--mh-ink-50) 65%, transparent);
+  border: 1px solid var(--mh-border);
+  transition:
+    border-color 0.25s var(--mh-ease),
+    background-color 0.25s var(--mh-ease),
+    transform 0.3s var(--mh-ease);
+}
+.mh-mnav-contact:hover,
+.mh-mnav-contact:focus-visible {
+  border-color: color-mix(in srgb, var(--mh-copper-500) 50%, var(--mh-border));
+  background: color-mix(in srgb, var(--mh-copper-300) 8%, var(--mh-ink-50));
+  transform: translateY(-1px);
+  outline: none;
+}
+.mh-mnav-contact-icon {
+  display: inline-flex;
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  color: var(--mh-copper-700);
+  background: color-mix(in srgb, var(--mh-copper-300) 16%, transparent);
+  border: 1px solid color-mix(in srgb, var(--mh-copper-500) 26%, transparent);
+  flex-shrink: 0;
+}
+.mh-mnav-contact-body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.1;
+}
+.mh-mnav-contact-label {
+  font-family: var(--mh-font-sans);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mh-ink-600);
+}
+.mh-mnav-contact-value {
+  margin-top: 0.15rem;
+  font-family: var(--mh-font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--mh-ink-950);
+  letter-spacing: -0.005em;
+}
+
+/* Bottom email + socials row */
+.mh-mnav-mail {
+  font-family: ui-monospace, "SF Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--mh-ink-600);
+  transition: color 0.22s var(--mh-ease);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mh-mnav-mail:hover,
+.mh-mnav-mail:focus-visible {
+  color: var(--mh-copper-700);
+  outline: none;
+}
+.mh-mnav-social {
+  display: inline-flex;
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  color: var(--mh-ink-700);
+  border: 1px solid var(--mh-border);
+  transition:
+    color 0.22s var(--mh-ease),
+    border-color 0.22s var(--mh-ease),
+    background-color 0.22s var(--mh-ease),
+    transform 0.28s var(--mh-ease);
+}
+.mh-mnav-social:hover,
+.mh-mnav-social:focus-visible {
+  color: var(--mh-copper-700);
+  border-color: color-mix(in srgb, var(--mh-copper-500) 50%, var(--mh-border));
+  background: color-mix(in srgb, var(--mh-copper-300) 10%, transparent);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+/* Custom scrollbar for the nav region */
+.mh-mnav-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--mh-copper-500) 45%, transparent) transparent;
+}
+.mh-mnav-scroll::-webkit-scrollbar { width: 4px; }
+.mh-mnav-scroll::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--mh-copper-500) 45%, transparent);
+  border-radius: 999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mh-mnav,
+  .mh-mnav-row,
+  .mh-mnav-link,
+  .mh-mnav-summary,
+  .mh-mnav-sublink,
+  .mh-mnav-sublist,
+  .mh-mnav-contact,
+  .mh-mnav-social,
+  .mh-mnav-chev,
+  .mh-mnav-link-label::before {
+    animation: none !important;
+    transition: opacity 0.15s linear, background-color 0.15s linear, color 0.15s linear !important;
+    transform: none !important;
+    transition-delay: 0s !important;
+  }
+  .mh-mnav[data-open="true"] .mh-mnav-row { opacity: 1; transform: none; }
+}
+
 /* ---------- Prose for verbatim page copy ---------- */
 .mh-prose {
   color: var(--mh-ink-800);
@@ -667,23 +1529,41 @@ body {
   border-color: var(--mh-copper-500);
   box-shadow: 0 30px 60px -30px rgba(75, 55, 20, 0.45);
 }
-/* Diagonal shine sweep on hover */
+/* Cinematic gold corner brackets draw in on hover — replaces the
+   old diagonal shine sweep, which read as two horizontal light
+   bands crossing the image and felt gimmicky. Uses 8 tiny gradient
+   layers (one per corner leg) whose background-size animates
+   0 → 18px so the brackets "grow in" from each corner. */
 .mh-ba-card::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background: linear-gradient(115deg,
-    transparent 30%,
-    rgba(253, 246, 228, 0.55) 50%,
-    transparent 70%);
-  transform: translateX(-120%);
-  transition: transform 0.9s var(--mh-ease);
+  inset: 0.85rem;
+  border-radius: calc(var(--mh-radius-md) - 6px);
   z-index: 4;
   pointer-events: none;
+  --bkt: var(--mh-copper-300);
+  background:
+    linear-gradient(to right,  var(--bkt), var(--bkt)) top left    / 0 2px no-repeat,
+    linear-gradient(to bottom, var(--bkt), var(--bkt)) top left    / 2px 0 no-repeat,
+    linear-gradient(to right,  var(--bkt), var(--bkt)) top right   / 0 2px no-repeat,
+    linear-gradient(to bottom, var(--bkt), var(--bkt)) top right   / 2px 0 no-repeat,
+    linear-gradient(to right,  var(--bkt), var(--bkt)) bottom left / 0 2px no-repeat,
+    linear-gradient(to bottom, var(--bkt), var(--bkt)) bottom left / 2px 0 no-repeat,
+    linear-gradient(to right,  var(--bkt), var(--bkt)) bottom right/ 0 2px no-repeat,
+    linear-gradient(to bottom, var(--bkt), var(--bkt)) bottom right/ 2px 0 no-repeat;
+  opacity: 0.85;
+  filter: drop-shadow(0 0 8px rgba(228, 197, 122, 0.35));
+  transition: background-size 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.35s var(--mh-ease);
 }
 .mh-ba-card:hover::before,
 .mh-ba-card:focus-within::before {
-  transform: translateX(120%);
+  background-size:
+    18px 2px, 2px 18px,
+    18px 2px, 2px 18px,
+    18px 2px, 2px 18px,
+    18px 2px, 2px 18px;
+  opacity: 1;
 }
 /* Bottom veil so captions stay legible on any photo */
 .mh-ba-card::after {
@@ -1918,7 +2798,9 @@ body {
 }
 
 /* Vertical timeline — animated gold line that draws down as the
-   section scrolls into view. Wrap steps inside .mh-timeline. */
+   section scrolls into view, plus a "data flow" pulse traveling
+   continuously along the line (motion-graph feel). Wrap steps
+   inside `.mh-timeline`. */
 .mh-timeline {
   position: relative;
 }
@@ -1928,7 +2810,7 @@ body {
   top: 0;
   bottom: 0;
   left: 1.75rem;
-  width: 2px;
+  width: 3px;
   background: linear-gradient(180deg,
     var(--mh-copper-500) 0%,
     var(--mh-copper-300) 50%,
@@ -1938,25 +2820,58 @@ body {
   transform: scaleY(0);
   transition: transform 1.6s var(--mh-ease);
   z-index: 0;
+  box-shadow: 0 0 12px -2px rgba(201, 162, 74, 0.45);
 }
 .mh-timeline.is-visible::before,
 .mh-reveal.is-visible .mh-timeline::before {
   transform: scaleY(1);
 }
+/* Motion-graph "data pulse" traveling down the line indefinitely. */
+.mh-timeline::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 1.75rem;
+  width: 3px;
+  height: 22%;
+  border-radius: 999px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    var(--mh-copper-300) 45%,
+    #FFF3D2 55%,
+    var(--mh-copper-300) 65%,
+    transparent 100%);
+  filter: blur(0.5px);
+  opacity: 0;
+  transform: translateY(-100%);
+  z-index: 1;
+  pointer-events: none;
+}
+.mh-timeline.is-visible::after,
+.mh-reveal.is-visible .mh-timeline::after {
+  animation: mh-timeline-flow 3.4s var(--mh-ease) 1.8s infinite;
+}
+@keyframes mh-timeline-flow {
+  0%   { transform: translateY(-100%); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateY(500%); opacity: 0; }
+}
 @media (min-width: 768px) {
-  .mh-timeline::before { left: 2.5rem; }
+  .mh-timeline::before,
+  .mh-timeline::after { left: 2.5rem; }
 }
 .mh-timeline-node {
   position: absolute;
   left: 1.75rem;
   transform: translate(-50%, 0);
-  width: 1rem;
-  height: 1rem;
+  width: 1.35rem;
+  height: 1.35rem;
   border-radius: 999px;
   background: var(--mh-bg);
-  border: 2px solid var(--mh-copper-500);
-  box-shadow: 0 0 0 4px var(--mh-bg), 0 0 0 5px var(--mh-copper-200);
-  z-index: 1;
+  border: 2.5px solid var(--mh-copper-500);
+  box-shadow: 0 0 0 5px var(--mh-bg), 0 0 0 6px var(--mh-copper-200);
+  z-index: 2;
 }
 @media (min-width: 768px) {
   .mh-timeline-node { left: 2.5rem; }
@@ -1964,11 +2879,22 @@ body {
 .mh-timeline-node::before {
   content: "";
   position: absolute;
-  inset: -4px;
+  inset: -6px;
   border-radius: 999px;
   border: 1.5px solid var(--mh-copper-500);
   opacity: 0.6;
   animation: mh-pin-pulse 2.4s ease-out infinite;
+  pointer-events: none;
+}
+/* Larger secondary pulse for stronger motion-graph vibe */
+.mh-timeline-node::after {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 999px;
+  border: 1px solid var(--mh-copper-500);
+  opacity: 0;
+  animation: mh-pin-pulse 2.4s ease-out 1.2s infinite;
   pointer-events: none;
 }
 
@@ -2125,8 +3051,12 @@ body {
   .mh-bento-tile::after,
   .mh-tape-track,
   .mh-timeline-node::before,
+  .mh-timeline::after,
   .mh-accordion details > *:not(summary),
-  .mh-polaroid {
+  .mh-polaroid,
+  .mh-offer-frame,
+  .mh-offer-badge,
+  .mh-numbers-badge {
     animation: none !important;
   }
   .mh-timeline::before { transform: scaleY(1); transition: none; }
@@ -2539,6 +3469,225 @@ body {
   color: var(--mh-ink-600);
 }
 
+/* ---------- Metric cards — animated motion-graph stats ---------- *
+ * Modern replacement for the flat `.mh-statrow`. Each card is a
+ * lifted paper-white panel with a small `MetricGlyph` SVG that
+ * animates in on mount, a gradient-copper CountUp number, and a
+ * hover state that lifts and warms the card.
+ * ----------------------------------------------------------------- */
+.mh-metric-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1.6rem 1.5rem 1.7rem;
+  border-radius: var(--mh-radius-md);
+  background: color-mix(in srgb, var(--mh-bg) 88%, var(--mh-ink-50));
+  border: 1px solid color-mix(in srgb, var(--mh-copper-300) 26%, var(--mh-border));
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.7) inset,
+    0 30px 60px -40px rgba(56, 40, 12, 0.28),
+    0 4px 14px -8px rgba(26, 19, 14, 0.08);
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s var(--mh-ease),
+    border-color 0.3s var(--mh-ease);
+}
+.mh-metric-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(140deg,
+    color-mix(in srgb, var(--mh-copper-500) 22%, transparent) 0%,
+    transparent 55%);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity 0.4s var(--mh-ease);
+}
+.mh-metric-card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--mh-copper-500) 50%, var(--mh-border));
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.7) inset,
+    0 40px 70px -32px rgba(56, 40, 12, 0.38),
+    0 8px 18px -8px rgba(151, 112, 22, 0.18);
+}
+.mh-metric-card:hover::before { opacity: 1; }
+
+/* Soft radial gold glow that drifts behind the number. */
+.mh-metric-card-glow {
+  position: absolute;
+  z-index: -1;
+  top: -30%;
+  right: -30%;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--mh-copper-300) 42%, transparent) 0%,
+    transparent 65%);
+  filter: blur(30px);
+  opacity: 0.55;
+  transition: opacity 0.5s var(--mh-ease), transform 0.6s var(--mh-ease);
+  pointer-events: none;
+}
+.mh-metric-card:hover .mh-metric-card-glow {
+  opacity: 0.9;
+  transform: translate(-6%, 4%) scale(1.08);
+}
+
+.mh-metric-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.mh-metric-kicker {
+  font-family: ui-monospace, "SF Mono", monospace;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mh-copper-400);
+}
+
+.mh-metric-num {
+  font-family: var(--mh-font-display);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  font-size: clamp(2.75rem, 5vw, 4rem);
+  margin-top: 0.35rem;
+  background: linear-gradient(
+    120deg,
+    var(--mh-copper-700) 0%,
+    var(--mh-copper-500) 40%,
+    var(--mh-copper-300) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.mh-metric-key {
+  margin-top: 0.6rem;
+  font-family: var(--mh-font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--mh-ink-950);
+  letter-spacing: -0.005em;
+  line-height: 1.2;
+}
+.mh-metric-sub {
+  margin-top: 0.15rem;
+  font-family: var(--mh-font-sans);
+  font-size: 0.8rem;
+  color: var(--mh-ink-600);
+  line-height: 1.4;
+}
+
+/* --- MetricGlyph shared frame ------------------------------------ */
+.mh-metric-glyph {
+  width: 3.5rem;
+  height: 2.5rem;
+  overflow: visible;
+  flex-shrink: 0;
+}
+
+/* Spark variant — draw-in line + fade-in area */
+.mh-metric-glyph-line {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: mh-metric-line-in 1.4s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  animation-delay: calc(var(--i, 0) * 90ms + 200ms);
+}
+.mh-metric-glyph-area {
+  opacity: 0;
+  animation: mh-metric-fade-in 1s ease-out forwards;
+  animation-delay: calc(var(--i, 0) * 90ms + 700ms);
+}
+.mh-metric-glyph-dot {
+  transform-origin: center;
+  transform: scale(0);
+  animation: mh-metric-pop-in 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: calc(var(--i, 0) * 90ms + 1200ms);
+}
+@keyframes mh-metric-line-in {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes mh-metric-fade-in {
+  to { opacity: 1; }
+}
+@keyframes mh-metric-pop-in {
+  to { transform: scale(1); }
+}
+
+/* Bars variant — grow-up staggered */
+.mh-metric-glyph-bar {
+  fill: color-mix(in srgb, var(--mh-copper-500) 88%, transparent);
+  transform-origin: bottom;
+  transform: scaleY(0);
+  animation: mh-metric-bar-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.mh-metric-glyph-bar-a { animation-delay: calc(var(--i, 0) * 90ms + 200ms); fill: color-mix(in srgb, var(--mh-copper-300) 82%, transparent); }
+.mh-metric-glyph-bar-b { animation-delay: calc(var(--i, 0) * 90ms + 330ms); }
+.mh-metric-glyph-bar-c { animation-delay: calc(var(--i, 0) * 90ms + 460ms); fill: color-mix(in srgb, var(--mh-copper-500) 92%, transparent); }
+.mh-metric-glyph-bar-d { animation-delay: calc(var(--i, 0) * 90ms + 590ms); fill: color-mix(in srgb, var(--mh-copper-700) 88%, transparent); }
+@keyframes mh-metric-bar-in {
+  to { transform: scaleY(1); }
+}
+
+/* Ring variant — 100% draw-in */
+.mh-metric-glyph-ring {
+  stroke-dasharray: 113.1;
+  stroke-dashoffset: 113.1;
+  animation: mh-metric-ring-in 1.4s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  animation-delay: calc(var(--i, 0) * 90ms + 250ms);
+}
+@keyframes mh-metric-ring-in {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Pins variant — pop-in pins + dashed connector */
+.mh-metric-glyph-pin {
+  transform-origin: center;
+  animation: mh-metric-pop-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.mh-metric-glyph-pin-a { animation-delay: calc(var(--i, 0) * 90ms + 260ms); }
+.mh-metric-glyph-pin-b { animation-delay: calc(var(--i, 0) * 90ms + 480ms); }
+
+@media (prefers-reduced-motion: reduce) {
+  .mh-metric-glyph-line,
+  .mh-metric-glyph-area,
+  .mh-metric-glyph-dot,
+  .mh-metric-glyph-bar,
+  .mh-metric-glyph-ring,
+  .mh-metric-glyph-pin {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .mh-metric-card,
+  .mh-metric-card-glow {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
 /* ---------- Numbered index card (station-style) ---------- */
 .mh-index-card {
   position: relative;
@@ -2565,6 +3714,95 @@ body {
   color: var(--mh-copper-400);
 }
 .mh-index-card:hover .mh-index-num { color: var(--mh-copper-300); }
+
+/* ---------- Google-style review card (testimonial marquee) ---------- */
+.mh-goog-track {
+  gap: 1.25rem;
+  padding-block: 0.5rem;
+}
+.mh-goog-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: min(22rem, 82vw);
+  flex: none;
+  padding: 1.65rem 1.5rem 1.4rem;
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-md);
+  background: var(--mh-ink-50);
+  box-shadow: 0 1px 2px rgba(20, 16, 8, 0.05), 0 12px 28px -18px rgba(20, 16, 8, 0.18);
+  transition: transform var(--mh-dur) var(--mh-ease),
+              border-color var(--mh-dur) var(--mh-ease),
+              box-shadow var(--mh-dur) var(--mh-ease);
+}
+.mh-goog-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--mh-copper-300);
+  box-shadow: 0 1px 2px rgba(20, 16, 8, 0.06), 0 22px 40px -18px rgba(20, 16, 8, 0.28);
+}
+.mh-goog-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.mh-goog-id { display: flex; align-items: center; gap: 0.8rem; }
+.mh-goog-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  font-family: var(--mh-font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #fff;
+}
+.mh-goog-name {
+  font-family: var(--mh-font-display);
+  font-weight: 700;
+  font-size: 1.02rem;
+  color: var(--mh-ink-950);
+  line-height: 1.2;
+}
+.mh-goog-meta {
+  margin-top: 0.15rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  color: var(--mh-ink-600);
+}
+.mh-goog-meta .dot::before { content: "·"; margin: 0 0.15rem; }
+.mh-goog-stars {
+  margin-top: 0.35rem;
+  color: #F5B400;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+}
+.mh-goog-quote {
+  flex: 1;
+  font-size: 0.92rem;
+  line-height: 1.62;
+  color: var(--mh-ink-800);
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.mh-goog-foot {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--mh-border);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--mh-ink-600);
+}
 
 /* ---------- Editorial numbered list (01–04 rows) ---------- */
 .mh-idx-list { display: grid; gap: 0; }
@@ -2712,6 +3950,106 @@ body {
   margin-bottom: 0.9em;
 }
 
+/* ---------- Founding offer — popped, on-brand copper spotlight ---------- */
+@property --mh-offer-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+.mh-offer-frame {
+  --mh-offer-angle: 0deg;
+  position: relative;
+  border-radius: 28px;
+  padding: 3px;
+  background: conic-gradient(from var(--mh-offer-angle),
+    var(--mh-copper-700),
+    var(--mh-copper-300),
+    var(--mh-copper-500),
+    var(--mh-copper-200),
+    var(--mh-copper-700));
+  animation: mh-offer-spin 12s linear infinite;
+  box-shadow: 0 30px 70px -26px rgba(139, 110, 41, 0.35),
+              0 24px 50px -24px rgba(201, 162, 74, 0.3);
+}
+@keyframes mh-offer-spin {
+  to { --mh-offer-angle: 360deg; }
+}
+.mh-offer-panel {
+  position: relative;
+  border-radius: 25px;
+  background:
+    radial-gradient(70% 100% at 8% 0%, rgba(201, 162, 74, 0.14), transparent 60%),
+    radial-gradient(60% 90% at 100% 100%, rgba(139, 110, 41, 0.10), transparent 55%),
+    linear-gradient(160deg, var(--mh-ink-50) 0%, #FFF6E9 100%);
+}
+.mh-offer-badge {
+  position: absolute;
+  top: -1.05rem;
+  left: 2rem;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: var(--mh-radius-pill);
+  font-family: ui-monospace, "SF Mono", monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mh-on-accent);
+  background: linear-gradient(120deg, var(--mh-copper-700), var(--mh-copper-500));
+  box-shadow: 0 10px 24px -8px rgba(139, 110, 41, 0.55);
+  animation: mh-offer-badge-pulse 2.4s var(--mh-ease) infinite;
+}
+@keyframes mh-offer-badge-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+.mh-offer-figure-pop {
+  background: linear-gradient(120deg,
+    var(--mh-copper-700) 0%,
+    var(--mh-copper-500) 45%,
+    var(--mh-copper-300) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.mh-offer-check { display: grid; gap: 1rem; margin-top: 1.5rem; }
+.mh-offer-check > li {
+  position: relative;
+  padding-left: 2.6rem;
+  color: var(--mh-ink-800);
+  font-size: 1.02rem;
+  line-height: 1.55;
+  font-weight: 500;
+}
+.mh-offer-check > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.02em;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 999px;
+  background: var(--mh-offer-dot, var(--mh-copper-500));
+  box-shadow: 0 4px 12px -2px color-mix(in srgb, var(--mh-offer-dot, var(--mh-copper-500)) 60%, transparent);
+}
+.mh-offer-check > li::after {
+  content: "";
+  position: absolute;
+  left: 0.62rem;
+  top: 0.42em;
+  width: 0.42rem;
+  height: 0.72rem;
+  border-right: 2px solid var(--mh-on-accent);
+  border-bottom: 2px solid var(--mh-on-accent);
+  transform: rotate(45deg);
+}
+.mh-offer-check > li:nth-child(1) { --mh-offer-dot: var(--mh-copper-700); }
+.mh-offer-check > li:nth-child(2) { --mh-offer-dot: var(--mh-copper-500); }
+.mh-offer-check > li:nth-child(3) { --mh-offer-dot: var(--mh-copper-300); }
+
 /* ============================================================
  * HOMEPAGE LIGHT THEME  (editorial "paper white" redesign)
  *
@@ -2850,6 +4188,229 @@ body {
 /* Meter track needs a touch more contrast on pure white */
 .mh-light .mh-meter { background: rgba(17, 16, 16, 0.08); }
 
+/* ---------- "By the numbers" — dashboard image + floating overlays ---------- */
+.mh-numbers-portrait {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--mh-radius-md);
+}
+.mh-numbers-portrait-media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: var(--mh-radius-md);
+  border: 1px solid var(--mh-border-strong);
+  background: var(--mh-ink-100);
+}
+.mh-numbers-portrait-media > img { transition: transform 0.9s var(--mh-ease); }
+.mh-numbers-portrait:hover .mh-numbers-portrait-media > img { transform: scale(1.04); }
+
+/* Floating trust ring — top-right */
+.mh-numbers-badge {
+  position: absolute;
+  top: -1.1rem;
+  right: -1.1rem;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem;
+  border-radius: 999px;
+  background: var(--mh-ink-50);
+  border: 1px solid var(--mh-border-strong);
+  box-shadow: 0 18px 34px -14px rgba(20, 16, 8, 0.22);
+  animation: mh-numbers-float 5.5s var(--mh-ease) infinite;
+}
+@keyframes mh-numbers-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+/* Floating years chip — bottom-left */
+.mh-numbers-years {
+  position: absolute;
+  left: -0.75rem;
+  bottom: -0.75rem;
+  z-index: 3;
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
+  padding: 0.85rem 1.15rem;
+  border-radius: var(--mh-radius-md);
+  background: var(--mh-ink-950);
+  color: var(--mh-ink-50);
+  border: 1px solid var(--mh-copper-500);
+  box-shadow: 0 22px 40px -16px rgba(20, 16, 8, 0.4);
+}
+.mh-numbers-years-n {
+  font-family: var(--mh-font-display);
+  font-weight: 800;
+  font-size: 1.85rem;
+  line-height: 1;
+  color: var(--mh-copper-300);
+}
+.mh-numbers-years-k {
+  font-family: ui-monospace, "SF Mono", monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mh-ink-200);
+  max-width: 7rem;
+  line-height: 1.25;
+}
+
+/* Big-number motion stat row */
+.mh-numbers-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--mh-border);
+  border-bottom: 1px solid var(--mh-border);
+}
+.mh-numbers-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.2rem 1rem 1.2rem 0;
+  border-right: 1px solid var(--mh-border);
+}
+.mh-numbers-stat:last-child { border-right: 0; padding-right: 0; }
+.mh-numbers-stat:not(:first-child) { padding-left: 1rem; }
+.mh-numbers-stat > .v {
+  font-family: var(--mh-font-display);
+  font-weight: 800;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--mh-copper-500);
+}
+.mh-numbers-stat > .k {
+  font-family: ui-monospace, "SF Mono", monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mh-ink-700);
+}
+@media (max-width: 520px) {
+  .mh-numbers-stats { grid-template-columns: 1fr; }
+  .mh-numbers-stat { border-right: 0; border-bottom: 1px solid var(--mh-border); padding: 1rem 0; }
+  .mh-numbers-stat:last-child { border-bottom: 0; }
+  .mh-numbers-stat:not(:first-child) { padding-left: 0; }
+}
+
+/* ============================================================
+ * CAPABILITY GRID — "The system" section (numbered feature cards
+ * with an icon chip, ghost index number, and a per-card animated
+ * confidence meter). Cards share the `.mh-index-card` radius/border
+ * language but get their own class so the shared `.mh-index-card`
+ * (reused by other sections) is left untouched.
+ * ============================================================ */
+.mh-cap-card {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 1.85rem 1.7rem 1.6rem;
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-md);
+  background: var(--mh-ink-100);
+  overflow: hidden;
+  transition: border-color var(--mh-dur) var(--mh-ease),
+              transform var(--mh-dur) var(--mh-ease),
+              box-shadow var(--mh-dur) var(--mh-ease);
+}
+.mh-cap-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+  background: linear-gradient(140deg, rgba(201, 162, 74, 0.14), transparent 60%);
+  transition: opacity var(--mh-dur) var(--mh-ease);
+}
+.mh-cap-card:hover {
+  border-color: var(--mh-copper-500);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px -22px rgba(26, 19, 14, 0.28);
+}
+.mh-cap-card:hover::before { opacity: 1; }
+.mh-cap-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.mh-cap-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  color: var(--mh-copper-700);
+  background: linear-gradient(150deg, var(--mh-copper-300), var(--mh-copper-500));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+  transition: transform var(--mh-dur) var(--mh-ease);
+}
+.mh-cap-card:hover .mh-cap-icon { transform: scale(1.08) rotate(-4deg); }
+.mh-cap-icon-inverse {
+  color: var(--mh-ink-50);
+  background: linear-gradient(150deg, var(--mh-ink-950), var(--mh-ink-700));
+}
+.mh-cap-num {
+  font-family: ui-monospace, "SF Mono", monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  color: var(--mh-copper-400);
+}
+.mh-cap-title {
+  font-family: var(--mh-font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--mh-ink-950);
+}
+.mh-cap-body {
+  flex: 1;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--mh-ink-800);
+}
+.mh-cap-meter-row { margin-top: 0.3rem; }
+.mh-cap-meter-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.45rem;
+  font-family: ui-monospace, "SF Mono", monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mh-ink-600);
+}
+.mh-cap-meter-val { color: var(--mh-copper-400); }
+.mh-cap-meter.mh-meter { height: 4px; }
+.mh-cap-cta {
+  justify-content: space-between;
+  background: linear-gradient(165deg, var(--mh-ink-950), var(--mh-ink-800));
+  border-color: var(--mh-ink-950);
+}
+.mh-cap-cta .mh-cap-title,
+.mh-cap-cta .mh-cap-body { color: var(--mh-ink-50); }
+.mh-cap-cta .mh-cap-num { color: var(--mh-copper-300); }
+.mh-cap-cta:hover { border-color: var(--mh-copper-400); }
+.mh-cap-cta .mh-btn-ghost {
+  color: var(--mh-ink-50);
+  border-color: rgba(253, 249, 239, 0.3);
+}
+.mh-cap-cta .mh-btn-ghost:hover {
+  background: rgba(201, 162, 74, 0.14);
+  border-color: var(--mh-copper-400);
+  color: var(--mh-copper-300);
+}
+
 /* ============================================================
  * MODERN HERO — light editorial split (homepage section 1).
  * Asymmetric: an editorial headline column beside a framed video
@@ -2871,10 +4432,10 @@ body {
   position: relative;
   z-index: 1;
   display: grid;
-  gap: 2.75rem;
+  gap: 2.25rem;
   align-items: center;
-  padding-top: 8rem;
-  padding-bottom: 3.5rem;
+  padding-top: 6.5rem;
+  padding-bottom: 2.75rem;
 }
 @media (min-width: 1024px) {
   .mh-hero2-grid {
@@ -3017,4 +4578,354 @@ body {
 }
 @media (prefers-reduced-motion: reduce) {
   .mh-hero2-badge { animation: none !important; }
+}
+
+/* ------------------------------------------------------------------
+ * HERO2 modernization — motion graphs, live signals, backdrop layers.
+ * All layered inside `.mh-hero2` and respect `prefers-reduced-motion`.
+ * ------------------------------------------------------------------ */
+
+/* --- Backdrop dot grid (radially masked so it fades toward edges) --- */
+.mh-hero2-dots {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(190, 145, 55, 0.16) 1px, transparent 1.4px);
+  background-size: 22px 22px;
+  -webkit-mask-image:
+    radial-gradient(78% 68% at 50% 42%, #000 0%, #000 32%, transparent 92%);
+          mask-image:
+    radial-gradient(78% 68% at 50% 42%, #000 0%, #000 32%, transparent 92%);
+}
+
+/* --- Slow diagonal gold scan beam sweeping across the hero --- */
+.mh-hero2-scan {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.mh-hero2-scan::before {
+  content: "";
+  position: absolute;
+  top: -60%;
+  left: -30%;
+  width: 42%;
+  height: 240%;
+  background: linear-gradient(
+    100deg,
+    transparent 20%,
+    rgba(228, 197, 122, 0.09) 44%,
+    rgba(253, 249, 239, 0.14) 50%,
+    rgba(228, 197, 122, 0.09) 56%,
+    transparent 80%
+  );
+  transform: translateX(-30vw) rotate(9deg);
+  animation: mh-hero2-scan-move 15s linear infinite;
+  filter: blur(4px);
+}
+@keyframes mh-hero2-scan-move {
+  0%   { transform: translateX(-30vw) rotate(9deg); }
+  100% { transform: translateX(160vw) rotate(9deg); }
+}
+
+/* --- Giant ghost wordmark watermark behind copy (desktop only) --- */
+.mh-hero2-watermark {
+  position: absolute;
+  top: 5.5rem;
+  left: -1.5rem;
+  z-index: 0;
+  font-family: var(--mh-font-display);
+  font-weight: 800;
+  font-size: clamp(12rem, 20vw, 22rem);
+  line-height: 0.82;
+  letter-spacing: -0.06em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201, 162, 74, 0.16);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+@media (max-width: 1023px) {
+  .mh-hero2-watermark { display: none; }
+}
+
+/* --- Live status pill above the kicker --- */
+.mh-hero2-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem 0.35rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(255, 253, 246, 0.85);
+  border: 1px solid rgba(201, 162, 74, 0.34);
+  color: var(--mh-ink-900);
+  font-family: var(--mh-font-sans);
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 6px 20px -12px rgba(75, 55, 20, 0.35);
+}
+.mh-hero2-status-dot {
+  position: relative;
+  display: inline-block;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: #22c55e;
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.55);
+  animation: mh-hero2-pulse 2s ease-out infinite;
+  flex-shrink: 0;
+}
+@keyframes mh-hero2-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.55); }
+  70%  { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+/* --- Shimmering gold stars in the trust row --- */
+.mh-hero2-stars {
+  display: inline-block;
+  background: linear-gradient(
+    90deg,
+    var(--mh-copper-500) 0%,
+    var(--mh-copper-300) 45%,
+    #FDF6E4 50%,
+    var(--mh-copper-300) 55%,
+    var(--mh-copper-500) 100%
+  );
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  animation: mh-hero2-shimmer 5.5s ease-in-out infinite;
+}
+@keyframes mh-hero2-shimmer {
+  0%, 100% { background-position: 100% 50%; }
+  50%      { background-position: 0% 50%; }
+}
+
+/* --- Floating "density recovery" motion-graph mini card --- */
+.mh-hero2-graph {
+  position: absolute;
+  z-index: 4;
+  right: -1.5rem;
+  bottom: -0.75rem;
+  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(201, 162, 74, 0.40);
+  box-shadow: 0 22px 46px -22px rgba(30, 22, 8, 0.55);
+  backdrop-filter: blur(14px) saturate(1.1);
+  -webkit-backdrop-filter: blur(14px) saturate(1.1);
+  min-width: 13rem;
+  animation: mh-hero2-float 6.4s var(--mh-ease) infinite;
+  animation-delay: -1.6s;
+}
+.mh-hero2-graph-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-family: var(--mh-font-sans);
+}
+.mh-hero2-graph-key {
+  font-size: 0.56rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--mh-ink-700);
+}
+.mh-hero2-graph-val {
+  font-family: var(--mh-font-display);
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--mh-copper-700);
+  letter-spacing: -0.02em;
+}
+.mh-hero2-graph-svg {
+  display: block;
+  width: 100%;
+  height: 44px;
+  margin-top: 0.5rem;
+}
+.mh-hero2-graph-svg .line {
+  fill: none;
+  stroke: var(--mh-copper-500);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 320;
+  stroke-dashoffset: 320;
+  animation: mh-hero2-line-draw 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+  filter: drop-shadow(0 2px 6px rgba(201, 162, 74, 0.35));
+}
+.mh-hero2-graph-svg .area {
+  opacity: 0;
+  animation: mh-hero2-fade-in 0.8s ease 1.6s forwards;
+}
+.mh-hero2-graph-svg .dot {
+  fill: var(--mh-copper-500);
+  stroke: #fff;
+  stroke-width: 1.5;
+  opacity: 0;
+  transform-origin: 100% 100%;
+  animation: mh-hero2-dot-pop 0.6s cubic-bezier(0.16, 1.4, 0.3, 1) 2s forwards;
+}
+@keyframes mh-hero2-line-draw {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes mh-hero2-fade-in {
+  to { opacity: 1; }
+}
+@keyframes mh-hero2-dot-pop {
+  0%   { opacity: 0; transform: scale(0.2); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@media (max-width: 640px) {
+  .mh-hero2-graph { right: 0.5rem; bottom: 0.5rem; min-width: 11rem; padding: 0.7rem 0.85rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mh-hero2-scan::before,
+  .mh-hero2-status-dot,
+  .mh-hero2-stars,
+  .mh-hero2-graph,
+  .mh-hero2-graph-svg .line,
+  .mh-hero2-graph-svg .area,
+  .mh-hero2-graph-svg .dot { animation: none !important; }
+  .mh-hero2-graph-svg .line { stroke-dashoffset: 0; }
+  .mh-hero2-graph-svg .area,
+  .mh-hero2-graph-svg .dot { opacity: 1; }
+}
+
+/* ------------------------------------------------------------------
+ * MAPS SECTION — "Visit us" modern map cards (homepage, before footer)
+ * Full-bleed Google Maps embed per card with a floating glass pin
+ * badge + a frosted glass info panel docked at the bottom, echoing
+ * the real-estate/listing card language used elsewhere on the site.
+ * ------------------------------------------------------------------ */
+.mh-mapcard {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--mh-radius-md);
+  border: 1px solid var(--mh-border-strong);
+  background: var(--mh-ink-200);
+  box-shadow: 0 30px 60px -30px rgba(40, 30, 12, 0.28);
+  transition: transform 0.45s var(--mh-ease), box-shadow 0.45s var(--mh-ease);
+}
+.mh-mapcard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 40px 80px -30px rgba(40, 30, 12, 0.38);
+}
+.mh-mapcard-frame {
+  position: relative;
+  height: 26rem;
+  overflow: hidden;
+}
+.mh-mapcard-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: saturate(0.92) contrast(1.02);
+  transform: scale(1.06);
+  transition: transform 0.6s var(--mh-ease);
+}
+.mh-mapcard:hover .mh-mapcard-frame iframe { transform: scale(1.1); }
+.mh-mapcard-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(20, 14, 6, 0) 38%, rgba(17, 12, 5, 0.72) 100%);
+}
+
+.mh-mapcard-badge {
+  position: absolute;
+  z-index: 2;
+  top: 1.1rem;
+  right: 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 14px 30px -14px rgba(20, 14, 6, 0.45);
+  backdrop-filter: blur(12px) saturate(1.1);
+  -webkit-backdrop-filter: blur(12px) saturate(1.1);
+  font-family: var(--mh-font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--mh-copper-700);
+}
+.mh-mapcard-badge svg { color: var(--mh-copper-500); flex-shrink: 0; }
+
+.mh-mapcard-panel {
+  position: absolute;
+  z-index: 2;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  padding: 1.1rem 1.25rem 1.3rem;
+  border-radius: calc(var(--mh-radius-md) - 6px);
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 20px 44px -20px rgba(20, 14, 6, 0.5);
+  backdrop-filter: blur(18px) saturate(1.15);
+  -webkit-backdrop-filter: blur(18px) saturate(1.15);
+  transition: transform 0.45s var(--mh-ease);
+}
+.mh-mapcard:hover .mh-mapcard-panel { transform: translateY(-2px); }
+
+.mh-mapcard-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.1rem;
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--mh-border);
+}
+.mh-mapcard-meta > span,
+.mh-mapcard-meta > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--mh-font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--mh-ink-800);
+}
+.mh-mapcard-meta svg { color: var(--mh-copper-500); flex-shrink: 0; }
+.mh-mapcard-meta > a { transition: color 0.25s var(--mh-ease); }
+
+.mh-mapcard-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.1rem;
+}
+
+@media (max-width: 640px) {
+  .mh-mapcard-frame { height: 22rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mh-mapcard,
+  .mh-mapcard-frame iframe,
+  .mh-mapcard-panel { transition: none !important; }
 }

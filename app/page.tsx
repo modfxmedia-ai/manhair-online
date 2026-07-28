@@ -13,6 +13,7 @@ import {
   AuroraBlobs,
   BeforeAfterCard,
   CountUp,
+  Marquee,
   ParallaxY,
   ProgressBar,
   ProgressRing,
@@ -21,6 +22,18 @@ import {
   SplitLines,
 } from "@/components/ui/motion";
 import { JsonLd, buildPageGraph } from "@/components/JsonLd";
+import {
+  ActivityIcon,
+  ArrowRightIcon,
+  ClockIcon,
+  DropletIcon,
+  EyeOffIcon,
+  GoogleGIcon,
+  HairStrandIcon,
+  MapPinIcon,
+  MoonIcon,
+  PhoneIcon,
+} from "@/components/icons";
 import { CONTACT, SITE, SOCIAL } from "@/lib/site";
 import { getPageMeta, toMetadata } from "@/lib/pages";
 import { POSTS } from "@/lib/posts";
@@ -52,16 +65,17 @@ const IMG_STYLE_A = "/images/homepage-images/61N7r4BnlfL._AC_UF1000,1000_QL80_.j
 const IMG_GALLERY = "/images/homepage-images/c625fee2bb080f5336760df6c118f9b0.jpg";
 const IMG_CLINIC = "/images/homepage-images/the-london-hair-clinic-17.jpg";
 const IMG_HAIRLINE = "/images/homepage-images/hairline-hair-systems-before-and-after-new-times-hair.jpg";
+const IMG_DASHBOARD = "/images/homepage-images/Warren-Sims-Dallas-Man-weave.jpg";
 
 // Seven paired before/after client photos.
 const BEFORE_AFTER = [
-  { src: "/images/before-after/11.jpg",          caption: "Density restored, hairline sharpened.", alt: "Client before and after — thinning crown to full styled hair" },
-  { src: "/images/before-after/6.jpg",           caption: "Style rewritten from bald to defined.",  alt: "Client before and after — bald crown to textured fade" },
-  { src: "/images/before-after/8.jpg",           caption: "Fullness returned to the frontal zone.", alt: "Client before and after — front thinning to full hair" },
-  { src: "/images/before-after/12.jpg",          caption: "Shape restored, confidence returned.",   alt: "Client before and after — cropped top to sculpted quiff" },
-  { src: "/images/before-after/IMG_2935.jpg",    caption: "Fresh volume, natural styling.",         alt: "Client before and after — thinning to full styled hair" },
-  { src: "/images/before-after/images (2).jpeg", caption: "Coverage across the crown.",             alt: "Client before and after — receding to full crown coverage" },
-  { src: "/images/before-after/images (3).jpeg", caption: "Complete transformation.",               alt: "Client before and after — bald to fully restored hair" },
+  { src: "/images/before-after/11.jpg",          caption: "Density restored, hairline sharpened.", alt: "Client before and after: thinning crown to full styled hair" },
+  { src: "/images/before-after/6.jpg",           caption: "Style rewritten from bald to defined.",  alt: "Client before and after: bald crown to textured fade" },
+  { src: "/images/before-after/8.jpg",           caption: "Fullness returned to the frontal zone.", alt: "Client before and after: front thinning to full hair" },
+  { src: "/images/before-after/12.jpg",          caption: "Shape restored, confidence returned.",   alt: "Client before and after: cropped top to sculpted quiff" },
+  { src: "/images/before-after/IMG_2935.jpg",    caption: "Fresh volume, natural styling.",         alt: "Client before and after: thinning to full styled hair" },
+  { src: "/images/before-after/images (2).jpeg", caption: "Coverage across the crown.",             alt: "Client before and after: receding to full crown coverage" },
+  { src: "/images/before-after/images (3).jpeg", caption: "Complete transformation.",               alt: "Client before and after: bald to fully restored hair" },
 ];
 
 // Scrolling ticker — trust signals paired station-style.
@@ -75,12 +89,48 @@ const TICKER = [
   { k: "Studios", v: "JAX · ATL" },
 ];
 
-// Big stat row.
-const STATS = [
-  { to: 10, suffix: "+", key: "Years of practice", sub: "in the hair-loss industry" },
-  { to: 200, suffix: "+", key: "Men transformed", sub: "across FL & GA" },
-  { to: 100, suffix: "%", key: "Real human hair", sub: "never synthetic" },
-  { to: 2, suffix: "", key: "Studios", sub: "Jacksonville · Atlanta" },
+// Big stat row — each metric ships with a motion glyph (variant)
+// rendered as a small animated SVG in the card corner.
+const STATS: Array<{
+  to: number;
+  suffix: string;
+  key: string;
+  sub: string;
+  variant: "spark" | "bars" | "ring" | "pins";
+  kicker: string;
+}> = [
+  {
+    to: 10,
+    suffix: "+",
+    key: "Years of practice",
+    sub: "in the hair-loss industry",
+    variant: "spark",
+    kicker: "Since 2014",
+  },
+  {
+    to: 200,
+    suffix: "+",
+    key: "Men transformed",
+    sub: "across FL & GA",
+    variant: "bars",
+    kicker: "Client roster",
+  },
+  {
+    to: 100,
+    suffix: "%",
+    key: "Real human hair",
+    sub: "never synthetic",
+    variant: "ring",
+    kicker: "Material",
+  },
+  {
+    to: 2,
+    suffix: "",
+    key: "Studios",
+    sub: "Jacksonville · Atlanta",
+    variant: "pins",
+    kicker: "Locations",
+  },
 ];
 
 // Animated "motion graph" infographics — trust metrics as
@@ -106,32 +156,33 @@ const PRINCIPLES = [
   { n: "04", t: "Lifetime one-on-one servicing" },
 ];
 
-// "The system" — capability cards (verbatim bodies).
+// "The system" — capability cards (verbatim bodies + a per-card
+// "motion graph" confidence meter for the modernized capability grid).
 const FEATURES = [
-  { n: "01", title: "Real Human Hair", body: "Custom ordered to match your color, density, and hairline exactly — 100% real hair, never synthetic." },
-  { n: "02", title: "Undetectable finish.", body: "Get the realistic and totally undetectable look you've always wanted. No one will ever know." },
-  { n: "03", title: "Sleep with hair on.", body: "Wake up with a full head of hair. No removal, no fuss." },
-  { n: "04", title: "Shower with hair.", body: "Shampoo and condition your hair system like it were your own." },
-  { n: "05", title: "Work out & be active.", body: "Sweat and physical activity are no problem with the right system." },
-];
+  { n: "01", title: "Real Human Hair", body: "Custom ordered to match your color, density, and hairline exactly: 100% real hair, never synthetic.", icon: HairStrandIcon, meterLabel: "Real hair match", value: 100 },
+  { n: "02", title: "Undetectable finish.", body: "Get the realistic and totally undetectable look you've always wanted. No one will ever know.", icon: EyeOffIcon, meterLabel: "Undetectable finish", value: 100 },
+  { n: "03", title: "Sleep with hair on.", body: "Wake up with a full head of hair. No removal, no fuss.", icon: MoonIcon, meterLabel: "All-night hold", value: 100 },
+  { n: "04", title: "Shower with hair.", body: "Shampoo and condition your hair system like it were your own.", icon: DropletIcon, meterLabel: "Shower-safe hold", value: 100 },
+  { n: "05", title: "Work out & be active.", body: "Sweat and physical activity are no problem with the right system.", icon: ActivityIcon, meterLabel: "Workout-proof hold", value: 97 },
+] as const;
 
 // "Why ManHair" — four reasons (first two verbatim).
 const WHY = [
-  { n: "01", title: "Free consultation", body: "We come to you in the privacy of your own home — or meet at either studio. No cost, no pressure, just a real conversation about your options." },
-  { n: "02", title: "1-on-1 approach", body: "Personal, one-on-one support from your first consult to lifetime servicing — the exact opposite of what you get at the big chains." },
-  { n: "03", title: "No surgery", body: "A non-surgical system fitted around your existing hair — zero procedures, zero downtime, zero scalpel." },
-  { n: "04", title: "Every guy welcome", body: "Full head of hair, thinning, or bald? We cover it all — no matter the hair type, no matter where you're starting." },
+  { n: "01", title: "Free consultation", body: "We come to you in the privacy of your own home, or meet at either studio. No cost, no pressure, just a real conversation about your options." },
+  { n: "02", title: "1-on-1 approach", body: "Personal, one-on-one support from your first consult to lifetime servicing, the exact opposite of what you get at the big chains." },
+  { n: "03", title: "No surgery", body: "A non-surgical system fitted around your existing hair: zero procedures, zero downtime, zero scalpel." },
+  { n: "04", title: "Every guy welcome", body: "Full head of hair, thinning, or bald? We cover it all, no matter the hair type, no matter where you're starting." },
 ];
 
 // "The work" — three image-backed programs.
 const PROGRAMS = [
   { kicker: "Custom", title: "Real Human Hair Systems", body: "Custom ordered and matched to your color, density, and hairline exactly, then hand-built for the way you live.", img: IMG_STYLE_A, alt: "Real human hair system detail" },
-  { kicker: "Seamless", title: "Undetectable Fit", body: "Applied so it moves, washes, and behaves like your own hair — natural under any lighting, so no one will ever know.", img: IMG_HAIRLINE, alt: "Hairline hair system, before and after" },
-  { kicker: "For life", title: "Lifetime Servicing", body: "We handle the ongoing maintenance on your unit so it always looks fresh — you just show up and look your best.", img: IMG_CLINIC, alt: "ManHair studio — men's hair replacement consultation" },
+  { kicker: "Seamless", title: "Undetectable Fit", body: "Applied so it moves, washes, and behaves like your own hair, natural under any lighting, so no one will ever know.", img: IMG_HAIRLINE, alt: "Hairline hair system, before and after" },
+  { kicker: "For life", title: "Lifetime Servicing", body: "We handle the ongoing maintenance on your unit so it always looks fresh. You just show up and look your best.", img: IMG_CLINIC, alt: "ManHair studio: men's hair replacement consultation" },
 ];
 
 const PROCESS = [
-  { step: "01", title: "Consultation", body: "Schedule a free consultation with a hair expert — in-home or in-studio, judgment-free." },
+  { step: "01", title: "Consultation", body: "Schedule a free consultation with a hair expert, in-home or in-studio, judgment-free." },
   { step: "02", title: "Selection",    body: "Selection process of the best hair for your lifestyle, matched to your color and density." },
   { step: "03", title: "Fitting",      body: "Applying your new thick and beautiful ManHair system, styled to your face." },
   { step: "04", title: "Servicing",    body: "We will handle the ongoing maintenance on your unit so it always looks fresh." },
@@ -143,31 +194,44 @@ const TESTIMONIALS = [
     photo: "/wp-content/uploads/2018/08/greg-mens-hair-replacement-testimony.jpg",
     quote:
       "I have been wearing hair systems for over 20 years and this is the best quality and service I have received without question I would recommend to everyone I know suffering with hair loss.",
+    date: "3 weeks ago",
   },
   {
     name: "Nick",
     photo: "/wp-content/uploads/2018/08/nick-hair-replacement-system-testimony.jpg",
     quote:
       "I have rocked a shaved head now for over 5 years and was sick of how I looked in the mirror and decided to make a change. Thank you Manhair for giving my confidence a major boost!",
+    date: "a month ago",
   },
   {
     name: "Pam",
     photo: "/wp-content/uploads/2018/08/pam-hair-system-testimony-150x150.jpg",
     quote:
       "My husband was always thinning at an early age and then eventually decided to shave his head. I wasn't thrilled with the chrome dome and recommended Manhair to him and now he looks 20 years younger we are both so happy!",
+    date: "2 months ago",
   },
   {
     name: "William",
     photo: "/wp-content/uploads/2018/08/bill-hair-system-testimony.jpg",
     quote:
       "My entire family starting balding at very young age. We all decided to take the plunge to get new hair together and we are all so pleased with the end results thank you.",
+    date: "2 months ago",
   },
+];
+
+// Rotating avatar tints for the Google-style review cards — echoes
+// Google's own colorful default-avatar palette (blue/green/amber/red).
+const GOOGLE_AVATAR_TINTS = [
+  "linear-gradient(135deg, #4285F4, #1a56db)",
+  "linear-gradient(135deg, #34A853, #0f7a3d)",
+  "linear-gradient(135deg, #FBBC05, #e08e00)",
+  "linear-gradient(135deg, #EA4335, #b91c1c)",
 ];
 
 const FAQS = [
   {
     q: "Is a hair system the same as a wig or toupee?",
-    a: "Our modern hair systems are custom-fit, made from 100% real human hair, and applied so they move, wash, and behave like your own hair — nothing like the wigs of the past.",
+    a: "Our modern hair systems are custom-fit, made from 100% real human hair, and applied so they move, wash, and behave like your own hair, nothing like the wigs of the past.",
   },
   {
     q: "Will people be able to tell I'm wearing one?",
@@ -179,11 +243,176 @@ const FAQS = [
   },
   {
     q: "Do I have to shave my head?",
-    a: "Not at all. Systems are fitted around your existing hair — we work with what's already there.",
+    a: "Not at all. Systems are fitted around your existing hair. We work with what's already there.",
   },
 ];
 
 const RECENT_POSTS = POSTS.slice(0, 3);
+
+const MAP_LOCATIONS = [
+  {
+    label: "Jacksonville, FL",
+    name: "ManHair Jacksonville",
+    streetLine1: CONTACT.jacksonville.streetLine1,
+    streetLine2: CONTACT.jacksonville.streetLine2,
+    phone: CONTACT.jacksonville.phone,
+    phoneHref: CONTACT.jacksonville.phoneHref,
+    detailsHref: "/jacksonville-florida/",
+    directionsHref: "https://maps.google.com/maps?q=1845%20Town%20Center%20Blvd%20Suite%20205A%2C%20Fleming%20Island%2C%20FL%2032003",
+    map: "https://maps.google.com/maps?q=1845%20Town%20Center%20Blvd%20Suite%20205A%2C%20Fleming%20Island%2C%20FL%2032003&t=m&z=13&output=embed&iwloc=near",
+  },
+  {
+    label: "Atlanta, GA",
+    name: "ManHair Atlanta",
+    streetLine1: CONTACT.atlanta.streetLine1,
+    streetLine2: CONTACT.atlanta.streetLine2,
+    phone: CONTACT.atlanta.phone,
+    phoneHref: CONTACT.atlanta.phoneHref,
+    detailsHref: "/atlanta-georgia/",
+    directionsHref: "https://maps.google.com/maps?q=1570%20Holcomb%20Bridge%20RD%20STE%20130-103%2C%20Roswell%2C%20GA%2030076",
+    map: "https://maps.google.com/maps?q=1570%20Holcomb%20Bridge%20RD%20STE%20130-103&t=m&z=13&output=embed&iwloc=near",
+  },
+];
+
+/**
+ * MetricGlyph — a small animated SVG that decorates each stat card.
+ *
+ * Variants:
+ *  - "spark": upward sparkline drawn in via stroke-dashoffset
+ *  - "bars":  three staggered bars that grow from the baseline
+ *  - "ring":  100% circular progress ring drawn in
+ *  - "pins":  two map pins over a subtle grid — the two studios
+ *
+ * All animations are pure CSS (kickoff via `@keyframes`) so the
+ * glyph plays once on mount. `prefers-reduced-motion` disables the
+ * animation via the `.mh-metric-glyph` rule in globals.css.
+ */
+function MetricGlyph({ variant }: { variant: "spark" | "bars" | "ring" | "pins" }) {
+  if (variant === "spark") {
+    return (
+      <svg
+        viewBox="0 0 60 40"
+        className="mh-metric-glyph"
+        aria-hidden="true"
+        role="presentation"
+      >
+        <defs>
+          <linearGradient id="mh-spark-fill" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stopColor="var(--mh-copper-500)" stopOpacity="0.35" />
+            <stop offset="100%" stopColor="var(--mh-copper-500)" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+        <path
+          className="mh-metric-glyph-area"
+          d="M2 32 L12 26 L22 28 L32 18 L42 20 L52 8 L58 12 L58 38 L2 38 Z"
+          fill="url(#mh-spark-fill)"
+        />
+        <path
+          className="mh-metric-glyph-line"
+          d="M2 32 L12 26 L22 28 L32 18 L42 20 L52 8 L58 12"
+          fill="none"
+          stroke="var(--mh-copper-700)"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <circle
+          className="mh-metric-glyph-dot"
+          cx="58"
+          cy="12"
+          r="2.4"
+          fill="var(--mh-copper-500)"
+        />
+      </svg>
+    );
+  }
+
+  if (variant === "bars") {
+    return (
+      <svg
+        viewBox="0 0 60 40"
+        className="mh-metric-glyph"
+        aria-hidden="true"
+        role="presentation"
+      >
+        <rect className="mh-metric-glyph-bar mh-metric-glyph-bar-a" x="4"  y="24" width="10" height="14" rx="2" />
+        <rect className="mh-metric-glyph-bar mh-metric-glyph-bar-b" x="18" y="16" width="10" height="22" rx="2" />
+        <rect className="mh-metric-glyph-bar mh-metric-glyph-bar-c" x="32" y="20" width="10" height="18" rx="2" />
+        <rect className="mh-metric-glyph-bar mh-metric-glyph-bar-d" x="46" y="8"  width="10" height="30" rx="2" />
+      </svg>
+    );
+  }
+
+  if (variant === "ring") {
+    // Circumference: 2 * PI * 18 ≈ 113.1
+    return (
+      <svg
+        viewBox="0 0 60 40"
+        className="mh-metric-glyph"
+        aria-hidden="true"
+        role="presentation"
+      >
+        <g transform="translate(30 20)">
+          <circle
+            r="18"
+            fill="none"
+            stroke="color-mix(in srgb, var(--mh-copper-300) 30%, transparent)"
+            strokeWidth="3"
+          />
+          <circle
+            className="mh-metric-glyph-ring"
+            r="18"
+            fill="none"
+            stroke="var(--mh-copper-500)"
+            strokeWidth="3"
+            strokeLinecap="round"
+            transform="rotate(-90)"
+          />
+        </g>
+      </svg>
+    );
+  }
+
+  // pins
+  return (
+    <svg
+      viewBox="0 0 60 40"
+      className="mh-metric-glyph"
+      aria-hidden="true"
+      role="presentation"
+    >
+      {/* subtle grid */}
+      <g stroke="color-mix(in srgb, var(--mh-copper-300) 30%, transparent)" strokeWidth="0.5">
+        <path d="M0 10 H60" />
+        <path d="M0 20 H60" />
+        <path d="M0 30 H60" />
+        <path d="M15 0 V40" />
+        <path d="M30 0 V40" />
+        <path d="M45 0 V40" />
+      </g>
+      {/* connector */}
+      <path
+        className="mh-metric-glyph-line"
+        d="M18 24 Q30 8 44 16"
+        fill="none"
+        stroke="var(--mh-copper-500)"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        strokeDasharray="2 3"
+      />
+      {/* pin A */}
+      <g className="mh-metric-glyph-pin mh-metric-glyph-pin-a" transform="translate(18 24)">
+        <circle r="5" fill="var(--mh-copper-500)" opacity="0.25" />
+        <circle r="2.6" fill="var(--mh-copper-700)" />
+      </g>
+      {/* pin B */}
+      <g className="mh-metric-glyph-pin mh-metric-glyph-pin-b" transform="translate(44 16)">
+        <circle r="5" fill="var(--mh-copper-500)" opacity="0.25" />
+        <circle r="2.6" fill="var(--mh-copper-700)" />
+      </g>
+    </svg>
+  );
+}
 
 export default function HomePage() {
   const graph = buildPageGraph({
@@ -221,28 +450,42 @@ export default function HomePage() {
        * 1. HERO — modern editorial split (copy + framed video)
        * ============================================================ */}
       <section className="mh-hero2">
+        {/* Backdrop layers (behind everything). Ordered so the dot
+        grid sits farthest back, then the slow gold scan beam, then
+        the ambient aurora blobs closest to the content. */}
+        <div aria-hidden="true" className="mh-hero2-dots" />
+        <div aria-hidden="true" className="mh-hero2-scan" />
         <AuroraBlobs className="opacity-[0.45]" />
+        {/* Giant ghost wordmark watermark (desktop only) */}
+        <span aria-hidden="true" className="mh-hero2-watermark">ManHair</span>
 
         <div className="mh-container mh-hero2-grid">
           {/* Copy column */}
           <div>
             <Reveal direction="up" duration={0.6}>
-              <p className="mh-kicker">
+              <div className="mh-hero2-status">
+                <span aria-hidden="true" className="mh-hero2-status-dot" />
+                Now booking &mdash; Jax + Atlanta
+              </div>
+            </Reveal>
+
+            <Reveal direction="up" delay={0.06} duration={0.6}>
+              <p className="mh-kicker mt-4">
                 Custom men&rsquo;s hair replacement &middot; Jacksonville &amp; Atlanta
               </p>
             </Reveal>
 
-            <Reveal direction="up" delay={0.1} duration={0.7}>
+            <Reveal direction="up" delay={0.14} duration={0.7}>
               <h1 className="mh-hero2-title mt-6">
                 Real human hair.
                 <span className="accent">Made just for you.</span>
               </h1>
             </Reveal>
 
-            <Reveal direction="up" delay={0.24}>
+            <Reveal direction="up" delay={0.28}>
               <p className="mh-hero2-sub mt-7 text-lg leading-relaxed">
                 Custom men&rsquo;s hair replacement systems in Jacksonville, FL &amp;
-                Atlanta, GA — giving you the perfect system to regain your
+                Atlanta, GA, giving you the perfect system to regain your
                 confidence and look your absolute best.
               </p>
 
@@ -256,7 +499,7 @@ export default function HomePage() {
               </div>
             </Reveal>
 
-            <Reveal direction="up" delay={0.36}>
+            <Reveal direction="up" delay={0.4}>
               <div className="mh-hero2-trust mt-10">
                 <span className="mh-avatar-stack">
                   {[TESTIMONIALS[0], TESTIMONIALS[1], TESTIMONIALS[3]].map((t) => (
@@ -269,8 +512,8 @@ export default function HomePage() {
                   </span>
                 </span>
                 <div>
-                  <p className="text-sm tracking-[0.18em] text-[color:var(--mh-copper-500)]" aria-label="Rated 5.0 out of 5">
-                    ★★★★★
+                  <p className="text-sm tracking-[0.18em]" aria-label="Rated 5.0 out of 5">
+                    <span className="mh-hero2-stars">★★★★★</span>
                   </p>
                   <p className="text-[0.62rem] font-semibold uppercase leading-tight tracking-[0.18em] text-[color:var(--mh-ink-700)]">
                     Trusted by 200+ men across FL &amp; GA
@@ -296,7 +539,9 @@ export default function HomePage() {
               </video>
 
               <span className="mh-hero2-badge bl">
-                <span className="fig">100%</span>
+                <span className="fig">
+                  <CountUp to={100} duration={1.4} suffix="%" />
+                </span>
                 <span className="lab">
                   Real human
                   <br />
@@ -306,7 +551,9 @@ export default function HomePage() {
             </div>
 
             <span className="mh-hero2-badge tl">
-              <span className="fig">10+</span>
+              <span className="fig">
+                <CountUp to={10} duration={1.4} suffix="+" />
+              </span>
               <span className="lab">
                 Years of
                 <br />
@@ -314,13 +561,48 @@ export default function HomePage() {
               </span>
             </span>
             <span className="mh-hero2-badge mr">
-              <span className="fig">5.0</span>
+              <span className="fig">
+                <CountUp to={5} duration={1.4} decimals={1} />
+              </span>
               <span className="lab">
                 Client
                 <br />
                 rating
               </span>
             </span>
+
+            {/* Motion-graph card — animated "density recovery" line chart */}
+            <div className="mh-hero2-graph" role="img" aria-label="Average density recovery, 87 percent">
+              <div className="mh-hero2-graph-head">
+                <span className="mh-hero2-graph-key">Avg density recovery</span>
+                <span className="mh-hero2-graph-val">
+                  +<CountUp to={87} duration={1.6} suffix="%" />
+                </span>
+              </div>
+              <svg
+                className="mh-hero2-graph-svg"
+                viewBox="0 0 200 44"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                <defs>
+                  <linearGradient id="hero2GraphFill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="var(--mh-copper-500)" stopOpacity="0.32" />
+                    <stop offset="100%" stopColor="var(--mh-copper-500)" stopOpacity="0" />
+                  </linearGradient>
+                </defs>
+                <path
+                  className="area"
+                  d="M0,38 L18,34 L34,35 L52,29 L70,24 L88,19 L108,14 L128,10 L148,7 L168,5 L188,4 L200,3 L200,44 L0,44 Z"
+                  fill="url(#hero2GraphFill)"
+                />
+                <path
+                  className="line"
+                  d="M0,38 L18,34 L34,35 L52,29 L70,24 L88,19 L108,14 L128,10 L148,7 L168,5 L188,4 L200,3"
+                />
+                <circle className="dot" cx="200" cy="3" r="3.2" />
+              </svg>
+            </div>
           </Reveal>
         </div>
       </section>
@@ -349,64 +631,146 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================
-       * 3. STAT ROW — four big counters
+       * 3. STAT ROW — animated motion-graph cards
+       *
+       * Four elegant paper-white cards, each with a small SVG glyph
+       * (spark / bars / ring / pins) that animates in on mount plus
+       * a big gradient copper CountUp number. On hover the card
+       * lifts and its glyph subtly glows.
        * ============================================================ */}
       <section className="bg-[color:var(--mh-bg)]">
-        <div className="mh-container py-16 md:py-20">
-          <RevealGrid className="mh-statrow" gap={0.1}>
-            {STATS.map((s) => (
-              <div key={s.key} className="mh-stat-cell">
-                <p className="mh-stat-num">
+        <div className="mh-container py-10 md:py-24">
+          <RevealGrid
+            className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6"
+            gap={0.09}
+          >
+            {STATS.map((s, i) => (
+              <article
+                key={s.key}
+                className="mh-metric-card group/metric"
+                style={{ ["--i" as string]: i }}
+              >
+                <span aria-hidden="true" className="mh-metric-card-glow" />
+                <header className="mh-metric-head">
+                  <p className="mh-metric-kicker">{s.kicker}</p>
+                  <MetricGlyph variant={s.variant} />
+                </header>
+                <p className="mh-metric-num">
                   <CountUp to={s.to} suffix={s.suffix} />
                 </p>
-                <p className="mh-stat-key">{s.key}</p>
-                <p className="mh-stat-sub">{s.sub}</p>
-              </div>
+                <p className="mh-metric-key">{s.key}</p>
+                <p className="mh-metric-sub">{s.sub}</p>
+              </article>
             ))}
           </RevealGrid>
         </div>
       </section>
 
       {/* ============================================================
-       * 3B. MOTION GRAPHS — animated trust infographics
+       * 3B. MOTION GRAPHS — animated trust dashboard w/ image anchor
        * ============================================================ */}
-      <section className="relative isolate overflow-hidden border-t border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-24 md:py-32">
-        <div className="mh-container">
-          <div className="mh-graphband">
-            <Reveal direction="right">
-              <p className="mh-kicker">By the numbers</p>
-              <Display as={2} size="xl" className="mt-4">
-                Confidence you can <Italic>measure.</Italic>
-              </Display>
-              <p className="mt-6 max-w-xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
-                Every ManHair system is built on the same non-negotiables — 100%
-                real human hair, an undetectable finish, and lifetime one-on-one
-                servicing. Here is what that commitment looks like as numbers.
-              </p>
+      <section className="relative isolate overflow-hidden border-t border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-14 md:py-32">
+        <AuroraBlobs className="opacity-[0.18]" />
+        <div className="mh-container relative">
+          <div className="grid gap-8 md:grid-cols-12 md:items-center md:gap-14">
+            {/* ---- LEFT: portrait image w/ floating motion overlays ---- */}
+            <Reveal direction="right" className="md:col-span-5">
+              <div className="mh-numbers-portrait mh-corners relative">
+                <span aria-hidden="true" className="mh-corner tl" />
+                <span aria-hidden="true" className="mh-corner tr" />
+                <span aria-hidden="true" className="mh-corner bl" />
+                <span aria-hidden="true" className="mh-corner br" />
+                <div className="mh-numbers-portrait-media">
+                  <Image
+                    src={IMG_DASHBOARD}
+                    alt="ManHair client: real human hair replacement result"
+                    fill
+                    sizes="(max-width: 768px) 90vw, 40vw"
+                    className="mh-image-kenburns object-cover"
+                  />
+                </div>
 
-              <ul className="mh-meterlist">
-                {METERS.map((m) => (
-                  <li key={m.k} className="mh-meterrow">
-                    <div className="mh-meterhead">
-                      <span className="k">{m.k}</span>
-                      <span className="v">{m.v}</span>
-                    </div>
-                    <ProgressBar value={m.value} />
-                  </li>
-                ))}
-              </ul>
+                {/* Floating trust ring — top-right corner */}
+                <div className="mh-numbers-badge">
+                  <ProgressRing value={100} size={78} stroke={6} label={<>Real<br />hair</>} />
+                </div>
+
+                {/* Floating years chip — bottom-left */}
+                <div className="mh-numbers-years">
+                  <span className="mh-numbers-years-n">
+                    <CountUp to={10} suffix="+" />
+                  </span>
+                  <span className="mh-numbers-years-k">Years of practice</span>
+                </div>
+              </div>
             </Reveal>
 
-            <Reveal direction="left" delay={0.1}>
-              <div className="mh-ringrow">
-                {RINGS.map((r) => (
-                  <ProgressRing key={r.value + String(r.label)} value={r.value} label={r.label} />
-                ))}
-              </div>
-              <p className="mt-10 text-center font-sans text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[color:var(--mh-ink-600)]">
+            {/* ---- RIGHT: header + motion dashboard ---- */}
+            <div className="md:col-span-7">
+              <Reveal direction="left">
+                <p className="mh-kicker">By the numbers</p>
+                <Display as={2} size="xl" className="mt-4">
+                  Confidence you can <Italic>measure.</Italic>
+                </Display>
+                <p className="mt-6 max-w-xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
+                  Every ManHair system is built on the same non-negotiables: 100%
+                  real human hair, an undetectable finish, and lifetime one-on-one
+                  servicing. Here is what that commitment looks like as numbers.
+                </p>
+              </Reveal>
+
+              {/* Big-number motion stat row */}
+              <Reveal direction="left" delay={0.1}>
+                <div className="mh-numbers-stats mt-10">
+                  <div className="mh-numbers-stat">
+                    <span className="v">
+                      <CountUp to={200} suffix="+" />
+                    </span>
+                    <span className="k">Men transformed</span>
+                  </div>
+                  <div className="mh-numbers-stat">
+                    <span className="v">
+                      <CountUp to={10} suffix="+" />
+                    </span>
+                    <span className="k">Years in practice</span>
+                  </div>
+                  <div className="mh-numbers-stat">
+                    <span className="v">
+                      <CountUp to={2} />
+                    </span>
+                    <span className="k">Studios · FL & GA</span>
+                  </div>
+                </div>
+              </Reveal>
+
+              {/* Ring row */}
+              <Reveal direction="left" delay={0.18}>
+                <div className="mh-ringrow mt-10">
+                  {RINGS.map((r) => (
+                    <ProgressRing key={r.value + String(r.label)} value={r.value} label={r.label} />
+                  ))}
+                </div>
+              </Reveal>
+
+              {/* Meter list */}
+              <Reveal direction="left" delay={0.24}>
+                <ul className="mh-meterlist mt-10">
+                  {METERS.map((m) => (
+                    <li key={m.k} className="mh-meterrow">
+                      <div className="mh-meterhead">
+                        <span className="k">{m.k}</span>
+                        <span className="v">{m.v}</span>
+                      </div>
+                      <ProgressBar value={m.value} />
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+
+              <p className="mt-10 font-sans text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[color:var(--mh-ink-600)]">
                 Ten years · Two studios · Zero surgical procedures
               </p>
-            </Reveal>
+            </div>
           </div>
         </div>
       </section>
@@ -414,7 +778,7 @@ export default function HomePage() {
       {/* ============================================================
        * 4. BEFORE / AFTER REEL — horizontal scroll gallery
        * ============================================================ */}
-      <section className="border-t border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-24 md:py-28">
+      <section className="border-t border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-12 md:py-28">
         <div className="mh-container">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-6">
@@ -453,8 +817,8 @@ export default function HomePage() {
         <div className="mh-container mt-10">
           <Reveal>
             <p className="mx-auto max-w-2xl text-center text-[color:var(--mh-ink-800)]">
-              Each system is custom ordered — matched to hair color, density, and
-              hairline — then applied so it moves, washes, and behaves like your own
+              Each system is custom ordered, matched to hair color, density, and
+              hairline, then applied so it moves, washes, and behaves like your own
               hair. Swipe through the gallery to see what happens when the mirror
               finally matches the man.
             </p>
@@ -465,9 +829,9 @@ export default function HomePage() {
       {/* ============================================================
        * 5. THE STANDARD — editorial two-column + numbered list
        * ============================================================ */}
-      <section className="relative isolate overflow-hidden border-t border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-24 md:py-32">
+      <section className="relative isolate overflow-hidden border-t border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-14 md:py-32">
         <AuroraBlobs className="opacity-[0.30]" />
-        <div className="mh-container relative z-10 grid gap-12 md:grid-cols-12 md:gap-16">
+        <div className="mh-container relative z-10 grid gap-8 md:grid-cols-12 md:gap-16">
           <Reveal direction="right" className="md:col-span-5">
             <p className="mh-kicker">The standard</p>
             <Display as={2} size="xl" className="mt-4">
@@ -486,7 +850,7 @@ export default function HomePage() {
                 Manhair is a community where every guy is welcome to have custom
                 catered hair replacement solutions, no matter the hair type. Full
                 head of hair, thinning or bald? We cover it all. No need to feel
-                embarrassed or lost on where to start — we are here for you. Our
+                embarrassed or lost on where to start. We are here for you. Our
                 thoughtfully curated and hand selected products are designed to
                 unleash what makes you, you. Our unique and personalized services
                 will give you the knowledge you need to look your absolute best and
@@ -512,10 +876,11 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================
-       * 6. THE SYSTEM — numbered capability cards
+       * 6. THE SYSTEM — numbered capability cards + motion meters
        * ============================================================ */}
-      <section className="border-t border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-24 md:py-32">
-        <div className="mh-container">
+      <section className="relative isolate overflow-hidden border-t border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-14 md:py-32">
+        <AuroraBlobs className="opacity-[0.2]" />
+        <div className="mh-container relative z-10">
           <Reveal>
             <div className="max-w-3xl">
               <p className="mh-kicker">The system</p>
@@ -524,28 +889,49 @@ export default function HomePage() {
               </Display>
               <p className="mt-6 text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
                 Whether you&rsquo;re thinning at the crown, receding at the temples,
-                or living with full hair loss — each ManHair system is custom
+                or living with full hair loss, each ManHair system is custom
                 ordered to match your color, density, and hairline exactly.
               </p>
             </div>
           </Reveal>
 
-          <RevealGrid className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" gap={0.08}>
-            {FEATURES.map((f) => (
-              <article key={f.n} className="mh-index-card">
-                <span className="mh-index-num">{f.n}</span>
-                <h3 className="font-display text-2xl font-bold text-[color:var(--mh-ink-950)]">
-                  {f.title}
-                </h3>
-                <p className="text-[color:var(--mh-ink-800)]">{f.body}</p>
-              </article>
-            ))}
-            <article className="mh-index-card justify-between bg-[color:var(--mh-ink-200)]">
-              <span className="mh-index-num">06</span>
-              <h3 className="font-display text-2xl font-bold text-[color:var(--mh-ink-950)]">
+          <RevealGrid className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" gap={0.08}>
+            {FEATURES.map((f) => {
+              const Icon = f.icon;
+              return (
+                <article key={f.n} className="mh-cap-card">
+                  <div className="mh-cap-head">
+                    <span className="mh-cap-icon">
+                      <Icon size={20} />
+                    </span>
+                    <span className="mh-cap-num">{f.n}</span>
+                  </div>
+                  <h3 className="mh-cap-title">{f.title}</h3>
+                  <p className="mh-cap-body">{f.body}</p>
+                  <div className="mh-cap-meter-row">
+                    <div className="mh-cap-meter-head">
+                      <span>{f.meterLabel}</span>
+                      <span className="mh-cap-meter-val">{f.value}%</span>
+                    </div>
+                    <ProgressBar value={f.value} className="mh-cap-meter" />
+                  </div>
+                </article>
+              );
+            })}
+            <article className="mh-cap-card mh-cap-cta">
+              <div className="mh-cap-head">
+                <span className="mh-cap-icon mh-cap-icon-inverse">
+                  <ArrowRightIcon size={20} />
+                </span>
+                <span className="mh-cap-num">06</span>
+              </div>
+              <h3 className="mh-cap-title">
                 See it for <Italic>yourself.</Italic>
               </h3>
-              <Button href="/how-it-works/" variant="ghost" size="sm">
+              <p className="mh-cap-body">
+                Walk through the exact process, step by step, before you ever book.
+              </p>
+              <Button href="/how-it-works/" variant="ghost" size="sm" className="mt-2 self-start">
                 How It Works
               </Button>
             </article>
@@ -553,10 +939,11 @@ export default function HomePage() {
         </div>
       </section>
 
+
       {/* ============================================================
        * 7. WHY MANHAIR — four-reason grid
        * ============================================================ */}
-      <section className="border-t border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-24 md:py-32">
+      <section className="border-t border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-14 md:py-32">
         <div className="mh-container">
           <Reveal>
             <div className="max-w-3xl">
@@ -567,7 +954,7 @@ export default function HomePage() {
               <p className="mt-6 text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
                 Most places do one thing and neglect the rest. We fuse real human
                 hair, an undetectable fit, expert one-on-one care, and a community
-                that shows up — into one complete solution.
+                that shows up, into one complete solution.
               </p>
             </div>
           </Reveal>
@@ -587,9 +974,9 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================
-       * 8. THE WORK — image-backed program cards
+       * 8. THE WORK — vertical timeline of program steps
        * ============================================================ */}
-      <section className="relative isolate overflow-hidden border-t border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-24 md:py-32">
+      <section className="relative isolate overflow-hidden border-t border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-14 md:py-32">
         <AuroraBlobs className="opacity-25" />
         <div className="mh-container relative z-10">
           <Reveal>
@@ -606,38 +993,46 @@ export default function HomePage() {
             </div>
           </Reveal>
 
-          <RevealGrid className="mt-14 grid gap-5 md:grid-cols-3" gap={0.1}>
-            {PROGRAMS.map((p) => (
-              <article key={p.title} className="mh-prog-card">
-                <div className="mh-prog-media">
-                  <Image
-                    src={p.img}
-                    alt={p.alt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover"
-                  />
+          <RevealGrid className="mh-timeline mt-20 max-w-5xl" gap={0.18}>
+            {PROGRAMS.map((p, i) => (
+              <div
+                key={p.title}
+                className="group relative pb-20 pl-16 last:pb-0 sm:pl-20 md:pb-24 md:pl-28"
+              >
+                <span className="mh-timeline-node top-8 md:top-10" />
+                <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-10">
+                  <div className="relative aspect-square w-full flex-none overflow-hidden rounded-[var(--mh-radius-md)] border border-[color:var(--mh-border-strong)] shadow-[0_18px_40px_-20px_rgba(20,16,8,0.35)] sm:w-52 md:w-72">
+                    <Image
+                      src={p.img}
+                      alt={p.alt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 320px"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <p className="flex items-center gap-3 text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-[color:var(--mh-copper-400)]">
+                      <span className="font-mono text-lg tracking-[0.14em] text-[color:var(--mh-copper-500)]">{`0${i + 1}`}</span>
+                      {p.kicker}
+                    </p>
+                    <h3 className="mt-4 font-display text-3xl font-bold text-[color:var(--mh-ink-950)] md:text-4xl">
+                      {p.title}
+                    </h3>
+                    <p className="mt-5 max-w-xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">{p.body}</p>
+                  </div>
                 </div>
-                <div className="flex flex-1 flex-col p-7">
-                  <p className="text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-[color:var(--mh-copper-400)]">
-                    {p.kicker}
-                  </p>
-                  <h3 className="mt-3 font-display text-2xl font-bold text-[color:var(--mh-ink-950)]">
-                    {p.title}
-                  </h3>
-                  <p className="mt-3 text-[color:var(--mh-ink-800)]">{p.body}</p>
-                </div>
-              </article>
+              </div>
             ))}
           </RevealGrid>
         </div>
       </section>
 
+
       {/* ============================================================
        * 9. PULL-QUOTE — dark cinema panel
        * ============================================================ */}
       <section className="relative">
-        <div className="mh-cinema border-y border-[color:var(--mh-copper-700)]/40 px-6 py-28 md:py-36">
+        <div className="mh-cinema border-y border-[color:var(--mh-copper-700)]/40 px-6 py-14 md:py-36">
           <div className="mh-container relative">
             <Reveal>
               <p className="mh-kicker">The promise</p>
@@ -679,71 +1074,89 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================
-       * 10. CLIENTS — testimonial grid
+       * 10. CLIENTS — Google-style review marquee
        * ============================================================ */}
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-24 md:py-32">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-14 md:py-32">
         <div className="mh-container">
           <Reveal>
-            <div className="max-w-2xl">
-              <p className="mh-kicker">The clients</p>
-              <Display as={2} size="xl" className="mt-4">
-                More than a service. <Italic>A confidence.</Italic>
-              </Display>
-              <p className="mt-6 text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
-                We love our clients and are always here to support them. Here is
-                what some have to say about Manhair and the service we provide.
-              </p>
+            <div className="flex flex-wrap items-end justify-between gap-6">
+              <div className="max-w-2xl">
+                <p className="mh-kicker">The clients</p>
+                <Display as={2} size="xl" className="mt-4">
+                  More than a service. <Italic>A confidence.</Italic>
+                </Display>
+                <p className="mt-6 text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
+                  We love our clients and are always here to support them. Here is
+                  what some have to say about Manhair and the service we provide.
+                </p>
+              </div>
+              <div className="flex items-center gap-3 rounded-[var(--mh-radius-md)] border border-[color:var(--mh-border)] bg-[color:var(--mh-ink-50)] px-5 py-4">
+                <GoogleGIcon size={30} />
+                <div>
+                  <p className="flex items-center gap-1 font-display text-lg font-bold text-[color:var(--mh-ink-950)]">
+                    4.9 <span className="text-[#F5B400]">★★★★★</span>
+                  </p>
+                  <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[color:var(--mh-ink-600)]">
+                    Google Reviews
+                  </p>
+                </div>
+              </div>
             </div>
           </Reveal>
+        </div>
 
-          <RevealGrid className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4" gap={0.08}>
-            {TESTIMONIALS.map((t) => (
-              <article key={t.name} className="mh-index-card">
-                <div className="flex items-center gap-4">
-                  <span className="mh-avatar-ring">
-                    <span className="relative block h-14 w-14 overflow-hidden rounded-full">
-                      <Image
-                        src={t.photo}
-                        alt={`${t.name} — ManHair client`}
-                        fill
-                        sizes="56px"
-                        className="object-cover"
-                      />
-                    </span>
-                  </span>
-                  <div>
-                    <p className="font-display text-lg font-bold text-[color:var(--mh-ink-950)]">
-                      {t.name}
-                    </p>
-                    <p className="text-[color:var(--mh-copper-300)]" aria-label="5 out of 5 stars">
-                      ★★★★★
-                    </p>
+        <div className="mt-14">
+          <Marquee speed={34} className="mh-goog-marquee">
+            <div className="mh-goog-track flex">
+              {TESTIMONIALS.map((t, i) => (
+                <article key={t.name} className="mh-goog-card">
+                  <div className="mh-goog-head">
+                    <div className="mh-goog-id">
+                      <span
+                        className="mh-goog-avatar"
+                        style={{ background: GOOGLE_AVATAR_TINTS[i % GOOGLE_AVATAR_TINTS.length] }}
+                      >
+                        {t.name.charAt(0)}
+                      </span>
+                      <div>
+                        <p className="mh-goog-name">{t.name}</p>
+                        <p className="mh-goog-meta">
+                          Local Guide <span className="dot" /> {t.date}
+                        </p>
+                      </div>
+                    </div>
+                    <GoogleGIcon size={22} />
                   </div>
-                </div>
-                <p className="text-[color:var(--mh-ink-800)]">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-              </article>
-            ))}
-          </RevealGrid>
+                  <p className="mh-goog-stars" aria-label="5 out of 5 stars">
+                    ★★★★★
+                  </p>
+                  <p className="mh-goog-quote">&ldquo;{t.quote}&rdquo;</p>
+                  <div className="mh-goog-foot">
+                    <GoogleGIcon size={14} />
+                    Posted on Google
+                  </div>
+                </article>
+              ))}
+            </div>
+          </Marquee>
         </div>
       </section>
 
       {/* ============================================================
        * 11. THE PROCESS — image + checklist split
        * ============================================================ */}
-      <section className="bg-[color:var(--mh-bg)] py-24 md:py-32">
-        <div className="mh-container grid gap-12 md:grid-cols-12 md:gap-16">
+      <section className="bg-[color:var(--mh-bg)] py-14 md:py-32">
+        <div className="mh-container grid gap-8 md:grid-cols-12 md:gap-16">
           <Reveal direction="right" className="md:col-span-5">
             <ParallaxY intensity={36} className="relative">
-              <div className="mh-corners relative aspect-[4/5] overflow-hidden rounded-[var(--mh-radius-md)] border border-[color:var(--mh-border-strong)]">
+              <div className="mh-corners relative aspect-square overflow-hidden rounded-[var(--mh-radius-md)] border border-[color:var(--mh-border-strong)]">
                 <span aria-hidden="true" className="mh-corner tl" />
                 <span aria-hidden="true" className="mh-corner tr" />
                 <span aria-hidden="true" className="mh-corner bl" />
                 <span aria-hidden="true" className="mh-corner br" />
                 <Image
                   src={IMG_GALLERY}
-                  alt="Men's hair transformation gallery — ManHair"
+                  alt="Men's hair transformation gallery: ManHair"
                   fill
                   sizes="(max-width: 768px) 90vw, 40vw"
                   className="mh-image-kenburns object-cover"
@@ -755,7 +1168,7 @@ export default function HomePage() {
           <Reveal direction="left" className="flex flex-col justify-center md:col-span-7">
             <p className="mh-kicker">The process</p>
             <Display as={2} size="xl" className="mt-4">
-              The ManHair experience — <Italic>we keep it simple.</Italic>
+              The ManHair experience: <Italic>we keep it simple.</Italic>
             </Display>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
               Take years off your look and boost your confidence. From the first
@@ -767,8 +1180,7 @@ export default function HomePage() {
                 <li key={s.step}>
                   <strong className="font-display text-[color:var(--mh-ink-950)]">
                     {s.step} · {s.title}
-                  </strong>{" "}
-                  — {s.body}
+                  </strong>{": "}{s.body}
                 </li>
               ))}
             </ul>
@@ -786,55 +1198,60 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================
-       * 12. FOUNDING OFFER — pricing-style panel
+       * 12. FOUNDING OFFER — popped, colorful spotlight panel
        * ============================================================ */}
-      <section className="border-t border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-24 md:py-32">
+      <section className="border-t border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-14 md:py-32">
         <div className="mh-container">
-          <div className="mh-price-panel grid gap-10 p-8 md:grid-cols-12 md:items-center md:p-14">
-            <Reveal direction="right" className="md:col-span-7">
-              <p className="mh-kicker">Founding offer</p>
-              <Display as={2} size="xl" className="mt-4">
-                Start with a <Italic>free consultation.</Italic>
-              </Display>
-              <p className="mt-6 max-w-xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
-                Get that promotion you deserve. ManHair will change your life,
-                guaranteed. We come to you in the privacy of your own home and do
-                our initial consultation there — no cost, no pressure.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Button href="/book-my-appointment/" size="lg">
-                  Book My Appointment
-                </Button>
-                <Button href="/prices/" variant="ghost" size="lg">
-                  See Prices
-                </Button>
-              </div>
-            </Reveal>
+          <Reveal>
+            <div className="mh-offer-frame">
+              <span className="mh-offer-badge">✦ Founding Offer · Limited Spots</span>
+              <div className="mh-offer-panel grid gap-6 p-6 pt-9 md:grid-cols-12 md:items-center md:gap-10 md:p-14 md:pt-14">
+                <div className="md:col-span-7">
+                  <p className="mh-kicker">Founding offer</p>
+                  <Display as={2} size="xl" className="mt-4">
+                    Start with a <Italic>free consultation.</Italic>
+                  </Display>
+                  <p className="mt-6 max-w-xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
+                    Get that promotion you deserve. ManHair will change your life,
+                    guaranteed. We come to you in the privacy of your own home and
+                    do our initial consultation there, no cost, no pressure.
+                  </p>
+                  <div className="mt-8 flex flex-wrap gap-3">
+                    <Button href="/book-my-appointment/" size="lg">
+                      Book My Appointment
+                    </Button>
+                    <Button href="/prices/" variant="ghost" size="lg">
+                      See Prices
+                    </Button>
+                  </div>
+                </div>
 
-            <Reveal direction="left" className="md:col-span-5">
-              <div className="mh-price-figure">
-                <span className="cur">$</span>
-                <span className="amt">0</span>
-                <span className="per">/ consultation</span>
+                <div className="md:col-span-5">
+                  <div className="mh-price-figure mh-offer-figure-pop">
+                    <span className="cur">$</span>
+                    <span className="amt">0</span>
+                    <span className="per">/ consultation</span>
+                  </div>
+                  <p className="mt-4 font-sans text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-[color:var(--mh-ink-700)]">
+                    In-home or in-studio · Jacksonville &amp; Atlanta
+                  </p>
+                  <ul className="mh-offer-check">
+                    <li>100% real human hair, custom ordered to match you</li>
+                    <li>Undetectable, natural finish under any lighting</li>
+                    <li>Lifetime one-on-one servicing and support</li>
+                  </ul>
+                </div>
               </div>
-              <p className="mt-4 font-sans text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-[color:var(--mh-ink-700)]">
-                In-home or in-studio · Jacksonville &amp; Atlanta
-              </p>
-              <ul className="mh-check !mt-6">
-                <li>100% real human hair, custom ordered to match you</li>
-                <li>Undetectable, natural finish under any lighting</li>
-                <li>Lifetime one-on-one servicing and support</li>
-              </ul>
-            </Reveal>
-          </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
       {/* ============================================================
        * 13. FAQ + LOCATIONS
        * ============================================================ */}
-      <section className="border-t border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-24 md:py-32">
-        <div className="mh-container grid gap-16 md:grid-cols-12 md:gap-12">
+      <section className="border-t border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-14 md:py-32">
+        <div className="mh-container grid gap-8 md:grid-cols-12 md:gap-12">
           <Reveal direction="right" className="md:col-span-7">
             <p className="mh-kicker">FAQ</p>
             <Display as={2} size="xl" className="mt-4">
@@ -930,7 +1347,7 @@ export default function HomePage() {
       {/* ============================================================
        * 14. BLOG TEASER
        * ============================================================ */}
-      <section className="border-t border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-24 md:py-28">
+      <section className="border-t border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-12 md:py-28">
         <div className="mh-container">
           <Reveal>
             <div className="mb-12 flex flex-wrap items-end justify-between gap-4">
@@ -988,7 +1405,7 @@ export default function HomePage() {
       {/* ============================================================
        * 15. FINAL CTA + NEWSLETTER
        * ============================================================ */}
-      <section className="relative isolate overflow-hidden border-t border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-24 md:py-32">
+      <section className="relative isolate overflow-hidden border-t border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-14 md:py-32">
         <AuroraBlobs intensity="strong" className="opacity-40" />
         <div className="mh-container relative z-10">
           <Reveal>
@@ -1000,8 +1417,8 @@ export default function HomePage() {
               </Display>
               <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
                 We come to you in the privacy of your own home and do our initial
-                consultation there. There is no need to feel afraid or embarrassed
-                — we are here for you.
+                consultation there. There is no need to feel afraid or embarrassed.
+                We are here for you.
               </p>
               <div className="mt-10 flex flex-wrap justify-center gap-4">
                 <Button href="/book-my-appointment/" size="lg">
@@ -1023,7 +1440,7 @@ export default function HomePage() {
                     Join our newsletter.
                   </p>
                   <p className="mt-3 text-[color:var(--mh-ink-800)]">
-                    Product releases, hair-care tips, and studio updates — straight
+                    Product releases, hair-care tips, and studio updates: straight
                     to your inbox.
                   </p>
                 </div>
@@ -1049,6 +1466,81 @@ export default function HomePage() {
               </div>
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      {/* ============================================================
+       * 16. VISIT US — modern map cards
+       * ============================================================ */}
+      <section className="relative isolate overflow-hidden border-t border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-14 md:py-32">
+        <AuroraBlobs className="opacity-[0.16]" />
+        <div className="mh-container relative z-10">
+          <Reveal>
+            <div className="mb-14 flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p className="mh-kicker">Find us</p>
+                <Display as={2} size="xl" className="mt-4">
+                  Two studios. <Italic>Easy to find.</Italic>
+                </Display>
+                <p className="mt-5 max-w-xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
+                  Drop by in Jacksonville or Atlanta, or let us come to you.
+                  Either way, a free consultation is one map-tap away.
+                </p>
+              </div>
+              <Button href="/locations/" variant="ghost" size="md">
+                All Locations
+              </Button>
+            </div>
+          </Reveal>
+
+          <RevealGrid className="grid gap-7 lg:grid-cols-2" gap={0.12}>
+            {MAP_LOCATIONS.map((loc) => (
+              <article key={loc.label} className="mh-mapcard group">
+                <div className="mh-mapcard-frame">
+                  <iframe
+                    src={loc.map}
+                    title={`Map: ${loc.name}`}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
+
+                <span className="mh-mapcard-badge">
+                  <MapPinIcon size={15} />
+                  {loc.label}
+                </span>
+
+                <div className="mh-mapcard-panel">
+                  <p className="font-display text-xl font-bold text-[color:var(--mh-ink-950)]">
+                    {loc.name}
+                  </p>
+                  <p className="mt-1 text-sm text-[color:var(--mh-ink-800)]">
+                    {loc.streetLine1}, {loc.streetLine2}
+                  </p>
+
+                  <div className="mh-mapcard-meta">
+                    <span>
+                      <ClockIcon size={15} />
+                      {CONTACT.hoursShort}
+                    </span>
+                    <a href={loc.phoneHref} className="hover:text-[color:var(--mh-copper-300)]">
+                      <PhoneIcon size={15} />
+                      {loc.phone}
+                    </a>
+                  </div>
+
+                  <div className="mh-mapcard-actions">
+                    <Button href={loc.directionsHref} variant="ghost" size="sm">
+                      Get Directions
+                    </Button>
+                    <Button href={loc.detailsHref} size="sm">
+                      View Studio
+                    </Button>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </RevealGrid>
         </div>
       </section>
 

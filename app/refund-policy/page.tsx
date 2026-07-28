@@ -12,7 +12,6 @@ export const metadata: Metadata = toMetadata(PAGE);
 // Do not reword; only the surrounding layout is restyled.
 const BODY_HTML = `
 <p><strong>Refund Policy for stock items:</strong></p>
-<p>—–</p>
 <p>Returns<br>
 Our policy lasts 30 days. If 30 days have gone by since your purchase, unfortunately we can’t offer you a refund or exchange.</p>
 <p>To be eligible for a return, your item must be unused and in the same condition that you received it. It must also be in the original packaging.</p>
@@ -39,7 +38,6 @@ To return your product, you should mail your product to: MANHAIR 1845 Town Cente
 <p>You will be responsible for paying for your own shipping costs for returning your item. Shipping costs are non-refundable. If you receive a refund, the cost of return shipping will be deducted from your refund.</p>
 <p>Depending on where you live, the time it may take for your exchanged product to reach you, may vary.</p>
 <p>If you are shipping an item over $75, you should consider using a trackable shipping service or purchasing shipping insurance. We don’t guarantee that we will receive your returned item.</p>
-<p>—–</p>
 <p><strong>Refund Policy for CUSTOM ORDER items:</strong></p>
 <p><strong>SECTION 1 –&nbsp;CANCELLATION</strong></p>
 <p>1 If, for any reason, you wish to do so you have the right to cancel any order you have placed. You may cancel them up to 14 working days, starting from the date in which you placed your order.</p>
@@ -86,7 +84,7 @@ export default function Page() {
 
       {/* Hero */}
       <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)]">
-        <div className="mh-container py-20 md:py-24">
+        <div className="mh-container py-10 md:py-24">
           <p className="mh-eyebrow">Legal</p>
           <Display as={2} size="lg" className="mt-6 max-w-3xl">
             Refund Policy
@@ -97,7 +95,7 @@ export default function Page() {
 
       {/* Body */}
       <section className="bg-[color:var(--mh-bg)]">
-        <div className="mh-container py-16 md:py-20">
+        <div className="mh-container py-8 md:py-20">
           <article
             className="mh-prose mx-auto max-w-3xl"
             // eslint-disable-next-line react/no-danger

@@ -14,8 +14,9 @@ const LOGO_SRC = "/images/logo-png/MH-white-Logo-copy-300x76.png";
 type Size = "sm" | "md" | "lg";
 type Tone = "dark" | "light";
 
+/** Rendered heights per size; `w-auto` preserves the 300:76 aspect. */
 const HEIGHT: Record<Size, string> = {
-  sm: "h-6 md:h-7",
+  sm: "h-7",
   md: "h-8 md:h-9",
   lg: "h-11 md:h-12",
 };
@@ -35,12 +36,13 @@ export function Wordmark({
     // eslint-disable-next-line @next/next/no-img-element
     <img
       src={LOGO_SRC}
-      alt="ManHair — Hair Restoration Jacksonville & Atlanta"
+      alt="ManHair: Hair Restoration Jacksonville & Atlanta"
       width={300}
       height={76}
       loading={priority ? "eager" : "lazy"}
+      decoding="async"
       className={cn(
-        "w-auto select-none",
+        "block w-auto max-w-none select-none",
         HEIGHT[size],
         tone === "dark" && "mh-logo-ink",
         className
@@ -59,5 +61,3 @@ export function PngWordmark({
 }) {
   return <Wordmark size={size} tone="light" className={className} />;
 }
-
-

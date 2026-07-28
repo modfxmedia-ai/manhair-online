@@ -142,12 +142,12 @@ export default async function BlogPostPage({ params }: Props) {
   const related = POSTS.filter((p) => p.slug !== post.slug).slice(0, 3);
 
   return (
-    <>
+    <div className="mh-light">
       <JsonLd data={graph} />
 
       {/* Hero */}
       <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)]">
-        <div className="mh-container py-20 md:py-24">
+        <div className="mh-container py-10 md:py-24">
           <Link
             href="/blog/"
             className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-[color:var(--mh-copper-400)] hover:text-[color:var(--mh-copper-300)]"
@@ -180,7 +180,7 @@ export default async function BlogPostPage({ params }: Props) {
 
       {/* Body */}
       <section className="border-b border-[color:var(--mh-border)]">
-        <div className="mh-container py-16 md:py-20">
+        <div className="mh-container py-8 md:py-20">
           <article
             className="mh-prose mx-auto max-w-3xl"
             // eslint-disable-next-line react/no-danger
@@ -221,11 +221,11 @@ export default async function BlogPostPage({ params }: Props) {
                       />
                     </div>
                   ) : null}
-                  <h3 className="mh-display text-xl text-[color:var(--mh-ink-50)] group-hover:text-[color:var(--mh-copper-400)]">
+                  <h3 className="mh-display text-xl text-[color:var(--mh-ink-950)] group-hover:text-[color:var(--mh-copper-400)]">
                     {p.heading ?? p.title}
                   </h3>
                   {p.excerpt ? (
-                    <p className="text-sm leading-relaxed text-[color:var(--mh-ink-700)]">
+                    <p className="text-sm leading-relaxed text-[color:var(--mh-ink-800)]">
                       {p.excerpt}
                     </p>
                   ) : null}
@@ -238,6 +238,6 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         </section>
       ) : null}
-    </>
+    </div>
   );
 }

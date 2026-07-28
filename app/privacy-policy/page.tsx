@@ -12,7 +12,6 @@ export const metadata: Metadata = toMetadata(PAGE);
 // Do not reword; only the surrounding layout is restyled.
 const BODY_HTML = `
 <p>Privacy Statement</p>
-<p>—–</p>
 <p><strong>SECTION 1 – WHAT DO WE DO WITH YOUR INFORMATION?</strong></p>
 <p>When you purchase something from our store, as part of the buying and selling process, we collect the personal information you give us such as your name, address and email address.<br>
 When you browse our store, we also automatically receive your computer’s internet protocol (IP) address in order to provide us with information that helps us learn about your browser and operating system.<br>
@@ -61,7 +60,6 @@ If you provide us with your credit card information, the information is encrypte
 If our store is acquired or merged with another company, your information may be transferred to the new owners so that we may continue to sell products to you.</p>
 <p><strong>QUESTIONS AND CONTACT INFORMATION</strong></p>
 <p>If you would like to: access, correct, amend or delete any personal information we have about you, register a complaint, or simply want more information contact our Privacy Compliance Officer at info@manhaironline.com</p>
-<p>—–</p>
 `;
 
 export default function Page() {
@@ -96,7 +94,7 @@ export default function Page() {
 
       {/* Hero */}
       <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)]">
-        <div className="mh-container py-20 md:py-24">
+        <div className="mh-container py-10 md:py-24">
           <p className="mh-eyebrow">Legal</p>
           <Display as={2} size="lg" className="mt-6 max-w-3xl">
             Privacy Policy
@@ -107,7 +105,7 @@ export default function Page() {
 
       {/* Body */}
       <section className="bg-[color:var(--mh-bg)]">
-        <div className="mh-container py-16 md:py-20">
+        <div className="mh-container py-8 md:py-20">
           <article
             className="mh-prose mx-auto max-w-3xl"
             // eslint-disable-next-line react/no-danger

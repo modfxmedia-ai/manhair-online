@@ -99,13 +99,13 @@ export default function Page() {
   });
 
   return (
-    <div className="mh-dark">
+    <div className="mh-light">
       <JsonLd data={graph} />
 
       {/* ============================================================
        * HERO — EyebrowTag + DisplayHeading (real H1)
        * ============================================================ */}
-      <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] pb-16 pt-32 md:pb-24 md:pt-40">
+      <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] pb-16 pt-16 md:pb-24 md:pt-40">
         <AuroraBlobs className="opacity-30" />
         <div className="mh-container relative z-10">
           <Reveal>
@@ -125,7 +125,7 @@ export default function Page() {
       {/* ============================================================
        * INTRO — H2 + real body copy
        * ============================================================ */}
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-20 md:py-28">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-12 md:py-28">
         <div className="mh-container">
           <Reveal>
             <div className="mx-auto max-w-4xl text-center">
@@ -150,7 +150,7 @@ export default function Page() {
       {/* ============================================================
        * SERVICES — FeaturePanel rows
        * ============================================================ */}
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-20 md:py-28">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-12 md:py-28">
         <div className="mh-container">
           <Reveal>
             <p className="mh-kicker">Every aspect covered</p>
@@ -179,7 +179,7 @@ export default function Page() {
        * PHILOSOPHY — QuoteBlock (mission statement)
        * ============================================================ */}
       <section className="relative">
-        <div className="mh-cinema border-y border-[color:var(--mh-copper-700)]/40 px-6 py-24 md:py-32">
+        <div className="mh-cinema border-y border-[color:var(--mh-copper-700)]/40 px-6 py-14 md:py-32">
           <div className="mh-container relative">
             <Reveal>
               <p className="mh-kicker">The ManHair Philosophy&hellip;</p>
@@ -212,9 +212,9 @@ export default function Page() {
       {/* ============================================================
        * MESSAGE FROM THE OWNER — QuoteBlock (founder statement)
        * ============================================================ */}
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-20 md:py-28">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-12 md:py-28">
         <div className="mh-container">
-          <div className="grid gap-12 md:grid-cols-12">
+          <div className="grid gap-8 md:grid-cols-12">
             <Reveal direction="right" className="md:col-span-4">
               <p className="mh-kicker">A message from the owner</p>
               <Display as={2} size="lg" className="mt-4">
@@ -271,7 +271,7 @@ export default function Page() {
       {/* ============================================================
        * THE MANHAIR EXPERIENCE — 4 steps → /how-it-works/
        * ============================================================ */}
-      <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-20 md:py-28">
+      <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-12 md:py-28">
         <AuroraBlobs className="opacity-25" />
         <div className="mh-container relative z-10">
           <Reveal>
@@ -333,7 +333,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="border-t border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-16 md:py-20">
+      <section className="border-t border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-8 md:py-20">
         <div className="mh-container text-center">
           <p className="mh-kicker justify-center">We would love to help you!</p>
           <Display as={2} size="lg" className="mt-4">

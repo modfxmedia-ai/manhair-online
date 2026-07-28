@@ -116,13 +116,13 @@ export default function Page() {
   });
 
   return (
-    <div className="mh-dark">
+    <div className="mh-light">
       <JsonLd data={graph} />
 
       {/* ============================================================
        * HERO
        * ============================================================ */}
-      <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] pb-16 pt-32 md:pb-24 md:pt-40">
+      <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] pb-16 pt-16 md:pb-24 md:pt-40">
         <AuroraBlobs className="opacity-30" />
         <div className="mh-container relative z-10">
           <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
@@ -183,7 +183,7 @@ export default function Page() {
       {/* ============================================================
        * ADVANTAGES — FeaturePanel rows (01–06)
        * ============================================================ */}
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-20 md:py-28">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-12 md:py-28">
         <div className="mh-container">
           <Reveal>
             <p className="mh-kicker">Why partner with us</p>
@@ -211,7 +211,7 @@ export default function Page() {
       {/* ============================================================
        * STATISTICS
        * ============================================================ */}
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-20 md:py-28">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-12 md:py-28">
         <div className="mh-container">
           <Reveal>
             <p className="mh-kicker">A fasting growing industry</p>
@@ -235,7 +235,7 @@ export default function Page() {
       {/* ============================================================
        * WHY YOU MUST PARTNER — checklist
        * ============================================================ */}
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-20 md:py-28">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-12 md:py-28">
         <div className="mh-container">
           <Reveal>
             <p className="mh-kicker">The numbers make it easy</p>
@@ -257,7 +257,7 @@ export default function Page() {
        * DESTINY PULL-QUOTE
        * ============================================================ */}
       <section className="relative">
-        <div className="mh-cinema border-y border-[color:var(--mh-copper-700)]/40 px-6 py-24 md:py-32">
+        <div className="mh-cinema border-y border-[color:var(--mh-copper-700)]/40 px-6 py-14 md:py-32">
           <div className="mh-container relative">
             <Reveal>
               <blockquote className="max-w-4xl text-[clamp(1.5rem,2.2vw+0.75rem,2.5rem)] font-light leading-[1.25] text-[#FDF6E4]">
@@ -273,7 +273,7 @@ export default function Page() {
       {/* ============================================================
        * MISSION + BUSINESS IN A BOX
        * ============================================================ */}
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-20 md:py-28">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-12 md:py-28">
         <div className="mh-container">
           <div className="grid gap-12 lg:grid-cols-12 lg:items-start">
             <Reveal className="lg:col-span-7">
@@ -357,7 +357,7 @@ export default function Page() {
       {/* ============================================================
        * PARTNERSHIP SUPPORT — checklist
        * ============================================================ */}
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-20 md:py-28">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-12 md:py-28">
         <div className="mh-container">
           <Reveal>
             <p className="mh-kicker">Headquarters in Jacksonville, FL</p>
@@ -390,7 +390,7 @@ export default function Page() {
       {/* ============================================================
        * ANSWER YOU'VE BEEN LOOKING FOR
        * ============================================================ */}
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-20 md:py-28">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-12 md:py-28">
         <div className="mh-container">
           <Reveal>
             <Display as={2} size="lg" className="max-w-4xl">
@@ -442,7 +442,7 @@ export default function Page() {
       {/* ============================================================
        * JOIN CTA — GlowButton + follow us
        * ============================================================ */}
-      <section className="border-t border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-16 md:py-24">
+      <section className="border-t border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-10 md:py-24">
         <div className="mh-container text-center">
           <p className="mh-kicker justify-center">Leave a legacy</p>
           <Display as={2} size="xl" className="mt-4">
