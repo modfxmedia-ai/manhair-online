@@ -3,27 +3,27 @@ import { cn } from "@/lib/cn";
 /**
  * Wordmark — brand mark used in the header + footer.
  *
- * Renders the official white PNG logo. On the light cream palette
- * (`tone="dark"`, the default) the mark is tinted to warm ink via a
- * CSS filter so it stays legible; on dark surfaces (`tone="light"`)
- * it renders as the original white artwork.
+ * Renders the official full-color logo (red beard mark + black
+ * "MANHAIR" type), pre-cropped to its content bounds. It already
+ * reads correctly on the light cream header/footer surfaces, so no
+ * color filtering is applied.
  */
 
-const LOGO_SRC = "/images/logo-png/MH-white-Logo-copy-300x76.png";
+const LOGO_SRC = "/images/logo-png/manhair-logo-cropped.png";
 
 type Size = "sm" | "md" | "lg";
 type Tone = "dark" | "light";
 
-/** Rendered heights per size; `w-auto` preserves the 300:76 aspect. */
+/** Rendered heights per size; `w-auto` preserves the source aspect ratio. */
 const HEIGHT: Record<Size, string> = {
-  sm: "h-7",
-  md: "h-8 md:h-9",
-  lg: "h-11 md:h-12",
+  sm: "h-8",
+  md: "h-9 md:h-10",
+  lg: "h-12 md:h-14",
 };
 
 export function Wordmark({
   size = "md",
-  tone = "dark",
+  tone: _tone = "dark",
   className,
   priority = false,
 }: {
@@ -37,16 +37,11 @@ export function Wordmark({
     <img
       src={LOGO_SRC}
       alt="ManHair: Hair Restoration Orange County, CA"
-      width={300}
-      height={76}
+      width={1386}
+      height={408}
       loading={priority ? "eager" : "lazy"}
       decoding="async"
-      className={cn(
-        "block w-auto max-w-none select-none",
-        HEIGHT[size],
-        tone === "dark" && "mh-logo-ink",
-        className
-      )}
+      className={cn("block w-auto max-w-none select-none", HEIGHT[size], className)}
     />
   );
 }
@@ -61,3 +56,4 @@ export function PngWordmark({
 }) {
   return <Wordmark size={size} tone="light" className={className} />;
 }
+
