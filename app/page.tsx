@@ -1003,13 +1003,13 @@ export default function HomePage() {
               >
                 <span className="mh-timeline-node top-8 md:top-10" />
                 <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-10">
-                  <div className="relative aspect-square w-full flex-none overflow-hidden rounded-[var(--mh-radius-md)] border border-[color:var(--mh-border-strong)] shadow-[0_18px_40px_-20px_rgba(20,16,8,0.35)] sm:w-52 md:w-72">
+                  <div className="relative aspect-square w-full flex-none overflow-hidden rounded-[var(--mh-radius-md)] border border-[color:var(--mh-border-strong)] bg-[color:var(--mh-surface-elevated)] shadow-[0_18px_40px_-20px_rgba(20,16,8,0.35)] sm:w-52 md:w-72">
                     <Image
                       src={p.img}
                       alt={p.alt}
                       fill
                       sizes="(max-width: 640px) 100vw, 320px"
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      className="object-contain transition-transform duration-700 ease-out group-hover:scale-105"
                     />
                   </div>
                   <div className="flex-1">
