@@ -420,8 +420,8 @@ const MEGA_MENU: Record<string, MegaConfig> = {
             Icon: StarIcon,
           },
           {
-            label: "Site Index",
-            href: "/site-index/",
+            label: "Sitemap",
+            href: "/sitemap/",
             desc: "Every ManHair page, in one directory.",
             Icon: GridIcon,
           },

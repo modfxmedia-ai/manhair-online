@@ -84,7 +84,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
   items.push({
-    url: `${SITE.origin}/site-index/`,
+    url: `${SITE.origin}/sitemap/`,
     lastModified: now,
     changeFrequency: "weekly",
     priority: 0.5,

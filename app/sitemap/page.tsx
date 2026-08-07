@@ -8,8 +8,8 @@ import { SERVICES } from "@/lib/seo/services";
 import { CONDITIONS } from "@/lib/seo/conditions";
 import { TIER1_CITIES } from "@/lib/seo/cities";
 
-const PATH = "/site-index/";
-const TITLE = "Site Index | Every ManHair Page | Orange, CA";
+const PATH = "/sitemap/";
+const TITLE = "Sitemap | Every ManHair Page | Orange, CA";
 const DESCRIPTION =
   "A complete, easy-to-browse directory of every ManHair page: services, hair-loss conditions, locations we serve, and core pages.";
 
@@ -74,7 +74,7 @@ export default function Page() {
     path: PATH,
     title: TITLE,
     description: DESCRIPTION,
-    breadcrumbs: [{ name: "Home", path: "/" }, { name: "Site Index" }],
+    breadcrumbs: [{ name: "Home", path: "/" }, { name: "Sitemap" }],
     organization: {
       name: SITE.orgName,
       url: `${SITE.origin}/`,
@@ -113,7 +113,7 @@ export default function Page() {
         <div className="mh-container relative z-10">
           <Reveal>
             <div className="mx-auto max-w-3xl text-center">
-              <p className="mh-kicker justify-center">Site Index</p>
+              <p className="mh-kicker justify-center">Sitemap</p>
               <Display as={1} size="hero" className="mt-5">
                 Every page, <Italic>one place</Italic>
               </Display>

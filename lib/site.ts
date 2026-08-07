@@ -207,7 +207,7 @@ export const SERVICES_NAV: Array<{ label: string; href: string }> = [
  *  graph identical to what search engines have already crawled. */
 export const FOOTER_QUICK_LINKS: Array<{ label: string; href: string }> = [
   { label: "Home", href: "/" },
-  { label: "Site Index", href: "/site-index/" },
+  { label: "Sitemap", href: "/sitemap/" },
   { label: "About Us", href: "/about/" },
   { label: "Treat Now & Pay Later", href: "/payment-plans/" },
   { label: "Franchise", href: "/partnerprogram/" },
