@@ -128,7 +128,6 @@ export default function Page() {
                   <BeforeAfterCard
                     src={g.src}
                     alt={g.alt}
-                    caption="Before and after"
                     aspect={g.aspect}
                     priority={i < 3}
                   />

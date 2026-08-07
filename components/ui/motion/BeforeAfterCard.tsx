@@ -10,9 +10,6 @@ import { cn } from "@/lib/cn";
  *
  * - Slow ambient KenBurns zoom on the image (server-CSS keyframe).
  * - Diagonal shine sweep on hover (see `.mh-ba-card` in globals).
- * - A large italic caption in cream ivory over a soft
- *   bottom-gradient veil, sliding up on hover for extra
- *   interactivity.
  *
  * `aspect` controls the tile shape. Grid parent decides column
  * span via className; the card fills its container.
@@ -20,14 +17,12 @@ import { cn } from "@/lib/cn";
 export function BeforeAfterCard({
   src,
   alt,
-  caption,
   aspect = "square",
   className,
   priority = false,
 }: {
   src: string;
   alt: string;
-  caption?: string;
   aspect?: "square" | "portrait" | "wide" | "video";
   className?: string;
   priority?: boolean;
@@ -60,12 +55,6 @@ export function BeforeAfterCard({
           className="mh-image-kenburns object-contain"
         />
       </div>
-
-      {caption ? (
-        <figcaption className="mh-ba-caption transition-transform duration-500 ease-out group-hover:-translate-y-1 group-focus-within:-translate-y-1">
-          {caption}
-        </figcaption>
-      ) : null}
     </figure>
   );
 }
