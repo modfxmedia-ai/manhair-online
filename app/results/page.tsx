@@ -129,7 +129,6 @@ export default function Page() {
                     src={g.src}
                     alt={g.alt}
                     caption="Before and after"
-                    index={i + 1}
                     aspect={g.aspect}
                     priority={i < 3}
                   />

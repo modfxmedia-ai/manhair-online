@@ -809,7 +809,6 @@ export default function HomePage() {
                   src={b.src}
                   alt={b.alt}
                   caption={b.caption}
-                  index={i + 1}
                   aspect="square"
                   priority={i === 0}
                 />
