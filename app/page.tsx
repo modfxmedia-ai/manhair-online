@@ -1049,7 +1049,7 @@ export default function HomePage() {
                     <>We don&rsquo;t sell hair.</>,
                     <>
                       We give men their{" "}
-                      <span className="italic font-light text-[color:var(--mh-copper-300)]">
+                      <span className="italic font-light text-[color:var(--mh-red-300)]">
                         reflection back.
                       </span>
                     </>,
