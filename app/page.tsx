@@ -21,7 +21,7 @@ import {
   RevealGrid,
   SplitLines,
 } from "@/components/ui/motion";
-import { JsonLd, buildPageGraph } from "@/components/JsonLd";
+import { JsonLd, buildLocalBusinessSchema, buildPageGraph } from "@/components/JsonLd";
 import {
   ActivityIcon,
   ArrowRightIcon,
@@ -83,10 +83,10 @@ const TICKER = [
   { k: "Real Human Hair", v: "100%" },
   { k: "Custom Ordered", v: "Bespoke" },
   { k: "Undetectable Fit", v: "Seamless" },
-  { k: "Free Consultation", v: "In-home" },
+  { k: "Free Consultation", v: "Virtual" },
   { k: "No Surgery", v: "Non-invasive" },
   { k: "Established", v: "2014" },
-  { k: "Studios", v: "JAX · ATL" },
+  { k: "Studio", v: "Orange, CA" },
 ];
 
 // Big stat row — each metric ships with a motion glyph (variant)
@@ -168,7 +168,7 @@ const FEATURES = [
 
 // "Why ManHair" — four reasons (first two verbatim).
 const WHY = [
-  { n: "01", title: "Free consultation", body: "We come to you in the privacy of your own home, or meet at either studio. No cost, no pressure, just a real conversation about your options." },
+  { n: "01", title: "Free consultation", body: "Start with a free virtual consultation from anywhere. No cost, no pressure, just a real conversation about your options." },
   { n: "02", title: "1-on-1 approach", body: "Personal, one-on-one support from your first consult to lifetime servicing, the exact opposite of what you get at the big chains." },
   { n: "03", title: "No surgery", body: "A non-surgical system fitted around your existing hair: zero procedures, zero downtime, zero scalpel." },
   { n: "04", title: "Every guy welcome", body: "Full head of hair, thinning, or bald? We cover it all, no matter the hair type, no matter where you're starting." },
@@ -182,7 +182,7 @@ const PROGRAMS = [
 ];
 
 const PROCESS = [
-  { step: "01", title: "Consultation", body: "Schedule a free consultation with a hair expert, in-home or in-studio, judgment-free." },
+  { step: "01", title: "Consultation", body: "Schedule a free virtual consultation with a hair expert, judgment-free." },
   { step: "02", title: "Selection",    body: "Selection process of the best hair for your lifestyle, matched to your color and density." },
   { step: "03", title: "Fitting",      body: "Applying your new thick and beautiful ManHair system, styled to your face." },
   { step: "04", title: "Servicing",    body: "We will handle the ongoing maintenance on your unit so it always looks fresh." },
@@ -431,9 +431,24 @@ export default function HomePage() {
     siteDescription: SITE.tagline,
   });
 
+  // LocalBusiness schema — spec Section 7.2: this is ONLY placed on
+  // the homepage and /locations/orange/. Do not add to other city
+  // pages, service pages, or condition pages.
+  const localBusiness = buildLocalBusinessSchema({
+    origin: SITE.origin,
+    name: SITE.orgName,
+    telephone: CONTACT.studio.phone,
+    streetAddress: CONTACT.studio.streetLine1,
+    addressLocality: CONTACT.studio.streetLine2,
+    addressRegion: CONTACT.studio.region,
+    url: `${SITE.origin}/`,
+    logoUrl: `${SITE.origin}${SITE.logo.url}`,
+    sameAs: SOCIAL.map((s) => s.href),
+  });
+
   return (
     <div className="mh-light">
-      <JsonLd data={graph} />
+      <JsonLd data={[graph, localBusiness]} />
 
       {/* ============================================================
        * 1. HERO — modern editorial split (copy + framed video)
@@ -778,7 +793,7 @@ export default function HomePage() {
                   <Italic>changes everything.</Italic>
                 </Display>
               </div>
-              <Button href="/before-after/" variant="ghost" size="sm">
+              <Button href="/results/" variant="ghost" size="sm">
                 View All Transformations
               </Button>
             </div>
@@ -827,7 +842,7 @@ export default function HomePage() {
               A community where every guy <Italic>is welcome.</Italic>
             </Display>
             <div className="mt-8">
-              <Button href="/free-consultation/" size="lg">
+              <Button href="/consultation/" size="lg">
                 Book Free Consultation
               </Button>
             </div>
@@ -1175,10 +1190,10 @@ export default function HomePage() {
             </ul>
 
             <div className="mt-9 flex flex-wrap gap-3">
-              <Button href="/book-my-appointment/" size="lg">
+              <Button href="/consultation/" size="lg">
                 Start Step 01
               </Button>
-              <Button href="/before-after/" variant="ghost" size="lg">
+              <Button href="/results/" variant="ghost" size="lg">
                 Before &amp; After
               </Button>
             </div>
@@ -1202,14 +1217,14 @@ export default function HomePage() {
                   </Display>
                   <p className="mt-6 max-w-xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
                     Get that promotion you deserve. ManHair will change your life,
-                    guaranteed. We come to you in the privacy of your own home and
-                    do our initial consultation there, no cost, no pressure.
+                    guaranteed. Start with a free virtual consultation, no cost,
+                    no pressure, then visit our Orange, CA studio for your fitting.
                   </p>
                   <div className="mt-8 flex flex-wrap gap-3">
-                    <Button href="/book-my-appointment/" size="lg">
+                    <Button href="/consultation/" size="lg">
                       Book My Appointment
                     </Button>
-                    <Button href="/prices/" variant="ghost" size="lg">
+                    <Button href="/pricing/" variant="ghost" size="lg">
                       See Prices
                     </Button>
                   </div>
@@ -1222,7 +1237,7 @@ export default function HomePage() {
                     <span className="per">/ consultation</span>
                   </div>
                   <p className="mt-4 font-sans text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-[color:var(--mh-ink-700)]">
-                    In-home or in-studio · Orange County, CA
+                    Free virtual consult · Orange, CA studio
                   </p>
                   <ul className="mh-offer-check">
                     <li>100% real human hair, custom ordered to match you</li>
@@ -1304,7 +1319,7 @@ export default function HomePage() {
                 <Button href="/locations/" variant="ghost" size="sm">
                   All Locations
                 </Button>
-                <Button href="/book-my-appointment/" size="sm">
+                <Button href="/consultation/" size="sm">
                   Book Appointment
                 </Button>
               </div>
@@ -1385,12 +1400,12 @@ export default function HomePage() {
                 <Italic>hairstyle for you?</Italic>
               </Display>
               <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
-                We come to you in the privacy of your own home and do our initial
-                consultation there. There is no need to feel afraid or embarrassed.
-                We are here for you.
+                We start every relationship with a free virtual consultation,
+                wherever you are. There is no need to feel afraid or embarrassed.
+                Your fitting happens at our Orange, CA studio.
               </p>
               <div className="mt-10 flex flex-wrap justify-center gap-4">
-                <Button href="/book-my-appointment/" size="lg">
+                <Button href="/consultation/" size="lg">
                   Book My Appointment
                 </Button>
                 <Button href="/contact/" variant="ghost" size="lg">
@@ -1452,8 +1467,8 @@ export default function HomePage() {
                   Orange County. <Italic>Easy to find.</Italic>
                 </Display>
                 <p className="mt-5 max-w-xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
-                  Drop by in Orange County, or let us come to you.
-                  Either way, a free consultation is one map-tap away.
+                  Start with a free virtual consultation, then drop by our
+                  Orange, CA studio. Either way, getting started is one tap away.
                 </p>
               </div>
               <Button href="/locations/" variant="ghost" size="md">

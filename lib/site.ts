@@ -145,8 +145,21 @@ export type NavItem = {
 export const PRIMARY_NAV: NavItem[] = [
   { label: "Home", href: "/" },
   {
+    label: "Services",
+    href: "/mens-hair-replacement-systems/",
+    children: [
+      { label: "Men's Hair Systems", href: "/services/mens-hair-systems/" },
+      { label: "Men's Toupees", href: "/services/mens-toupees/" },
+      { label: "Men's Hairpieces", href: "/services/mens-hairpieces/" },
+      { label: "Men's Hair Units", href: "/services/mens-hair-units/" },
+      { label: "Men's Wigs", href: "/services/mens-wigs/" },
+      { label: "Non-Surgical Hair Replacement", href: "/services/non-surgical-hair-replacement/" },
+      { label: "Hair System Maintenance", href: "/services/hair-system-maintenance/" },
+    ],
+  },
+  {
     label: "About",
-    href: "/about-us/",
+    href: "/about/",
     children: [
       { label: "Payment Plans", href: "/payment-plans/" },
       { label: "Franchise", href: "/partnerprogram/" },
@@ -161,12 +174,12 @@ export const PRIMARY_NAV: NavItem[] = [
     href: "/how-it-works/",
     children: [
       { label: "Receding Hairline Restoration", href: "/receding-hairline-restoration/" },
-      { label: "Our Prices", href: "/prices/" },
+      { label: "Our Prices", href: "/pricing/" },
       { label: "Alopecia Hair Loss", href: "/alopecia-hair-loss/" },
       { label: "Men's Hair Styles", href: "/mens-hair-styles/" },
     ],
   },
-  { label: "Before & After", href: "/before-after/" },
+  { label: "Before & After", href: "/results/" },
   { label: "Locations", href: "/locations/" },
 ];
 
@@ -181,10 +194,10 @@ export const SERVICES_NAV: Array<{ label: string; href: string }> = [
     label: "Receding Hairline Restoration",
     href: "/receding-hairline-restoration/",
   },
-  { label: "Our Prices", href: "/prices/" },
+  { label: "Our Prices", href: "/pricing/" },
   { label: "Alopecia Hair Loss", href: "/alopecia-hair-loss/" },
   { label: "Men's Hair Styles", href: "/mens-hair-styles/" },
-  { label: "Before & After", href: "/before-after/" },
+  { label: "Before & After", href: "/results/" },
   { label: "Locations", href: "/locations/" },
   { label: "Contact Us", href: "/contact/" },
 ];
@@ -194,7 +207,8 @@ export const SERVICES_NAV: Array<{ label: string; href: string }> = [
  *  graph identical to what search engines have already crawled. */
 export const FOOTER_QUICK_LINKS: Array<{ label: string; href: string }> = [
   { label: "Home", href: "/" },
-  { label: "About Us", href: "/about-us/" },
+  { label: "Site Index", href: "/site-index/" },
+  { label: "About Us", href: "/about/" },
   { label: "Treat Now & Pay Later", href: "/payment-plans/" },
   { label: "Franchise", href: "/partnerprogram/" },
   { label: "Locations", href: "/locations/" },

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Button, Display, Italic } from "@/components/ui";
 import { AuroraBlobs, Reveal, RevealGrid } from "@/components/ui/motion";
-import { JsonLd, buildPageGraph } from "@/components/JsonLd";
+import { JsonLd, buildPageGraph, buildPersonSchema } from "@/components/JsonLd";
 import { SITE, SOCIAL } from "@/lib/site";
 import { getPageMeta, toMetadata } from "@/lib/pages";
 
-const PAGE = getPageMeta("/about-us/")!;
+const PAGE = getPageMeta("/about/")!;
 export const metadata: Metadata = toMetadata(PAGE);
 
 const SERVICES = [
@@ -67,7 +67,7 @@ const EXPERIENCE = [
 const CTA_TICKER = [
   "100% Satisfaction",
   "Personal Care Ambassador",
-  "In The Comfort Of Your Home",
+  "Free Virtual Consultation",
   "Regain Your Confidence",
   "The ManHair Philosophy",
 ];
@@ -98,9 +98,19 @@ export default function Page() {
     siteDescription: SITE.tagline,
   });
 
+  // Person schema for the founder — spec Section 7.2 recommends this
+  // on the /about/ page to strengthen the site's E-E-A-T signals.
+  const personSchema = buildPersonSchema({
+    origin: SITE.origin,
+    name: "Justin",
+    jobTitle: "Founder",
+    worksForName: SITE.orgName,
+    url: `${SITE.origin}/about/`,
+  });
+
   return (
     <div className="mh-light">
-      <JsonLd data={graph} />
+      <JsonLd data={[graph, personSchema]} />
 
       {/* ============================================================
        * HERO — EyebrowTag + DisplayHeading (real H1)
@@ -242,12 +252,13 @@ export default function Page() {
                   Our personal goal is to have a community where all men are treated
                   equally, regardless of their current hair situation. We understand
                   that going to a salon for help can be embarrassing and very time
-                  consuming, but that is where we come in. At ManHair, we handle
-                  every customer personally while you&rsquo;re in the comfort of your
-                  own home. You will be assigned a personal care ambassador to get
+                  consuming, but that is where we come in. At ManHair, we start
+                  every relationship with a free virtual consultation, from anywhere.
+                  You will be assigned a personal care ambassador to get
                   the one on one time you deserve to answer any and all questions you
                   have to find the proper solution for you and your current hair
-                  condition. You will regain confidence in yourself, and save
+                  condition. When you&rsquo;re ready, your fitting happens at our
+                  Orange, CA studio. You will regain confidence in yourself, and save
                   thousands of dollars instead of overpaying at a salon. Feel
                   confident and handsome and know that you&rsquo;re in great hands at
                   ManHair!
@@ -340,10 +351,10 @@ export default function Page() {
             Get in touch now! Book a free <Italic>hair discovery call.</Italic>
           </Display>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button href="/book-my-appointment/" size="lg">
+            <Button href="/consultation/" size="lg">
               Book My Appointment
             </Button>
-            <Button href="/free-consultation/" variant="ghost" size="lg">
+            <Button href="/consultation/" variant="ghost" size="lg">
               Free Consultation
             </Button>
           </div>

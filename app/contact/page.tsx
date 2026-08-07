@@ -28,7 +28,7 @@ const CTA_TICKER = [
   "Orange County, CA",
   "Mon–Fri 10:30 AM – 6:00 PM",
   "100% Free Discovery Call",
-  "We Come To You",
+  "Free Virtual Consultation",
 ];
 
 export default function Page() {
@@ -236,10 +236,10 @@ export default function Page() {
             Book your free <Italic>consultation.</Italic>
           </Display>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button href="/book-my-appointment/" size="lg">
+            <Button href="/consultation/" size="lg">
               Book My Appointment
             </Button>
-            <Button href="/free-consultation/" variant="ghost" size="lg">
+            <Button href="/consultation/" variant="ghost" size="lg">
               Free Consultation
             </Button>
           </div>

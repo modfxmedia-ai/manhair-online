@@ -5,7 +5,7 @@ import { JsonLd, buildPageGraph } from "@/components/JsonLd";
 import { SITE, SOCIAL } from "@/lib/site";
 import { getPageMeta, toMetadata } from "@/lib/pages";
 
-const PAGE = getPageMeta("/prices/")!;
+const PAGE = getPageMeta("/pricing/")!;
 export const metadata: Metadata = toMetadata(PAGE);
 
 const CTA_TICKER = [
@@ -55,7 +55,7 @@ export default function Page() {
           <Reveal>
             <div className="mx-auto max-w-4xl text-center">
               <p className="mh-kicker justify-center">Prices</p>
-              <Display as={2} size="hero" className="mt-5">
+              <Display as={1} size="hero" className="mt-5">
                 Our transparent prices and <Italic>order details.</Italic>
               </Display>
               <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
@@ -155,7 +155,7 @@ export default function Page() {
             Book your <Italic>free consultation.</Italic>
           </Display>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button href="/book-my-appointment/" size="lg">
+            <Button href="/consultation/" size="lg">
               Book My Appointment
             </Button>
             <Button href="/payment-plans/" variant="ghost" size="lg">

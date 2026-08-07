@@ -165,3 +165,108 @@ export function buildPageGraph(opts: {
 
   return { "@context": "https://schema.org", "@graph": graph };
 }
+
+/**
+ * Service schema for individual service pages (spec Section 7.2).
+ * Deliberately excludes any AggregateRating/Review — do not add fake
+ * review data. `areaServed` should stay county/region-level, never a
+ * fabricated list of every city (that reads as spam to Google).
+ */
+export function buildServiceSchema(opts: {
+  origin: string;
+  path: string;
+  name: string;
+  description: string;
+  providerName: string;
+  areaServed?: string;
+}) {
+  const { origin, path, name, description, providerName, areaServed = "Orange County, CA" } = opts;
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${origin}${path}#service`,
+    name,
+    description,
+    serviceType: name,
+    provider: { "@id": `${origin}/#organization` },
+    areaServed: { "@type": "AdministrativeArea", name: areaServed },
+    url: `${origin}${path}`,
+  };
+}
+
+/**
+ * LocalBusiness schema. Per spec Section 7.2, this must ONLY be used on
+ * the homepage and the `/locations/orange/` page — never on the other
+ * 34 Tier 1 city pages ("the single most common programmatic SEO
+ * mistake"). Do not call this from any city page other than Orange.
+ */
+export function buildLocalBusinessSchema(opts: {
+  origin: string;
+  name: string;
+  telephone: string;
+  streetAddress: string;
+  addressLocality: string;
+  addressRegion: string;
+  url: string;
+  logoUrl: string;
+  sameAs: readonly string[];
+}) {
+  const { origin, name, telephone, streetAddress, addressLocality, addressRegion, url, logoUrl, sameAs } = opts;
+  return {
+    "@context": "https://schema.org",
+    "@type": "HairSalon",
+    "@id": `${origin}/#organization`,
+    name,
+    telephone,
+    image: logoUrl,
+    url,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress,
+      addressLocality,
+      addressRegion,
+      addressCountry: "US",
+    },
+    sameAs: [...sameAs],
+  };
+}
+
+/** Person schema for `/about/` — the founder. No fabricated bio facts. */
+export function buildPersonSchema(opts: {
+  origin: string;
+  name: string;
+  jobTitle: string;
+  worksForName: string;
+  url: string;
+}) {
+  const { origin, name, jobTitle, worksForName, url } = opts;
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${origin}/#founder`,
+    name,
+    jobTitle,
+    worksFor: { "@id": `${origin}/#organization` },
+    url,
+  };
+}
+
+/** FAQPage schema — per spec, use ONLY on `/faq/`. Never add to city or
+ *  service pages (that's a common spammy-schema mistake). */
+export function buildFAQSchema(opts: {
+  origin: string;
+  path: string;
+  items: Array<{ question: string; answer: string }>;
+}) {
+  const { origin, path, items } = opts;
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${origin}${path}#faq`,
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+}

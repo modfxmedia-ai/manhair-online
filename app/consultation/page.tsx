@@ -5,15 +5,15 @@ import { JsonLd, buildPageGraph } from "@/components/JsonLd";
 import { SITE, SOCIAL } from "@/lib/site";
 import { getPageMeta, toMetadata } from "@/lib/pages";
 
-const PAGE = getPageMeta("/select-your-appointment-date/")!;
+const PAGE = getPageMeta("/consultation/")!;
 export const metadata: Metadata = toMetadata(PAGE);
 
 const CTA_TICKER = [
-  "Thanks For Your Interest",
-  "We\u2019ll Reach Out Soon",
-  "Book Now, Skip The Wait",
   "100% Free Consultation",
+  "Strictly Confidential",
+  "Virtual First",
   "Orange County, CA",
+  "No Pressure, Ever",
 ];
 
 export default function Page() {
@@ -25,7 +25,7 @@ export default function Page() {
     image: PAGE.og.image,
     breadcrumbs: [
       { name: "Home", path: "/" },
-      { name: "Select Your Appointment Date and Time" },
+      { name: "Schedule Your Free Consultation" },
     ],
     organization: {
       name: SITE.orgName,
@@ -54,16 +54,13 @@ export default function Page() {
         <div className="mh-container relative z-10">
           <Reveal>
             <div className="mx-auto max-w-4xl text-center">
-              <p className="mh-kicker justify-center">You&rsquo;re all set</p>
+              <p className="mh-kicker justify-center">Free Consultation</p>
               <Display as={1} size="hero" className="mt-5">
-                Thanks for your <Italic>interest!</Italic>
+                Complete the form below to schedule your{" "}
+                <Italic>FREE consultation!</Italic>
               </Display>
-              <p className="mx-auto mt-6 max-w-2xl text-lg font-semibold uppercase tracking-[0.1em] text-[color:var(--mh-copper-300)]">
-                A member of our team will reach out soon.
-              </p>
-              <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
-                Don&rsquo;t want to wait? Schedule your appointment now with the
-                calendar below.
+              <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
+                Your information will be kept strictly confidential.
               </p>
             </div>
           </Reveal>
@@ -71,23 +68,23 @@ export default function Page() {
       </section>
 
       {/* ============================================================
-       * BOOKING CALENDAR — LeadConnector embed (unchanged logic)
+       * BOOKING FORM — LeadConnector embed (unchanged logic)
        * ============================================================ */}
       <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-10 md:py-24">
         <div className="mh-container">
           <Reveal>
-            <div className="mx-auto max-w-4xl rounded-[var(--mh-radius-md)] border border-[color:var(--mh-border-strong)] bg-[color:var(--mh-bg)] p-4 md:p-6">
+            <div className="mx-auto max-w-3xl rounded-[var(--mh-radius-md)] border border-[color:var(--mh-border-strong)] bg-[color:var(--mh-bg)] p-4 md:p-6">
               <iframe
-                src="https://api.leadconnectorhq.com/widget/booking/iNHkfgxNGS98XfGnaXIt"
-                style={{ width: "100%", border: "none", overflow: "hidden", minHeight: 720 }}
+                src="https://api.leadconnectorhq.com/widget/form/hh9qLIaLPQ8U3Lmqc9Nf"
+                style={{ border: "none", width: "100%", minHeight: 760 }}
                 scrolling="no"
-                id="msgsndr-calendar"
-                title="Select your appointment date and time"
+                id="hh9qLIaLPQ8U3Lmqc9Nf"
+                title="Schedule your free consultation"
               />
             </div>
           </Reveal>
         </div>
-        <script async src="https://api.leadconnectorhq.com/js/embed.js" />
+        <script async src="https://api.leadconnectorhq.com/js/form_embed.js" />
       </section>
 
       {/* ============================================================
@@ -115,14 +112,14 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="border-t border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-8 md:py-20">
+      <section className="border-t border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-8 md:py-20">
         <div className="mh-container text-center">
           <p className="mh-kicker justify-center">Ready when you are</p>
           <Display as={2} size="lg" className="mt-4">
             Book your <Italic>appointment today.</Italic>
           </Display>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button href="/book-my-appointment/" size="lg">
+            <Button href="/consultation/" size="lg">
               Book My Appointment
             </Button>
             <Button href="/contact/" variant="ghost" size="lg">

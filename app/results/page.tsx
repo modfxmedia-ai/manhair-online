@@ -5,7 +5,7 @@ import { JsonLd, buildPageGraph } from "@/components/JsonLd";
 import { SITE, SOCIAL } from "@/lib/site";
 import { getPageMeta, toMetadata } from "@/lib/pages";
 
-const PAGE = getPageMeta("/before-after/")!;
+const PAGE = getPageMeta("/results/")!;
 export const metadata: Metadata = toMetadata(PAGE);
 
 type Aspect = "square" | "portrait" | "wide";
@@ -58,7 +58,7 @@ const CTA_TICKER = [
   "Years Of Experience",
   "Men's Makeovers",
   "New Look. New Confidence.",
-  "We Come To You",
+  "Free Virtual Consultation",
 ];
 
 export default function Page() {
@@ -100,7 +100,7 @@ export default function Page() {
           <Reveal>
             <div className="mx-auto max-w-4xl text-center">
               <p className="mh-kicker justify-center">Before &middot; After</p>
-              <Display as={2} size="hero" className="mt-5">
+              <Display as={1} size="hero" className="mt-5">
                 Before <Italic>&amp; After</Italic>
               </Display>
               <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
@@ -152,12 +152,12 @@ export default function Page() {
               Get your hair back. Get your <Italic>confidence back.</Italic>
             </Display>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
-              We come to you in the privacy of your own home. Avoid uncomfortable
-              salons with a pushy salesmen we are here to support you in this
-              journey.
+              Start with a free virtual consultation from anywhere. When
+              you&rsquo;re ready, visit our Orange, CA studio for your fitting,
+              no pushy sales tactics, just real support on your journey.
             </p>
             <div className="mt-8 flex justify-center">
-              <Button href="/book-my-appointment/" size="lg">
+              <Button href="/consultation/" size="lg">
                 Book My Appointment
               </Button>
             </div>
@@ -197,7 +197,7 @@ export default function Page() {
             Your transformation <Italic>starts here.</Italic>
           </Display>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button href="/book-my-appointment/" size="lg">
+            <Button href="/consultation/" size="lg">
               Book My Appointment
             </Button>
             <Button href="/how-it-works/" variant="ghost" size="lg">

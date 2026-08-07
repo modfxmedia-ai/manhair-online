@@ -137,10 +137,10 @@ export default function Page() {
             Book your <Italic>free consultation.</Italic>
           </Display>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button href="/book-my-appointment/" size="lg">
+            <Button href="/consultation/" size="lg">
               Book My Appointment
             </Button>
-            <Button href="/prices/" variant="ghost" size="lg">
+            <Button href="/pricing/" variant="ghost" size="lg">
               See Prices
             </Button>
           </div>

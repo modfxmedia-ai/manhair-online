@@ -5,12 +5,16 @@ import { Wordmark } from "./Wordmark";
 import { MobileNav } from "./MobileNav";
 import { Button } from "@/components/ui";
 import {
+  ActivityIcon,
   ArrowRightIcon,
   ArticleIcon,
   BuildingIcon,
+  ClockIcon,
   CompassIcon,
   CreditCardIcon,
   DropletIcon,
+  EyeOffIcon,
+  GridIcon,
   HairStrandIcon,
   HelpCircleIcon,
   MailIcon,
@@ -19,6 +23,7 @@ import {
   ScissorsIcon,
   SocialIcon,
   SparklesIcon,
+  StarIcon,
   TagIcon,
 } from "./icons";
 
@@ -50,7 +55,7 @@ export function Header() {
       <div className="mh-topbar hidden lg:block">
         <div className="mh-container flex h-9 items-center justify-between gap-6">
           <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-[color:var(--mh-ink-600)]">
-            Free Consultation &middot; In-Home or In-Studio
+            Free Virtual Consultation &middot; Orange, CA Studio
           </p>
           <div className="flex items-center gap-5">
             <a href={CONTACT.studio.phoneHref} className="mh-topbar-link">
@@ -304,6 +309,75 @@ type MegaConfig = {
 };
 
 const MEGA_MENU: Record<string, MegaConfig> = {
+  Services: {
+    columns: [
+      {
+        eyebrow: "Hair Systems",
+        items: [
+          {
+            label: "Men's Hair Systems",
+            href: "/services/mens-hair-systems/",
+            desc: "The everyday, wear-it-daily solution.",
+            Icon: HairStrandIcon,
+          },
+          {
+            label: "Men's Toupees",
+            href: "/services/mens-toupees/",
+            desc: "The classic, discreet hairpiece term.",
+            Icon: EyeOffIcon,
+          },
+          {
+            label: "Men's Hairpieces",
+            href: "/services/mens-hairpieces/",
+            desc: "Custom pieces built to your pattern.",
+            Icon: ScissorsIcon,
+          },
+          {
+            label: "Men's Hair Units",
+            href: "/services/mens-hair-units/",
+            desc: "Full-coverage units for total loss.",
+            Icon: ActivityIcon,
+          },
+        ],
+      },
+      {
+        eyebrow: "More Options",
+        items: [
+          {
+            label: "Men's Wigs",
+            href: "/services/mens-wigs/",
+            desc: "Ready-to-wear and custom options.",
+            Icon: SparklesIcon,
+          },
+          {
+            label: "Non-Surgical Hair Replacement",
+            href: "/services/non-surgical-hair-replacement/",
+            desc: "No surgery, no downtime, real results.",
+            Icon: DropletIcon,
+          },
+          {
+            label: "Hair System Maintenance",
+            href: "/services/hair-system-maintenance/",
+            desc: "Cleaning, re-bonding, and upkeep visits.",
+            Icon: ClockIcon,
+          },
+          {
+            label: "All Services Overview",
+            href: "/mens-hair-replacement-systems/",
+            desc: "Not sure which term fits? Start here.",
+            Icon: CompassIcon,
+          },
+        ],
+      },
+    ],
+    featured: {
+      eyebrow: "Real results",
+      title: "See what clients say.",
+      body: "Verified reviews from real ManHair clients on Google & Yelp.",
+      cta: { label: "Read Reviews", href: "/reviews/" },
+      Icon: StarIcon,
+    },
+  },
   About: {
     columns: [
       {
@@ -339,6 +413,18 @@ const MEGA_MENU: Record<string, MegaConfig> = {
             desc: "Reach out, we usually reply same-day.",
             Icon: MailIcon,
           },
+          {
+            label: "Reviews",
+            href: "/reviews/",
+            desc: "See what real clients say, on Google & Yelp.",
+            Icon: StarIcon,
+          },
+          {
+            label: "Site Index",
+            href: "/site-index/",
+            desc: "Every ManHair page, in one directory.",
+            Icon: GridIcon,
+          },
         ],
       },
       {
@@ -362,8 +448,8 @@ const MEGA_MENU: Record<string, MegaConfig> = {
     featured: {
       eyebrow: "Founding offer",
       title: "Your first consultation is on us.",
-      body: "In-home or in-studio: no cost, no pressure, no obligation.",
-      cta: { label: "Book Free Consultation", href: "/book-my-appointment/" },
+      body: "Free virtual consultation: no cost, no pressure, no obligation.",
+      cta: { label: "Book Free Consultation", href: "/consultation/" },
       Icon: SparklesIcon,
     },
   },
@@ -385,6 +471,18 @@ const MEGA_MENU: Record<string, MegaConfig> = {
             Icon: DropletIcon,
           },
           {
+            label: "Male Pattern Baldness",
+            href: "/hair-loss/male-pattern-baldness/",
+            desc: "The most common form of hair loss.",
+            Icon: ActivityIcon,
+          },
+          {
+            label: "Thinning Hair",
+            href: "/hair-loss/thinning-hair/",
+            desc: "Early-stage density and coverage loss.",
+            Icon: DropletIcon,
+          },
+          {
             label: "Men\u2019s Hair Styles",
             href: "/mens-hair-styles/",
             desc: "Cuts, textures, and styles built for you.",
@@ -397,7 +495,7 @@ const MEGA_MENU: Record<string, MegaConfig> = {
         items: [
           {
             label: "Our Prices",
-            href: "/prices/",
+            href: "/pricing/",
             desc: "Transparent, session-based pricing.",
             Icon: TagIcon,
           },
@@ -414,7 +512,7 @@ const MEGA_MENU: Record<string, MegaConfig> = {
       eyebrow: "See it for yourself",
       title: "Before & After: real transformations.",
       body: "Seven case studies from actual ManHair clients.",
-      cta: { label: "View the Gallery", href: "/before-after/" },
+      cta: { label: "View the Gallery", href: "/results/" },
       Icon: CompassIcon,
     },
   },

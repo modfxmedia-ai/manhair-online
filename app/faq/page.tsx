@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Button, Display, Italic } from "@/components/ui";
 import { AuroraBlobs, Reveal } from "@/components/ui/motion";
-import { JsonLd, buildPageGraph } from "@/components/JsonLd";
+import { JsonLd, buildFAQSchema, buildPageGraph } from "@/components/JsonLd";
 import { SITE, SOCIAL } from "@/lib/site";
 import { getPageMeta, toMetadata } from "@/lib/pages";
 
@@ -51,7 +51,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Do you offer discounts?",
-    a: "Yes! We understand this is an investment in yourself, your confidence and your future. Many new wearers are unsure where or how to start and that is where we come in. Instead of investing $3,000 to $4,000 initially at professional salon, you will get our expert services and support in the comfort of your own home for a lot less. We can discuss progress payments for you if you are on a budget. We can also offer larger discounts if you buy more than 1 system at a time. We also offer a $100.00 referral bonus for you and your friend whenever you refer someone to our store. Unfortunately we DO NOT offer install services for systems that come from outside of ManHair Hair Loss Solutions. We will only provide maintenance services for those systems but will not cut or alter them. We know that this can be disappointing but we are only able to guarantee our standards of quality by using our own product.",
+    a: "Yes! We understand this is an investment in yourself, your confidence and your future. Many new wearers are unsure where or how to start and that is where we come in. Instead of investing $3,000 to $4,000 initially at a professional salon, you will get our expert services and support at our Orange, CA studio for a lot less. We can discuss progress payments for you if you are on a budget. We can also offer larger discounts if you buy more than 1 system at a time. We also offer a $100.00 referral bonus for you and your friend whenever you refer someone to our store. Unfortunately we DO NOT offer install services for systems that come from outside of ManHair Hair Loss Solutions. We will only provide maintenance services for those systems but will not cut or alter them. We know that this can be disappointing but we are only able to guarantee our standards of quality by using our own product.",
   },
 ];
 
@@ -59,7 +59,7 @@ const CTA_TICKER = [
   "World Class Customer Service",
   "Text, Call, Email",
   "Hair Specialists On Hand",
-  "We Come To You",
+  "Free Virtual Consultation",
   "Get Your Confidence Back",
 ];
 
@@ -89,9 +89,18 @@ export default function Page() {
     siteDescription: SITE.tagline,
   });
 
+  // FAQPage schema — per spec Section 7.2, this schema type belongs
+  // ONLY on the /faq/ page. Do not copy it to city, service, or
+  // condition pages (Google flags that as spammy schema).
+  const faqSchema = buildFAQSchema({
+    origin: SITE.origin,
+    path: PAGE.path,
+    items: FAQS.map((f) => ({ question: f.q, answer: f.a })),
+  });
+
   return (
     <div className="mh-light">
-      <JsonLd data={graph} />
+      <JsonLd data={[graph, faqSchema]} />
 
       {/* ============================================================
        * HERO — EyebrowTag + DisplayHeading (real page heading)
@@ -102,7 +111,7 @@ export default function Page() {
           <Reveal>
             <div className="mx-auto max-w-4xl text-center">
               <p className="mh-kicker justify-center">FAQ</p>
-              <Display as={2} size="hero" className="mt-5">
+              <Display as={1} size="hero" className="mt-5">
                 Frequently asked <Italic>questions.</Italic>
               </Display>
               <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
@@ -156,12 +165,12 @@ export default function Page() {
               Get your hair back. Get your <Italic>confidence back.</Italic>
             </Display>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
-              We come to you in the privacy of your own home. Avoid uncomfortable
-              salons with a pushy salesmen we are here to support you in this
-              journey.
+              Start with a free virtual consultation from anywhere. When
+              you&rsquo;re ready, visit our Orange, CA studio for your fitting,
+              no pushy sales tactics, just real support on your journey.
             </p>
             <div className="mt-8 flex justify-center">
-              <Button href="/book-my-appointment/" size="lg">
+              <Button href="/consultation/" size="lg">
                 Book My Appointment
               </Button>
             </div>
@@ -204,7 +213,7 @@ export default function Page() {
             <Button href="/contact/" size="lg">
               Contact Us
             </Button>
-            <Button href="/book-my-appointment/" variant="ghost" size="lg">
+            <Button href="/consultation/" variant="ghost" size="lg">
               Book My Appointment
             </Button>
           </div>

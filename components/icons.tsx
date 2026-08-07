@@ -299,6 +299,30 @@ export function SparklesIcon(p: IconProps) {
   );
 }
 
+export function StarIcon(p: IconProps) {
+  return (
+    <Base {...p}>
+      <path
+        fill="currentColor"
+        d="M12 3.2 14.6 9l6.4.5-4.9 4.2 1.5 6.2-5.6-3.4-5.6 3.4 1.5-6.2L2.6 9.5 9 9 12 3.2Z"
+      />
+    </Base>
+  );
+}
+
+export function GridIcon(p: IconProps) {
+  return (
+    <Base {...p}>
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        d="M4 4h6.5v6.5H4zM13.5 4H20v6.5h-6.5zM4 13.5h6.5V20H4zM13.5 13.5H20V20h-6.5z"
+      />
+    </Base>
+  );
+}
+
 /** Google "G" mark — full-color brand mark used on the review cards. */
 export function GoogleGIcon(p: IconProps) {
   return (

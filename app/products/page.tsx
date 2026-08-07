@@ -15,7 +15,7 @@ const CTA_TICKER = [
   "Get Your Confidence Back",
   "100% Free Hair Discovery Consultation",
   "We Guide You Through Your Options",
-  "We Come To You",
+  "Free Virtual Consultation",
 ];
 
 export default function Page() {
@@ -57,7 +57,7 @@ export default function Page() {
           <Reveal>
             <div className="mx-auto max-w-4xl text-center">
               <p className="mh-kicker justify-center">Products</p>
-              <Display as={2} size="hero" className="mt-5">
+              <Display as={1} size="hero" className="mt-5">
                 It is time. Get your hair back. Get your{" "}
                 <Italic>confidence back.</Italic>
               </Display>
@@ -111,15 +111,15 @@ export default function Page() {
             It is time for a <Italic>change.</Italic>
           </Display>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
-            We come to you in the privacy of your own home. Avoid uncomfortable
-            salons with a pushy salesmen we are here to support you in this
-            journey.
+            Start with a free virtual consultation from anywhere. When
+            you&rsquo;re ready, visit our Orange, CA studio for your fitting,
+            no pushy sales tactics, just real support on your journey.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button href="/book-my-appointment/" size="lg">
+            <Button href="/consultation/" size="lg">
               Book My Appointment
             </Button>
-            <Button href="/free-consultation/" variant="ghost" size="lg">
+            <Button href="/consultation/" variant="ghost" size="lg">
               Free Consultation
             </Button>
           </div>

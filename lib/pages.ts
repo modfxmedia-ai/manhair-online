@@ -90,44 +90,58 @@ export const PAGES: PageMeta[] = [
     twitterCard: "summary_large_image",
   },
   {
-    path: "/about-us/",
+    path: "/about/",
     title: "About ManHair Online - Fast Hair Loss Solution In Orange County",
     description:
       "ManHair Online offers a fast and affordable solution for any mens hair type. Learn about ManHair Online to discover your solution now.",
-    canonical: `${SITE.origin}/about-us/`,
+    canonical: `${SITE.origin}/about/`,
     robots: R,
     og: og(
       "About ManHair Online - Fast Hair Loss Solution In Orange County",
       "ManHair Online offers a fast and affordable solution for any mens hair type. Learn about ManHair Online to discover your solution now.",
-      "/about-us/"
+      "/about/"
     ),
     twitterCard: "summary_large_image",
   },
   {
-    path: "/prices/",
-    title: "Hair Transplant Costs - hair restoration center costs",
+    path: "/pricing/",
+    title: "Hair Replacement Pricing | Orange, CA | ManHair",
     description:
-      "Review hair transplant costs of the ManHair hair system price with affordable services for every man's hair restoration needs.",
-    canonical: `${SITE.origin}/prices/`,
+      "Transparent pricing for men's hair replacement systems at our Orange, CA studio. Cherry financing available. Book a free virtual consultation.",
+    canonical: `${SITE.origin}/pricing/`,
     robots: R,
     og: og(
-      "Hair Transplant Costs - hair restoration center costs",
-      "Review hair transplant costs of the ManHair hair system price with affordable services for every man's hair restoration needs.",
-      "/prices/"
+      "Hair Replacement Pricing | Orange, CA | ManHair",
+      "Transparent pricing for men's hair replacement systems at our Orange, CA studio. Cherry financing available. Book a free virtual consultation.",
+      "/pricing/"
     ),
     twitterCard: "summary_large_image",
   },
   {
-    path: "/before-after/",
-    title: "Before and after | Orange County's Leading Hair Loss Solution for Men",
+    path: "/results/",
+    title: "Before & After Results | Men's Hair Replacement | ManHair",
     description:
-      "ManHair is the leading hair loss solution for men in Orange County, CA. Unique and personalized services every man deserves.",
-    canonical: `${SITE.origin}/before-after/`,
+      "Real before and after results from men we've worked with at our Orange, CA studio. See what a custom hair system can do.",
+    canonical: `${SITE.origin}/results/`,
     robots: R,
     og: og(
-      "Before and after | Orange County's Leading Hair Loss Solution for Men",
-      "ManHair is the leading hair loss solution for men in Orange County, CA. Unique and personalized services every man deserves.",
-      "/before-after/"
+      "Before & After Results | Men's Hair Replacement | ManHair",
+      "Real before and after results from men we've worked with at our Orange, CA studio. See what a custom hair system can do.",
+      "/results/"
+    ),
+    twitterCard: "summary_large_image",
+  },
+  {
+    path: "/reviews/",
+    title: "Client Reviews | Men's Hair Replacement | Orange, CA | ManHair",
+    description:
+      "What our clients say about their experience at ManHair in Orange, CA. Read reviews before booking your free virtual consultation.",
+    canonical: `${SITE.origin}/reviews/`,
+    robots: R,
+    og: og(
+      "Client Reviews | Men's Hair Replacement | Orange, CA | ManHair",
+      "What our clients say about their experience at ManHair in Orange, CA.",
+      "/reviews/"
     ),
     twitterCard: "summary_large_image",
   },
@@ -258,44 +272,17 @@ export const PAGES: PageMeta[] = [
     twitterCard: "summary_large_image",
   },
   {
-    path: "/free-consultation/",
+    path: "/consultation/",
     title:
-      "Schedule Your Free Consultation | ManHair | Hair Restoration Orange County, CA",
-    description: null,
-    canonical: `${SITE.origin}/free-consultation/`,
-    robots: R,
-    og: og(
-      "Schedule Your Free Consultation | ManHair | Hair Restoration Orange County, CA",
-      null,
-      "/free-consultation/"
-    ),
-    twitterCard: "summary_large_image",
-  },
-  {
-    path: "/book-my-appointment/",
-    title: "Contact Man Hair Online To Find A Hair Doctor Near Me",
+      "Schedule Your Free Virtual Consultation | ManHair | Orange, CA",
     description:
-      "ManHair Online helps men find the best hair doctor near me around Orange County, CA. Call today to begin 904-526-8500",
-    canonical: `${SITE.origin}/book-my-appointment/`,
+      "Book your free virtual consultation with ManHair. No cost, no pressure. When you're ready, your fitting happens at our Orange, CA studio.",
+    canonical: `${SITE.origin}/consultation/`,
     robots: R,
     og: og(
-      "Contact Man Hair Online To Find A Hair Doctor Near Me",
-      "ManHair Online helps men find the best hair doctor near me around Orange County, CA. Call today to begin 904-526-8500",
-      "/book-my-appointment/"
-    ),
-    twitterCard: "summary_large_image",
-  },
-  {
-    path: "/select-your-appointment-date/",
-    title:
-      "Select Your Appointment Date and Time | ManHair | Hair Restoration Orange County, CA",
-    description: null,
-    canonical: `${SITE.origin}/select-your-appointment-date/`,
-    robots: R,
-    og: og(
-      "Select Your Appointment Date and Time | ManHair | Hair Restoration Orange County, CA",
-      null,
-      "/select-your-appointment-date/"
+      "Schedule Your Free Virtual Consultation | ManHair | Orange, CA",
+      "Book your free virtual consultation with ManHair.",
+      "/consultation/"
     ),
     twitterCard: "summary_large_image",
   },

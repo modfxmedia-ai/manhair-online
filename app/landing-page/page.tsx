@@ -87,7 +87,7 @@ const CTA_TICKER = [
   "Get Your Confidence Back",
   "Get Your Life Back",
   "Proven Hair Replacement Solutions",
-  "We Come To You",
+  "Free Virtual Consultation",
 ];
 
 export default function Page() {
@@ -168,9 +168,9 @@ export default function Page() {
               <Italic>confidence back.</Italic>
             </Display>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
-              We come to you in the privacy of your own home. Avoid uncomfortable
-              salons with a pushy salesmen we are here to support you in this
-              journey.
+              Start with a free virtual consultation from anywhere. When
+              you&rsquo;re ready, visit our Orange, CA studio for your fitting,
+              no pushy sales tactics, just real support on your journey.
             </p>
             <div className="mt-8 flex justify-center">
               <Button href={BOOK} external size="lg">

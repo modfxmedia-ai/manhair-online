@@ -39,7 +39,7 @@ const EXPERIENCE = [
 const CTA_TICKER = [
   "Orange County, CA",
   "Mon\u2013Fri 10:30 AM \u2013 6:00 PM",
-  "We Come To You",
+  "Free Virtual Consultation",
   "NO COST Consultations",
 ];
 
@@ -108,7 +108,7 @@ export default function Page() {
                 </p>
               </div>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Button href="/book-my-appointment/" size="lg">
+                <Button href="/consultation/" size="lg">
                   Book Appointment
                 </Button>
                 <Button href="/payment-plans/" variant="ghost" size="lg">
@@ -291,12 +291,12 @@ export default function Page() {
                 Find the hairstyle <Italic>for you.</Italic>
               </Display>
               <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
-                We come to you in the privacy of your own home and do our initial
-                consultation there. There is no need to feel afraid or
-                embarrassed &ndash; we are here for you.
+                We start every relationship with a free virtual consultation,
+                wherever you are. There is no need to feel afraid or
+                embarrassed &ndash; your fitting happens at our Orange, CA studio.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Button href="/book-my-appointment/" size="lg">
+                <Button href="/consultation/" size="lg">
                   Book My Appointment
                 </Button>
                 <Button href="/locations/" variant="ghost" size="lg">
