@@ -3,9 +3,9 @@ import { notFound } from "next/navigation";
 import { Button, Card, Display, Italic, SectionLabel } from "@/components/ui";
 import { AuroraBlobs, Reveal, RevealGrid } from "@/components/ui/motion";
 import { JsonLd, buildLocalBusinessSchema, buildPageGraph } from "@/components/JsonLd";
-import { ClockIcon, MapPinIcon } from "@/components/icons";
+import { ClockIcon, MapPinIcon, SparklesIcon } from "@/components/icons";
 import { CONTACT, SITE, SOCIAL } from "@/lib/site";
-import { SERVICES } from "@/lib/seo/services";
+import { SERVICES, getService } from "@/lib/seo/services";
 import { ALL_CITIES, getCity } from "@/lib/seo/cities";
 
 export const dynamicParams = false;
@@ -66,6 +66,21 @@ export default async function Page({ params }: { params: Promise<Params> }) {
     .map((s) => getCity(s))
     .filter((c): c is NonNullable<typeof c> => Boolean(c));
   const featuredServices = SERVICES.slice(0, isTier1 ? 8 : 4);
+  const pillarBenefits = getService("mens-hair-replacement-systems")!.benefits;
+  const relatedSearches = [
+    `hair replacement in ${city.name}`,
+    `hair systems near ${city.name}`,
+    `mens hair system ${city.name}`,
+    `non surgical hair replacement ${city.name}`,
+    `hair replacement systems ${city.name} ca`,
+  ];
+  const overviewParagraph = isSalonCity
+    ? `Our studio is right here in ${city.name}, in the heart of Old Towne. Every fitting, cut-in, and maintenance visit happens on-site, no drive required.`
+    : `Men in ${city.name}, ${city.county} looking for a custom hair replacement system typically start the same way: a free virtual consultation from home, then a single trip to our Orange, CA studio${city.driveTimeFromSalon ? ` (about ${city.driveTimeFromSalon} away)` : ""} for the fitting itself.${
+        city.landmarks && city.landmarks.length > 0
+          ? ` Whether you're closer to ${city.landmarks[0]} or on the other side of town, the process and the craftsmanship stay exactly the same.`
+          : ""
+      }`;
 
   const graph = buildPageGraph({
     origin: SITE.origin,
@@ -202,6 +217,44 @@ export default async function Page({ params }: { params: Promise<Params> }) {
               </Card>
             ))}
           </RevealGrid>
+        </div>
+      </section>
+
+      {/* OVERVIEW + WHY THIS CITY CHOOSES US */}
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-16 md:py-24">
+        <div className="mh-container grid gap-12 lg:grid-cols-12">
+          <Reveal className="lg:col-span-6">
+            <SectionLabel>{city.name} Overview</SectionLabel>
+            <Display as={2} size="lg" className="mt-3">
+              Hair replacement in <Italic>{city.name}</Italic>
+            </Display>
+            <p className="mt-5 text-base leading-relaxed text-[color:var(--mh-ink-700)]">
+              {overviewParagraph}
+            </p>
+            <p className="mt-4 flex flex-wrap gap-x-2 gap-y-1 text-xs text-[color:var(--mh-ink-600)]">
+              <span className="font-semibold uppercase tracking-[0.1em] text-[color:var(--mh-copper-700)]">
+                Also searched as:
+              </span>
+              {relatedSearches.join(" \u00b7 ")}
+            </p>
+          </Reveal>
+          <Reveal className="lg:col-span-6" delay={0.1}>
+            <SectionLabel>Why {city.name}</SectionLabel>
+            <Display as={2} size="lg" className="mt-3">
+              Chooses <Italic>ManHair</Italic>
+            </Display>
+            <ul className="mt-5 space-y-3">
+              {pillarBenefits.map((b) => (
+                <li
+                  key={b}
+                  className="flex items-start gap-3 text-base text-[color:var(--mh-ink-700)]"
+                >
+                  <SparklesIcon className="mt-1 h-4 w-4 shrink-0 text-[color:var(--mh-copper-700)]" />
+                  {b}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         </div>
       </section>
 

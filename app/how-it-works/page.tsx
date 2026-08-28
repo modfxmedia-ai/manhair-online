@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Button, Display, Italic } from "@/components/ui";
 import { AuroraBlobs, Reveal, RevealGrid } from "@/components/ui/motion";
 import { JsonLd, buildPageGraph } from "@/components/JsonLd";
@@ -26,31 +27,37 @@ const STATIONS = [
     n: "01",
     title: "Get your hair back",
     body: "Because going bald isn't a choice but staying bald is when we are here for you. You made the right choice moving forward with a ManHair system for the best hair line, ultra-realistic hair system available today. Get your life back!",
+    image: "/images/how-it-works/start-600x597.png",
   },
   {
     n: "02",
     title: "Prepare your head",
     body: "The ManHair system has been completely customized for you and now it's time to get your head ready for applying the unit. We will shave the surface of your head and apply the adhesive. This is a process we will personally walk you through so you can do the maintenance yourself and save a lot of money.",
+    image: "/images/how-it-works/preparehead-600x597.png",
   },
   {
     n: "03",
     title: "Choose your adhesive",
     body: "Our systems can be used with glue or tape and we will discuss which may be a better option for you that will depend on the system you choose and your lifestyle. All of our products are from high end well established manufacturers and certified to be non-toxic and will not have any reactions to your skin.",
+    image: "/images/how-it-works/adhesive-600x597.png",
   },
   {
     n: "04",
     title: "Apply the system",
     body: "We recommend lining the front of the system with your nose and starting the unit at the tip with where your natural hairline would start. Press down to secure the front of the system then pull the system back in a rolling method while keeping pressure applied to have the unit sit smoothly on all sides of the shaved area.",
+    image: "/images/how-it-works/applysystem-600x597.png",
   },
   {
     n: "05",
     title: "Cut & style",
     body: "It is now time for the best part of having your hair back. You decide what hair style you want to look your absolute best. We will cut in the unit and style to your liking. You can choose to use one of our stylists or your own. Anything is possible!",
+    image: "/images/how-it-works/cutstyle-600x597.png",
   },
   {
     n: "06",
     title: "New beginnings",
     body: "Welcome to new beginnings with the new and better you with a full head of beautiful, thick, soft, healthy and natural hair. Enjoy the empowerment you will have to feel powerful, feel sexy, take that promotion or find that significant other the possibilities are now endless.",
+    image: "/images/how-it-works/final-600x597.png",
   },
 ];
 
@@ -159,7 +166,14 @@ export default function Page() {
             {STATIONS.map((s, i) => (
               <Reveal key={s.n} delay={i * 0.05}>
                 <div className="mh-station">
-                  <span className="mh-station-num">{s.n}</span>
+                  <div className="mh-station-img">
+                    <Image
+                      src={s.image}
+                      alt={s.title}
+                      fill
+                      sizes="(min-width: 768px) 13rem, 9rem"
+                    />
+                  </div>
                   <div className="max-w-3xl">
                     <h3 className="font-display text-2xl font-bold text-[color:var(--mh-ink-950)] md:text-3xl">
                       {s.title}

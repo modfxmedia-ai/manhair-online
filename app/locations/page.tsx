@@ -107,7 +107,9 @@ export default function Page() {
               </Display>
               <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
                 Serving men across Orange County, CA with
-                non-surgical hair replacement. Find the studio nearest you.
+                non-surgical hair replacement. We partner with salons
+                throughout the area, all backed by our Orange, CA studio.
+                Find the studio nearest you.
               </p>
             </div>
           </Reveal>

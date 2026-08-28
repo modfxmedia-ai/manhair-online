@@ -4,8 +4,6 @@ import type { Metadata } from "next";
 import {
   Button,
   Display,
-  Field,
-  Input,
   Italic,
   Rule,
 } from "@/components/ui";
@@ -111,7 +109,7 @@ const STATS: Array<{
     to: 200,
     suffix: "+",
     key: "Men transformed",
-    sub: "across FL & GA",
+    sub: "across Orange County, CA",
     variant: "bars",
     kicker: "Client roster",
   },
@@ -124,7 +122,7 @@ const STATS: Array<{
     kicker: "Material",
   },
   {
-    to: 2,
+    to: 1,
     suffix: "",
     key: "Studio",
     sub: "Orange County, CA",
@@ -270,7 +268,7 @@ const MAP_LOCATIONS = [
  *  - "spark": upward sparkline drawn in via stroke-dashoffset
  *  - "bars":  three staggered bars that grow from the baseline
  *  - "ring":  100% circular progress ring drawn in
- *  - "pins":  two map pins over a subtle grid — the two studios
+ *  - "pins":  two map pins over a subtle grid — the studio location
  *
  * All animations are pure CSS (kickoff via `@keyframes`) so the
  * glyph plays once on mount. `prefers-reduced-motion` disables the
@@ -362,7 +360,7 @@ function MetricGlyph({ variant }: { variant: "spark" | "bars" | "ring" | "pins" 
     );
   }
 
-  // pins
+  // pins — a single studio location with a radiating pulse ring
   return (
     <svg
       viewBox="0 0 60 40"
@@ -379,23 +377,9 @@ function MetricGlyph({ variant }: { variant: "spark" | "bars" | "ring" | "pins" 
         <path d="M30 0 V40" />
         <path d="M45 0 V40" />
       </g>
-      {/* connector */}
-      <path
-        className="mh-metric-glyph-line"
-        d="M18 24 Q30 8 44 16"
-        fill="none"
-        stroke="var(--mh-copper-500)"
-        strokeWidth="1.4"
-        strokeLinecap="round"
-        strokeDasharray="2 3"
-      />
-      {/* pin A */}
-      <g className="mh-metric-glyph-pin mh-metric-glyph-pin-a" transform="translate(18 24)">
-        <circle r="5" fill="var(--mh-copper-500)" opacity="0.25" />
-        <circle r="2.6" fill="var(--mh-copper-700)" />
-      </g>
-      {/* pin B */}
-      <g className="mh-metric-glyph-pin mh-metric-glyph-pin-b" transform="translate(44 16)">
+      {/* studio pin */}
+      <g className="mh-metric-glyph-pin mh-metric-glyph-pin-a" transform="translate(30 20)">
+        <circle className="mh-metric-glyph-pin-ring" r="9" fill="none" stroke="var(--mh-copper-500)" strokeWidth="1.2" />
         <circle r="5" fill="var(--mh-copper-500)" opacity="0.25" />
         <circle r="2.6" fill="var(--mh-copper-700)" />
       </g>
@@ -520,7 +504,7 @@ export default function HomePage() {
                     <span className="mh-hero2-stars">★★★★★</span>
                   </p>
                   <p className="text-[0.62rem] font-semibold uppercase leading-tight tracking-[0.18em] text-[color:var(--mh-ink-700)]">
-                    Trusted by 200+ men across FL &amp; GA
+                    Trusted by 200+ men across Orange County, CA
                   </p>
                 </div>
               </div>
@@ -635,38 +619,48 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================
-       * 3. STAT ROW — animated motion-graph cards
+       * 3. STAT ROW — animated motion-graph cards + brand video
        *
-       * Four elegant paper-white cards, each with a small SVG glyph
-       * (spark / bars / ring / pins) that animates in on mount plus
-       * a big gradient copper CountUp number. On hover the card
-       * lifts and its glyph subtly glows.
+       * Two-column split: a 2x2 grid of elegant paper-white cards
+       * (each with a small SVG glyph + gradient copper CountUp
+       * number) beside a framed Vimeo commercial embed.
        * ============================================================ */}
       <section className="bg-[color:var(--mh-bg)]">
         <div className="mh-container py-10 md:py-24">
-          <RevealGrid
-            className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6"
-            gap={0.09}
-          >
-            {STATS.map((s, i) => (
-              <article
-                key={s.key}
-                className="mh-metric-card group/metric"
-                style={{ ["--i" as string]: i }}
-              >
-                <span aria-hidden="true" className="mh-metric-card-glow" />
-                <header className="mh-metric-head">
-                  <p className="mh-metric-kicker">{s.kicker}</p>
-                  <MetricGlyph variant={s.variant} />
-                </header>
-                <p className="mh-metric-num">
-                  <CountUp to={s.to} suffix={s.suffix} />
-                </p>
-                <p className="mh-metric-key">{s.key}</p>
-                <p className="mh-metric-sub">{s.sub}</p>
-              </article>
-            ))}
-          </RevealGrid>
+          <div className="grid gap-8 md:grid-cols-12 md:items-center md:gap-8">
+            <RevealGrid className="grid gap-3 sm:grid-cols-2 lg:gap-4 md:col-span-5" gap={0.09}>
+              {STATS.map((s, i) => (
+                <article
+                  key={s.key}
+                  className="mh-metric-card group/metric"
+                  style={{ ["--i" as string]: i }}
+                >
+                  <span aria-hidden="true" className="mh-metric-card-glow" />
+                  <header className="mh-metric-head">
+                    <p className="mh-metric-kicker">{s.kicker}</p>
+                    <MetricGlyph variant={s.variant} />
+                  </header>
+                  <p className="mh-metric-num">
+                    <CountUp to={s.to} suffix={s.suffix} />
+                  </p>
+                  <p className="mh-metric-key">{s.key}</p>
+                  <p className="mh-metric-sub">{s.sub}</p>
+                </article>
+              ))}
+            </RevealGrid>
+
+            <Reveal direction="left" className="md:col-span-7">
+              <div className="mh-metric-video">
+                <iframe
+                  src="https://player.vimeo.com/video/683370066"
+                  title="ManHair commercial"
+                  loading="lazy"
+                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+                  allowFullScreen
+                />
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 
@@ -740,9 +734,9 @@ export default function HomePage() {
                   </div>
                   <div className="mh-numbers-stat">
                     <span className="v">
-                      <CountUp to={2} />
+                      <CountUp to={1} />
                     </span>
-                    <span className="k">Studios · FL & GA</span>
+                    <span className="k">Studio · Orange County</span>
                   </div>
                 </div>
               </Reveal>
@@ -772,7 +766,7 @@ export default function HomePage() {
               </Reveal>
 
               <p className="mt-10 font-sans text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[color:var(--mh-ink-600)]">
-                Ten years · Two studios · Zero surgical procedures
+                Ten years · One studio · Zero surgical procedures
               </p>
             </div>
           </div>
@@ -1385,7 +1379,7 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================
-       * 15. FINAL CTA + NEWSLETTER
+       * 15. FINAL CTA
        * ============================================================ */}
       <section className="relative isolate overflow-hidden border-t border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-14 md:py-32">
         <AuroraBlobs intensity="strong" className="opacity-40" />
@@ -1409,42 +1403,6 @@ export default function HomePage() {
                 <Button href="/contact/" variant="ghost" size="lg">
                   Contact Us
                 </Button>
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal className="mt-16" delay={0.1}>
-            <div className="mx-auto max-w-4xl rounded-[var(--mh-radius-md)] border border-[color:var(--mh-border-strong)] bg-[color:var(--mh-surface)] p-6 md:p-8">
-              <div className="grid gap-8 md:grid-cols-12 md:items-center">
-                <div className="md:col-span-6">
-                  <p className="mh-kicker">Newsletter</p>
-                  <p className="mt-4 font-display text-2xl font-bold text-[color:var(--mh-ink-950)] md:text-3xl">
-                    Join our newsletter.
-                  </p>
-                  <p className="mt-3 text-[color:var(--mh-ink-800)]">
-                    Product releases, hair-care tips, and studio updates: straight
-                    to your inbox.
-                  </p>
-                </div>
-                <form className="md:col-span-6">
-                  <div className="flex flex-col gap-3 sm:flex-row">
-                    <Field label="Email" htmlFor="newsletter-email" className="flex-1">
-                      <Input
-                        id="newsletter-email"
-                        type="email"
-                        name="email"
-                        placeholder="you@example.com"
-                        required
-                        autoComplete="email"
-                      />
-                    </Field>
-                    <div className="flex items-end">
-                      <Button size="md" block>
-                        Subscribe
-                      </Button>
-                    </div>
-                  </div>
-                </form>
               </div>
             </div>
           </Reveal>

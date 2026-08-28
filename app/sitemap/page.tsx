@@ -6,7 +6,7 @@ import { JsonLd, buildPageGraph } from "@/components/JsonLd";
 import { SITE, SOCIAL } from "@/lib/site";
 import { SERVICES } from "@/lib/seo/services";
 import { CONDITIONS } from "@/lib/seo/conditions";
-import { TIER1_CITIES } from "@/lib/seo/cities";
+import { TIER1_CITIES, TIER2_CITIES } from "@/lib/seo/cities";
 
 const PATH = "/sitemap/";
 const TITLE = "Sitemap | Every ManHair Page | Orange, CA";
@@ -102,6 +102,18 @@ export default function Page() {
     label: c.name,
     href: `/locations/${c.slug}/`,
   }));
+  const tier2CityLinks = TIER2_CITIES.map((c) => ({
+    label: c.name,
+    href: `/locations/${c.slug}/`,
+  }));
+  const cityServiceGroups = TIER1_CITIES.map((city) => ({
+    city,
+    links: SERVICES.map((s) => ({
+      label: s.name,
+      href: `/locations/${city.slug}/${s.slug}/`,
+    })),
+  }));
+  const cityServiceCount = cityServiceGroups.reduce((n, g) => n + g.links.length, 0);
 
   return (
     <div className="mh-light">
@@ -163,6 +175,41 @@ export default function Page() {
             </Display>
           </Reveal>
           <LinkGrid items={cityLinks} />
+        </div>
+      </section>
+
+      {/* TIER 2 LOCATIONS */}
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-16 md:py-24">
+        <div className="mh-container">
+          <Reveal>
+            <SectionLabel>{tier2CityLinks.length} Pages</SectionLabel>
+            <Display as={2} size="lg" className="mt-3">
+              Additional Locations
+            </Display>
+          </Reveal>
+          <LinkGrid items={tier2CityLinks} />
+        </div>
+      </section>
+
+      {/* CITY x SERVICE PAGES */}
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-16 md:py-24">
+        <div className="mh-container">
+          <Reveal>
+            <SectionLabel>{cityServiceCount} Pages</SectionLabel>
+            <Display as={2} size="lg" className="mt-3">
+              Services By City
+            </Display>
+          </Reveal>
+          <div className="mt-10 space-y-10">
+            {cityServiceGroups.map((group) => (
+              <div key={group.city.slug}>
+                <p className="text-sm font-semibold text-[color:var(--mh-ink-900)]">
+                  {group.city.name}
+                </p>
+                <LinkGrid items={group.links} />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

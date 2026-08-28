@@ -29,12 +29,12 @@ function card(slug: string, category: string, date: string): PostCard {
 /* The live blog widget lists these 6 most-recent posts (category label +
    publish date captured verbatim from the live page). */
 const BLOG_POSTS: PostCard[] = [
-  card("the-harsh-truth-how-hair-loss-shampoos-can-aggravate-hair-loss", "Uncategorized", "July 26, 2023"),
-  card("non-surgical-hair-replacement-systems-vs-micro-scalp-pigmentation", "Hair Loss", "June 22, 2023"),
-  card("can-hair-loss-be-a-sign-of-something-serious", "Hair Loss", "May 30, 2023"),
-  card("what-not-to-do-when-your-hair-is-falling-out-a-guide-for-men", "Hair Loss", "May 30, 2023"),
-  card("food-fixes-to-strengthen-your-strands", "Uncategorized", "April 26, 2023"),
-  card("what-hair-to-wear", "Uncategorized", "April 24, 2023"),
+  card("the-harsh-truth-how-hair-loss-shampoos-can-aggravate-hair-loss", "Uncategorized", "August 29, 2026"),
+  card("non-surgical-hair-replacement-systems-vs-micro-scalp-pigmentation", "Hair Loss", "August 22, 2026"),
+  card("can-hair-loss-be-a-sign-of-something-serious", "Hair Loss", "August 15, 2026"),
+  card("what-not-to-do-when-your-hair-is-falling-out-a-guide-for-men", "Hair Loss", "August 8, 2026"),
+  card("food-fixes-to-strengthen-your-strands", "Uncategorized", "August 1, 2026"),
+  card("what-hair-to-wear", "Uncategorized", "July 25, 2026"),
 ];
 
 export default function BlogIndex() {
