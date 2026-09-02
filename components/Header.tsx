@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ComponentType } from "react";
 import { CONTACT, HEADER_CTA, PRIMARY_NAV, SOCIAL, type NavItem } from "@/lib/site";
+import { BookingButton } from "@/components/BookingButton";
 import { Wordmark } from "./Wordmark";
 import { MobileNav } from "./MobileNav";
 import { Button } from "@/components/ui";
@@ -17,7 +18,6 @@ import {
   GridIcon,
   HairStrandIcon,
   HelpCircleIcon,
-  MailIcon,
   MapPinIcon,
   PhoneIcon,
   ScissorsIcon,
@@ -36,9 +36,8 @@ import {
  *   Main row — [Wordmark]   [Primary nav, centered]   [Phone] [Book Appointment] [Menu]
  *
  * - Sticky, light/cream background with a subtle backdrop blur + hairline shadow.
- * - Copper "Book Appointment" pill CTA on the far right (renamed from
- *   the live "Contact Us" pill; same `/contact/` href, so internal
- *   linking / SEO stays intact).
+ * - Copper "Book Appointment" pill CTA on the far right, linking to
+ *   the pricing page (the site's main actionable next step).
  * - Primary nav hrefs match the live site exactly:
  *     Home, About (▾), How It Works (▾), Before & After, Locations
  *   Dropdowns are open-on-hover / open-on-focus using CSS only, so
@@ -119,9 +118,9 @@ export function Header() {
           `hidden lg:contents` so the utility overrides `.mh-btn`'s
           default `display: inline-flex`. */}
           <span className="hidden lg:contents">
-            <Button href={HEADER_CTA.href} size="sm">
+            <BookingButton size="sm">
               {HEADER_CTA.label}
-            </Button>
+            </BookingButton>
           </span>
           <MobileNav />
         </div>
@@ -408,12 +407,6 @@ const MEGA_MENU: Record<string, MegaConfig> = {
             Icon: ArticleIcon,
           },
           {
-            label: "Contact",
-            href: "/contact/",
-            desc: "Reach out, we usually reply same-day.",
-            Icon: MailIcon,
-          },
-          {
             label: "Reviews",
             href: "/reviews/",
             desc: "See what real clients say, on Google & Yelp.",
@@ -446,11 +439,11 @@ const MEGA_MENU: Record<string, MegaConfig> = {
       },
     ],
     featured: {
-      eyebrow: "Founding offer",
-      title: "Your first consultation is on us.",
-      body: "Free virtual consultation: no cost, no pressure, no obligation.",
-      cta: { label: "Book Free Consultation", href: "/consultation/" },
-      Icon: SparklesIcon,
+      eyebrow: "Flexible payment",
+      title: "Pay over time, not upfront.",
+      body: "Cherry financing: easy monthly payments, no hard credit check.",
+      cta: { label: "View Payment Plans", href: "/payment-plans/" },
+      Icon: CreditCardIcon,
     },
   },
   "How It Works": {

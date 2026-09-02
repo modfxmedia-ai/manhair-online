@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Button, Display, Italic } from "@/components/ui";
+import { BookingButton } from "@/components/BookingButton";
 import { AuroraBlobs, Reveal, RevealGrid } from "@/components/ui/motion";
 import { JsonLd, buildPageGraph } from "@/components/JsonLd";
 import { ArrowRightIcon } from "@/components/icons";
@@ -346,12 +347,9 @@ export default function Page() {
               &ndash; your fitting happens at our Orange, CA studio.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <Button href="/consultation/" size="lg">
-                Book My Appointment
-              </Button>
-              <Button href="/consultation/" variant="ghost" size="lg">
-                Free Consultation
-              </Button>
+              <BookingButton size="lg">
+                Book Appointment
+              </BookingButton>
             </div>
           </div>
         </div>

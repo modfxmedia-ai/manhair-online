@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Button, Card, Display, Italic, SectionLabel } from "@/components/ui";
+import { BookingButton } from "@/components/BookingButton";
 import { AuroraBlobs, Reveal, RevealGrid } from "@/components/ui/motion";
 import { JsonLd, buildPageGraph, buildServiceSchema } from "@/components/JsonLd";
 import { ClockIcon, ScissorsIcon } from "@/components/icons";
@@ -125,9 +126,9 @@ export default async function Page({ params }: { params: Promise<Params> }) {
               {city.intro}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button href="/consultation/" size="lg">
-                Free Virtual Consultation
-              </Button>
+              <BookingButton size="lg">
+                Book Appointment
+              </BookingButton>
               <Button href={`/locations/${city.slug}/`} variant="ghost" size="lg">
                 All {city.name} Services
               </Button>
@@ -256,9 +257,9 @@ export default async function Page({ params }: { params: Promise<Params> }) {
               anywhere, then schedule your fitting at our Orange, CA studio.
             </p>
             <div className="mt-8">
-              <Button href="/consultation/" size="lg">
-                Book Your Free Consultation
-              </Button>
+              <BookingButton size="lg">
+                Book Appointment
+              </BookingButton>
             </div>
           </Reveal>
         </div>

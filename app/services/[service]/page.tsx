@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Button, Card, Display, Italic, SectionLabel } from "@/components/ui";
+import { BookingButton } from "@/components/BookingButton";
 import { AuroraBlobs, Reveal, RevealGrid } from "@/components/ui/motion";
 import { JsonLd, buildPageGraph, buildServiceSchema } from "@/components/JsonLd";
 import {
@@ -123,9 +124,9 @@ export default async function Page({ params }: { params: Promise<Params> }) {
               {service.relatedSearches.join(" \u00b7 ")}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button href="/consultation/" size="lg">
-                Free Virtual Consultation
-              </Button>
+              <BookingButton size="lg">
+                Book Appointment
+              </BookingButton>
               <Button href="/mens-hair-replacement-systems/" variant="ghost" size="lg">
                 All Services
               </Button>
@@ -405,9 +406,9 @@ export default async function Page({ params }: { params: Promise<Params> }) {
               anywhere, then schedule your fitting at our Orange, CA studio.
             </p>
             <div className="mt-8">
-              <Button href="/consultation/" size="lg">
-                Book Your Free Consultation
-              </Button>
+              <BookingButton size="lg">
+                Book Appointment
+              </BookingButton>
             </div>
           </Reveal>
         </div>

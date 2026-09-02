@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/cn";
 import { CONTACT, HEADER_CTA, PRIMARY_NAV, SOCIAL, type NavItem } from "@/lib/site";
+import { BookingButton } from "@/components/BookingButton";
 import { Wordmark } from "./Wordmark";
 import { Button } from "@/components/ui";
 import { MailIcon, PhoneIcon, SocialIcon } from "./icons";
@@ -164,9 +165,9 @@ export function MobileNav() {
             </a>
           </div>
 
-          <Button href={HEADER_CTA.href} onClick={close} block className="mt-4">
+          <BookingButton onClick={close} block className="mt-4">
             {HEADER_CTA.label}
-          </Button>
+          </BookingButton>
 
           <div className="mt-5 flex items-center justify-between gap-3">
             <a

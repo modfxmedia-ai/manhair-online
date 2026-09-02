@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Button, Display, Italic } from "@/components/ui";
+import { BookingButton } from "@/components/BookingButton";
 import { AuroraBlobs, Reveal, RevealGrid } from "@/components/ui/motion";
 import { JsonLd, buildPageGraph } from "@/components/JsonLd";
 import { SITE, SOCIAL, CONTACT } from "@/lib/site";
@@ -108,9 +109,9 @@ export default function Page() {
                 </p>
               </div>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Button href="/consultation/" size="lg">
+                <BookingButton size="lg">
                   Book Appointment
-                </Button>
+                </BookingButton>
                 <Button href="/payment-plans/" variant="ghost" size="lg">
                   Treat Now &amp; Pay Later
                 </Button>
@@ -296,9 +297,9 @@ export default function Page() {
                 embarrassed &ndash; your fitting happens at our Orange, CA studio.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Button href="/consultation/" size="lg">
-                  Book My Appointment
-                </Button>
+                <BookingButton size="lg">
+                  Book Appointment
+                </BookingButton>
                 <Button href="/locations/" variant="ghost" size="lg">
                   All Locations
                 </Button>

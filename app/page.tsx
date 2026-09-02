@@ -35,6 +35,7 @@ import {
 import { CONTACT, SITE, SOCIAL } from "@/lib/site";
 import { getPageMeta, toMetadata } from "@/lib/pages";
 import { POSTS } from "@/lib/posts";
+import { BookingButton } from "@/components/BookingButton";
 
 const PAGE = getPageMeta("/")!;
 export const metadata: Metadata = toMetadata(PAGE);
@@ -478,9 +479,9 @@ export default function HomePage() {
               </p>
 
               <div className="mt-9 flex flex-wrap items-center gap-3">
-                <Button href="/contact/" size="lg">
-                  Book an Appointment
-                </Button>
+                <BookingButton size="lg">
+                  Book Appointment
+                </BookingButton>
                 <Button href="/how-it-works/" variant="ghost" size="lg">
                   How It Works
                 </Button>
@@ -834,9 +835,9 @@ export default function HomePage() {
               A community where every guy <Italic>is welcome.</Italic>
             </Display>
             <div className="mt-8">
-              <Button href="/consultation/" size="lg">
-                Book Free Consultation
-              </Button>
+              <BookingButton size="lg">
+                Book Appointment
+              </BookingButton>
             </div>
           </Reveal>
 
@@ -1182,9 +1183,9 @@ export default function HomePage() {
             </ul>
 
             <div className="mt-9 flex flex-wrap gap-3">
-              <Button href="/consultation/" size="lg">
-                Start Step 01
-              </Button>
+              <BookingButton size="lg">
+                Book Appointment
+              </BookingButton>
               <Button href="/results/" variant="ghost" size="lg">
                 Before &amp; After
               </Button>
@@ -1213,9 +1214,9 @@ export default function HomePage() {
                     no pressure, then visit our Orange, CA studio for your fitting.
                   </p>
                   <div className="mt-8 flex flex-wrap gap-3">
-                    <Button href="/consultation/" size="lg">
-                      Book My Appointment
-                    </Button>
+                    <BookingButton size="lg">
+                      Book Appointment
+                    </BookingButton>
                     <Button href="/pricing/" variant="ghost" size="lg">
                       See Prices
                     </Button>
@@ -1311,9 +1312,9 @@ export default function HomePage() {
                 <Button href="/locations/" variant="ghost" size="sm">
                   All Locations
                 </Button>
-                <Button href="/consultation/" size="sm">
+                <BookingButton size="sm">
                   Book Appointment
-                </Button>
+                </BookingButton>
               </div>
             </div>
           </Reveal>
@@ -1397,12 +1398,9 @@ export default function HomePage() {
                 Your fitting happens at our Orange, CA studio.
               </p>
               <div className="mt-10 flex flex-wrap justify-center gap-4">
-                <Button href="/consultation/" size="lg">
-                  Book My Appointment
-                </Button>
-                <Button href="/contact/" variant="ghost" size="lg">
-                  Contact Us
-                </Button>
+                <BookingButton size="lg">
+                  Book Appointment
+                </BookingButton>
               </div>
             </div>
           </Reveal>

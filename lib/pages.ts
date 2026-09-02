@@ -160,20 +160,6 @@ export const PAGES: PageMeta[] = [
     twitterCard: "summary_large_image",
   },
   {
-    path: "/contact/",
-    title: "Contact Man Hair Online To Find A Hair Doctor Near Me",
-    description:
-      "ManHair Online helps men find the best hair doctor near me around Orange County, CA. Call today to begin 904-526-8500",
-    canonical: `${SITE.origin}/contact/`,
-    robots: R,
-    og: og(
-      "Contact Man Hair Online To Find A Hair Doctor Near Me",
-      "ManHair Online helps men find the best hair doctor near me around Orange County, CA. Call today to begin 904-526-8500",
-      "/contact/"
-    ),
-    twitterCard: "summary_large_image",
-  },
-  {
     path: "/locations/",
     title: "ManHair Online - Man Hair Replacement System For Hair Loss",
     description:
@@ -268,21 +254,6 @@ export const PAGES: PageMeta[] = [
       "Non Surgical Hair Replacement for Men, Orange County | ManHair",
       "Acclaimed non surgical hair replacement for men in Orange County. we have the best hair replacement systems. Discover real solutions for receding hairline patients.",
       "/receding-hairline-restoration/"
-    ),
-    twitterCard: "summary_large_image",
-  },
-  {
-    path: "/consultation/",
-    title:
-      "Schedule Your Free Virtual Consultation | ManHair | Orange, CA",
-    description:
-      "Book your free virtual consultation with ManHair. No cost, no pressure. When you're ready, your fitting happens at our Orange, CA studio.",
-    canonical: `${SITE.origin}/consultation/`,
-    robots: R,
-    og: og(
-      "Schedule Your Free Virtual Consultation | ManHair | Orange, CA",
-      "Book your free virtual consultation with ManHair.",
-      "/consultation/"
     ),
     twitterCard: "summary_large_image",
   },

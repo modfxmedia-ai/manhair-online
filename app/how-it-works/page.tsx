@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Button, Display, Italic } from "@/components/ui";
+import { BookingButton } from "@/components/BookingButton";
 import { AuroraBlobs, Reveal, RevealGrid } from "@/components/ui/motion";
 import { JsonLd, buildPageGraph } from "@/components/JsonLd";
 import { SITE, SOCIAL } from "@/lib/site";
@@ -207,9 +208,9 @@ export default function Page() {
               </p>
             </Reveal>
             <Reveal direction="left" className="md:col-span-4">
-              <Button href="/consultation/" size="lg" block>
-                Book My Appointment
-              </Button>
+              <BookingButton size="lg" block>
+                Book Appointment
+              </BookingButton>
             </Reveal>
           </div>
         </div>
@@ -247,9 +248,9 @@ export default function Page() {
             Book your free <Italic>consultation.</Italic>
           </Display>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button href="/consultation/" size="lg">
-              Book My Appointment
-            </Button>
+            <BookingButton size="lg">
+              Book Appointment
+            </BookingButton>
             <Button href="/pricing/" variant="ghost" size="lg">
               See Prices
             </Button>

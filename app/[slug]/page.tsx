@@ -186,12 +186,6 @@ export default async function BlogPostPage({ params }: Props) {
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{ __html: post.bodyHtml ?? "" }}
           />
-
-          <div className="mx-auto mt-16 max-w-3xl border-t border-[color:var(--mh-border)] pt-10">
-            <Link href="/contact/" className="mh-btn mh-btn-primary">
-              Book My Appointment
-            </Link>
-          </div>
         </div>
       </section>
 

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Button, Display, Italic } from "@/components/ui";
+import { BookingButton } from "@/components/BookingButton";
 import { AuroraBlobs, Reveal } from "@/components/ui/motion";
 import { JsonLd, buildPageGraph } from "@/components/JsonLd";
 import { SITE, SOCIAL } from "@/lib/site";
@@ -116,12 +117,9 @@ export default function Page() {
             no pushy sales tactics, just real support on your journey.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button href="/consultation/" size="lg">
-              Book My Appointment
-            </Button>
-            <Button href="/consultation/" variant="ghost" size="lg">
-              Free Consultation
-            </Button>
+            <BookingButton size="lg">
+              Book Appointment
+            </BookingButton>
           </div>
         </div>
       </section>

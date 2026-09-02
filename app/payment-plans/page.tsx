@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Button, Display, Italic, StatCounter, StatStrip } from "@/components/ui";
+import { BookingButton } from "@/components/BookingButton";
 import { AuroraBlobs, Reveal } from "@/components/ui/motion";
 import { CherryWidget } from "@/components/CherryWidget";
 import { JsonLd, buildPageGraph } from "@/components/JsonLd";
@@ -137,9 +138,9 @@ export default function Page() {
             Book your <Italic>free consultation.</Italic>
           </Display>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button href="/consultation/" size="lg">
-              Book My Appointment
-            </Button>
+            <BookingButton size="lg">
+              Book Appointment
+            </BookingButton>
             <Button href="/pricing/" variant="ghost" size="lg">
               See Prices
             </Button>

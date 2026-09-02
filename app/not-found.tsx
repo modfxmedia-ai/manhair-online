@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BookingButton } from "@/components/BookingButton";
 
 export default function NotFound() {
   return (
@@ -19,9 +20,9 @@ export default function NotFound() {
           <Link href="/" className="mh-btn mh-btn-primary">
             Back to Home
           </Link>
-          <Link href="/contact/" className="mh-btn mh-btn-ghost">
-            Contact Us
-          </Link>
+          <BookingButton size="md" variant="ghost">
+            Book Appointment
+          </BookingButton>
         </div>
       </div>
     </section>

@@ -1,5 +1,6 @@
-import Link from "next/link";
-import { CONTACT, SITE } from "@/lib/site";
+import { SITE } from "@/lib/site";
+import { BookingButton } from "@/components/BookingButton";
+import { BookingLink } from "@/components/BookingLink";
 
 /**
  * Scaffolded page shell. Renders correct H1 + verbatim meta description +
@@ -46,15 +47,9 @@ export function PagePlaceholder({
             </p>
           ) : null}
           <div className="mt-10 flex flex-wrap gap-3">
-            <Link href="/contact/" className="mh-btn mh-btn-primary">
-              Book an Appointment
-            </Link>
-            <a
-              href={CONTACT.studio.phoneHref}
-              className="mh-btn mh-btn-ghost"
-            >
-              Call {CONTACT.studio.phone}
-            </a>
+            <BookingButton>
+              Book Appointment
+            </BookingButton>
           </div>
         </div>
       </section>
@@ -77,7 +72,7 @@ export function PagePlaceholder({
                 </p>
                 <p>
                   In the meantime, please explore the site or{" "}
-                  <Link href="/contact/">get in touch</Link> and one of our
+                  <BookingLink>give us a call</BookingLink> and one of our
                   hair specialists will follow up right away.
                 </p>
               </>

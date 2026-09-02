@@ -6,6 +6,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { IntroSplash } from "@/components/IntroSplash";
 import { JsonLd } from "@/components/JsonLd";
+import { BookingModal } from "@/components/BookingModal";
 import { SITE, SOCIAL } from "@/lib/site";
 
 const sans = Manrope({
@@ -123,6 +124,11 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <BookingModal />
+        <Script
+          src="https://link.manhaironline.com/js/form_embed.js"
+          strategy="lazyOnload"
+        />
         <Script
           src="https://widgets.leadconnectorhq.com/loader.js"
           data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"

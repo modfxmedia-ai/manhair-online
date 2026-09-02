@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Button, Card, Display, Italic, SectionLabel } from "@/components/ui";
+import { Card, Display, Italic, SectionLabel } from "@/components/ui";
+import { BookingButton } from "@/components/BookingButton";
 import { AuroraBlobs, Reveal, RevealGrid } from "@/components/ui/motion";
 import { JsonLd, buildPageGraph } from "@/components/JsonLd";
 import { GoogleGIcon } from "@/components/icons";
@@ -134,9 +135,9 @@ export default function Page() {
               happens at our Orange, CA studio.
             </p>
             <div className="mt-8">
-              <Button href="/consultation/" size="lg">
-                Book Your Free Consultation
-              </Button>
+              <BookingButton size="lg">
+                Book Appointment
+              </BookingButton>
             </div>
           </Reveal>
         </div>

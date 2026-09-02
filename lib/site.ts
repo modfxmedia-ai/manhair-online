@@ -165,7 +165,6 @@ export const PRIMARY_NAV: NavItem[] = [
       { label: "Franchise", href: "/partnerprogram/" },
       { label: "FAQ", href: "/faq/" },
       { label: "Blog", href: "/blog/" },
-      { label: "Contact", href: "/contact/" },
       { label: "Locations", href: "/locations/" },
     ],
   },
@@ -183,9 +182,10 @@ export const PRIMARY_NAV: NavItem[] = [
   { label: "Locations", href: "/locations/" },
 ];
 
-/** Header CTA. Preserves the live "Contact Us" pill's href target
- *  (`/contact/`) but relabels it to the new brand's action verb. */
-export const HEADER_CTA = { label: "Book Appointment", href: "/contact/" } as const;
+/** Header CTA label. Opens the booking form modal (see `BookingButton`)
+ *  rather than linking anywhere, since /contact/ and /consultation/
+ *  have been removed. */
+export const HEADER_CTA = { label: "Book Appointment" } as const;
 
 /** Services / sitemap-adjacent links exposed in the footer. */
 export const SERVICES_NAV: Array<{ label: string; href: string }> = [
@@ -199,7 +199,6 @@ export const SERVICES_NAV: Array<{ label: string; href: string }> = [
   { label: "Men's Hair Styles", href: "/mens-hair-styles/" },
   { label: "Before & After", href: "/results/" },
   { label: "Locations", href: "/locations/" },
-  { label: "Contact Us", href: "/contact/" },
 ];
 
 /** Footer "Quick Links" column — mirrored verbatim from the live site's

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Button, Display, Italic } from "@/components/ui";
+import { BookingButton } from "@/components/BookingButton";
 import { AuroraBlobs, Reveal, RevealGrid } from "@/components/ui/motion";
 import { JsonLd, buildPageGraph, buildPersonSchema } from "@/components/JsonLd";
 import { SITE, SOCIAL } from "@/lib/site";
@@ -351,12 +352,9 @@ export default function Page() {
             Get in touch now! Book a free <Italic>hair discovery call.</Italic>
           </Display>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button href="/consultation/" size="lg">
-              Book My Appointment
-            </Button>
-            <Button href="/consultation/" variant="ghost" size="lg">
-              Free Consultation
-            </Button>
+            <BookingButton size="lg">
+              Book Appointment
+            </BookingButton>
           </div>
         </div>
       </section>

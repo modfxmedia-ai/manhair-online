@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Button, Display, Italic } from "@/components/ui";
+import { Display, Italic } from "@/components/ui";
+import { BookingButton } from "@/components/BookingButton";
+import { BookingLink } from "@/components/BookingLink";
 import { AuroraBlobs, Reveal, RevealGrid } from "@/components/ui/motion";
 import { JsonLd, buildPageGraph } from "@/components/JsonLd";
 import { SITE, SOCIAL } from "@/lib/site";
@@ -69,12 +71,9 @@ export default function Page() {
                 trend at ManHair Online. Coming Soon.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Button href="/consultation/" size="lg">
-                  Book My Appointment
-                </Button>
-                <Button href="/contact/" variant="ghost" size="lg">
-                  Contact Us
-                </Button>
+                <BookingButton size="lg">
+                  Book Appointment
+                </BookingButton>
               </div>
             </Reveal>
             <Reveal direction="left" className="lg:col-span-6">
@@ -234,12 +233,9 @@ export default function Page() {
                 the perfect cut. So, if you&rsquo;re looking for something modern
                 and stylish, or something classic and timeless, ManHairOnline has
                 you covered.{" "}
-                <a
-                  href="/contact/"
-                  className="font-semibold text-[color:var(--mh-copper-300)] underline underline-offset-4"
-                >
-                  Visit us today
-                </a>{" "}
+                <BookingLink className="font-semibold text-[color:var(--mh-copper-300)] underline underline-offset-4">
+                  Call us today
+                </BookingLink>{" "}
                 and experience our exceptional customer service.
               </p>
             </Reveal>
@@ -286,12 +282,9 @@ export default function Page() {
             no pushy sales tactics, just real support on your journey.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button href="/consultation/" size="lg">
-              Book My Appointment
-            </Button>
-            <Button href="/consultation/" variant="ghost" size="lg">
-              Free Consultation
-            </Button>
+            <BookingButton size="lg">
+              Book Appointment
+            </BookingButton>
           </div>
         </div>
       </section>
