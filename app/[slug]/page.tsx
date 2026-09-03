@@ -185,15 +185,15 @@ export default async function BlogPostPage({ params }: Props) {
           </Reveal>
 
           {post.coverImage ? (
-            <Reveal className="mt-10" delay={0.08}>
-              <figure className="overflow-hidden rounded-[var(--mh-radius-md)] bg-[color:var(--mh-ink-50)] p-2 ring-1 ring-[color:var(--mh-border)]">
+            <Reveal className="mt-8 max-w-md sm:mt-10" delay={0.08}>
+              <figure className="overflow-hidden rounded-[var(--mh-radius-md)] bg-[color:var(--mh-ink-50)] p-1.5 ring-1 ring-[color:var(--mh-border)]">
                 <Image
                   src={post.coverImage}
                   alt={title}
-                  width={1400}
-                  height={900}
+                  width={720}
+                  height={480}
                   priority
-                  sizes="(max-width: 1024px) 100vw, 1100px"
+                  sizes="(max-width: 640px) 90vw, 28rem"
                   className="h-auto w-full rounded-[calc(var(--mh-radius-md)-4px)]"
                   style={{ width: "100%", height: "auto" }}
                 />
