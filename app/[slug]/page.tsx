@@ -155,79 +155,78 @@ export default async function BlogPostPage({ params }: Props) {
     <div className="mh-light">
       <JsonLd data={graph} />
 
-      <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] pb-12 pt-16 md:pb-20 md:pt-40">
-        <AuroraBlobs className="opacity-30" />
-        <div className="mh-container relative z-10">
-          <Reveal>
-            <Link href="/blog/" className="mh-kicker">
-              The ManHair Blog
-            </Link>
-            <Display as={1} size="hero" className="mt-5 max-w-4xl">
-              {title}
-            </Display>
-            {post.excerpt ? (
-              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
-                {post.excerpt}
-              </p>
-            ) : post.description ? (
-              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
-                {post.description}
-              </p>
-            ) : null}
-            <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-[color:var(--mh-ink-600)]">
-              {post.category ? (
-                <span className="text-[color:var(--mh-copper-700)]">{post.category}</span>
+      <article className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] pt-16 md:pt-40">
+        <AuroraBlobs className="opacity-20" />
+        <div className="mh-container relative z-10 pb-16 md:pb-24">
+          <div className="mx-auto max-w-2xl">
+            <Reveal>
+              <Link href="/blog/" className="mh-kicker">
+                The ManHair Blog
+              </Link>
+              <Display as={1} size="lg" className="mt-4">
+                {title}
+              </Display>
+              <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-[color:var(--mh-ink-600)]">
+                {post.category ? (
+                  <span className="text-[color:var(--mh-copper-700)]">{post.category}</span>
+                ) : null}
+                {post.datePublished ? (
+                  <time dateTime={post.datePublished}>{formatDate(post.datePublished)}</time>
+                ) : null}
+              </div>
+              {post.excerpt ? (
+                <p className="mt-6 text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
+                  {post.excerpt}
+                </p>
+              ) : post.description ? (
+                <p className="mt-6 text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
+                  {post.description}
+                </p>
               ) : null}
-              {post.datePublished ? (
-                <time dateTime={post.datePublished}>{formatDate(post.datePublished)}</time>
-              ) : null}
-            </div>
-          </Reveal>
-
-          {post.coverImage ? (
-            <Reveal className="mt-8 max-w-md sm:mt-10" delay={0.08}>
-              <figure className="overflow-hidden rounded-[var(--mh-radius-md)] bg-[color:var(--mh-ink-50)] p-1.5 ring-1 ring-[color:var(--mh-border)]">
-                <Image
-                  src={post.coverImage}
-                  alt={title}
-                  width={720}
-                  height={480}
-                  priority
-                  sizes="(max-width: 640px) 90vw, 28rem"
-                  className="h-auto w-full rounded-[calc(var(--mh-radius-md)-4px)]"
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </figure>
             </Reveal>
-          ) : null}
-        </div>
-      </section>
 
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-12 md:py-24">
-        <div className="mh-container">
-          <article
-            className="mh-prose mx-auto max-w-2xl"
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{ __html: post.bodyHtml ?? "" }}
-          />
-          <div className="mx-auto mt-14 max-w-2xl rounded-[var(--mh-radius-md)] border border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] px-6 py-8 text-center md:px-10">
-            <Display as={2} size="sm">
-              Ready for a result you can <Italic>see today?</Italic>
-            </Display>
-            <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-[color:var(--mh-ink-700)]">
-              Start with a free private consultation. We&rsquo;ll walk through
-              the system that fits you, then book your fitting at our Orange,
-              CA studio.
-            </p>
-            <div className="mt-6">
-              <BookingButton size="lg">Book a Private Consultation</BookingButton>
+            {post.coverImage ? (
+              <Reveal className="mt-8" delay={0.06}>
+                <figure className="overflow-hidden rounded-[var(--mh-radius-md)] bg-[color:var(--mh-ink-50)] p-1.5 ring-1 ring-[color:var(--mh-border)]">
+                  <Image
+                    src={post.coverImage}
+                    alt={title}
+                    width={800}
+                    height={520}
+                    priority
+                    sizes="(max-width: 768px) 100vw, 42rem"
+                    className="h-auto w-full rounded-[calc(var(--mh-radius-md)-4px)]"
+                    style={{ width: "100%", height: "auto" }}
+                  />
+                </figure>
+              </Reveal>
+            ) : null}
+
+            <div
+              className="mh-prose mt-10"
+              // eslint-disable-next-line react/no-danger
+              dangerouslySetInnerHTML={{ __html: post.bodyHtml ?? "" }}
+            />
+
+            <div className="mt-14 rounded-[var(--mh-radius-md)] border border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] px-6 py-8 text-center md:px-10">
+              <Display as={2} size="sm">
+                Ready for a result you can <Italic>see today?</Italic>
+              </Display>
+              <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-[color:var(--mh-ink-700)]">
+                Start with a free private consultation. We&rsquo;ll walk through
+                the system that fits you, then book your fitting at our Orange,
+                CA studio.
+              </p>
+              <div className="mt-6">
+                <BookingButton size="lg">Book a Private Consultation</BookingButton>
+              </div>
             </div>
           </div>
         </div>
-      </section>
+      </article>
 
       {related.length ? (
-        <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-16 md:py-24">
+        <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-16 md:py-24">
           <div className="mh-container">
             <Reveal>
               <p className="mh-kicker">More from the blog</p>
