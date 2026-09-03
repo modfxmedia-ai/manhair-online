@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Button, Display, Italic } from "@/components/ui";
+import { Display, Italic } from "@/components/ui";
 import { BookingButton } from "@/components/BookingButton";
 import { AuroraBlobs, Reveal } from "@/components/ui/motion";
 import { JsonLd, buildPageGraph } from "@/components/JsonLd";
@@ -8,8 +8,6 @@ import { getPageMeta, toMetadata } from "@/lib/pages";
 
 const PAGE = getPageMeta("/products/")!;
 export const metadata: Metadata = toMetadata(PAGE);
-
-const CAL = "https://calendly.com/manhaironline";
 
 const CTA_TICKER = [
   "Get Your Hair Back",
@@ -69,9 +67,9 @@ export default function Page() {
                 consultation.
               </p>
               <div className="mt-8 flex justify-center">
-                <Button href={CAL} external size="lg">
-                  Schedule Consultation
-                </Button>
+                <BookingButton size="lg">
+                  Book a Private Consultation
+                </BookingButton>
               </div>
             </div>
           </Reveal>
@@ -118,7 +116,7 @@ export default function Page() {
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <BookingButton size="lg">
-              Book Appointment
+              Book a Private Consultation
             </BookingButton>
           </div>
         </div>

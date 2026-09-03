@@ -85,6 +85,11 @@ export default function Page() {
               how they work, how they last, and why they&rsquo;re the safest
               solution.
             </p>
+            <div className="mt-8">
+              <BookingButton size="lg">
+                Book a Private Consultation
+              </BookingButton>
+            </div>
           </Reveal>
         </div>
       </section>
@@ -112,7 +117,7 @@ export default function Page() {
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <BookingButton size="lg">
-              Book Appointment
+              Book a Private Consultation
             </BookingButton>
           </div>
         </div>

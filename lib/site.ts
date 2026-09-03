@@ -69,8 +69,7 @@ export const SOCIAL: ReadonlyArray<{
     | "tiktok"
     | "linkedin"
     | "youtube"
-    | "pinterest"
-    | "myspace";
+    | "pinterest";
   label: string;
   href: string;
   /** True if this profile is visible in the live footer icon row. */
@@ -124,12 +123,6 @@ export const SOCIAL: ReadonlyArray<{
     href: "https://www.pinterest.com/manhaironline/",
     visibleInFooter: false,
   },
-  {
-    platform: "myspace",
-    label: "MySpace",
-    href: "https://myspace.com/man.hair.jax",
-    visibleInFooter: false,
-  },
 ];
 
 /** Primary navigation, mirrored from the live desktop header. Nested
@@ -161,7 +154,7 @@ export const PRIMARY_NAV: NavItem[] = [
     label: "About",
     href: "/about/",
     children: [
-      { label: "Payment Plans", href: "/payment-plans/" },
+      { label: "Cherry Financing", href: "/payment-plans/" },
       { label: "Franchise", href: "/partnerprogram/" },
       { label: "FAQ", href: "/faq/" },
       { label: "Blog", href: "/blog/" },
@@ -173,7 +166,6 @@ export const PRIMARY_NAV: NavItem[] = [
     href: "/how-it-works/",
     children: [
       { label: "Receding Hairline Restoration", href: "/receding-hairline-restoration/" },
-      { label: "Our Prices", href: "/pricing/" },
       { label: "Alopecia Hair Loss", href: "/alopecia-hair-loss/" },
       { label: "Men's Hair Styles", href: "/mens-hair-styles/" },
     ],
@@ -185,7 +177,7 @@ export const PRIMARY_NAV: NavItem[] = [
 /** Header CTA label. Opens the booking form modal (see `BookingButton`)
  *  rather than linking anywhere, since /contact/ and /consultation/
  *  have been removed. */
-export const HEADER_CTA = { label: "Book Appointment" } as const;
+export const HEADER_CTA = { label: "Book a Private Consultation" } as const;
 
 /** Services / sitemap-adjacent links exposed in the footer. */
 export const SERVICES_NAV: Array<{ label: string; href: string }> = [
@@ -194,7 +186,6 @@ export const SERVICES_NAV: Array<{ label: string; href: string }> = [
     label: "Receding Hairline Restoration",
     href: "/receding-hairline-restoration/",
   },
-  { label: "Our Prices", href: "/pricing/" },
   { label: "Alopecia Hair Loss", href: "/alopecia-hair-loss/" },
   { label: "Men's Hair Styles", href: "/mens-hair-styles/" },
   { label: "Before & After", href: "/results/" },
@@ -206,13 +197,13 @@ export const SERVICES_NAV: Array<{ label: string; href: string }> = [
  *  graph identical to what search engines have already crawled. */
 export const FOOTER_QUICK_LINKS: Array<{ label: string; href: string }> = [
   { label: "Home", href: "/" },
-  { label: "Sitemap", href: "/sitemap/" },
   { label: "About Us", href: "/about/" },
-  { label: "Treat Now & Pay Later", href: "/payment-plans/" },
+  { label: "Cherry Financing", href: "/payment-plans/" },
   { label: "Franchise", href: "/partnerprogram/" },
   { label: "Locations", href: "/locations/" },
   { label: "Blog", href: "/blog/" },
   { label: "FAQ", href: "/faq/" },
+  { label: "Sitemap", href: "/sitemap/" },
   { label: "How It Works", href: "/how-it-works/" },
   { label: "Terms of Service", href: "/terms-of-service/" },
   { label: "Refund Policy", href: "/refund-policy/" },

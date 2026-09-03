@@ -128,6 +128,11 @@ export default function Page() {
               <p className="mx-auto mt-6 max-w-3xl text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--mh-copper-300)]">
                 Discover how ManHair Online offers the best hair loss solution for men
               </p>
+              <div className="mt-8 flex justify-center">
+                <BookingButton size="lg">
+                  Book a Private Consultation
+                </BookingButton>
+              </div>
             </div>
           </Reveal>
         </div>
@@ -353,7 +358,7 @@ export default function Page() {
           </Display>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <BookingButton size="lg">
-              Book Appointment
+              Book a Private Consultation
             </BookingButton>
           </div>
         </div>

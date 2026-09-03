@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Button, Card, Display, Italic, SectionLabel } from "@/components/ui";
@@ -7,11 +8,11 @@ import { AuroraBlobs, Reveal, RevealGrid } from "@/components/ui/motion";
 import { JsonLd, buildPageGraph, buildServiceSchema } from "@/components/JsonLd";
 import {
   ArrowRightIcon,
-  CreditCardIcon,
   HelpCircleIcon,
   ScissorsIcon,
   SparklesIcon,
 } from "@/components/icons";
+import { FullPhoto } from "@/components/FullPhoto";
 import { SITE, SOCIAL } from "@/lib/site";
 import { SERVICES, getService } from "@/lib/seo/services";
 import { TIER1_CITIES } from "@/lib/seo/cities";
@@ -67,6 +68,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   const path = `/services/${service.slug}/`;
   const otherServices = SERVICES.filter((s) => s.slug !== service.slug).slice(0, 4);
   const nearbyCities = TIER1_CITIES.slice(0, 8);
+  const shots = service.gallery ?? [];
 
   const graph = buildPageGraph({
     origin: SITE.origin,
@@ -109,79 +111,129 @@ export default async function Page({ params }: { params: Promise<Params> }) {
       <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] pb-16 pt-16 md:pb-24 md:pt-40">
         <AuroraBlobs className="opacity-30" />
         <div className="mh-container relative z-10">
-          <Reveal className="max-w-3xl">
-            <p className="mh-kicker">{service.primaryKeyword}</p>
-            <Display as={1} size="hero" className="mt-5">
-              {service.name} in <Italic>Orange County</Italic>
-            </Display>
-            <p className="mt-6 text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
-              {service.whatItIs}
-            </p>
-            <p className="mt-4 flex flex-wrap gap-x-2 gap-y-1 text-xs text-[color:var(--mh-ink-600)]">
-              <span className="font-semibold uppercase tracking-[0.1em] text-[color:var(--mh-copper-700)]">
-                Also searched as:
-              </span>
-              {service.relatedSearches.join(" \u00b7 ")}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <BookingButton size="lg">
-                Book Appointment
-              </BookingButton>
-              <Button href="/mens-hair-replacement-systems/" variant="ghost" size="lg">
-                All Services
-              </Button>
-            </div>
-          </Reveal>
+          <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
+            <Reveal className="lg:col-span-6">
+              <p className="mh-kicker">{service.primaryKeyword}</p>
+              <Display as={1} size="hero" className="mt-5">
+                {service.name} in <Italic>Orange County</Italic>
+              </Display>
+              <p className="mt-6 text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
+                {service.whatItIs}
+              </p>
+              <p className="mt-4 flex flex-wrap gap-x-2 gap-y-1 text-xs text-[color:var(--mh-ink-600)]">
+                <span className="font-semibold uppercase tracking-[0.1em] text-[color:var(--mh-copper-700)]">
+                  Also searched as:
+                </span>
+                {service.relatedSearches.join(" \u00b7 ")}
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <BookingButton size="lg">
+                  Book a Private Consultation
+                </BookingButton>
+                <Button href="/mens-hair-replacement-systems/" variant="ghost" size="lg">
+                  All Services
+                </Button>
+              </div>
+            </Reveal>
+            <Reveal direction="left" className="lg:col-span-6">
+              <FullPhoto src={service.image} alt={service.name} priority size="hero" />
+            </Reveal>
+          </div>
         </div>
       </section>
 
       {/* OVERVIEW */}
       <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-16 md:py-24">
-        <div className="mh-container max-w-3xl">
-          <Reveal>
-            <SectionLabel>Overview</SectionLabel>
-            <Display as={2} size="lg" className="mt-3">
-              How it <Italic>works</Italic>
-            </Display>
-            <p className="mt-5 text-base leading-relaxed text-[color:var(--mh-ink-700)]">
-              {service.overview[0]}
-            </p>
-            <p className="mt-4 text-base leading-relaxed text-[color:var(--mh-ink-700)]">
-              {service.overview[1]}
-            </p>
-          </Reveal>
+        <div className="mh-container">
+          <div className={`grid gap-12 ${shots[0] ? "lg:grid-cols-12 lg:items-center" : ""}`}>
+            <Reveal className={shots[0] ? "lg:col-span-7" : "max-w-3xl"}>
+              <SectionLabel>Overview</SectionLabel>
+              <Display as={2} size="lg" className="mt-3">
+                How it <Italic>works</Italic>
+              </Display>
+              <p className="mt-5 text-base leading-relaxed text-[color:var(--mh-ink-700)]">
+                {service.overview[0]}
+              </p>
+              <p className="mt-4 text-base leading-relaxed text-[color:var(--mh-ink-700)]">
+                {service.overview[1]}
+              </p>
+            </Reveal>
+            {shots[0] && (
+              <Reveal direction="left" className="lg:col-span-5">
+                <FullPhoto src={shots[0].src} alt={shots[0].alt} />
+              </Reveal>
+            )}
+          </div>
         </div>
       </section>
 
       {/* WHO IT'S FOR */}
       <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-16 md:py-24">
-        <div className="mh-container grid gap-12 lg:grid-cols-12">
-          <Reveal className="lg:col-span-6">
-            <SectionLabel>Who It's For</SectionLabel>
-            <Display as={2} size="lg" className="mt-3">
-              Is this <Italic>right</Italic> for you?
-            </Display>
-            <p className="mt-5 text-base leading-relaxed text-[color:var(--mh-ink-700)]">
-              {service.whoItsFor}
-            </p>
-          </Reveal>
-          <Reveal className="lg:col-span-6" delay={0.1}>
-            <SectionLabel>Materials & Options</SectionLabel>
-            <Display as={2} size="lg" className="mt-3">
-              Built to your <Italic>spec</Italic>
-            </Display>
-            <ul className="mt-5 space-y-3">
-              {service.materials.map((m) => (
-                <li
-                  key={m}
-                  className="flex items-start gap-3 text-base text-[color:var(--mh-ink-700)]"
-                >
-                  <ScissorsIcon className="mt-1 h-4 w-4 shrink-0 text-[color:var(--mh-copper-700)]" />
-                  {m}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
+        <div className="mh-container">
+          {shots[1] ? (
+            <div className="grid gap-12 lg:grid-cols-12 lg:items-start">
+              <div className="space-y-12 lg:col-span-7">
+                <Reveal>
+                  <SectionLabel>Who It's For</SectionLabel>
+                  <Display as={2} size="lg" className="mt-3">
+                    Is this <Italic>right</Italic> for you?
+                  </Display>
+                  <p className="mt-5 text-base leading-relaxed text-[color:var(--mh-ink-700)]">
+                    {service.whoItsFor}
+                  </p>
+                </Reveal>
+                <Reveal delay={0.08}>
+                  <SectionLabel>Materials & Options</SectionLabel>
+                  <Display as={2} size="lg" className="mt-3">
+                    Built to your <Italic>spec</Italic>
+                  </Display>
+                  <ul className="mt-5 space-y-3">
+                    {service.materials.map((m) => (
+                      <li
+                        key={m}
+                        className="flex items-start gap-3 text-base text-[color:var(--mh-ink-700)]"
+                      >
+                        <ScissorsIcon className="mt-1 h-4 w-4 shrink-0 text-[color:var(--mh-copper-700)]" />
+                        {m}
+                      </li>
+                    ))}
+                  </ul>
+                </Reveal>
+              </div>
+              <Reveal direction="left" className="lg:col-span-5 lg:sticky lg:top-32">
+                <FullPhoto src={shots[1].src} alt={shots[1].alt} />
+              </Reveal>
+            </div>
+          ) : (
+            <div className="grid gap-12 lg:grid-cols-12">
+              <Reveal className="lg:col-span-6">
+                <SectionLabel>Who It's For</SectionLabel>
+                <Display as={2} size="lg" className="mt-3">
+                  Is this <Italic>right</Italic> for you?
+                </Display>
+                <p className="mt-5 text-base leading-relaxed text-[color:var(--mh-ink-700)]">
+                  {service.whoItsFor}
+                </p>
+              </Reveal>
+              <Reveal className="lg:col-span-6" delay={0.1}>
+                <SectionLabel>Materials & Options</SectionLabel>
+                <Display as={2} size="lg" className="mt-3">
+                  Built to your <Italic>spec</Italic>
+                </Display>
+                <ul className="mt-5 space-y-3">
+                  {service.materials.map((m) => (
+                    <li
+                      key={m}
+                      className="flex items-start gap-3 text-base text-[color:var(--mh-ink-700)]"
+                    >
+                      <ScissorsIcon className="mt-1 h-4 w-4 shrink-0 text-[color:var(--mh-copper-700)]" />
+                      {m}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            </div>
+          )}
         </div>
       </section>
 
@@ -250,31 +302,40 @@ export default async function Page({ params }: { params: Promise<Params> }) {
 
       {/* CARE & MAINTENANCE */}
       <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-16 md:py-24">
-        <div className="mh-container max-w-3xl">
-          <Reveal>
-            <SectionLabel>Care & Maintenance</SectionLabel>
-            <Display as={2} size="lg" className="mt-3">
-              Keeping it looking like <Italic>day one</Italic>
-            </Display>
-            <ul className="mt-6 space-y-3">
-              {service.careTips.map((tip) => (
-                <li
-                  key={tip}
-                  className="flex items-start gap-3 text-base text-[color:var(--mh-ink-700)]"
-                >
-                  <ScissorsIcon className="mt-1 h-4 w-4 shrink-0 text-[color:var(--mh-copper-700)]" />
-                  {tip}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-6 text-sm leading-relaxed text-[color:var(--mh-ink-700)]">
-              Need a hand between fittings?{" "}
-              <Link href="/services/hair-system-maintenance/" className="underline">
-                See our maintenance & reattachment service
-              </Link>
-              .
-            </p>
-          </Reveal>
+        <div className="mh-container">
+          <div className={`grid gap-12 ${shots[2] ? "lg:grid-cols-12 lg:items-center" : ""}`}>
+            <Reveal className={shots[2] ? "lg:col-span-7" : "max-w-3xl"}>
+              <SectionLabel>Care & Maintenance</SectionLabel>
+              <Display as={2} size="lg" className="mt-3">
+                Keeping it looking like <Italic>day one</Italic>
+              </Display>
+              <ul className="mt-6 space-y-3">
+                {service.careTips.map((tip) => (
+                  <li
+                    key={tip}
+                    className="flex items-start gap-3 text-base text-[color:var(--mh-ink-700)]"
+                  >
+                    <ScissorsIcon className="mt-1 h-4 w-4 shrink-0 text-[color:var(--mh-copper-700)]" />
+                    {tip}
+                  </li>
+                ))}
+              </ul>
+              {service.slug !== "hair-system-maintenance" && (
+                <p className="mt-6 text-sm leading-relaxed text-[color:var(--mh-ink-700)]">
+                  Need a hand between fittings?{" "}
+                  <Link href="/services/hair-system-maintenance/" className="underline">
+                    See our maintenance & reattachment service
+                  </Link>
+                  .
+                </p>
+              )}
+            </Reveal>
+            {shots[2] && (
+              <Reveal direction="left" className="lg:col-span-5">
+                <FullPhoto src={shots[2].src} alt={shots[2].alt} />
+              </Reveal>
+            )}
+          </div>
         </div>
       </section>
 
@@ -342,22 +403,22 @@ export default async function Page({ params }: { params: Promise<Params> }) {
         </div>
       </section>
 
-      {/* FINANCING */}
+      {/* CONSULTATION */}
       <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-16 md:py-24">
         <div className="mh-container max-w-3xl text-center">
           <Reveal>
-            <CreditCardIcon className="mx-auto h-8 w-8 text-[color:var(--mh-copper-700)]" />
             <Display as={2} size="lg" className="mt-4">
-              Flexible <Italic>payment plans</Italic>
+              Start with a <Italic>private consultation</Italic>
             </Display>
             <p className="mt-4 text-base leading-relaxed text-[color:var(--mh-ink-700)]">
-              We offer financing through Cherry so you can start today and pay
-              over time. See our{" "}
-              <Link href="/payment-plans/" className="underline">
-                payment plans
-              </Link>{" "}
-              for details.
+              Book a free consultation and we will walk through the system,
+              process, and options that fit you.
             </p>
+            <div className="mt-6">
+              <BookingButton size="md">
+                Book a Private Consultation
+              </BookingButton>
+            </div>
           </Reveal>
         </div>
       </section>
@@ -380,14 +441,26 @@ export default async function Page({ params }: { params: Promise<Params> }) {
                     ? "/mens-hair-replacement-systems/"
                     : `/services/${s.slug}/`
                 }
-                padding="md"
+                padding="none"
+                className="overflow-hidden"
               >
-                <p className="font-sans text-base font-semibold text-[color:var(--mh-ink-900)]">
-                  {s.name}
-                </p>
-                <p className="mt-2 flex items-center gap-1 text-sm text-[color:var(--mh-copper-700)]">
-                  Learn more <ArrowRightIcon className="h-3 w-3" />
-                </p>
+                <div className="relative aspect-[16/10]">
+                  <Image
+                    src={s.image}
+                    alt=""
+                    fill
+                    sizes="(max-width: 768px) 100vw, 25vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-5">
+                  <p className="font-sans text-base font-semibold text-[color:var(--mh-ink-900)]">
+                    {s.name}
+                  </p>
+                  <p className="mt-2 flex items-center gap-1 text-sm text-[color:var(--mh-copper-700)]">
+                    Learn more <ArrowRightIcon className="h-3 w-3" />
+                  </p>
+                </div>
               </Card>
             ))}
           </RevealGrid>
@@ -407,7 +480,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
             </p>
             <div className="mt-8">
               <BookingButton size="lg">
-                Book Appointment
+                Book a Private Consultation
               </BookingButton>
             </div>
           </Reveal>

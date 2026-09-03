@@ -48,3 +48,6 @@ next-env.d.ts
 # a belt-and-suspenders defense against accidental commits.
 /.vscode/mcp.json
 .vscode/mcp.json
+
+# Unblurred client photos kept locally only
+/public/images/before-after/originals/

@@ -20,7 +20,7 @@ import { MailIcon, PhoneIcon, SocialIcon } from "./icons";
  * - Nested groups use native <details> for a JS-lean disclosure with
  *   a rotating chevron indicator.
  * - Panel is split into 3 vertical regions: brand row, scrolling nav,
- *   pinned footer (contact cards + Book Appointment CTA + socials).
+ *   pinned footer (contact cards + Book a Private Consultation CTA + socials).
  *
  * Desktop breakpoint (lg) hides the hamburger and hides the panel
  * entirely, so this component is a no-op above 1024px.

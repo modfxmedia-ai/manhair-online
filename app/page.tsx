@@ -35,6 +35,7 @@ import {
 import { CONTACT, SITE, SOCIAL } from "@/lib/site";
 import { getPageMeta, toMetadata } from "@/lib/pages";
 import { POSTS } from "@/lib/posts";
+import { TESTIMONIALS, GOOGLE_AVATAR_TINTS } from "@/lib/testimonials";
 import { BookingButton } from "@/components/BookingButton";
 
 const PAGE = getPageMeta("/")!;
@@ -185,46 +186,6 @@ const PROCESS = [
   { step: "02", title: "Selection",    body: "Selection process of the best hair for your lifestyle, matched to your color and density." },
   { step: "03", title: "Fitting",      body: "Applying your new thick and beautiful ManHair system, styled to your face." },
   { step: "04", title: "Servicing",    body: "We will handle the ongoing maintenance on your unit so it always looks fresh." },
-];
-
-const TESTIMONIALS = [
-  {
-    name: "Greg",
-    photo: "/wp-content/uploads/2018/08/greg-mens-hair-replacement-testimony.jpg",
-    quote:
-      "I have been wearing hair systems for over 20 years and this is the best quality and service I have received without question I would recommend to everyone I know suffering with hair loss.",
-    date: "3 weeks ago",
-  },
-  {
-    name: "Nick",
-    photo: "/wp-content/uploads/2018/08/nick-hair-replacement-system-testimony.jpg",
-    quote:
-      "I have rocked a shaved head now for over 5 years and was sick of how I looked in the mirror and decided to make a change. Thank you Manhair for giving my confidence a major boost!",
-    date: "a month ago",
-  },
-  {
-    name: "Pam",
-    photo: "/wp-content/uploads/2018/08/pam-hair-system-testimony-150x150.jpg",
-    quote:
-      "My husband was always thinning at an early age and then eventually decided to shave his head. I wasn't thrilled with the chrome dome and recommended Manhair to him and now he looks 20 years younger we are both so happy!",
-    date: "2 months ago",
-  },
-  {
-    name: "William",
-    photo: "/wp-content/uploads/2018/08/bill-hair-system-testimony.jpg",
-    quote:
-      "My entire family starting balding at very young age. We all decided to take the plunge to get new hair together and we are all so pleased with the end results thank you.",
-    date: "2 months ago",
-  },
-];
-
-// Rotating avatar tints for the Google-style review cards — echoes
-// Google's own colorful default-avatar palette (blue/green/amber/red).
-const GOOGLE_AVATAR_TINTS = [
-  "linear-gradient(135deg, #4285F4, #1a56db)",
-  "linear-gradient(135deg, #34A853, #0f7a3d)",
-  "linear-gradient(135deg, #FBBC05, #e08e00)",
-  "linear-gradient(135deg, #EA4335, #b91c1c)",
 ];
 
 const FAQS = [
@@ -480,7 +441,7 @@ export default function HomePage() {
 
               <div className="mt-9 flex flex-wrap items-center gap-3">
                 <BookingButton size="lg">
-                  Book Appointment
+                  Book a Private Consultation
                 </BookingButton>
                 <Button href="/how-it-works/" variant="ghost" size="lg">
                   How It Works
@@ -493,7 +454,7 @@ export default function HomePage() {
                 <span className="mh-avatar-stack">
                   {[TESTIMONIALS[0], TESTIMONIALS[1], TESTIMONIALS[3]].map((t) => (
                     <span key={t.name} className="relative block h-9 w-9">
-                      <Image src={t.photo} alt="" fill sizes="36px" className="object-cover" />
+                      <Image src={t.photo!} alt="" fill sizes="36px" className="object-cover" />
                     </span>
                   ))}
                   <span className="relative flex h-9 w-9 items-center justify-center rounded-full bg-[color:var(--mh-copper-500)] font-display text-[0.6rem] font-bold text-[color:var(--mh-on-accent)]">
@@ -788,9 +749,11 @@ export default function HomePage() {
                   <Italic>changes everything.</Italic>
                 </Display>
               </div>
-              <Button href="/results/" variant="ghost" size="sm">
-                View All Transformations
-              </Button>
+              <div className="flex flex-wrap gap-3">
+                <Button href="/results/" variant="ghost" size="sm">
+                  View All Transformations
+                </Button>
+              </div>
             </div>
           </Reveal>
         </div>
@@ -836,7 +799,7 @@ export default function HomePage() {
             </Display>
             <div className="mt-8">
               <BookingButton size="lg">
-                Book Appointment
+                Book a Private Consultation
               </BookingButton>
             </div>
           </Reveal>
@@ -928,9 +891,14 @@ export default function HomePage() {
               <p className="mh-cap-body">
                 Walk through the exact process, step by step, before you ever book.
               </p>
-              <Button href="/how-it-works/" variant="ghost" size="sm" className="mt-2 self-start">
-                How It Works
-              </Button>
+              <div className="mt-2 flex flex-wrap gap-2">
+                <BookingButton size="sm">
+                  Book a Private Consultation
+                </BookingButton>
+                <Button href="/how-it-works/" variant="ghost" size="sm">
+                  How It Works
+                </Button>
+              </div>
             </article>
           </RevealGrid>
         </div>
@@ -953,6 +921,11 @@ export default function HomePage() {
                 hair, an undetectable fit, expert one-on-one care, and a community
                 that shows up, into one complete solution.
               </p>
+              <div className="mt-8">
+                <BookingButton size="lg">
+                  Book a Private Consultation
+                </BookingButton>
+              </div>
             </div>
           </Reveal>
 
@@ -984,9 +957,14 @@ export default function HomePage() {
                   Every system has a <Italic>purpose.</Italic>
                 </Display>
               </div>
-              <Button href="/how-it-works/" variant="ghost" size="sm">
-                Full Program Breakdown
-              </Button>
+              <div className="flex flex-wrap gap-3">
+                <BookingButton size="sm">
+                  Book a Private Consultation
+                </BookingButton>
+                <Button href="/how-it-works/" variant="ghost" size="sm">
+                  Full Program Breakdown
+                </Button>
+              </div>
             </div>
           </Reveal>
 
@@ -1065,6 +1043,11 @@ export default function HomePage() {
               <p className="mt-8 font-sans text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[color:var(--mh-copper-300)]">
                 ManHair &mdash; Orange County, CA
               </p>
+              <div className="mt-8">
+                <BookingButton size="lg">
+                  Book a Private Consultation
+                </BookingButton>
+              </div>
             </Reveal>
           </div>
         </div>
@@ -1184,7 +1167,7 @@ export default function HomePage() {
 
             <div className="mt-9 flex flex-wrap gap-3">
               <BookingButton size="lg">
-                Book Appointment
+                Book a Private Consultation
               </BookingButton>
               <Button href="/results/" variant="ghost" size="lg">
                 Before &amp; After
@@ -1215,11 +1198,8 @@ export default function HomePage() {
                   </p>
                   <div className="mt-8 flex flex-wrap gap-3">
                     <BookingButton size="lg">
-                      Book Appointment
+                      Book a Private Consultation
                     </BookingButton>
-                    <Button href="/pricing/" variant="ghost" size="lg">
-                      See Prices
-                    </Button>
                   </div>
                 </div>
 
@@ -1275,7 +1255,7 @@ export default function HomePage() {
               ))}
             </div>
 
-            <div className="mt-8">
+            <div className="mt-8 flex flex-wrap gap-3">
               <Button href="/faq/" variant="ghost" size="md">
                 Read All FAQs
               </Button>
@@ -1313,7 +1293,7 @@ export default function HomePage() {
                   All Locations
                 </Button>
                 <BookingButton size="sm">
-                  Book Appointment
+                  Book a Private Consultation
                 </BookingButton>
               </div>
             </div>
@@ -1334,9 +1314,11 @@ export default function HomePage() {
                   Recent from the <Italic>ManHair blog.</Italic>
                 </Display>
               </div>
-              <Button href="/blog/" variant="ghost" size="sm">
-                All Articles
-              </Button>
+              <div className="flex flex-wrap gap-3">
+                <Button href="/blog/" variant="ghost" size="sm">
+                  All Articles
+                </Button>
+              </div>
             </div>
           </Reveal>
 
@@ -1399,7 +1381,7 @@ export default function HomePage() {
               </p>
               <div className="mt-10 flex flex-wrap justify-center gap-4">
                 <BookingButton size="lg">
-                  Book Appointment
+                  Book a Private Consultation
                 </BookingButton>
               </div>
             </div>
@@ -1425,9 +1407,11 @@ export default function HomePage() {
                   Orange, CA studio. Either way, getting started is one tap away.
                 </p>
               </div>
-              <Button href="/locations/" variant="ghost" size="md">
-                All Locations
-              </Button>
+              <div className="flex flex-wrap gap-3">
+                <Button href="/locations/" variant="ghost" size="md">
+                  All Locations
+                </Button>
+              </div>
             </div>
           </Reveal>
 
@@ -1468,11 +1452,11 @@ export default function HomePage() {
                   </div>
 
                   <div className="mh-mapcard-actions">
+                    <BookingButton size="sm">
+                      Book a Private Consultation
+                    </BookingButton>
                     <Button href={loc.directionsHref} variant="ghost" size="sm">
                       Get Directions
-                    </Button>
-                    <Button href={loc.detailsHref} size="sm">
-                      View Studio
                     </Button>
                   </div>
                 </div>

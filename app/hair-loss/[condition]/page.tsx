@@ -12,7 +12,9 @@ import { getService } from "@/lib/seo/services";
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return CONDITIONS.map((c) => ({ condition: c.slug }));
+  return CONDITIONS.filter((c) => c.slug !== "male-pattern-baldness").map(
+    (c) => ({ condition: c.slug })
+  );
 }
 
 type Params = { condition: string };
@@ -99,7 +101,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <BookingButton size="lg">
-                Book Appointment
+                Book a Private Consultation
               </BookingButton>
             </div>
           </Reveal>
@@ -192,7 +194,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
             </p>
             <div className="mt-8">
               <BookingButton size="lg">
-                Book Appointment
+                Book a Private Consultation
               </BookingButton>
             </div>
           </Reveal>

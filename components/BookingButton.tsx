@@ -2,6 +2,7 @@
 
 import type { ComponentProps, ReactNode } from "react";
 import { cn } from "@/lib/cn";
+import { HEADER_CTA } from "@/lib/site";
 import { openBookingModal } from "@/components/BookingModal";
 
 type Variant = "primary" | "ghost";
@@ -30,7 +31,7 @@ export function BookingButton({
   size = "md",
   block = false,
   className,
-  children,
+  children = HEADER_CTA.label,
   onClick,
   ...rest
 }: {
@@ -38,7 +39,7 @@ export function BookingButton({
   size?: Size;
   block?: boolean;
   className?: string;
-  children: ReactNode;
+  children?: ReactNode;
 } & Omit<ComponentProps<"button">, "className" | "children" | "type">) {
   return (
     <button

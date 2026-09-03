@@ -112,6 +112,11 @@ export default function Page() {
                 throughout the area, all backed by our Orange, CA studio.
                 Find the studio nearest you.
               </p>
+              <div className="mt-8 flex justify-center">
+                <BookingButton size="lg">
+                  Book a Private Consultation
+                </BookingButton>
+              </div>
             </div>
           </Reveal>
         </div>
@@ -348,7 +353,7 @@ export default function Page() {
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <BookingButton size="lg">
-                Book Appointment
+                Book a Private Consultation
               </BookingButton>
             </div>
           </div>

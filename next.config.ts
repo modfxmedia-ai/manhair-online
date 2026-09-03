@@ -57,8 +57,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: "/before-after", destination: "/results/", permanent: true },
-      { source: "/prices", destination: "/pricing/", permanent: true },
       { source: "/about-us", destination: "/about/", permanent: true },
+      { source: "/prices", destination: "/", permanent: true },
+      { source: "/prices/", destination: "/", permanent: true },
+      { source: "/pricing", destination: "/", permanent: true },
+      { source: "/pricing/", destination: "/", permanent: true },
     ];
   },
 };

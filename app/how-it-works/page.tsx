@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Button, Display, Italic } from "@/components/ui";
+import { Display, Italic } from "@/components/ui";
 import { BookingButton } from "@/components/BookingButton";
 import { AuroraBlobs, Reveal, RevealGrid } from "@/components/ui/motion";
 import { JsonLd, buildPageGraph } from "@/components/JsonLd";
@@ -112,6 +112,11 @@ export default function Page() {
               <Display as={1} size="hero" className="mt-5">
                 How Manhair <Italic>Works.</Italic>
               </Display>
+              <div className="mt-8 flex justify-center">
+                <BookingButton size="lg">
+                  Book a Private Consultation
+                </BookingButton>
+              </div>
             </div>
           </Reveal>
         </div>
@@ -209,7 +214,7 @@ export default function Page() {
             </Reveal>
             <Reveal direction="left" className="md:col-span-4">
               <BookingButton size="lg" block>
-                Book Appointment
+                Book a Private Consultation
               </BookingButton>
             </Reveal>
           </div>
@@ -249,11 +254,8 @@ export default function Page() {
           </Display>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <BookingButton size="lg">
-              Book Appointment
+              Book a Private Consultation
             </BookingButton>
-            <Button href="/pricing/" variant="ghost" size="lg">
-              See Prices
-            </Button>
           </div>
         </div>
       </section>

@@ -145,7 +145,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <BookingButton size="lg">
-                Book Appointment
+                Book a Private Consultation
               </BookingButton>
               <Button href="/locations/" variant="ghost" size="lg">
                 All Locations
@@ -303,9 +303,9 @@ export default async function Page({ params }: { params: Promise<Params> }) {
             <details>
               <summary>How much does a hair system cost?</summary>
               <p>
-                Pricing depends on the service and system you choose. See our{" "}
-                <a href="/pricing/">pricing page</a> for ranges and financing
-                options.
+                Pricing depends on the service and system you choose. Book a
+                free private consultation and we will walk through options
+                that fit your goals.
               </p>
             </details>
             <details>
@@ -354,7 +354,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
             </p>
             <div className="mt-8">
               <BookingButton size="lg">
-                Book Appointment
+                Book a Private Consultation
               </BookingButton>
             </div>
           </Reveal>

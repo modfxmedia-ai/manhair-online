@@ -110,11 +110,8 @@ export default function Page() {
               </div>
               <div className="mt-8 flex flex-wrap gap-3">
                 <BookingButton size="lg">
-                  Book Appointment
+                  Book a Private Consultation
                 </BookingButton>
-                <Button href="/payment-plans/" variant="ghost" size="lg">
-                  Treat Now &amp; Pay Later
-                </Button>
               </div>
             </Reveal>
             <Reveal direction="left" className="lg:col-span-6">
@@ -298,7 +295,7 @@ export default function Page() {
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <BookingButton size="lg">
-                  Book Appointment
+                  Book a Private Consultation
                 </BookingButton>
                 <Button href="/locations/" variant="ghost" size="lg">
                   All Locations

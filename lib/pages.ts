@@ -104,16 +104,16 @@ export const PAGES: PageMeta[] = [
     twitterCard: "summary_large_image",
   },
   {
-    path: "/pricing/",
-    title: "Hair Replacement Pricing | Orange, CA | ManHair",
+    path: "/payment-plans/",
+    title: "Cherry Financing | ManHair | Hair Restoration Orange County, CA",
     description:
-      "Transparent pricing for men's hair replacement systems at our Orange, CA studio. Cherry financing available. Book a free virtual consultation.",
-    canonical: `${SITE.origin}/pricing/`,
+      "Cherry financing for ManHair hair systems. Easy monthly payments, no hard credit check, 60-second approval.",
+    canonical: `${SITE.origin}/payment-plans/`,
     robots: R,
     og: og(
-      "Hair Replacement Pricing | Orange, CA | ManHair",
-      "Transparent pricing for men's hair replacement systems at our Orange, CA studio. Cherry financing available. Book a free virtual consultation.",
-      "/pricing/"
+      "Cherry Financing | ManHair | Hair Restoration Orange County, CA",
+      "Cherry financing for ManHair hair systems. Easy monthly payments, no hard credit check, 60-second approval.",
+      "/payment-plans/"
     ),
     twitterCard: "summary_large_image",
   },
@@ -216,6 +216,21 @@ export const PAGES: PageMeta[] = [
     twitterCard: "summary_large_image",
   },
   {
+    path: "/hair-loss/male-pattern-baldness/",
+    title: "Male Pattern Baldness | Non-Surgical Hair Replacement | ManHair",
+    description:
+      "Male pattern baldness accounts for more than 95% of hair loss in men. See how a custom ManHair system covers it — no surgery, no downtime. Free consultation in Orange County, CA.",
+    canonical: `${SITE.origin}/hair-loss/male-pattern-baldness/`,
+    robots: R,
+    og: og(
+      "Male Pattern Baldness | Non-Surgical Hair Replacement | ManHair",
+      "Male pattern baldness accounts for more than 95% of hair loss in men. See how a custom ManHair system covers it — no surgery, no downtime. Free consultation in Orange County, CA.",
+      "/hair-loss/male-pattern-baldness/",
+      "/wp-content/uploads/2021/12/62.png"
+    ),
+    twitterCard: "summary_large_image",
+  },
+  {
     path: "/alopecia-hair-loss/",
     title: "Alopecia for Men's Hair Growth | Hair Replacement for Men | ManHair",
     description:
@@ -254,20 +269,6 @@ export const PAGES: PageMeta[] = [
       "Non Surgical Hair Replacement for Men, Orange County | ManHair",
       "Acclaimed non surgical hair replacement for men in Orange County. we have the best hair replacement systems. Discover real solutions for receding hairline patients.",
       "/receding-hairline-restoration/"
-    ),
-    twitterCard: "summary_large_image",
-  },
-  {
-    path: "/payment-plans/",
-    title: "payment Plans | ManHair | Hair Restoration Orange County, CA",
-    description:
-      "Cherry is a payment plan designed for health, beauty, and wellness procedures. Easy monthly payments, no hard credit check, 60-second approval.",
-    canonical: `${SITE.origin}/payment-plans/`,
-    robots: R,
-    og: og(
-      "payment Plans | ManHair | Hair Restoration Orange County, CA",
-      "Cherry is a payment plan designed for health, beauty, and wellness procedures. Easy monthly payments, no hard credit check, 60-second approval.",
-      "/payment-plans/"
     ),
     twitterCard: "summary_large_image",
   },

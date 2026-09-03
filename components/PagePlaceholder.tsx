@@ -48,7 +48,7 @@ export function PagePlaceholder({
           ) : null}
           <div className="mt-10 flex flex-wrap gap-3">
             <BookingButton>
-              Book Appointment
+              Book a Private Consultation
             </BookingButton>
           </div>
         </div>

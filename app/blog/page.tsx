@@ -84,6 +84,11 @@ export default function BlogIndex() {
                 {PAGE.description}
               </p>
             ) : null}
+            <div className="mt-8">
+              <BookingButton size="lg">
+                Book a Private Consultation
+              </BookingButton>
+            </div>
           </Reveal>
         </div>
       </section>
@@ -116,7 +121,7 @@ export default function BlogIndex() {
           </p>
           <div className="mt-8 flex justify-center">
             <BookingButton size="lg">
-              Book Appointment
+              Book a Private Consultation
             </BookingButton>
           </div>
         </div>

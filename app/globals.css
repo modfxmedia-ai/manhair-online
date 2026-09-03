@@ -319,7 +319,7 @@ body {
   color: var(--mh-red-800);
 }
 
-.mh-btn-sm { padding: 0.65rem 1.25rem; font-size: 0.68rem; }
+.mh-btn-sm { padding: 0.65rem 1.1rem; font-size: 0.62rem; letter-spacing: 0.1em; }
 .mh-btn-lg { padding: 1rem 2.25rem; font-size: 0.78rem; }
 .mh-btn-block { display: flex; width: 100%; }
 
@@ -405,6 +405,8 @@ body {
   align-items: center;
   gap: 0.3rem;
   padding-block: 0.4rem;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .mh-nav-link::after {
   content: "";
@@ -741,6 +743,22 @@ body {
   transform: scaleX(1);
 }
 
+.mh-mega-thumb {
+  position: relative;
+  display: block;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 1px solid color-mix(in srgb, var(--mh-copper-500) 24%, transparent);
+  background: color-mix(in srgb, var(--mh-copper-300) 12%, transparent);
+}
+.mh-mega-link:hover .mh-mega-thumb,
+.mh-mega-link:focus-visible .mh-mega-thumb {
+  border-color: var(--mh-copper-700);
+}
+
 .mh-mega-icon {
   display: inline-flex;
   align-items: center;
@@ -911,7 +929,7 @@ body {
 /* ---------- Mobile slide-in drawer ----------------------------------
  * Polished off-canvas nav shown below the lg breakpoint. Warm paper
  * background, gold hairline top accent, cushioned nav rows with
- * chevron chase-in on hover, contact cards + Book Appointment CTA
+ * chevron chase-in on hover, contact cards + Book a Private Consultation CTA
  * pinned to the bottom. Staggered row entrance is keyed off the
  * `[data-open="true"]` state so animations fire each time the drawer
  * opens (not just first render).
@@ -1217,10 +1235,10 @@ body {
 /* ---------- Prose for verbatim page copy ---------- */
 .mh-prose {
   color: var(--mh-ink-800);
-  font-size: 1rem;
-  line-height: 1.7;
+  font-size: 1.0625rem;
+  line-height: 1.8;
 }
-.mh-prose > * + * { margin-top: 1.15em; }
+.mh-prose > * + * { margin-top: 1.2em; }
 .mh-prose h1,
 .mh-prose h2,
 .mh-prose h3,
@@ -1228,13 +1246,15 @@ body {
   font-family: var(--mh-font-display);
   color: var(--mh-ink-950);
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.2;
   letter-spacing: -0.02em;
 }
-.mh-prose h1 { font-size: clamp(2rem, 3vw + 1rem, 3.2rem); margin-top: 1.6em; }
-.mh-prose h2 { font-size: clamp(1.6rem, 1.6vw + 1rem, 2.25rem); margin-top: 1.4em; }
-.mh-prose h3 { font-size: 1.35rem; margin-top: 1.3em; }
+.mh-prose h1 { font-size: clamp(1.8rem, 2.4vw + 1rem, 2.6rem); margin-top: 1.6em; }
+.mh-prose h2 { font-size: clamp(1.35rem, 1.1vw + 1rem, 1.7rem); margin-top: 1.65em; }
+.mh-prose h3 { font-size: 1.25rem; margin-top: 1.35em; }
 .mh-prose h4 { font-size: 1.1rem; margin-top: 1.2em; }
+.mh-prose h2:first-child,
+.mh-prose h3:first-child { margin-top: 0; }
 .mh-prose p { color: var(--mh-ink-800); }
 .mh-prose a {
   color: var(--mh-copper-700);
@@ -3866,6 +3886,15 @@ body {
   font-weight: 600;
   letter-spacing: 0.04em;
   color: var(--mh-ink-600);
+}
+.mh-goog-card-grid {
+  width: 100%;
+  height: 100%;
+}
+.mh-goog-card-grid .mh-goog-quote {
+  -webkit-line-clamp: unset;
+  display: block;
+  overflow: visible;
 }
 
 /* ---------- Editorial numbered list (01–04 rows) ---------- */

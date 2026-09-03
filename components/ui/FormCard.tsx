@@ -1,4 +1,4 @@
-import type { ComponentProps, ReactNode } from "react";
+import { forwardRef, type ComponentProps, type ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
 /**
@@ -80,9 +80,11 @@ export function Field({
   );
 }
 
-export function Input({ className, ...rest }: ComponentProps<"input">) {
-  return <input className={cn("mh-input", className)} {...rest} />;
-}
+export const Input = forwardRef<HTMLInputElement, ComponentProps<"input">>(
+  function Input({ className, ...rest }, ref) {
+    return <input ref={ref} className={cn("mh-input", className)} {...rest} />;
+  }
+);
 
 export function Textarea({ className, ...rest }: ComponentProps<"textarea">) {
   return <textarea className={cn("mh-textarea", className)} {...rest} />;

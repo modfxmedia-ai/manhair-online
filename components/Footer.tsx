@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ContactChip } from "@/components/ui";
+import { BookingButton } from "@/components/BookingButton";
 import { MailIcon, PhoneIcon, SocialIcon } from "@/components/icons";
 import { Wordmark } from "./Wordmark";
 import {
@@ -47,6 +48,11 @@ export function Footer() {
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-[color:var(--mh-ink-700)]">
             {FOOTER_TAGLINE.long}
           </p>
+          <div className="mt-6">
+            <BookingButton size="sm">
+              Book a Private Consultation
+            </BookingButton>
+          </div>
         </div>
 
         {/* Quick Links */}

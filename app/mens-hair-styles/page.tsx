@@ -72,7 +72,7 @@ export default function Page() {
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <BookingButton size="lg">
-                  Book Appointment
+                  Book a Private Consultation
                 </BookingButton>
               </div>
             </Reveal>
@@ -283,7 +283,7 @@ export default function Page() {
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <BookingButton size="lg">
-              Book Appointment
+              Book a Private Consultation
             </BookingButton>
           </div>
         </div>

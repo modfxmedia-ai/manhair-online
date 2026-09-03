@@ -453,20 +453,6 @@ export function PinterestIcon(p: IconProps) {
   );
 }
 
-export function MySpaceIcon(p: IconProps) {
-  // Simplified "myspace" mark — three ascending profile blocks.
-  return (
-    <Base {...p}>
-      <circle cx="6" cy="8" r="2.4" fill="currentColor" />
-      <rect x="3" y="12" width="6" height="6" rx="1.5" fill="currentColor" />
-      <circle cx="13" cy="6" r="1.6" fill="currentColor" />
-      <rect x="10.5" y="9" width="5" height="9" rx="1.3" fill="currentColor" />
-      <circle cx="19.2" cy="4.4" r="1.1" fill="currentColor" />
-      <rect x="17.2" y="6.5" width="4" height="11.5" rx="1" fill="currentColor" />
-    </Base>
-  );
-}
-
 export const SocialIcon: Record<
   | "facebook"
   | "instagram"
@@ -475,8 +461,7 @@ export const SocialIcon: Record<
   | "tiktok"
   | "linkedin"
   | "youtube"
-  | "pinterest"
-  | "myspace",
+  | "pinterest",
   (p: IconProps) => React.ReactElement
 > = {
   facebook: FacebookIcon,
@@ -487,5 +472,4 @@ export const SocialIcon: Record<
   linkedin: LinkedInIcon,
   youtube: YouTubeIcon,
   pinterest: PinterestIcon,
-  myspace: MySpaceIcon,
 };

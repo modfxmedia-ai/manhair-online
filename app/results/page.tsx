@@ -13,43 +13,43 @@ type Aspect = "square" | "portrait" | "wide";
 
 const GALLERY: { src: string; alt: string; aspect: Aspect }[] = [
   {
-    src: "/wp-content/uploads/2022/10/Before-after1-768x512.jpg",
-    alt: "mens hair restoration",
+    src: "/images/before-after/results/Before-after1.jpg",
+    alt: "Before and after men's hair restoration",
     aspect: "wide",
   },
   {
-    src: "/wp-content/uploads/2022/10/Before-after2-768x512.jpg",
-    alt: "man hair online",
+    src: "/images/before-after/results/Before-after2.jpg",
+    alt: "Before and after hair replacement result",
     aspect: "wide",
   },
   {
-    src: "/wp-content/uploads/2022/10/Before-after3-768x512.jpg",
-    alt: "mens hair restoration",
+    src: "/images/before-after/results/Before-after3.jpg",
+    alt: "Before and after men's hair restoration",
     aspect: "wide",
   },
   {
-    src: "/wp-content/uploads/2022/10/unnamed-768x768.jpg",
-    alt: "mens hair restoration",
+    src: "/images/before-after/results/unnamed.jpg",
+    alt: "Before and after hair system transformation",
     aspect: "square",
   },
   {
-    src: "/wp-content/uploads/2022/10/unnamed-1-768x768.jpg",
-    alt: "man hair online",
+    src: "/images/before-after/results/unnamed-1.jpg",
+    alt: "Before and after custom hair system",
     aspect: "square",
   },
   {
-    src: "/wp-content/uploads/2022/10/unnamed-2-768x768.jpg",
-    alt: "mens hair restoration",
+    src: "/images/before-after/results/unnamed-2.jpg",
+    alt: "Before and after men's hair restoration",
     aspect: "square",
   },
   {
-    src: "/wp-content/uploads/2022/10/unnamed5-240x300.jpg",
-    alt: "man hair online",
+    src: "/images/before-after/results/unnamed5.jpg",
+    alt: "Before and after hair replacement",
     aspect: "portrait",
   },
   {
-    src: "/wp-content/uploads/2023/01/IMG_2486-300x300.jpg",
-    alt: "before and after",
+    src: "/images/before-after/results/IMG_2486.jpg",
+    alt: "Before and after client result",
     aspect: "square",
   },
 ];
@@ -112,6 +112,11 @@ export default function Page() {
                 significant others, or just because you need a change to boost those
                 confidence levels up!
               </p>
+              <div className="mt-8 flex justify-center">
+                <BookingButton size="lg">
+                  Book a Private Consultation
+                </BookingButton>
+              </div>
             </div>
           </Reveal>
         </div>
@@ -157,7 +162,7 @@ export default function Page() {
             </p>
             <div className="mt-8 flex justify-center">
               <BookingButton size="lg">
-                Book Appointment
+                Book a Private Consultation
               </BookingButton>
             </div>
           </Reveal>
@@ -197,7 +202,7 @@ export default function Page() {
           </Display>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <BookingButton size="lg">
-              Book Appointment
+              Book a Private Consultation
             </BookingButton>
             <Button href="/how-it-works/" variant="ghost" size="lg">
               How It Works

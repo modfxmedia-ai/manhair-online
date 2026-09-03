@@ -1,6 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ComponentType } from "react";
 import { CONTACT, HEADER_CTA, PRIMARY_NAV, SOCIAL, type NavItem } from "@/lib/site";
+import { getService } from "@/lib/seo/services";
 import { BookingButton } from "@/components/BookingButton";
 import { Wordmark } from "./Wordmark";
 import { MobileNav } from "./MobileNav";
@@ -15,7 +17,6 @@ import {
   CreditCardIcon,
   DropletIcon,
   EyeOffIcon,
-  GridIcon,
   HairStrandIcon,
   HelpCircleIcon,
   MapPinIcon,
@@ -24,7 +25,6 @@ import {
   SocialIcon,
   SparklesIcon,
   StarIcon,
-  TagIcon,
 } from "./icons";
 
 /**
@@ -33,11 +33,10 @@ import {
  * Layout:
  *   Top utility bar (desktop only) — free-consultation note, both
  *   studio phone numbers, social icons.
- *   Main row — [Wordmark]   [Primary nav, centered]   [Phone] [Book Appointment] [Menu]
+ *   Main row — [Wordmark]   [Primary nav, centered]   [Phone] [Book a Private Consultation] [Menu]
  *
  * - Sticky, light/cream background with a subtle backdrop blur + hairline shadow.
- * - Copper "Book Appointment" pill CTA on the far right, linking to
- *   the pricing page (the site's main actionable next step).
+ * - Copper "Book a Private Consultation" pill CTA on the far right.
  * - Primary nav hrefs match the live site exactly:
  *     Home, About (▾), How It Works (▾), Before & After, Locations
  *   Dropdowns are open-on-hover / open-on-focus using CSS only, so
@@ -83,19 +82,20 @@ export function Header() {
         </div>
       </div>
 
-      {/* Main row */}
-      <div className="mh-container flex h-16 items-center justify-between gap-3 md:h-20 md:gap-4 lg:gap-8">
+      {/* Main row — wider than `.mh-container` so logo + nav + CTA
+      stay on one line (page content stays at 1200px). */}
+      <div className="mx-auto flex h-16 w-full max-w-[1440px] items-center justify-between gap-3 px-5 md:h-20 md:gap-4 md:px-8 lg:gap-5">
         <Link
           href="/"
-          className="mh-logo-link inline-flex focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--mh-copper-600)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--mh-bg)]"
+          className="mh-logo-link inline-flex shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--mh-copper-600)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--mh-bg)]"
           aria-label="ManHair home"
         >
           <Wordmark size="md" priority />
         </Link>
 
         {/* Desktop primary nav */}
-        <nav aria-label="Primary" className="hidden lg:flex lg:flex-1 lg:justify-center">
-          <ul className="flex items-center gap-7 xl:gap-9">
+        <nav aria-label="Primary" className="hidden min-w-0 lg:flex lg:flex-1 lg:justify-center">
+          <ul className="flex flex-nowrap items-center gap-4 xl:gap-6">
             {PRIMARY_NAV.map((item) => (
               <DesktopItem key={item.label} item={item} />
             ))}
@@ -103,9 +103,9 @@ export function Header() {
         </nav>
 
         {/* Right-side actions. On mobile/tablet only the phone icon +
-        hamburger show — the "Book Appointment" pill would crowd the
+        hamburger show — the "Book a Private Consultation" pill would crowd the
         row at those widths and duplicates the drawer's own CTA. */}
-        <div className="flex items-center gap-2 md:gap-3">
+        <div className="flex shrink-0 items-center gap-2 md:gap-3">
           <a
             href={CONTACT.studio.phoneHref}
             className="mh-icon-btn !h-10 !w-10 border !border-[color:var(--mh-border-strong)]"
@@ -114,11 +114,11 @@ export function Header() {
             <PhoneIcon size={16} />
           </a>
           {/* CTA pill hidden on mobile/tablet — the drawer carries
-          its own Book Appointment button. Wrapped in a span with
+          its own Book a Private Consultation button. Wrapped in a span with
           `hidden lg:contents` so the utility overrides `.mh-btn`'s
           default `display: inline-flex`. */}
           <span className="hidden lg:contents">
-            <BookingButton size="sm">
+            <BookingButton size="sm" className="!px-3.5 !tracking-[0.08em]">
               {HEADER_CTA.label}
             </BookingButton>
           </span>
@@ -151,7 +151,7 @@ function DesktopItem({ item }: { item: NavItem }) {
   const hasChildren = !!item.children?.length;
   const mega = MEGA_MENU[item.label];
   return (
-    <li className="relative group/top">
+    <li className="relative shrink-0 group/top">
       <NavAnchor href={item.href} hasChildren={hasChildren} variant="top">
         {item.label}
         {hasChildren ? <Caret /> : null}
@@ -227,7 +227,7 @@ function NavAnchor({
         aria-haspopup={hasChildren ? "menu" : undefined}
         className={
           variant === "top"
-            ? "mh-nav-link cursor-default text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-[color:var(--mh-fg)]"
+            ? "mh-nav-link cursor-default text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[color:var(--mh-fg)]"
             : "mh-navdrop-link flex cursor-default items-center justify-between gap-2 rounded-[var(--mh-radius-sm)] px-3 py-2 text-xs uppercase tracking-[0.14em] text-[color:var(--mh-ink-700)]"
         }
       >
@@ -248,7 +248,7 @@ function NavAnchor({
   return (
     <Link
       href={href}
-      className="mh-nav-link text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-[color:var(--mh-fg)] transition-colors hover:text-[color:var(--mh-copper-700)] focus:outline-none focus-visible:text-[color:var(--mh-copper-700)]"
+      className="mh-nav-link text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[color:var(--mh-fg)] transition-colors hover:text-[color:var(--mh-copper-700)] focus:outline-none focus-visible:text-[color:var(--mh-copper-700)]"
       aria-haspopup={hasChildren ? "menu" : undefined}
     >
       {children}
@@ -383,9 +383,9 @@ const MEGA_MENU: Record<string, MegaConfig> = {
         eyebrow: "Company",
         items: [
           {
-            label: "Payment Plans",
+            label: "Cherry Financing",
             href: "/payment-plans/",
-            desc: "Cherry financing: treat now, pay later.",
+            desc: "Treat now, pay later with Cherry.",
             Icon: CreditCardIcon,
           },
           {
@@ -412,12 +412,6 @@ const MEGA_MENU: Record<string, MegaConfig> = {
             desc: "See what real clients say, on Google & Yelp.",
             Icon: StarIcon,
           },
-          {
-            label: "Sitemap",
-            href: "/sitemap/",
-            desc: "Every ManHair page, in one directory.",
-            Icon: GridIcon,
-          },
         ],
       },
       {
@@ -442,7 +436,7 @@ const MEGA_MENU: Record<string, MegaConfig> = {
       eyebrow: "Flexible payment",
       title: "Pay over time, not upfront.",
       body: "Cherry financing: easy monthly payments, no hard credit check.",
-      cta: { label: "View Payment Plans", href: "/payment-plans/" },
+      cta: { label: "Cherry Financing", href: "/payment-plans/" },
       Icon: CreditCardIcon,
     },
   },
@@ -483,23 +477,6 @@ const MEGA_MENU: Record<string, MegaConfig> = {
           },
         ],
       },
-      {
-        eyebrow: "Pricing & payments",
-        items: [
-          {
-            label: "Our Prices",
-            href: "/pricing/",
-            desc: "Transparent, session-based pricing.",
-            Icon: TagIcon,
-          },
-          {
-            label: "Payment Plans",
-            href: "/payment-plans/",
-            desc: "0% intro APR financing via Cherry.",
-            Icon: CreditCardIcon,
-          },
-        ],
-      },
     ],
     featured: {
       eyebrow: "See it for yourself",
@@ -510,6 +487,14 @@ const MEGA_MENU: Record<string, MegaConfig> = {
     },
   },
 };
+
+function serviceThumb(href: string): string | undefined {
+  if (href === "/mens-hair-replacement-systems/") {
+    return getService("mens-hair-replacement-systems")?.image;
+  }
+  const match = href.match(/^\/services\/([^/]+)\//);
+  return match ? getService(match[1])?.image : undefined;
+}
 
 function MegaPanel({ config }: { config: MegaConfig }) {
   const { columns, featured } = config;
@@ -523,6 +508,7 @@ function MegaPanel({ config }: { config: MegaConfig }) {
             <ul>
               {col.items.map((it, i) => {
                 const Icon = it.Icon;
+                const thumb = serviceThumb(it.href);
                 return (
                   <li
                     key={it.label}
@@ -530,9 +516,21 @@ function MegaPanel({ config }: { config: MegaConfig }) {
                     style={{ ["--i" as string]: i }}
                   >
                     <Link href={it.href} className="mh-mega-link" role="menuitem">
-                      <span className="mh-mega-icon" aria-hidden="true">
-                        <Icon size={18} />
-                      </span>
+                      {thumb ? (
+                        <span className="mh-mega-thumb" aria-hidden="true">
+                          <Image
+                            src={thumb}
+                            alt=""
+                            fill
+                            sizes="44px"
+                            className="object-cover"
+                          />
+                        </span>
+                      ) : (
+                        <span className="mh-mega-icon" aria-hidden="true">
+                          <Icon size={18} />
+                        </span>
+                      )}
                       <span className="mh-mega-body">
                         <span className="mh-mega-title">{it.label}</span>
                         <span className="mh-mega-desc">{it.desc}</span>

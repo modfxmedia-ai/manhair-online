@@ -122,6 +122,11 @@ export default function Page() {
                 Text, Call, Email, etc. we always have hair specialists to support
                 you.
               </p>
+              <div className="mt-8 flex justify-center">
+                <BookingButton size="lg">
+                  Book a Private Consultation
+                </BookingButton>
+              </div>
             </div>
           </Reveal>
         </div>
@@ -172,7 +177,7 @@ export default function Page() {
             </p>
             <div className="mt-8 flex justify-center">
               <BookingButton size="lg">
-                Book Appointment
+                Book a Private Consultation
               </BookingButton>
             </div>
           </Reveal>
@@ -212,7 +217,7 @@ export default function Page() {
           </Display>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <BookingButton size="lg">
-              Book Appointment
+              Book a Private Consultation
             </BookingButton>
           </div>
         </div>

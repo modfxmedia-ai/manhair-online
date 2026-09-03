@@ -21,7 +21,7 @@ export default function NotFound() {
             Back to Home
           </Link>
           <BookingButton size="md" variant="ghost">
-            Book Appointment
+            Book a Private Consultation
           </BookingButton>
         </div>
       </div>

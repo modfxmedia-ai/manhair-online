@@ -39,11 +39,38 @@ export type Service = {
   relatedSearches: string[];
   /** 4 practical, service-specific day-to-day care & maintenance tips. */
   careTips: string[];
+  /** Unique existing photo for this service. Do not reuse across services. */
+  image: string;
+  /** Extra photos shown on this service page only. */
+  gallery?: ReadonlyArray<{ src: string; alt: string }>;
+  galleryKicker?: string;
+  galleryTitle?: { lead: string; accent: string };
 };
 
 export const SERVICES: Service[] = [
   {
     slug: "mens-hair-replacement-systems",
+    image: "/images/mens-hair-replacement-systems/1.webp",
+    galleryKicker: "The result",
+    galleryTitle: { lead: "Custom-built.", accent: "Same-day coverage." },
+    gallery: [
+      {
+        src: "/images/mens-hair-replacement-systems/2.jpeg",
+        alt: "Before and after a men's hair replacement system on the crown",
+      },
+      {
+        src: "/images/mens-hair-replacement-systems/3.jpg",
+        alt: "Before and after a men's hair replacement system in profile",
+      },
+      {
+        src: "/images/mens-hair-replacement-systems/4.jpg",
+        alt: "Styled hair replacement system with a before inset",
+      },
+      {
+        src: "/images/mens-hair-replacement-systems/5.jpg",
+        alt: "Four-angle before and after of a men's hair replacement system",
+      },
+    ],
     name: "Men's Hair Replacement Systems",
     primaryKeyword: "hair replacement systems for men",
     rationale: "Core pillar service. Custom human-hair systems, fitted and maintained.",
@@ -109,6 +136,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "mens-hair-systems",
+    image: "/images/homepage-images/6112mHYx3lL._AC_UF1000,1000_QL80_.jpg",
     name: "Men's Hair Systems",
     primaryKeyword: "hair systems for men near me",
     rationale: "High-volume search term. Distinct page from the pillar.",
@@ -174,6 +202,23 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "mens-toupees",
+    image: "/images/mens-toupees/1.jpg",
+    galleryKicker: "Modern toupee",
+    galleryTitle: { lead: "Not your father's", accent: "toupee." },
+    gallery: [
+      {
+        src: "/images/mens-toupees/2.webp",
+        alt: "A modern men's toupee shown as a full-coverage crown addition",
+      },
+      {
+        src: "/images/mens-toupees/3.jpg",
+        alt: "Styled men's toupee with lace base and mannequin fitting views",
+      },
+      {
+        src: "/images/mens-toupees/4.jpg",
+        alt: "Six modern hairstyles achieved with a men's toupee",
+      },
+    ],
     name: "Men's Toupees",
     primaryKeyword: "toupee near me",
     rationale: "Older, high-intent term. Owns the 'toupee' search cluster.",
@@ -239,6 +284,23 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "mens-hairpieces",
+    image: "/images/mens-hairpieces/1.jpg",
+    galleryKicker: "The piece",
+    galleryTitle: { lead: "Fitted to your", accent: "pattern." },
+    gallery: [
+      {
+        src: "/images/mens-hairpieces/2.webp",
+        alt: "Before and after a professionally fitted men's hairpiece",
+      },
+      {
+        src: "/images/mens-hairpieces/3.avif",
+        alt: "Highlighted men's hairpiece on models with top and base views",
+      },
+      {
+        src: "/images/mens-hairpieces/4.jpg",
+        alt: "Natural hairline on a men's hairpiece with lace base detail",
+      },
+    ],
     name: "Men's Hairpieces",
     primaryKeyword: "professional hair pieces for men",
     rationale: "1,000/mo search term. Distinct intent from 'system'.",
@@ -304,6 +366,23 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "mens-hair-units",
+    image: "/images/mens-hair-units/1.jpeg",
+    galleryKicker: "Cut in",
+    galleryTitle: { lead: "Barber blend.", accent: "Same-day unit." },
+    gallery: [
+      {
+        src: "/images/mens-hair-units/2.jpg",
+        alt: "Before and after a salt-and-pepper men's hair unit with the base shown",
+      },
+      {
+        src: "/images/mens-hair-units/3.jpg",
+        alt: "Before and after a men's hair unit with 360 waves and a skin fade",
+      },
+      {
+        src: "/images/mens-hair-units/4.jpg",
+        alt: "Before and after a curly men's hair unit blended into a fade",
+      },
+    ],
     name: "Men's Hair Units",
     primaryKeyword: "man unit hair",
     rationale: "Urban/barber vernacular term with real search volume.",
@@ -369,6 +448,23 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "mens-wigs",
+    image: "/images/mens-wigs/1.webp",
+    galleryKicker: "Full coverage",
+    galleryTitle: { lead: "A complete cap.", accent: "Real human hair." },
+    gallery: [
+      {
+        src: "/images/mens-wigs/2.jpg",
+        alt: "Fitting a men's wig and bonding it to the scalp",
+      },
+      {
+        src: "/images/mens-wigs/3.jpeg",
+        alt: "Natural-looking afro-textured men's wig with lace base detail",
+      },
+      {
+        src: "/images/mens-wigs/4.avif",
+        alt: "Men's wig result with base detail and color options",
+      },
+    ],
     name: "Men's Wigs",
     primaryKeyword: "wigs for men",
     rationale: "Broadest term. Captures searchers who don't know the terminology yet.",
@@ -434,6 +530,23 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "non-surgical-hair-replacement",
+    image: "/images/non-surgical-hair-replacement/1.webp",
+    galleryKicker: "Real results",
+    galleryTitle: { lead: "No surgery.", accent: "Same-day coverage." },
+    gallery: [
+      {
+        src: "/images/non-surgical-hair-replacement/2.jpg",
+        alt: "Before and after non-surgical hair replacement with hair system",
+      },
+      {
+        src: "/images/non-surgical-hair-replacement/3.jpeg",
+        alt: "Checking a natural hairline after non-surgical replacement",
+      },
+      {
+        src: "/images/non-surgical-hair-replacement/4.webp",
+        alt: "Crown coverage before and after non-surgical hair replacement",
+      },
+    ],
     name: "Non-Surgical Hair Replacement",
     primaryKeyword: "non surgical hair replacement",
     rationale: "Category-defining term. Key comparison-stage entry point vs. transplants.",
@@ -499,6 +612,23 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "hair-system-maintenance",
+    image: "/images/hair-system-maintenance/1.jpeg",
+    galleryKicker: "In the studio",
+    galleryTitle: { lead: "Reattachment, cleaning,", accent: "and care." },
+    gallery: [
+      {
+        src: "/images/hair-system-maintenance/2.jpg",
+        alt: "Before and after hair system reattachment",
+      },
+      {
+        src: "/images/hair-system-maintenance/3.jpg",
+        alt: "Daily brushing and hair system maintenance",
+      },
+      {
+        src: "/images/hair-system-maintenance/4.jpg",
+        alt: "Hair system base cleaned for reattachment",
+      },
+    ],
     name: "Hair System Maintenance & Reattachment",
     primaryKeyword: "hair system maintenance near me",
     rationale: "Retention and competitor-switching traffic. High lifetime value.",
@@ -566,4 +696,10 @@ export const SERVICES: Service[] = [
 
 export function getService(slug: string): Service | undefined {
   return SERVICES.find((s) => s.slug === slug);
+}
+
+export function servicePath(slug: string): string {
+  return slug === "mens-hair-replacement-systems"
+    ? "/mens-hair-replacement-systems/"
+    : `/services/${slug}/`;
 }

@@ -5,6 +5,7 @@ import { BookingButton } from "@/components/BookingButton";
 import { AuroraBlobs, Reveal, RevealGrid } from "@/components/ui/motion";
 import { JsonLd, buildPageGraph, buildServiceSchema } from "@/components/JsonLd";
 import { ClockIcon, ScissorsIcon } from "@/components/icons";
+import { FullPhoto } from "@/components/FullPhoto";
 import { SITE, SOCIAL } from "@/lib/site";
 import { SERVICES, getService } from "@/lib/seo/services";
 import { TIER1_CITIES, getCity } from "@/lib/seo/cities";
@@ -112,28 +113,38 @@ export default async function Page({ params }: { params: Promise<Params> }) {
       <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] pb-16 pt-16 md:pb-24 md:pt-40">
         <AuroraBlobs className="opacity-30" />
         <div className="mh-container relative z-10">
-          <Reveal className="max-w-3xl">
-            <p className="mh-kicker">
-              {service.primaryKeyword} &middot; {city.name}, CA
-            </p>
-            <Display as={1} size="hero" className="mt-5">
-              {service.name} in <Italic>{city.name}</Italic>
-            </Display>
-            <p className="mt-6 text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
-              {service.whatItIs}
-            </p>
-            <p className="mt-4 text-base leading-relaxed text-[color:var(--mh-ink-700)]">
-              {city.intro}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <BookingButton size="lg">
-                Book Appointment
-              </BookingButton>
-              <Button href={`/locations/${city.slug}/`} variant="ghost" size="lg">
-                All {city.name} Services
-              </Button>
-            </div>
-          </Reveal>
+          <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
+            <Reveal className="lg:col-span-6">
+              <p className="mh-kicker">
+                {service.primaryKeyword} &middot; {city.name}, CA
+              </p>
+              <Display as={1} size="hero" className="mt-5">
+                {service.name} in <Italic>{city.name}</Italic>
+              </Display>
+              <p className="mt-6 text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
+                {service.whatItIs}
+              </p>
+              <p className="mt-4 text-base leading-relaxed text-[color:var(--mh-ink-700)]">
+                {city.intro}
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <BookingButton size="lg">
+                  Book a Private Consultation
+                </BookingButton>
+                <Button href={`/locations/${city.slug}/`} variant="ghost" size="lg">
+                  All {city.name} Services
+                </Button>
+              </div>
+            </Reveal>
+            <Reveal direction="left" className="lg:col-span-6">
+              <FullPhoto
+                src={service.image}
+                alt={`${service.name} in ${city.name}`}
+                priority
+                size="hero"
+              />
+            </Reveal>
+          </div>
         </div>
       </section>
 
@@ -258,7 +269,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
             </p>
             <div className="mt-8">
               <BookingButton size="lg">
-                Book Appointment
+                Book a Private Consultation
               </BookingButton>
             </div>
           </Reveal>

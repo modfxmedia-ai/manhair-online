@@ -84,6 +84,11 @@ export default function Page() {
               Articles on the causes of hair loss and the non-surgical solutions
               that help men get their confidence back.
             </p>
+            <div className="mt-8">
+              <BookingButton size="lg">
+                Book a Private Consultation
+              </BookingButton>
+            </div>
           </Reveal>
         </div>
       </section>
@@ -111,7 +116,7 @@ export default function Page() {
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <BookingButton size="lg">
-              Book Appointment
+              Book a Private Consultation
             </BookingButton>
           </div>
         </div>

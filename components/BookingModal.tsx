@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 
 const OPEN_EVENT = "manhair:open-booking-modal";
+const GHL_FORM_SRC =
+  "https://link.manhaironline.com/widget/form/hh9qLIaLPQ8U3Lmqc9Nf";
 
 /** Dispatches the global event that opens the booking form modal. */
 export function openBookingModal() {
@@ -10,9 +12,8 @@ export function openBookingModal() {
 }
 
 /**
- * Site-wide booking form modal. Mounted once in the root layout and
- * opened from anywhere via `openBookingModal()` (see `BookingButton`
- * / `BookingLink`), since most trigger sites are Server Components.
+ * Site-wide booking modal. The form itself is the original GoHighLevel
+ * widget; we only style the chrome around it.
  */
 export function BookingModal() {
   const [open, setOpen] = useState(false);
@@ -43,42 +44,66 @@ export function BookingModal() {
     <div
       role="dialog"
       aria-modal="true"
-      aria-label="Book an appointment"
-      className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm"
+      aria-label="Book a private consultation"
+      className="fixed inset-0 z-[200] overflow-y-auto overscroll-contain bg-[#1A130E]/70 backdrop-blur-md"
       onClick={() => setOpen(false)}
     >
-      <div
-        className="relative w-full max-w-lg overflow-hidden rounded-[20px] bg-white shadow-2xl"
-        style={{ height: "min(85vh, 820px)" }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          type="button"
-          aria-label="Close"
-          onClick={() => setOpen(false)}
-          className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-[color:var(--mh-ink-950)]/80 text-lg leading-none text-white transition-colors hover:bg-[color:var(--mh-copper-600)]"
+      <div className="flex min-h-dvh items-center justify-center p-[max(0.75rem,env(safe-area-inset-top))_max(0.75rem,env(safe-area-inset-right))_max(0.75rem,env(safe-area-inset-bottom))_max(0.75rem,env(safe-area-inset-left))] sm:p-5">
+        <div
+          className="relative flex w-full max-w-[26rem] max-h-[calc(100dvh-1.5rem)] flex-col overflow-hidden rounded-2xl bg-[color:var(--mh-bg)] shadow-[0_24px_64px_-16px_rgba(26,19,14,0.5)] ring-1 ring-black/10 sm:rounded-[24px]"
+          onClick={(e) => e.stopPropagation()}
         >
-          &times;
-        </button>
-        <iframe
-          src="https://link.manhaironline.com/widget/form/hh9qLIaLPQ8U3Lmqc9Nf"
-          style={{ width: "100%", height: "100%", border: "none", borderRadius: "20px" }}
-          id="inline-hh9qLIaLPQ8U3Lmqc9Nf"
-          data-layout="{'id':'INLINE'}"
-          data-trigger-type="alwaysShow"
-          data-trigger-value=""
-          data-activation-type="alwaysActivated"
-          data-activation-value=""
-          data-deactivation-type="neverDeactivate"
-          data-deactivation-value=""
-          data-form-name="ManHair Optin"
-          data-height="798"
-          data-layout-iframe-id="inline-hh9qLIaLPQ8U3Lmqc9Nf"
-          data-form-id="hh9qLIaLPQ8U3Lmqc9Nf"
-          data-cookie-consent="true"
-          data-cookie-consent-provider="auto"
-          title="ManHair Optin"
-        />
+          <div
+            aria-hidden="true"
+            className="h-1 w-full shrink-0 bg-gradient-to-r from-[color:var(--mh-red-600)] via-[color:var(--mh-copper-500)] to-[color:var(--mh-copper-300)]"
+          />
+
+          <div className="relative shrink-0 px-4 pb-2 pt-4 text-center sm:px-5 sm:pt-5">
+            <button
+              type="button"
+              aria-label="Close"
+              onClick={() => setOpen(false)}
+              className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full border border-[color:var(--mh-border-strong)] bg-white text-[1.25rem] leading-none text-[color:var(--mh-ink-800)] transition hover:border-[color:var(--mh-copper-500)] hover:bg-[color:var(--mh-copper-500)] hover:text-white"
+            >
+              ×
+            </button>
+            <h2 className="pr-10 font-display text-[1.3rem] font-light leading-snug text-[color:var(--mh-ink-950)] sm:pr-0 sm:text-[1.5rem]">
+              Book a{" "}
+              <em className="font-light not-italic text-[color:var(--mh-copper-700)]">
+                private
+              </em>{" "}
+              consultation.
+            </h2>
+          </div>
+
+          <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-3 pb-3 sm:px-4 sm:pb-4">
+            <div className="overflow-hidden rounded-2xl bg-white ring-1 ring-[color:var(--mh-border)]">
+              <iframe
+                src={GHL_FORM_SRC}
+                id="inline-hh9qLIaLPQ8U3Lmqc9Nf"
+                title="ManHair Optin"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="ManHair Optin"
+                data-height="798"
+                data-layout-iframe-id="inline-hh9qLIaLPQ8U3Lmqc9Nf"
+                data-form-id="hh9qLIaLPQ8U3Lmqc9Nf"
+                data-cookie-consent="true"
+                data-cookie-consent-provider="auto"
+                className="block w-full border-0 bg-white"
+                style={{
+                  height: "min(32rem, calc(100dvh - 10rem))",
+                  width: "100%",
+                }}
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

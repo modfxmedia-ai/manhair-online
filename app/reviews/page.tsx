@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Card, Display, Italic, SectionLabel } from "@/components/ui";
+import { Display, Italic, SectionLabel } from "@/components/ui";
 import { BookingButton } from "@/components/BookingButton";
 import { AuroraBlobs, Reveal, RevealGrid } from "@/components/ui/motion";
 import { JsonLd, buildPageGraph } from "@/components/JsonLd";
 import { GoogleGIcon } from "@/components/icons";
 import { SITE, SOCIAL } from "@/lib/site";
 import { getPageMeta, toMetadata } from "@/lib/pages";
+import { TESTIMONIALS, GOOGLE_AVATAR_TINTS } from "@/lib/testimonials";
 
 const PAGE = getPageMeta("/reviews/")!;
 export const metadata: Metadata = toMetadata(PAGE);
@@ -16,28 +17,9 @@ export const metadata: Metadata = toMetadata(PAGE);
  * COMPLIANCE GUARDRAIL: This page must NEVER carry AggregateRating or
  * Review schema unless populated with real, verifiable review data from
  * a genuine review platform. Spec Section 7.2 is explicit: fake review
- * schema = Google manual action. Until real reviews are wired in (e.g.
- * via Google Business Profile API), keep this page as a UI-only page
- * that links out to the actual review platforms.
+ * schema = Google manual action. These cards reuse the same client
+ * testimonials shown on the homepage and stay UI-only.
  */
-
-const PLATFORMS = [
-  {
-    name: "Google",
-    body: "Read what our clients say on Google Business Profile.",
-    href: "https://www.google.com/search?q=Man+Hair+Orange+CA",
-  },
-  {
-    name: "Yelp",
-    body: "See our Yelp reviews from Orange County clients.",
-    href: "https://www.yelp.com/search?find_desc=Man+Hair&find_loc=Orange%2C+CA",
-  },
-  {
-    name: "Facebook",
-    body: "Reviews and recommendations from our Facebook community.",
-    href: "https://www.facebook.com/manhaironline/",
-  },
-];
 
 export default function Page() {
   const graph = buildPageGraph({
@@ -76,50 +58,63 @@ export default function Page() {
                 Real words from <Italic>real clients</Italic>
               </Display>
               <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
-                We&rsquo;re proud of the trust our clients place in us. Read
-                honest reviews on the platforms below, then book your own free
-                virtual consultation when you&rsquo;re ready.
+                We&rsquo;re proud of the trust our clients place in us. Here is
+                what they say about ManHair, then book your own free virtual
+                consultation when you&rsquo;re ready.
               </p>
+              <div className="mt-8 flex justify-center">
+                <BookingButton size="lg">
+                  Book a Private Consultation
+                </BookingButton>
+              </div>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* PLATFORMS */}
+      {/* REVIEWS GRID */}
       <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-16 md:py-24">
         <div className="mh-container">
           <Reveal>
-            <SectionLabel>Where To Read Reviews</SectionLabel>
+            <SectionLabel>Client Stories</SectionLabel>
             <Display as={2} size="lg" className="mt-3">
-              Verified on <Italic>every major platform</Italic>
+              More than a service. <Italic>A confidence.</Italic>
             </Display>
           </Reveal>
-          <RevealGrid className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {PLATFORMS.map((p) => (
-              <Card
-                key={p.name}
-                href={p.href}
-                padding="md"
-                accent="left"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="flex items-center gap-3">
-                  <GoogleGIcon className="h-6 w-6 text-[color:var(--mh-copper-700)]" />
-                  <p className="font-sans text-base font-semibold text-[color:var(--mh-ink-900)]">
-                    {p.name}
-                  </p>
+          <RevealGrid className="mt-10 grid gap-6 sm:grid-cols-2">
+            {TESTIMONIALS.map((t, i) => (
+              <article key={t.name} className="mh-goog-card mh-goog-card-grid">
+                <div className="mh-goog-head">
+                  <div className="mh-goog-id">
+                    <span
+                      className="mh-goog-avatar"
+                      style={{
+                        background:
+                          GOOGLE_AVATAR_TINTS[i % GOOGLE_AVATAR_TINTS.length],
+                      }}
+                    >
+                      {t.name.charAt(0)}
+                    </span>
+                    <div>
+                      <p className="mh-goog-name">{t.name}</p>
+                      <p className="mh-goog-meta">
+                        Local Guide <span className="dot" /> {t.date}
+                      </p>
+                    </div>
+                  </div>
+                  <GoogleGIcon size={22} />
                 </div>
-                <p className="mt-3 text-sm leading-relaxed text-[color:var(--mh-ink-700)]">
-                  {p.body}
+                <p className="mh-goog-stars" aria-label="5 out of 5 stars">
+                  ★★★★★
                 </p>
-              </Card>
+                <p className="mh-goog-quote">&ldquo;{t.quote}&rdquo;</p>
+                <div className="mh-goog-foot">
+                  <GoogleGIcon size={14} />
+                  Posted on Google
+                </div>
+              </article>
             ))}
           </RevealGrid>
-          <p className="mt-8 max-w-2xl text-sm text-[color:var(--mh-ink-600)]">
-            We link out to third-party review platforms rather than reproduce
-            testimonials on this page, so you can verify authenticity yourself.
-          </p>
         </div>
       </section>
 
@@ -136,7 +131,7 @@ export default function Page() {
             </p>
             <div className="mt-8">
               <BookingButton size="lg">
-                Book Appointment
+                Book a Private Consultation
               </BookingButton>
             </div>
           </Reveal>

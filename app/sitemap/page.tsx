@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Display, Italic, SectionLabel } from "@/components/ui";
+import { BookingButton } from "@/components/BookingButton";
 import { AuroraBlobs, Reveal } from "@/components/ui/motion";
 import { JsonLd, buildPageGraph } from "@/components/JsonLd";
 import { SITE, SOCIAL } from "@/lib/site";
@@ -33,13 +34,12 @@ const CORE_PAGES = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about/" },
   { label: "How It Works", href: "/how-it-works/" },
-  { label: "Pricing", href: "/pricing/" },
   { label: "Results (Before & After)", href: "/results/" },
   { label: "Reviews", href: "/reviews/" },
   { label: "FAQ", href: "/faq/" },
   { label: "Blog", href: "/blog/" },
   { label: "Locations Hub", href: "/locations/" },
-  { label: "Payment Plans (Cherry Financing)", href: "/payment-plans/" },
+  { label: "Cherry Financing", href: "/payment-plans/" },
   { label: "Products", href: "/products/" },
   { label: "Men's Hair Styles", href: "/mens-hair-styles/" },
 ];
@@ -132,6 +132,11 @@ export default function Page() {
                 conditions, locations we serve, and core pages &mdash; all in
                 one easy-to-browse list.
               </p>
+              <div className="mt-8 flex justify-center">
+                <BookingButton size="lg">
+                  Book a Private Consultation
+                </BookingButton>
+              </div>
             </div>
           </Reveal>
         </div>
