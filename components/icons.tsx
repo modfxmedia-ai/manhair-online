@@ -442,17 +442,6 @@ export function YouTubeIcon(p: IconProps) {
   );
 }
 
-export function PinterestIcon(p: IconProps) {
-  return (
-    <Base {...p}>
-      <path
-        fill="currentColor"
-        d="M12 2.4c-5.3 0-9.6 4.3-9.6 9.6 0 4 2.5 7.5 6 8.9-.1-.8-.2-1.9 0-2.7l1.3-5.4s-.3-.7-.3-1.6c0-1.6.9-2.7 2.1-2.7 1 0 1.5.7 1.5 1.6 0 1-.6 2.5-.9 3.8-.3 1.1.6 2.1 1.7 2.1 2 0 3.6-2.1 3.6-5.2 0-2.7-2-4.6-4.8-4.6-3.3 0-5.2 2.4-5.2 5 0 1 .4 2 .9 2.6l.1.4c-.1.3-.3 1-.3 1.2-.1.2-.2.3-.4.2-1.4-.7-2.3-2.8-2.3-4.5 0-3.6 2.6-6.9 7.6-6.9 4 0 7.1 2.8 7.1 6.6 0 4-2.5 7.2-6 7.2-1.2 0-2.3-.6-2.7-1.4l-.7 2.9c-.3 1-1 2.3-1.4 3 1 .3 2 .5 3.1.5 5.3 0 9.6-4.3 9.6-9.6C21.6 6.7 17.3 2.4 12 2.4Z"
-      />
-    </Base>
-  );
-}
-
 export const SocialIcon: Record<
   | "facebook"
   | "instagram"
@@ -460,8 +449,7 @@ export const SocialIcon: Record<
   | "x"
   | "tiktok"
   | "linkedin"
-  | "youtube"
-  | "pinterest",
+  | "youtube",
   (p: IconProps) => React.ReactElement
 > = {
   facebook: FacebookIcon,
@@ -471,5 +459,4 @@ export const SocialIcon: Record<
   tiktok: TikTokIcon,
   linkedin: LinkedInIcon,
   youtube: YouTubeIcon,
-  pinterest: PinterestIcon,
 };

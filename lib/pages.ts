@@ -226,7 +226,7 @@ export const PAGES: PageMeta[] = [
       "Male Pattern Baldness | Non-Surgical Hair Replacement | ManHair",
       "Male pattern baldness accounts for more than 95% of hair loss in men. See how a custom ManHair system covers it — no surgery, no downtime. Free consultation in Orange County, CA.",
       "/hair-loss/male-pattern-baldness/",
-      "/wp-content/uploads/2021/12/62.png"
+      "/images/mens-hair-replacement-systems/balding.avif"
     ),
     twitterCard: "summary_large_image",
   },

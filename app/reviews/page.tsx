@@ -3,10 +3,10 @@ import { Display, Italic, SectionLabel } from "@/components/ui";
 import { BookingButton } from "@/components/BookingButton";
 import { AuroraBlobs, Reveal, RevealGrid } from "@/components/ui/motion";
 import { JsonLd, buildPageGraph } from "@/components/JsonLd";
-import { GoogleGIcon } from "@/components/icons";
 import { SITE, SOCIAL } from "@/lib/site";
 import { getPageMeta, toMetadata } from "@/lib/pages";
-import { TESTIMONIALS, GOOGLE_AVATAR_TINTS } from "@/lib/testimonials";
+import { TESTIMONIALS } from "@/lib/testimonials";
+import { TestimonialCard } from "@/components/TestimonialCard";
 
 const PAGE = getPageMeta("/reviews/")!;
 export const metadata: Metadata = toMetadata(PAGE);
@@ -83,36 +83,12 @@ export default function Page() {
           </Reveal>
           <RevealGrid className="mt-10 grid gap-6 sm:grid-cols-2">
             {TESTIMONIALS.map((t, i) => (
-              <article key={t.name} className="mh-goog-card mh-goog-card-grid">
-                <div className="mh-goog-head">
-                  <div className="mh-goog-id">
-                    <span
-                      className="mh-goog-avatar"
-                      style={{
-                        background:
-                          GOOGLE_AVATAR_TINTS[i % GOOGLE_AVATAR_TINTS.length],
-                      }}
-                    >
-                      {t.name.charAt(0)}
-                    </span>
-                    <div>
-                      <p className="mh-goog-name">{t.name}</p>
-                      <p className="mh-goog-meta">
-                        Local Guide <span className="dot" /> {t.date}
-                      </p>
-                    </div>
-                  </div>
-                  <GoogleGIcon size={22} />
-                </div>
-                <p className="mh-goog-stars" aria-label="5 out of 5 stars">
-                  ★★★★★
-                </p>
-                <p className="mh-goog-quote">&ldquo;{t.quote}&rdquo;</p>
-                <div className="mh-goog-foot">
-                  <GoogleGIcon size={14} />
-                  Posted on Google
-                </div>
-              </article>
+              <TestimonialCard
+                key={t.name}
+                t={t}
+                index={i}
+                className="mh-goog-card mh-goog-card-grid"
+              />
             ))}
           </RevealGrid>
         </div>

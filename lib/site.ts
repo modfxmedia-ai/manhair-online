@@ -68,8 +68,7 @@ export const SOCIAL: ReadonlyArray<{
     | "x"
     | "tiktok"
     | "linkedin"
-    | "youtube"
-    | "pinterest";
+    | "youtube";
   label: string;
   href: string;
   /** True if this profile is visible in the live footer icon row. */
@@ -115,12 +114,6 @@ export const SOCIAL: ReadonlyArray<{
     platform: "youtube",
     label: "YouTube",
     href: "https://www.youtube.com/channel/UCEc9SIKrJyX-E2Sg2DnB1Gg?view_as=subscriber",
-    visibleInFooter: false,
-  },
-  {
-    platform: "pinterest",
-    label: "Pinterest",
-    href: "https://www.pinterest.com/manhaironline/",
     visibleInFooter: false,
   },
 ];

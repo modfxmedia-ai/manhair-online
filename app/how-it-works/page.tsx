@@ -14,12 +14,30 @@ const HIGHLIGHTS = [
   {
     n: "01",
     title: "experienced staff",
-    body: "It all starts with a free consultation with one of our hair replacement specialists.",
+    body: "It all starts with a free consultation with one of our hair replacement specialists, in studio or virtually from anywhere.",
   },
   {
     n: "02",
     title: "training for you",
-    body: "We will train you on how to take care of your system to save you a lot of money.",
+    body: "We will train you on how to take care of your system, including the 3–4 week reattachment, so you can do it at home and save a lot of money.",
+  },
+];
+
+const TRAVEL_STEPS = [
+  {
+    n: "01",
+    title: "Start from home",
+    body: "Book a free virtual consultation. We review photos, talk through your hair loss pattern, and design the system before you travel.",
+  },
+  {
+    n: "02",
+    title: "One trip to Orange",
+    body: "The first fitting, cut-in, and styling happen at our Orange, CA studio. Most clients fly or drive in for that visit, then leave the same day with a finished result.",
+  },
+  {
+    n: "03",
+    title: "Maintain from anywhere",
+    body: "We train you to clean and reattach the system at home. The 3–4 week refresh is a short at-home routine, so you are not flying back for every visit.",
   },
 ];
 
@@ -33,7 +51,7 @@ const STATIONS = [
   {
     n: "02",
     title: "Prepare your head",
-    body: "The ManHair system has been completely customized for you and now it's time to get your head ready for applying the unit. We will shave the surface of your head and apply the adhesive. This is a process we will personally walk you through so you can do the maintenance yourself and save a lot of money.",
+    body: "The ManHair system has been completely customized for you and now it's time to get your head ready for applying the unit. We will shave the surface of your head and apply the adhesive. This is a process we will personally walk you through so you can do the 3–4 week reattachment yourself at home. It is a short, simple refresh with no downtime and no interruption to your daily life.",
     image: "/images/how-it-works/preparehead-600x597.png",
   },
   {
@@ -131,11 +149,18 @@ export default function Page() {
             <p className="mh-kicker">What is a manhair product?</p>
             <p className="mt-6 text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
               Our hair replacement systems of the absolute highest quality within
-              the industry today made with the highest quality real humanhair. You
+              the industry today made with the highest quality real human hair. You
               will achieve an undetectable hair line with an ultra-realistic look no
               one will ever know. The system is designed specifically for your head
-              and the look you want. Our units typically last 6 months and have a
-              service to reapply the adhesive every 3 to 4 weeks.
+              and the look you want. Our units typically last 6 months.
+            </p>
+            <p className="mt-5 text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
+              About every 3 to 4 weeks the adhesive is cleaned and reapplied so the
+              bond stays secure. It is a straightforward refresh, not a medical
+              procedure: most sessions take about 30 to 90 minutes, you keep your
+              usual hair, and you go right back to work, the gym, and daily life.
+              We can do it in studio, or we train you to do it at home so there is
+              no disruption to your week.
             </p>
           </Reveal>
 
@@ -152,6 +177,42 @@ export default function Page() {
               ))}
             </RevealGrid>
           </div>
+        </div>
+      </section>
+
+      {/* ============================================================
+       * OUT OF STATE — virtual consult + one studio visit
+       * ============================================================ */}
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-12 md:py-28">
+        <div className="mh-container">
+          <Reveal>
+            <p className="mh-kicker">Not in California?</p>
+            <Display as={2} size="xl" className="mt-4 max-w-3xl">
+              We work with clients who <Italic>travel in.</Italic>
+            </Display>
+            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
+              You do not have to live in Orange County to get a ManHair system.
+              Start with a free virtual consultation from anywhere. When you are
+              ready, come to our Orange, CA studio for the fitting and cut-in,
+              then we send you home knowing how to care for it. Ongoing
+              reattachment does not require another flight unless you want a
+              studio refresh.
+            </p>
+          </Reveal>
+          <RevealGrid className="mt-10 grid gap-4 md:grid-cols-3" gap={0.08}>
+            {TRAVEL_STEPS.map((s) => (
+              <article key={s.n} className="mh-index-card">
+                <span className="mh-index-num">{s.n}</span>
+                <h3 className="font-display text-2xl font-bold text-[color:var(--mh-ink-950)]">
+                  {s.title}
+                </h3>
+                <p className="text-[color:var(--mh-ink-800)]">{s.body}</p>
+              </article>
+            ))}
+          </RevealGrid>
+          <Reveal className="mt-10">
+            <BookingButton size="lg">Book a Private Consultation</BookingButton>
+          </Reveal>
         </div>
       </section>
 

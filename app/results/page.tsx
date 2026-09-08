@@ -5,6 +5,7 @@ import { AuroraBlobs, BeforeAfterCard, Reveal } from "@/components/ui/motion";
 import { JsonLd, buildPageGraph } from "@/components/JsonLd";
 import { SITE, SOCIAL } from "@/lib/site";
 import { getPageMeta, toMetadata } from "@/lib/pages";
+import { HOME_TRANSFORMATIONS } from "@/lib/before-after";
 
 const PAGE = getPageMeta("/results/")!;
 export const metadata: Metadata = toMetadata(PAGE);
@@ -12,6 +13,11 @@ export const metadata: Metadata = toMetadata(PAGE);
 type Aspect = "square" | "portrait" | "wide";
 
 const GALLERY: { src: string; alt: string; aspect: Aspect }[] = [
+  ...HOME_TRANSFORMATIONS.map((t) => ({
+    src: t.src,
+    alt: t.alt,
+    aspect: "square" as const,
+  })),
   {
     src: "/images/before-after/results/Before-after1.jpg",
     alt: "Before and after men's hair restoration",

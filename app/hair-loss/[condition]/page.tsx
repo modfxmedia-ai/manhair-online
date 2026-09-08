@@ -6,6 +6,7 @@ import { AuroraBlobs, Reveal, RevealGrid } from "@/components/ui/motion";
 import { JsonLd, buildPageGraph } from "@/components/JsonLd";
 import { ActivityIcon, ArrowRightIcon, HelpCircleIcon } from "@/components/icons";
 import { SITE, SOCIAL } from "@/lib/site";
+import { FullPhoto } from "@/components/FullPhoto";
 import { CONDITIONS, MEDICAL_NOTE, getCondition } from "@/lib/seo/conditions";
 import { getService } from "@/lib/seo/services";
 
@@ -44,6 +45,7 @@ export async function generateMetadata({
       siteName: SITE.siteName,
       locale: SITE.locale,
       type: "website",
+      ...(condition.image ? { images: [{ url: condition.image.src }] } : {}),
     },
     twitter: { card: "summary_large_image" },
   };
@@ -91,20 +93,38 @@ export default async function Page({ params }: { params: Promise<Params> }) {
       <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] pb-16 pt-16 md:pb-24 md:pt-40">
         <AuroraBlobs className="opacity-30" />
         <div className="mh-container relative z-10">
-          <Reveal className="max-w-3xl">
-            <p className="mh-kicker">{condition.primaryKeyword}</p>
-            <Display as={1} size="hero" className="mt-5">
-              {condition.name}: <Italic>Hair Replacement Options</Italic>
-            </Display>
-            <p className="mt-6 text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
-              {condition.whatItIs}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <BookingButton size="lg">
-                Book a Private Consultation
-              </BookingButton>
-            </div>
-          </Reveal>
+          <div
+            className={
+              condition.image
+                ? "grid gap-12 lg:grid-cols-12 lg:items-center"
+                : undefined
+            }
+          >
+            <Reveal className={condition.image ? "lg:col-span-6" : "max-w-3xl"}>
+              <p className="mh-kicker">{condition.primaryKeyword}</p>
+              <Display as={1} size="hero" className="mt-5">
+                {condition.name}: <Italic>Hair Replacement Options</Italic>
+              </Display>
+              <p className="mt-6 text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
+                {condition.whatItIs}
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <BookingButton size="lg">
+                  Book a Private Consultation
+                </BookingButton>
+              </div>
+            </Reveal>
+            {condition.image ? (
+              <Reveal direction="left" className="lg:col-span-6">
+                <FullPhoto
+                  src={condition.image.src}
+                  alt={condition.image.alt}
+                  priority
+                  size="hero"
+                />
+              </Reveal>
+            ) : null}
+          </div>
         </div>
       </section>
 

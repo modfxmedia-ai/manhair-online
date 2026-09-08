@@ -22,6 +22,7 @@ export type Condition = {
   howASystemCoversIt: string;
   /** Which service pages are most relevant, by slug (see services.ts). */
   recommendedServiceSlugs: string[];
+  image?: { src: string; alt: string };
 };
 
 export const MEDICAL_NOTE =
@@ -63,6 +64,10 @@ export const CONDITIONS: Condition[] = [
     howASystemCoversIt:
       "A lighter-density system layered with your existing hair restores fullness without a full system, so the result reads as simply 'having more hair,' not a hairpiece.",
     recommendedServiceSlugs: ["mens-hair-systems", "mens-hairpieces"],
+    image: {
+      src: "/images/mens-hair-units/thinning-image.jpg",
+      alt: "Thinning hair on the crown and hairline, seen from above",
+    },
   },
   {
     slug: "crown-balding",

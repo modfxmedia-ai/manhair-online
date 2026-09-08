@@ -9,13 +9,14 @@ import { JsonLd, buildPageGraph } from "@/components/JsonLd";
 import { ActivityIcon, ArrowRightIcon, HelpCircleIcon } from "@/components/icons";
 import { SITE, SOCIAL } from "@/lib/site";
 import { getPageMeta, toMetadata } from "@/lib/pages";
+import { FullPhoto } from "@/components/FullPhoto";
 import { MEDICAL_NOTE, getCondition } from "@/lib/seo/conditions";
 import { getService } from "@/lib/seo/services";
 
 const PAGE = getPageMeta("/hair-loss/male-pattern-baldness/")!;
 export const metadata: Metadata = toMetadata(PAGE);
 
-const HERO_IMG = "/wp-content/uploads/2021/12/62.png";
+const HERO_IMG = "/images/mens-hair-replacement-systems/balding.avif";
 const IMG_PATTERN = "/wp-content/uploads/2021/12/63.png";
 
 const CTA_TICKER = [
@@ -121,16 +122,12 @@ export default function Page() {
               </div>
             </Reveal>
             <Reveal direction="left" className="lg:col-span-6">
-              <div className="mh-image-frame relative aspect-[4/3] overflow-hidden rounded-[var(--mh-radius-md)]">
-                <Image
-                  src={HERO_IMG}
-                  alt="Male pattern baldness hair replacement"
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover"
-                />
-              </div>
+              <FullPhoto
+                src={HERO_IMG}
+                alt="Man with male pattern baldness, receding hairline and thinning crown"
+                priority
+                size="hero"
+              />
             </Reveal>
           </div>
         </div>
