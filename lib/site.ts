@@ -155,6 +155,7 @@ export const PRIMARY_NAV: NavItem[] = [
     label: "About",
     href: "/about/",
     children: [
+      { label: "Book a Consultation", href: "/booking/" },
       { label: "Cherry Financing", href: "/payment-plans/" },
       { label: "Franchise", href: "/partner-program/" },
       { label: "FAQ", href: "/faq/" },
@@ -175,9 +176,7 @@ export const PRIMARY_NAV: NavItem[] = [
   { label: "Locations", href: "/locations/" },
 ];
 
-/** Header CTA label. Opens the booking form modal (see `BookingButton`)
- *  rather than linking anywhere, since /contact/ and /consultation/
- *  have been removed. */
+/** Header CTA label. Links to `/booking/` (see `BookingButton`). */
 export const HEADER_CTA = { label: "Book a Private Consultation" } as const;
 
 /** Services / sitemap-adjacent links exposed in the footer. */
@@ -199,6 +198,7 @@ export const SERVICES_NAV: Array<{ label: string; href: string }> = [
 export const FOOTER_QUICK_LINKS: Array<{ label: string; href: string }> = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about/" },
+  { label: "Book a Consultation", href: "/booking/" },
   { label: "Cherry Financing", href: "/payment-plans/" },
   { label: "Franchise", href: "/partner-program/" },
   { label: "Locations", href: "/locations/" },

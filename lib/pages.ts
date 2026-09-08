@@ -110,6 +110,20 @@ export const PAGES: PageMeta[] = [
     twitterCard: "summary_large_image",
   },
   {
+    path: "/booking/",
+    title: "Book a Free Consultation | Orange County | ManHair",
+    description:
+      "Book a free ManHair consultation online. Pick a time on the calendar for a virtual call, then visit our Orange, CA studio when you are ready.",
+    canonical: `${SITE.origin}/booking/`,
+    robots: R,
+    og: og(
+      "Book a Free Consultation | Orange County | ManHair",
+      "Book a free ManHair consultation online. Pick a time on the calendar for a virtual call, then visit our Orange, CA studio when you are ready.",
+      "/booking/"
+    ),
+    twitterCard: "summary_large_image",
+  },
+  {
     path: "/results/",
     title: "Before & After Results | Men's Hair Replacement | ManHair",
     description:

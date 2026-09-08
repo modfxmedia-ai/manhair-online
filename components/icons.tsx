@@ -182,6 +182,16 @@ export function ClockIcon(p: IconProps) {
 
 /** Mega-menu row icons — minimal single-stroke line marks. */
 
+export function CalendarIcon(p: IconProps) {
+  return (
+    <Base {...p}>
+      <rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" strokeWidth="1.6" />
+      <path d="M3 10h18" fill="none" stroke="currentColor" strokeWidth="1.6" />
+      <path d="M8 3v4M16 3v4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </Base>
+  );
+}
+
 export function CreditCardIcon(p: IconProps) {
   return (
     <Base {...p}>
