@@ -3677,20 +3677,17 @@ body {
   border: 0;
 }
 
-/* GHL form_embed.js parks booking iframes off-screen until a
-   resize handshake. Keep this calendar in normal document flow. */
+/* Keep the GHL calendar visible. Width/height are managed in BookingEmbed
+   so the widget can show time slots beside the month grid. */
 .mh-booking-embed {
   width: 100%;
-  min-height: 45rem;
+  overflow: hidden;
   background: #fff;
 }
 .mh-booking-iframe {
   display: block !important;
   position: relative !important;
   left: 0 !important;
-  width: 100% !important;
-  min-height: 45rem !important;
-  height: 62.5rem !important;
   border: none !important;
   opacity: 1 !important;
   visibility: visible !important;

@@ -55,21 +55,21 @@ export default function Page() {
     <div className="mh-light">
       <JsonLd data={graph} />
 
-      <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] pb-10 pt-16 md:pb-16 md:pt-36">
+      <section className="relative isolate overflow-hidden border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] pb-10 pt-[5.5rem] md:pb-14 md:pt-28 lg:pt-32">
         <AuroraBlobs className="opacity-30" />
         <div className="mh-container relative z-10">
           <Reveal>
-            <div className="mx-auto max-w-3xl text-center">
+            <div className="mx-auto max-w-2xl text-center">
               <p className="mh-kicker justify-center">Free virtual consultation</p>
-              <Display as={1} size="hero" className="mt-4 md:mt-5">
+              <Display as={1} size="lg" className="mt-3 md:mt-4">
                 Pick a time. We&rsquo;ll take it from <Italic>there.</Italic>
               </Display>
-              <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-[color:var(--mh-ink-800)] md:mt-6 md:text-lg">
+              <p className="mx-auto mt-3 max-w-xl text-base leading-relaxed text-[color:var(--mh-ink-800)] md:mt-4">
                 No cost, no pressure. Start from your phone or laptop, then
                 visit our Orange, CA studio when you&rsquo;re ready for a
                 fitting.
               </p>
-              <ul className="mt-6 flex flex-wrap items-center justify-center gap-2 md:mt-8">
+              <ul className="mt-4 flex flex-wrap items-center justify-center gap-2 md:mt-5">
                 {["Free", "From anywhere", "15–20 minutes"].map((chip) => (
                   <li
                     key={chip}
@@ -81,80 +81,72 @@ export default function Page() {
               </ul>
             </div>
           </Reveal>
+
+          <div className="mx-auto mt-8 max-w-[1200px] md:mt-10">
+            <div className="overflow-hidden rounded-[1.25rem] bg-white shadow-[0_24px_64px_-24px_rgba(26,19,14,0.28)] ring-1 ring-[color:var(--mh-border)] md:rounded-[1.5rem]">
+              <div
+                aria-hidden="true"
+                className="h-1 w-full bg-gradient-to-r from-[color:var(--mh-red-600)] via-[color:var(--mh-copper-500)] to-[color:var(--mh-copper-300)]"
+              />
+              <h2 className="sr-only">Select a day and time</h2>
+              <BookingEmbed />
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-8 md:py-16">
+      <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-surface)] py-12 md:py-20">
         <div className="mh-container">
-          <div className="grid items-start gap-8 lg:grid-cols-12 lg:gap-10">
-            <div className="order-2 space-y-6 lg:order-1 lg:col-span-4">
-              <Reveal>
-                <SectionLabel>What to expect</SectionLabel>
-                <Display as={2} size="md" className="mt-3">
-                  Three steps to a <Italic>private</Italic> consult
-                </Display>
-              </Reveal>
-              <ol className="space-y-4">
-                {STEPS.map((s) => (
-                  <li
-                    key={s.n}
-                    className="rounded-2xl border border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] p-4 md:p-5"
-                  >
-                    <p className="font-mono text-[0.68rem] tracking-[0.14em] text-[color:var(--mh-copper-700)]">
-                      {s.n}
-                    </p>
-                    <p className="mt-1 font-display text-xl font-semibold text-[color:var(--mh-ink-950)]">
-                      {s.title}
-                    </p>
-                    <p className="mt-1.5 text-sm leading-relaxed text-[color:var(--mh-ink-700)]">
-                      {s.body}
-                    </p>
-                  </li>
-                ))}
-              </ol>
+          <Reveal>
+            <SectionLabel>What to expect</SectionLabel>
+            <Display as={2} size="md" className="mt-3 max-w-xl">
+              Three steps to a <Italic>private</Italic> consult
+            </Display>
+          </Reveal>
 
-              <div className="rounded-2xl border border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] p-5">
-                <p className="flex items-center gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[color:var(--mh-copper-700)]">
-                  <SparklesIcon size={14} />
-                  Prefer to call?
+          <ol className="mt-8 grid gap-4 md:grid-cols-3 md:gap-5">
+            {STEPS.map((s) => (
+              <li
+                key={s.n}
+                className="rounded-2xl border border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] p-5"
+              >
+                <p className="font-mono text-[0.68rem] tracking-[0.14em] text-[color:var(--mh-copper-700)]">
+                  {s.n}
                 </p>
-                <a
-                  href={CONTACT.studio.phoneHref}
-                  className="mt-3 flex items-center gap-2 font-display text-2xl font-semibold text-[color:var(--mh-ink-950)] hover:text-[color:var(--mh-copper-700)]"
-                >
-                  <PhoneIcon size={18} />
-                  {CONTACT.studio.phone}
-                </a>
-                <p className="mt-2 flex items-center gap-2 text-sm text-[color:var(--mh-ink-700)]">
-                  <ClockIcon size={14} />
-                  {CONTACT.hoursShort}
+                <p className="mt-1 font-display text-xl font-semibold text-[color:var(--mh-ink-950)]">
+                  {s.title}
                 </p>
-                <a
-                  href={CONTACT.emailHref}
-                  className="mt-2 flex items-center gap-2 text-sm text-[color:var(--mh-ink-800)] underline-offset-4 hover:text-[color:var(--mh-copper-700)] hover:underline"
-                >
-                  <MailIcon size={14} />
-                  {CONTACT.email}
-                </a>
-              </div>
-            </div>
+                <p className="mt-1.5 text-sm leading-relaxed text-[color:var(--mh-ink-700)]">
+                  {s.body}
+                </p>
+              </li>
+            ))}
+          </ol>
 
-            <div className="order-1 lg:order-2 lg:col-span-8">
-              <div className="rounded-[1.25rem] bg-white shadow-[0_24px_64px_-24px_rgba(26,19,14,0.28)] ring-1 ring-[color:var(--mh-border)] md:rounded-[1.5rem]">
-                <div
-                  aria-hidden="true"
-                  className="h-1 w-full bg-gradient-to-r from-[color:var(--mh-red-600)] via-[color:var(--mh-copper-500)] to-[color:var(--mh-copper-300)]"
-                />
-                <div className="border-b border-[color:var(--mh-border)] px-4 py-4 text-center md:px-6 md:py-5">
-                  <p className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-[color:var(--mh-copper-700)]">
-                    ManHair calendar
-                  </p>
-                  <h2 className="mt-1 font-display text-xl font-semibold text-[color:var(--mh-ink-950)] md:text-2xl">
-                    Select a day and time
-                  </h2>
-                </div>
-                <BookingEmbed />
-              </div>
+          <div className="mt-5 rounded-2xl border border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] p-5 md:flex md:items-center md:justify-between md:gap-8 md:p-6">
+            <p className="flex items-center gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[color:var(--mh-copper-700)]">
+              <SparklesIcon size={14} />
+              Prefer to call?
+            </p>
+            <div className="mt-3 flex flex-col gap-2 md:mt-0 md:flex-row md:flex-wrap md:items-center md:gap-x-8 md:gap-y-2">
+              <a
+                href={CONTACT.studio.phoneHref}
+                className="flex items-center gap-2 font-display text-xl font-semibold text-[color:var(--mh-ink-950)] hover:text-[color:var(--mh-copper-700)] md:text-2xl"
+              >
+                <PhoneIcon size={18} />
+                {CONTACT.studio.phone}
+              </a>
+              <p className="flex items-center gap-2 text-sm text-[color:var(--mh-ink-700)]">
+                <ClockIcon size={14} />
+                {CONTACT.hoursShort}
+              </p>
+              <a
+                href={CONTACT.emailHref}
+                className="flex items-center gap-2 text-sm text-[color:var(--mh-ink-800)] underline-offset-4 hover:text-[color:var(--mh-copper-700)] hover:underline"
+              >
+                <MailIcon size={14} />
+                {CONTACT.email}
+              </a>
             </div>
           </div>
         </div>
