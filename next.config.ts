@@ -12,14 +12,11 @@ const nextConfig: NextConfig = {
   // Image optimization: allow next/image to source from the live origin
   // (used until we finish migrating assets to first-party storage).
   //
-  // NOTE: `unoptimized: true` bypasses Next's built-in optimizer for
-  // all <Image> instances. We do this because our /wp-content/* URLs
-  // are served through the rewrite fallback below — the optimizer
-  // fetches internally (not through the rewrite pipeline), which
-  // produces spurious 400s. Once assets are moved off the WP origin
-  // this flag can be removed and remotePatterns takes over.
+  // Local /images/* go through the optimizer. WordPress /wp-content/*
+  // images set `unoptimized` on the <Image> because the optimizer
+  // cannot follow the rewrite fallback below.
   images: {
-    unoptimized: true,
+    unoptimized: false,
     remotePatterns: [
       {
         protocol: "https",
@@ -56,12 +53,29 @@ const nextConfig: NextConfig = {
   // a permanent redirect.
   async redirects() {
     return [
+      // Apex → www, matching the live WordPress host.
+      {
+        source: "/",
+        has: [{ type: "host", value: "manhaironline.com" }],
+        destination: `${LIVE_ORIGIN}/`,
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "manhaironline.com" }],
+        destination: `${LIVE_ORIGIN}/:path*`,
+        permanent: true,
+      },
       { source: "/before-after", destination: "/results/", permanent: true },
       { source: "/about-us", destination: "/about/", permanent: true },
       { source: "/prices", destination: "/", permanent: true },
       { source: "/prices/", destination: "/", permanent: true },
       { source: "/pricing", destination: "/", permanent: true },
       { source: "/pricing/", destination: "/", permanent: true },
+      { source: "/landing-page", destination: "/", permanent: true },
+      { source: "/landing-page/", destination: "/", permanent: true },
+      { source: "/partnerprogram", destination: "/partner-program/", permanent: true },
+      { source: "/partnerprogram/", destination: "/partner-program/", permanent: true },
     ];
   },
 };

@@ -377,9 +377,10 @@ export default function HomePage() {
     origin: SITE.origin,
     name: SITE.orgName,
     telephone: CONTACT.studio.phone,
-    streetAddress: CONTACT.studio.streetLine1,
-    addressLocality: CONTACT.studio.streetLine2,
-    addressRegion: CONTACT.studio.region,
+    streetAddress: CONTACT.studio.streetAddress,
+    addressLocality: CONTACT.studio.addressLocality,
+    addressRegion: CONTACT.studio.addressRegion,
+    postalCode: CONTACT.studio.postalCode,
     url: `${SITE.origin}/`,
     logoUrl: `${SITE.origin}${SITE.logo.url}`,
     sameAs: SOCIAL.map((s) => s.href),
@@ -420,7 +421,7 @@ export default function HomePage() {
 
             <Reveal direction="up" delay={0.14} duration={0.7}>
               <h1 className="mh-hero2-title mt-6">
-                Real human hair.
+                Men&rsquo;s hair replacement in Orange County.
                 <span className="accent">Made just for you.</span>
               </h1>
             </Reveal>
@@ -447,7 +448,7 @@ export default function HomePage() {
                 <span className="mh-avatar-stack">
                   {[TESTIMONIALS[0], TESTIMONIALS[1], TESTIMONIALS[3]].map((t) => (
                     <span key={t.name} className="relative block h-9 w-9">
-                      <Image src={t.photo!} alt="" fill sizes="36px" className="object-cover" />
+                      <Image src={t.photo!} alt={`${t.name}, ManHair client`} fill sizes="36px" unoptimized className="object-cover" />
                     </span>
                   ))}
                   <span className="relative flex h-9 w-9 items-center justify-center rounded-full bg-[color:var(--mh-copper-500)] font-display text-[0.6rem] font-bold text-[color:var(--mh-on-accent)]">
@@ -638,6 +639,7 @@ export default function HomePage() {
                     src={IMG_DASHBOARD}
                     alt="ManHair client: real human hair replacement result"
                     fill
+                    priority
                     sizes="(max-width: 768px) 90vw, 40vw"
                     className="mh-image-kenburns object-cover"
                   />

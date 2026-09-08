@@ -127,20 +127,6 @@ export function buildPageGraph(opts: {
     name: siteName,
     description: siteDescription,
     publisher: { "@id": `${origin}/#organization` },
-    potentialAction: [
-      {
-        "@type": "SearchAction",
-        target: {
-          "@type": "EntryPoint",
-          urlTemplate: `${origin}/?s={search_term_string}`,
-        },
-        "query-input": {
-          "@type": "PropertyValueSpecification",
-          valueRequired: true,
-          valueName: "search_term_string",
-        },
-      },
-    ],
     inLanguage,
   });
 
@@ -207,11 +193,23 @@ export function buildLocalBusinessSchema(opts: {
   streetAddress: string;
   addressLocality: string;
   addressRegion: string;
+  postalCode?: string;
   url: string;
   logoUrl: string;
   sameAs: readonly string[];
 }) {
-  const { origin, name, telephone, streetAddress, addressLocality, addressRegion, url, logoUrl, sameAs } = opts;
+  const {
+    origin,
+    name,
+    telephone,
+    streetAddress,
+    addressLocality,
+    addressRegion,
+    postalCode,
+    url,
+    logoUrl,
+    sameAs,
+  } = opts;
   return {
     "@context": "https://schema.org",
     "@type": "HairSalon",
@@ -225,6 +223,7 @@ export function buildLocalBusinessSchema(opts: {
       streetAddress,
       addressLocality,
       addressRegion,
+      ...(postalCode ? { postalCode } : {}),
       addressCountry: "US",
     },
     sameAs: [...sameAs],

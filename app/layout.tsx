@@ -8,6 +8,7 @@ import { IntroSplash } from "@/components/IntroSplash";
 import { JsonLd } from "@/components/JsonLd";
 import { BookingModal } from "@/components/BookingModal";
 import { SITE, SOCIAL } from "@/lib/site";
+import { DEFAULT_OG } from "@/lib/seo/meta";
 
 const sans = Manrope({
   variable: "--font-sans",
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE.origin),
   title: {
     default: SITE.siteName,
-    template: "%s",
+    template: "%s | ManHair",
   },
   description: SITE.brandStatement,
   applicationName: SITE.siteName,
@@ -45,9 +46,23 @@ export const metadata: Metadata = {
     siteName: SITE.siteName,
     locale: SITE.locale,
     type: "website",
+    title: SITE.siteName,
+    description: SITE.brandStatement,
+    url: `${SITE.origin}/`,
+    images: [
+      {
+        url: DEFAULT_OG.url,
+        width: DEFAULT_OG.width,
+        height: DEFAULT_OG.height,
+        alt: DEFAULT_OG.alt,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
+    title: SITE.siteName,
+    description: SITE.brandStatement,
+    images: [DEFAULT_OG.url],
   },
   robots: {
     index: true,
@@ -71,20 +86,6 @@ const SITE_GRAPH = {
       name: SITE.siteName,
       description: SITE.tagline,
       publisher: { "@id": `${SITE.origin}/#organization` },
-      potentialAction: [
-        {
-          "@type": "SearchAction",
-          target: {
-            "@type": "EntryPoint",
-            urlTemplate: `${SITE.origin}/?s={search_term_string}`,
-          },
-          "query-input": {
-            "@type": "PropertyValueSpecification",
-            valueRequired: true,
-            valueName: "search_term_string",
-          },
-        },
-      ],
       inLanguage: "en-US",
     },
     {

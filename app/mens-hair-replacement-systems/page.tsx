@@ -14,6 +14,7 @@ import {
 import { FullPhoto } from "@/components/FullPhoto";
 import { SITE, SOCIAL } from "@/lib/site";
 import { SERVICES, getService } from "@/lib/seo/services";
+import { pageTitle, socialMetadata } from "@/lib/seo/meta";
 import { TIER1_CITIES } from "@/lib/seo/cities";
 
 const PATH = "/mens-hair-replacement-systems/";
@@ -23,23 +24,19 @@ const NEARBY_CITIES = TIER1_CITIES.slice(0, 8);
 const SHOTS = PILLAR.gallery ?? [];
 
 const TITLE = "Men's Hair Replacement Systems | Orange, CA | ManHair";
-const DESCRIPTION =
-  "Custom men's hair replacement systems, real human hair, fitted and maintained at our Orange, CA studio. Start with a free virtual consultation.";
+const DESCRIPTION = PILLAR.metaDescription;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.origin),
-  title: TITLE,
+  title: pageTitle(TITLE),
   description: DESCRIPTION,
   alternates: { canonical: `${SITE.origin}${PATH}` },
-  openGraph: {
+  ...socialMetadata({
     title: TITLE,
     description: DESCRIPTION,
     url: `${SITE.origin}${PATH}`,
-    siteName: SITE.siteName,
-    locale: SITE.locale,
-    type: "website",
-  },
-  twitter: { card: "summary_large_image" },
+    image: PILLAR.image,
+  }),
 };
 
 export default function Page() {
@@ -382,7 +379,7 @@ export default function Page() {
                 <div className="relative aspect-[16/10]">
                   <Image
                     src={s.image}
-                    alt=""
+                    alt={s.name}
                     fill
                     sizes="(max-width: 768px) 100vw, 25vw"
                     className="object-cover"

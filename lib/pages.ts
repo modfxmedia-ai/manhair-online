@@ -1,25 +1,23 @@
 import type { Metadata } from "next";
 import { SITE } from "./site";
+import {
+  DEFAULT_OG,
+  INDEXABLE,
+  NOINDEX,
+  pageTitle,
+  socialMetadata,
+} from "./seo/meta";
 
 /**
- * The full inventory of pages carried over from manhaironline.com.
- * Each entry preserves the verbatim <title>, meta description, canonical,
- * and OG values captured from the live site so metadata parity is 100%.
- *
- * `path` is always the exact live URL path (with trailing slash).
+ * Page metadata inventory. Titles and descriptions are unique,
+ * 120–160 character descriptions, and indexable unless noted.
  */
 export type PageMeta = {
-  /** Verbatim URL path on the live site (with trailing slash). */
   path: string;
-  /** Verbatim <title> from live site. */
   title: string;
-  /** Verbatim meta description; null when the live page omits one. */
   description: string | null;
-  /** Verbatim canonical URL. */
   canonical: string;
-  /** Robots directive from the live page. */
   robots: string;
-  /** OpenGraph values from the live page. */
   og: {
     title: string | null;
     description: string | null;
@@ -30,22 +28,17 @@ export type PageMeta = {
     locale: string | null;
   };
   twitterCard?: string | null;
-  /** True if the page is a blog post (routed via [slug]/page.tsx). */
   isPost?: boolean;
-  /** True if the page is a category archive. */
   isCategory?: boolean;
 };
 
-// NOTE: metadata objects below are the SAME strings served today by manhaironline.com.
-// Do not paraphrase — SEO relies on exact-match tokens.
-
-const R = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
+const R = INDEXABLE;
 
 function og(
   title: string | null,
   description: string | null,
   path: string,
-  image: string | null = null,
+  image: string | null = DEFAULT_OG.url,
   type: string = "website"
 ) {
   return {
@@ -62,57 +55,56 @@ function og(
 export const PAGES: PageMeta[] = [
   {
     path: "/",
-    title: "Professional Men Toupee Hairstylists, Orange County | ManHair",
+    title: "Men's Hair Replacement Systems in Orange County | ManHair",
     description:
-      "Professional men toupee hairstylists. ManHair is the most trusted hair replacement clinic in Orange County, CA. Trust our restoration experts for hair loss solutions.",
+      "Custom men's hair replacement systems in Orange County, CA. Real human hair, fitted at our Orange studio. Book a free virtual consultation.",
     canonical: `${SITE.origin}/`,
     robots: R,
     og: og(
-      "Professional Men Toupee Hairstylists, Orange County | ManHair",
-      "Professional men toupee hairstylists. ManHair is the most trusted hair replacement clinic in Orange County, CA. Trust our restoration experts for hair loss solutions.",
-      "/",
-      `${SITE.origin}/wp-content/uploads/2022/10/unnamed.jpg`
+      "Men's Hair Replacement Systems in Orange County | ManHair",
+      "Custom men's hair replacement systems in Orange County, CA. Real human hair, fitted at our Orange studio. Book a free virtual consultation.",
+      "/"
     ),
     twitterCard: "summary_large_image",
   },
   {
     path: "/how-it-works/",
-    title: "How It Works | Orange County's Leading Hair Loss Solution for Men",
+    title: "How ManHair Hair Systems Work | Orange County",
     description:
-      "ManHair is the leading hair loss solution for men in Orange County, CA. Unique and personalized services every man deserves.",
+      "See how a ManHair system is fitted in Orange County, CA. Virtual consult first, then one studio visit. No surgery and no downtime.",
     canonical: `${SITE.origin}/how-it-works/`,
     robots: R,
     og: og(
-      "How It Works | Orange County's Leading Hair Loss Solution for Men",
-      "ManHair is the leading hair loss solution for men in Orange County, CA. Unique and personalized services every man deserves.",
+      "How ManHair Hair Systems Work | Orange County",
+      "See how a ManHair system is fitted in Orange County, CA. Virtual consult first, then one studio visit. No surgery and no downtime.",
       "/how-it-works/"
     ),
     twitterCard: "summary_large_image",
   },
   {
     path: "/about/",
-    title: "About ManHair Online - Fast Hair Loss Solution In Orange County",
+    title: "About ManHair | Non-Surgical Hair Replacement Orange County",
     description:
-      "ManHair Online offers a fast and affordable solution for any mens hair type. Learn about ManHair Online to discover your solution now.",
+      "Meet ManHair, Orange County's non-surgical hair replacement studio. Custom human-hair systems, private fittings, and ongoing care.",
     canonical: `${SITE.origin}/about/`,
     robots: R,
     og: og(
-      "About ManHair Online - Fast Hair Loss Solution In Orange County",
-      "ManHair Online offers a fast and affordable solution for any mens hair type. Learn about ManHair Online to discover your solution now.",
+      "About ManHair | Non-Surgical Hair Replacement Orange County",
+      "Meet ManHair, Orange County's non-surgical hair replacement studio. Custom human-hair systems, private fittings, and ongoing care.",
       "/about/"
     ),
     twitterCard: "summary_large_image",
   },
   {
     path: "/payment-plans/",
-    title: "Cherry Financing | ManHair | Hair Restoration Orange County, CA",
+    title: "Cherry Financing for Hair Systems | ManHair Orange County",
     description:
-      "Cherry financing for ManHair hair systems. Easy monthly payments, no hard credit check, 60-second approval.",
+      "Pay for a ManHair system with Cherry financing. Easy monthly payments, no hard credit check, and a 60-second application.",
     canonical: `${SITE.origin}/payment-plans/`,
     robots: R,
     og: og(
-      "Cherry Financing | ManHair | Hair Restoration Orange County, CA",
-      "Cherry financing for ManHair hair systems. Easy monthly payments, no hard credit check, 60-second approval.",
+      "Cherry Financing for Hair Systems | ManHair Orange County",
+      "Pay for a ManHair system with Cherry financing. Easy monthly payments, no hard credit check, and a 60-second application.",
       "/payment-plans/"
     ),
     twitterCard: "summary_large_image",
@@ -140,77 +132,77 @@ export const PAGES: PageMeta[] = [
     robots: R,
     og: og(
       "Client Reviews | Men's Hair Replacement | Orange, CA | ManHair",
-      "What our clients say about their experience at ManHair in Orange, CA.",
+      "What our clients say about their experience at ManHair in Orange, CA. Read reviews before booking your free virtual consultation.",
       "/reviews/"
     ),
     twitterCard: "summary_large_image",
   },
   {
     path: "/faq/",
-    title: "FAQ - Learn About Men's Hair Transplant Alternative Options",
+    title: "FAQ | Men's Hair Replacement Systems in Orange County",
     description:
-      "Men searching for a great alternative to getting a hair transplant can find men's health answers at ManHair Online.",
+      "Answers about ManHair non-surgical hair systems, fittings, maintenance, and travel. Book a free virtual consultation in Orange, CA.",
     canonical: `${SITE.origin}/faq/`,
     robots: R,
     og: og(
-      "FAQ - Learn About Men's Hair Transplant Alternative Options",
-      "Men searching for a great alternative to getting a hair transplant can find men's health answers at ManHair Online.",
+      "FAQ | Men's Hair Replacement Systems in Orange County",
+      "Answers about ManHair non-surgical hair systems, fittings, maintenance, and travel. Book a free virtual consultation in Orange, CA.",
       "/faq/"
     ),
     twitterCard: "summary_large_image",
   },
   {
     path: "/locations/",
-    title: "ManHair Online - Man Hair Replacement System For Hair Loss",
+    title: "Hair Replacement Locations We Serve | ManHair Orange County",
     description:
-      "ManHair is Orange County's leading, innovative non-surgical Man Hair Replacement System. Get Started Today - Call (904) 526-8500",
+      "ManHair serves men across Orange County and nearby cities from one Orange, CA studio. Find your city and book a free virtual consult.",
     canonical: `${SITE.origin}/locations/`,
     robots: R,
     og: og(
-      "ManHair Online - Man Hair Replacement System For Hair Loss",
-      "ManHair is Orange County's leading, innovative non-surgical Man Hair Replacement System. Get Started Today - Call (904) 526-8500",
+      "Hair Replacement Locations We Serve | ManHair Orange County",
+      "ManHair serves men across Orange County and nearby cities from one Orange, CA studio. Find your city and book a free virtual consult.",
       "/locations/"
     ),
     twitterCard: "summary_large_image",
   },
   {
     path: "/orange-county-ca/",
-    title: "ManHair Online - Man Hair Replacement System For Hair Loss",
+    title: "Hair Replacement in Orange County, CA | ManHair Studio",
     description:
-      "ManHair is Orange County's leading, innovative non-surgical Man Hair Replacement System. Get Started Today - Call (904) 526-8500",
+      "Visit ManHair in Orange County, CA for custom men's hair systems. Free virtual consult, then a fitting at our Orange studio.",
     canonical: `${SITE.origin}/orange-county-ca/`,
     robots: R,
     og: og(
-      "ManHair Online - Man Hair Replacement System For Hair Loss",
-      "ManHair is Orange County's leading, innovative non-surgical Man Hair Replacement System. Get Started Today - Call (904) 526-8500",
+      "Hair Replacement in Orange County, CA | ManHair Studio",
+      "Visit ManHair in Orange County, CA for custom men's hair systems. Free virtual consult, then a fitting at our Orange studio.",
       "/orange-county-ca/"
     ),
     twitterCard: "summary_large_image",
   },
   {
     path: "/products/",
-    title: "Hair Products | Orange County's Leading Hair Loss Solution for Men",
+    title: "Hair System Care Products | ManHair Orange County",
     description:
-      "ManHair is the leading hair loss solution for men in Orange County, California. View our hair products online and get started from home.",
+      "Shop maintenance products for your ManHair system. Adhesives, cleaners, and care supplies used at our Orange County studio.",
     canonical: `${SITE.origin}/products/`,
     robots: R,
     og: og(
-      "Hair Products | Orange County's Leading Hair Loss Solution for Men",
-      "ManHair is the leading hair loss solution for men in Orange County, California. View our hair products online and get started from home.",
+      "Hair System Care Products | ManHair Orange County",
+      "Shop maintenance products for your ManHair system. Adhesives, cleaners, and care supplies used at our Orange County studio.",
       "/products/"
     ),
     twitterCard: "summary_large_image",
   },
   {
     path: "/blog/",
-    title: "Man Hair Online Blog - Best Hair Transplant In USA",
+    title: "Hair Replacement Blog | Non-Surgical Systems | ManHair",
     description:
-      "ManHair has become the best hair transplant in USA. Discover blog posts that cover several hair loss and hair transplant topics online.",
+      "Guides on men's hair systems, thinning hair, and non-surgical replacement from ManHair in Orange County, CA. Start with a free consult.",
     canonical: `${SITE.origin}/blog/`,
     robots: R,
     og: og(
-      "Man Hair Online Blog - Best Hair Transplant In USA",
-      "ManHair has become the best hair transplant in USA. Discover blog posts that cover several hair loss and hair transplant topics online.",
+      "Hair Replacement Blog | Non-Surgical Systems | ManHair",
+      "Guides on men's hair systems, thinning hair, and non-surgical replacement from ManHair in Orange County, CA. Start with a free consult.",
       "/blog/"
     ),
     twitterCard: "summary_large_image",
@@ -219,140 +211,138 @@ export const PAGES: PageMeta[] = [
     path: "/hair-loss/male-pattern-baldness/",
     title: "Male Pattern Baldness | Non-Surgical Hair Replacement | ManHair",
     description:
-      "Male pattern baldness accounts for more than 95% of hair loss in men. See how a custom ManHair system covers it — no surgery, no downtime. Free consultation in Orange County, CA.",
+      "Male pattern baldness is the most common hair loss in men. See how a ManHair system covers it — no surgery. Orange County, CA.",
     canonical: `${SITE.origin}/hair-loss/male-pattern-baldness/`,
     robots: R,
     og: og(
       "Male Pattern Baldness | Non-Surgical Hair Replacement | ManHair",
-      "Male pattern baldness accounts for more than 95% of hair loss in men. See how a custom ManHair system covers it — no surgery, no downtime. Free consultation in Orange County, CA.",
-      "/hair-loss/male-pattern-baldness/",
-      "/images/mens-hair-replacement-systems/balding.avif"
+      "Male pattern baldness is the most common hair loss in men. See how a ManHair system covers it — no surgery. Orange County, CA.",
+      "/hair-loss/male-pattern-baldness/"
     ),
     twitterCard: "summary_large_image",
   },
   {
     path: "/alopecia-hair-loss/",
-    title: "Alopecia for Men's Hair Growth | Hair Replacement for Men | ManHair",
+    title: "Alopecia Hair Coverage for Men | ManHair Orange County",
     description:
-      "Get rid of alopecia for hair growth. Cost effective Alopecia hair replacement for men. Regain your confidence and look your absolute best with ManHair.",
+      "A custom hair system can cover alopecia-related hair loss. Cosmetic coverage at ManHair in Orange, CA — not a medical treatment.",
     canonical: `${SITE.origin}/alopecia-hair-loss/`,
     robots: R,
     og: og(
-      "Alopecia for Men's Hair Growth | Hair Replacement for Men | ManHair",
-      "Get rid of alopecia for hair growth. Cost effective Alopecia hair replacement for men. Regain your confidence and look your absolute best with ManHair.",
+      "Alopecia Hair Coverage for Men | ManHair Orange County",
+      "A custom hair system can cover alopecia-related hair loss. Cosmetic coverage at ManHair in Orange, CA — not a medical treatment.",
       "/alopecia-hair-loss/"
     ),
     twitterCard: "summary_large_image",
   },
   {
     path: "/mens-hair-styles/",
-    title: "Toupee Hair System Orange County | Hair Pieces for Men",
+    title: "Men's Hair Styles for Hair Systems | Orange County",
     description:
-      "Toupee Hair System, Orange County. Shop for hair pieces for men. Check out these mens hair style trend at ManHair Online.10+ years of knowledge & experience.",
+      "See haircut and style options for a ManHair system. Custom color, density, and cut-in at our Orange County, CA studio. Book a consult.",
     canonical: `${SITE.origin}/mens-hair-styles/`,
     robots: R,
     og: og(
-      "Toupee Hair System Orange County | Hair Pieces for Men",
-      "Toupee Hair System, Orange County. Shop for hair pieces for men. Check out these mens hair style trend at ManHair Online.10+ years of knowledge & experience.",
+      "Men's Hair Styles for Hair Systems | Orange County",
+      "See haircut and style options for a ManHair system. Custom color, density, and cut-in at our Orange County, CA studio. Book a consult.",
       "/mens-hair-styles/"
     ),
     twitterCard: "summary_large_image",
   },
   {
     path: "/receding-hairline-restoration/",
-    title: "Non Surgical Hair Replacement for Men, Orange County | ManHair",
+    title: "Receding Hairline Restoration | Non-Surgical | ManHair",
     description:
-      "Acclaimed non surgical hair replacement for men in Orange County. we have the best hair replacement systems. Discover real solutions for receding hairline patients.",
+      "Restore a receding hairline with a custom ManHair system in Orange County. Non-surgical coverage and a free virtual consultation.",
     canonical: `${SITE.origin}/receding-hairline-restoration/`,
     robots: R,
     og: og(
-      "Non Surgical Hair Replacement for Men, Orange County | ManHair",
-      "Acclaimed non surgical hair replacement for men in Orange County. we have the best hair replacement systems. Discover real solutions for receding hairline patients.",
+      "Receding Hairline Restoration | Non-Surgical | ManHair",
+      "Restore a receding hairline with a custom ManHair system in Orange County. Non-surgical coverage and a free virtual consultation.",
       "/receding-hairline-restoration/"
     ),
     twitterCard: "summary_large_image",
   },
   {
-    path: "/partnerprogram/",
-    title: "ManHair Online Franchise - Fast Hair Loss Solution In Orange County",
+    path: "/partner-program/",
+    title: "ManHair Franchise & Partner Program | Orange County",
     description:
-      "ManHair Online offers a fast and affordable solution for any mens hair type. Learn about ManHair Online to discover your solution now.",
-    canonical: `${SITE.origin}/partnerprogram/`,
+      "Learn about the ManHair partner program for stylists and owners. Bring non-surgical hair replacement to your market, with studio support.",
+    canonical: `${SITE.origin}/partner-program/`,
     robots: R,
     og: og(
-      "ManHair Online Franchise - Fast Hair Loss Solution In Orange County",
-      "ManHair Online offers a fast and affordable solution for any mens hair type. Learn about ManHair Online to discover your solution now.",
-      "/partnerprogram/"
+      "ManHair Franchise & Partner Program | Orange County",
+      "Learn about the ManHair partner program for stylists and owners. Bring non-surgical hair replacement to your market, with studio support.",
+      "/partner-program/"
     ),
     twitterCard: "summary_large_image",
   },
   {
     path: "/privacy-policy/",
-    title: "Privacy Policy | Orange County's Leading Hair Loss Solution for Men",
+    title: "Privacy Policy | How ManHair Uses Your Information",
     description:
-      "ManHair is the leading hair loss solution for men in Orange County, California. Unique and personalized services for every hair type.",
+      "Read how ManHair collects and uses personal information when you book a consultation or visit manhaironline.com from Orange County.",
     canonical: `${SITE.origin}/privacy-policy/`,
     robots: R,
     og: og(
-      "Privacy Policy | Orange County's Leading Hair Loss Solution for Men",
-      "ManHair is the leading hair loss solution for men in Orange County, California. Unique and personalized services for every hair type.",
+      "Privacy Policy | How ManHair Uses Your Information",
+      "Read how ManHair collects and uses personal information when you book a consultation or visit manhaironline.com from Orange County.",
       "/privacy-policy/"
     ),
     twitterCard: "summary_large_image",
   },
   {
     path: "/refund-policy/",
-    title: "Refund Policy | Orange County's Leading Hair Loss Solution for Men",
+    title: "Refund Policy | ManHair Hair System Purchases",
     description:
-      "ManHair is the leading hair loss solution for men in Orange County, California. Unique and personalized services for every hair type.",
+      "Review ManHair's refund terms for custom hair systems and studio services booked through our Orange County, CA location.",
     canonical: `${SITE.origin}/refund-policy/`,
     robots: R,
     og: og(
-      "Refund Policy | Orange County's Leading Hair Loss Solution for Men",
-      "ManHair is the leading hair loss solution for men in Orange County, California. Unique and personalized services for every hair type.",
+      "Refund Policy | ManHair Hair System Purchases",
+      "Review ManHair's refund terms for custom hair systems and studio services booked through our Orange County, CA location.",
       "/refund-policy/"
     ),
     twitterCard: "summary_large_image",
   },
   {
     path: "/terms-of-service/",
-    title: "Terms of Service | Orange County's Leading Hair Loss Solution for Men",
+    title: "Terms of Service | ManHair Online",
     description:
-      "ManHair is the leading hair loss solution for men in Orange County, California. Unique and personalized services for every hair type.",
+      "These terms govern your use of manhaironline.com and ManHair hair replacement services booked in Orange County, California.",
     canonical: `${SITE.origin}/terms-of-service/`,
     robots: R,
     og: og(
-      "Terms of Service | Orange County's Leading Hair Loss Solution for Men",
-      "ManHair is the leading hair loss solution for men in Orange County, California. Unique and personalized services for every hair type.",
+      "Terms of Service | ManHair Online",
+      "These terms govern your use of manhaironline.com and ManHair hair replacement services booked in Orange County, California.",
       "/terms-of-service/"
     ),
     twitterCard: "summary_large_image",
   },
   {
     path: "/landing-page/",
-    title:
-      "Manhair Landing Page | Orange County's Leading Hair Loss Solution for Men",
+    title: "ManHair Consultation Landing Page",
     description:
-      "ManHair is the leading hair loss solution for men in Orange County, California. Unique and personalized services for every hair type.",
-    canonical: `${SITE.origin}/landing-page/`,
-    robots: R,
+      "This legacy booking landing page is no longer used. Start a free ManHair virtual consultation from the Orange County homepage.",
+    canonical: `${SITE.origin}/`,
+    robots: NOINDEX,
     og: og(
-      "Manhair Landing Page | Orange County's Leading Hair Loss Solution for Men",
-      "ManHair is the leading hair loss solution for men in Orange County, California. Unique and personalized services for every hair type.",
-      "/landing-page/"
+      "ManHair Consultation Landing Page",
+      "This legacy booking landing page is no longer used. Start a free ManHair virtual consultation from the Orange County homepage.",
+      "/"
     ),
     twitterCard: "summary_large_image",
   },
-  // Category archives
   {
     path: "/category/hair-loss/",
-    title: "Hair Loss Archives | ManHair | Hair Restoration Orange County, CA",
-    description: null,
+    title: "Hair Loss Articles | ManHair Orange County Blog",
+    description:
+      "Read ManHair articles on male hair loss, thinning, and non-surgical coverage options from our Orange County, CA studio today.",
     canonical: `${SITE.origin}/category/hair-loss/`,
     robots: R,
     og: og(
-      "Hair Loss Archives | ManHair | Hair Restoration Orange County, CA",
-      null,
+      "Hair Loss Articles | ManHair Orange County Blog",
+      "Read ManHair articles on male hair loss, thinning, and non-surgical coverage options from our Orange County, CA studio today.",
       "/category/hair-loss/"
     ),
     twitterCard: "summary_large_image",
@@ -360,14 +350,14 @@ export const PAGES: PageMeta[] = [
   },
   {
     path: "/category/hair-replacement/",
-    title:
-      "Hair Replacement Archives | ManHair | Hair Restoration Orange County, CA",
-    description: null,
+    title: "Hair Replacement Articles | ManHair Orange County",
+    description:
+      "Blog posts on men's hair systems, fittings, and non-surgical replacement from ManHair in Orange County, CA. Read before you book.",
     canonical: `${SITE.origin}/category/hair-replacement/`,
     robots: R,
     og: og(
-      "Hair Replacement Archives | ManHair | Hair Restoration Orange County, CA",
-      null,
+      "Hair Replacement Articles | ManHair Orange County",
+      "Blog posts on men's hair systems, fittings, and non-surgical replacement from ManHair in Orange County, CA. Read before you book.",
       "/category/hair-replacement/"
     ),
     twitterCard: "summary_large_image",
@@ -375,13 +365,14 @@ export const PAGES: PageMeta[] = [
   },
   {
     path: "/category/uncategorized/",
-    title: "Uncategorized Archives | ManHair | Hair Restoration Orange County, CA",
-    description: null,
+    title: "More Hair System Articles | ManHair Blog",
+    description:
+      "Additional ManHair posts on hair systems, confidence, and non-surgical replacement for men in Orange County, California.",
     canonical: `${SITE.origin}/category/uncategorized/`,
     robots: R,
     og: og(
-      "Uncategorized Archives | ManHair | Hair Restoration Orange County, CA",
-      null,
+      "More Hair System Articles | ManHair Blog",
+      "Additional ManHair posts on hair systems, confidence, and non-surgical replacement for men in Orange County, California.",
       "/category/uncategorized/"
     ),
     twitterCard: "summary_large_image",
@@ -389,12 +380,10 @@ export const PAGES: PageMeta[] = [
   },
 ];
 
-/** Look up page metadata by exact live URL path. */
 export function getPageMeta(path: string): PageMeta | undefined {
   return PAGES.find((p) => p.path === path);
 }
 
-/** Convert PageMeta to a Next.js Metadata object with SEO parity. */
 export function toMetadata(m: PageMeta | undefined): Metadata {
   if (!m) {
     return {
@@ -402,23 +391,19 @@ export function toMetadata(m: PageMeta | undefined): Metadata {
       title: SITE.siteName,
     };
   }
+  const description = m.description ?? undefined;
+  const social = socialMetadata({
+    title: m.og.title ?? m.title,
+    description: m.og.description ?? m.description ?? SITE.brandStatement,
+    url: m.og.url ?? m.canonical,
+    image: m.og.image,
+  });
   return {
     metadataBase: new URL(SITE.origin),
-    title: m.title,
-    description: m.description ?? undefined,
+    title: pageTitle(m.title),
+    description,
     alternates: { canonical: m.canonical },
     robots: m.robots,
-    openGraph: {
-      title: m.og.title ?? undefined,
-      description: m.og.description ?? undefined,
-      url: m.og.url ?? undefined,
-      siteName: m.og.siteName ?? undefined,
-      locale: m.og.locale ?? undefined,
-      type: (m.og.type as "website" | "article") ?? "website",
-      images: m.og.image ? [{ url: m.og.image }] : undefined,
-    },
-    twitter: {
-      card: (m.twitterCard as "summary_large_image") ?? "summary_large_image",
-    },
+    ...social,
   };
 }

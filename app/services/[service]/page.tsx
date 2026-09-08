@@ -15,6 +15,7 @@ import {
 import { FullPhoto } from "@/components/FullPhoto";
 import { SITE, SOCIAL } from "@/lib/site";
 import { SERVICES, getService } from "@/lib/seo/services";
+import { pageTitle, socialMetadata } from "@/lib/seo/meta";
 import { TIER1_CITIES } from "@/lib/seo/cities";
 
 // The pillar service ("Men's Hair Replacement Systems") lives at the
@@ -40,23 +41,16 @@ export async function generateMetadata({
   if (!service || slug === "mens-hair-replacement-systems") return {};
 
   const title = `${service.name} | Orange, CA | ManHair`;
-  const description = `${service.whatItIs} Serving Orange County from our Orange, CA studio. Start with a free virtual consultation.`;
+  const description = service.metaDescription;
   const path = `/services/${service.slug}/`;
+  const url = `${SITE.origin}${path}`;
 
   return {
     metadataBase: new URL(SITE.origin),
-    title,
+    title: pageTitle(title),
     description,
-    alternates: { canonical: `${SITE.origin}${path}` },
-    openGraph: {
-      title,
-      description,
-      url: `${SITE.origin}${path}`,
-      siteName: SITE.siteName,
-      locale: SITE.locale,
-      type: "website",
-    },
-    twitter: { card: "summary_large_image" },
+    alternates: { canonical: url },
+    ...socialMetadata({ title, description, url, image: service.image }),
   };
 }
 
@@ -447,7 +441,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
                 <div className="relative aspect-[16/10]">
                   <Image
                     src={s.image}
-                    alt=""
+                    alt={s.name}
                     fill
                     sizes="(max-width: 768px) 100vw, 25vw"
                     className="object-cover"

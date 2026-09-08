@@ -8,26 +8,23 @@ import { SITE, SOCIAL } from "@/lib/site";
 import { SERVICES } from "@/lib/seo/services";
 import { CONDITIONS } from "@/lib/seo/conditions";
 import { TIER1_CITIES, TIER2_CITIES } from "@/lib/seo/cities";
+import { pageTitle, socialMetadata } from "@/lib/seo/meta";
 
 const PATH = "/sitemap/";
 const TITLE = "Sitemap | Every ManHair Page | Orange, CA";
 const DESCRIPTION =
-  "A complete, easy-to-browse directory of every ManHair page: services, hair-loss conditions, locations we serve, and core pages.";
+  "A complete directory of every ManHair page: services, hair-loss conditions, cities we serve, and core Orange County studio pages.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.origin),
-  title: TITLE,
+  title: pageTitle(TITLE),
   description: DESCRIPTION,
   alternates: { canonical: `${SITE.origin}${PATH}` },
-  openGraph: {
+  ...socialMetadata({
     title: TITLE,
     description: DESCRIPTION,
     url: `${SITE.origin}${PATH}`,
-    siteName: SITE.siteName,
-    locale: SITE.locale,
-    type: "website",
-  },
-  twitter: { card: "summary_large_image" },
+  }),
 };
 
 const CORE_PAGES = [
@@ -42,6 +39,8 @@ const CORE_PAGES = [
   { label: "Cherry Financing", href: "/payment-plans/" },
   { label: "Products", href: "/products/" },
   { label: "Men's Hair Styles", href: "/mens-hair-styles/" },
+  { label: "Franchise", href: "/partner-program/" },
+  { label: "Reviews", href: "/reviews/" },
 ];
 
 const LEGAL_PAGES = [

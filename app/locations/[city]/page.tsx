@@ -7,6 +7,7 @@ import { JsonLd, buildLocalBusinessSchema, buildPageGraph } from "@/components/J
 import { ClockIcon, MapPinIcon, SparklesIcon } from "@/components/icons";
 import { CONTACT, SITE, SOCIAL } from "@/lib/site";
 import { SERVICES, getService } from "@/lib/seo/services";
+import { pageTitle, socialMetadata } from "@/lib/seo/meta";
 import { ALL_CITIES, getCity } from "@/lib/seo/cities";
 
 export const dynamicParams = false;
@@ -35,23 +36,16 @@ export async function generateMetadata({
   if (!city) return {};
 
   const title = `Hair Replacement Systems for Men in ${city.name}, CA | ManHair`;
-  const description = `Custom men's hair replacement systems serving ${city.name}, ${city.county}, from our Orange, CA studio. Start with a free virtual consultation.`;
+  const description = `Custom men's hair replacement for ${city.name}, ${city.county}. Fitted at our Orange, CA studio. Start with a free virtual consultation.`;
   const path = `/locations/${city.slug}/`;
+  const url = `${SITE.origin}${path}`;
 
   return {
     metadataBase: new URL(SITE.origin),
-    title,
+    title: pageTitle(title),
     description,
-    alternates: { canonical: `${SITE.origin}${path}` },
-    openGraph: {
-      title,
-      description,
-      url: `${SITE.origin}${path}`,
-      siteName: SITE.siteName,
-      locale: SITE.locale,
-      type: "website",
-    },
-    twitter: { card: "summary_large_image" },
+    alternates: { canonical: url },
+    ...socialMetadata({ title, description, url }),
   };
 }
 
@@ -116,9 +110,10 @@ export default async function Page({ params }: { params: Promise<Params> }) {
         origin: SITE.origin,
         name: SITE.orgName,
         telephone: CONTACT.studio.phone,
-        streetAddress: CONTACT.studio.streetLine1,
-        addressLocality: CONTACT.studio.streetLine2,
-        addressRegion: CONTACT.studio.region,
+        streetAddress: CONTACT.studio.streetAddress,
+        addressLocality: CONTACT.studio.addressLocality,
+        addressRegion: CONTACT.studio.addressRegion,
+        postalCode: CONTACT.studio.postalCode,
         url: `${SITE.origin}/`,
         logoUrl: `${SITE.origin}${SITE.logo.url}`,
         sameAs: SOCIAL.map((s) => s.href),

@@ -28,6 +28,7 @@ export function FullPhoto({
           width={800}
           height={800}
           priority={priority}
+          unoptimized={src.includes("/wp-content/")}
           sizes={sizes}
           className="h-auto w-full rounded-[calc(var(--mh-radius-md)-4px)]"
           style={{ width: "100%", height: "auto" }}

@@ -8,6 +8,7 @@ import { ClockIcon, ScissorsIcon } from "@/components/icons";
 import { FullPhoto } from "@/components/FullPhoto";
 import { SITE, SOCIAL } from "@/lib/site";
 import { SERVICES, getService } from "@/lib/seo/services";
+import { pageTitle, socialMetadata } from "@/lib/seo/meta";
 import { TIER1_CITIES, getCity } from "@/lib/seo/cities";
 
 /**
@@ -39,23 +40,16 @@ export async function generateMetadata({
   if (!city || !service || city.tier !== 1) return {};
 
   const title = `${service.name} in ${city.name}, CA | ManHair`;
-  const description = `${service.name} serving ${city.name}, ${city.county}, from our Orange, CA studio. ${service.whatItIs} Start with a free virtual consultation.`;
+  const description = `${service.name} in ${city.name}, CA. Fitted at our Orange studio for ${city.county} clients. Book a free virtual consultation.`;
   const path = `/locations/${city.slug}/${service.slug}/`;
+  const url = `${SITE.origin}${path}`;
 
   return {
     metadataBase: new URL(SITE.origin),
-    title,
+    title: pageTitle(title),
     description,
-    alternates: { canonical: `${SITE.origin}${path}` },
-    openGraph: {
-      title,
-      description,
-      url: `${SITE.origin}${path}`,
-      siteName: SITE.siteName,
-      locale: SITE.locale,
-      type: "website",
-    },
-    twitter: { card: "summary_large_image" },
+    alternates: { canonical: url },
+    ...socialMetadata({ title, description, url, image: service.image }),
   };
 }
 

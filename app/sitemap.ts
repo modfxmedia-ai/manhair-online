@@ -24,6 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const items: MetadataRoute.Sitemap = [];
 
   for (const p of PAGES) {
+    if (p.path === "/landing-page/") continue;
     items.push({
       url: p.canonical,
       lastModified: now,

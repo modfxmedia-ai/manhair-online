@@ -4,9 +4,28 @@
  * Do not "improve" copy here — this is a preservation project.
  */
 
+const LIVE_WWW_ORIGIN = "https://www.manhaironline.com";
+
+/** Always publish https://www.manhaironline.com for the brand domain. */
+function normalizePublicOrigin(raw: string | undefined): string {
+  if (!raw) return LIVE_WWW_ORIGIN;
+  try {
+    const url = new URL(raw);
+    const host = url.hostname.toLowerCase();
+    if (host === "manhaironline.com" || host === "www.manhaironline.com") {
+      return LIVE_WWW_ORIGIN;
+    }
+    return url.origin.replace(/\/$/, "");
+  } catch {
+    return LIVE_WWW_ORIGIN;
+  }
+}
+
+const SITE_ORIGIN = normalizePublicOrigin(process.env.NEXT_PUBLIC_SITE_URL);
+
 export const SITE = {
-  /** Canonical origin the new deployment lives at. Keep in sync with prod. */
-  origin: "https://www.manhaironline.com",
+  /** Canonical origin. Always www for the live brand domain. */
+  origin: SITE_ORIGIN,
   /** Business / organization display name (from Organization JSON-LD). */
   orgName: "Man Hair - Hair Replacement Solutions",
   /** Verbatim site name from og:site_name / <title> suffix. */
@@ -29,9 +48,13 @@ export const SITE = {
 
 export const CONTACT = {
   studio: {
-    label: "Orange County, CA",
-    streetLine1: "Orange County",
-    streetLine2: "California",
+    label: "Orange, CA Studio",
+    streetLine1: "Old Towne Orange",
+    streetLine2: "Orange, CA 92866",
+    streetAddress: "Old Towne Orange",
+    addressLocality: "Orange",
+    addressRegion: "CA",
+    postalCode: "92866",
     phone: "(904) 526-8500",
     phoneHref: "tel:1-904-526-8500",
     region: "CA",
@@ -148,7 +171,7 @@ export const PRIMARY_NAV: NavItem[] = [
     href: "/about/",
     children: [
       { label: "Cherry Financing", href: "/payment-plans/" },
-      { label: "Franchise", href: "/partnerprogram/" },
+      { label: "Franchise", href: "/partner-program/" },
       { label: "FAQ", href: "/faq/" },
       { label: "Blog", href: "/blog/" },
       { label: "Locations", href: "/locations/" },
@@ -192,8 +215,9 @@ export const FOOTER_QUICK_LINKS: Array<{ label: string; href: string }> = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about/" },
   { label: "Cherry Financing", href: "/payment-plans/" },
-  { label: "Franchise", href: "/partnerprogram/" },
+  { label: "Franchise", href: "/partner-program/" },
   { label: "Locations", href: "/locations/" },
+  { label: "Reviews", href: "/reviews/" },
   { label: "Blog", href: "/blog/" },
   { label: "FAQ", href: "/faq/" },
   { label: "Sitemap", href: "/sitemap/" },

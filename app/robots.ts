@@ -7,7 +7,11 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/wp-admin/", "/wp-login.php"],
+        disallow: [
+          "/landing-page/",
+          "/wp-admin/",
+          "/wp-login.php",
+        ],
       },
     ],
     sitemap: `${SITE.origin}/sitemap.xml`,

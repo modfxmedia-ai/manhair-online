@@ -390,7 +390,7 @@ const MEGA_MENU: Record<string, MegaConfig> = {
           },
           {
             label: "Franchise",
-            href: "/partnerprogram/",
+            href: "/partner-program/",
             desc: "Partner with ManHair: become an owner.",
             Icon: BuildingIcon,
           },
@@ -520,7 +520,7 @@ function MegaPanel({ config }: { config: MegaConfig }) {
                         <span className="mh-mega-thumb" aria-hidden="true">
                           <Image
                             src={thumb}
-                            alt=""
+                            alt={it.label}
                             fill
                             sizes="44px"
                             className="object-cover"

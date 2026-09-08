@@ -8,6 +8,7 @@ import { ActivityIcon, ArrowRightIcon, HelpCircleIcon } from "@/components/icons
 import { SITE, SOCIAL } from "@/lib/site";
 import { FullPhoto } from "@/components/FullPhoto";
 import { CONDITIONS, MEDICAL_NOTE, getCondition } from "@/lib/seo/conditions";
+import { pageTitle, socialMetadata } from "@/lib/seo/meta";
 import { getService } from "@/lib/seo/services";
 
 export const dynamicParams = false;
@@ -30,24 +31,21 @@ export async function generateMetadata({
   if (!condition) return {};
 
   const title = `${condition.name}: Hair Replacement Options | ManHair`;
-  const description = `${condition.whatItIs} See how a custom hair system can cover ${condition.name.toLowerCase()}. Free virtual consultation, Orange, CA studio.`;
+  const description = `See how a custom hair system covers ${condition.name.toLowerCase()} at ManHair in Orange, CA. Cosmetic coverage only. Free virtual consultation.`;
   const path = `/hair-loss/${condition.slug}/`;
+  const url = `${SITE.origin}${path}`;
 
   return {
     metadataBase: new URL(SITE.origin),
-    title,
+    title: pageTitle(title),
     description,
-    alternates: { canonical: `${SITE.origin}${path}` },
-    openGraph: {
+    alternates: { canonical: url },
+    ...socialMetadata({
       title,
       description,
-      url: `${SITE.origin}${path}`,
-      siteName: SITE.siteName,
-      locale: SITE.locale,
-      type: "website",
-      ...(condition.image ? { images: [{ url: condition.image.src }] } : {}),
-    },
-    twitter: { card: "summary_large_image" },
+      url,
+      image: condition.image?.src,
+    }),
   };
 }
 

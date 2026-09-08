@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { cn } from "@/lib/cn";
 
 /**
@@ -58,12 +59,12 @@ export function IntroSplash() {
       aria-hidden={phase === "leaving"}
     >
       <div className="mh-intro-inner">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src="/images/logo-png/MH-white-Logo-copy-300x76.png"
-          alt="ManHair"
+          alt="ManHair hair restoration, Orange County, CA"
           width={300}
           height={76}
+          priority
           className="mh-intro-logo"
         />
         <p className="mh-intro-name">Hair Restoration &middot; Orange County, CA</p>

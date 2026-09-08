@@ -19,6 +19,8 @@ export type Service = {
   rationale: string;
   /** One-sentence plain-language definition (feeds AI Overviews). */
   whatItIs: string;
+  /** Unique 120–160 character meta description. */
+  metaDescription: string;
   /** Who this service suits. */
   whoItsFor: string;
   /** Base/material options for the "Materials / options" block. */
@@ -76,6 +78,8 @@ export const SERVICES: Service[] = [
     rationale: "Core pillar service. Custom human-hair systems, fitted and maintained.",
     whatItIs:
       "A men's hair replacement system is a custom-made overlay of real human hair, built to match your natural color, density, and hairline, then bonded to your scalp so it moves and wears like your own hair.",
+    metaDescription:
+      "The ManHair pillar service: a custom human-hair system built for your hairline and density, fitted at our Orange, CA studio.",
     whoItsFor:
       "Men at any stage of hair loss, from early thinning to a full bald crown, who want a non-surgical, immediately-visible result.",
     materials: ["Lace base", "Skin (polyurethane) base", "Mono (monofilament) base", "100% real human hair"],
@@ -142,6 +146,8 @@ export const SERVICES: Service[] = [
     rationale: "High-volume search term. Distinct page from the pillar.",
     whatItIs:
       "A hair system is a precision-fitted hairpiece built from your own measurements and hair pattern, designed to be worn full-time and blend seamlessly with your existing hair.",
+    metaDescription:
+      "A precision-fitted men's hair system for full-time wear. Custom color and density, cut in at ManHair in Orange County, CA.",
     whoItsFor:
       "Men searching for a local, near-me fitting who want a discreet, everyday solution rather than a one-time cosmetic fix.",
     materials: ["Lace base", "Skin base", "Blended density matching", "Custom color ring matching"],
@@ -207,7 +213,7 @@ export const SERVICES: Service[] = [
     galleryTitle: { lead: "Not your father's", accent: "toupee." },
     gallery: [
       {
-        src: "/images/mens-toupees/2.webp",
+        src: "/images/mens-toupees/2.jpg",
         alt: "A modern men's toupee shown as a full-coverage crown addition",
       },
       {
@@ -224,6 +230,8 @@ export const SERVICES: Service[] = [
     rationale: "Older, high-intent term. Owns the 'toupee' search cluster.",
     whatItIs:
       "A toupee is a hairpiece that covers the crown and top of the head, the classic term for a men's hair addition, now built with modern lace and skin bases instead of the visible wefts of the past.",
+    metaDescription:
+      "Modern men's toupees with lace or skin bases, fitted at ManHair in Orange, CA. Crown and top coverage without surgery or downtime.",
     whoItsFor:
       "Men who already know the word 'toupee' and are searching with that vocabulary, typically those comparing older solutions against modern systems.",
     materials: ["Lace front", "Skin crown", "Natural hairline taper", "Real human hair"],
@@ -306,6 +314,8 @@ export const SERVICES: Service[] = [
     rationale: "1,000/mo search term. Distinct intent from 'system'.",
     whatItIs:
       "A hairpiece is a professionally fitted section of real human hair attached to cover thinning or bald areas, sized and shaped to your specific hair loss pattern.",
+    metaDescription:
+      "Custom men's hairpieces sized to your loss pattern. Real human hair, fitted and blended at our Orange County, CA studio.",
     whoItsFor:
       "Men researching options in a more general, less brand-specific way, often earlier in their research than someone searching a specific product name.",
     materials: ["Partial-coverage lace pieces", "Full-cap pieces", "Color-matched human hair", "Reusable adhesive systems"],
@@ -388,6 +398,8 @@ export const SERVICES: Service[] = [
     rationale: "Urban/barber vernacular term with real search volume.",
     whatItIs:
       "A hair unit is barber-shop vernacular for a full or partial hair system, cut in and blended by a stylist the same way a fresh haircut would be.",
+    metaDescription:
+      "Men's hair units cut and blended like a fresh haircut. Barbershop-style systems fitted at ManHair in Orange, California.",
     whoItsFor:
       "Men who found us through barber-shop word of mouth or searched using barbershop terminology rather than clinical language.",
     materials: ["Full lace units", "Skin-base units", "Barber cut-in and blend service", "Custom density matching"],
@@ -470,6 +482,8 @@ export const SERVICES: Service[] = [
     rationale: "Broadest term. Captures searchers who don't know the terminology yet.",
     whatItIs:
       "A men's wig is a full-coverage hair replacement, real human hair built on a breathable cap, for men who want complete coverage rather than a partial system.",
+    metaDescription:
+      "Full-coverage men's wigs in real human hair. Complete scalp coverage from ManHair's Orange, CA studio. Free virtual consult.",
     whoItsFor:
       "Men earliest in their research, often unfamiliar with the industry's other terms, or men who need full-head coverage rather than a partial piece.",
     materials: ["Full lace caps", "Machine-wefted caps", "100% real human hair", "Custom cap sizing"],
@@ -543,7 +557,7 @@ export const SERVICES: Service[] = [
         alt: "Checking a natural hairline after non-surgical replacement",
       },
       {
-        src: "/images/non-surgical-hair-replacement/4.webp",
+        src: "/images/non-surgical-hair-replacement/4.jpg",
         alt: "Crown coverage before and after non-surgical hair replacement",
       },
     ],
@@ -552,6 +566,8 @@ export const SERVICES: Service[] = [
     rationale: "Category-defining term. Key comparison-stage entry point vs. transplants.",
     whatItIs:
       "Non-surgical hair replacement restores a full, natural hairline with zero procedures, zero downtime, and zero scalpel, using a custom-fitted hair system instead of grafts.",
+    metaDescription:
+      "Non-surgical hair replacement for men in Orange County, CA. Instant hairline, no downtime, and a free virtual consultation.",
     whoItsFor:
       "Men actively comparing this approach against a hair transplant, and men who want a result visible the same day rather than waiting months to grow in.",
     materials: ["Lace, skin, or mono base", "Real human hair", "No incisions, no grafts, no anesthesia"],
@@ -634,6 +650,8 @@ export const SERVICES: Service[] = [
     rationale: "Retention and competitor-switching traffic. High lifetime value.",
     whatItIs:
       "Ongoing maintenance keeps an existing hair system, from us or from another provider, looking fresh: reattachment, cleaning, density touch-ups, and cut-ins on a regular schedule.",
+    metaDescription:
+      "Hair system maintenance in Orange, CA: reattachment, cleaning, and cut-ins to keep your unit looking like day one again.",
     whoItsFor:
       "Existing hair system wearers (ours or a competitor's) whose system needs reattachment, cleaning, or a switch to a new provider.",
     materials: ["Reattachment & bonding service", "Deep cleaning", "Cut-in & blend touch-ups", "Provider-switch onboarding"],

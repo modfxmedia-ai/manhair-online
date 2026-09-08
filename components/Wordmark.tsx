@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { cn } from "@/lib/cn";
 
 /**
@@ -33,15 +34,13 @@ export function Wordmark({
   priority?: boolean;
 }) {
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
+    <Image
       src={LOGO_SRC}
       alt="ManHair: Hair Restoration Orange County, CA"
       width={1386}
       height={408}
-      loading={priority ? "eager" : "lazy"}
-      decoding="async"
-      className={cn("block w-auto max-w-none select-none", HEIGHT[size], className)}
+      priority={priority}
+      className={cn("block h-auto w-auto max-w-none select-none", HEIGHT[size], className)}
     />
   );
 }
@@ -56,4 +55,3 @@ export function PngWordmark({
 }) {
   return <Wordmark size={size} tone="light" className={className} />;
 }
-

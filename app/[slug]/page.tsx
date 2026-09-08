@@ -8,6 +8,7 @@ import { AuroraBlobs, Reveal, RevealGrid } from "@/components/ui/motion";
 import { JsonLd } from "@/components/JsonLd";
 import { SITE, SOCIAL } from "@/lib/site";
 import { POSTS, getPostBySlug } from "@/lib/posts";
+import { DEFAULT_OG, pageTitle, socialMetadata } from "@/lib/seo/meta";
 
 /**
  * Dynamic route for blog posts. Every historical /:slug/ URL that is a
@@ -40,26 +41,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPostBySlug(slug);
   if (!post) return { title: "Not Found" };
   const preferredTitle = post.heading ?? post.title;
+  const description = post.description ?? SITE.brandStatement;
+  const url = post.canonical ?? `${SITE.origin}${post.path}`;
+  const social = socialMetadata({
+    title: preferredTitle,
+    description,
+    url,
+    image: post.og.image ?? DEFAULT_OG.url,
+  });
   return {
     metadataBase: new URL(SITE.origin),
-    title: preferredTitle,
-    description: post.description ?? undefined,
-    alternates: post.canonical ? { canonical: post.canonical } : undefined,
+    title: pageTitle(preferredTitle),
+    description,
+    alternates: { canonical: url },
     robots: post.robots,
     openGraph: {
-      title: preferredTitle,
-      description: post.og.description ?? undefined,
-      url: post.og.url ?? undefined,
-      siteName: post.og.site_name ?? SITE.siteName,
-      locale: post.og.locale ?? SITE.locale,
+      ...social.openGraph,
       type: "article",
-      images: post.og.image ? [{ url: post.og.image }] : undefined,
       publishedTime: post.datePublished ?? undefined,
       modifiedTime: post.dateModified ?? undefined,
     },
-    twitter: {
-      card: (post.twitterCard as "summary_large_image") ?? "summary_large_image",
-    },
+    twitter: social.twitter,
   };
 }
 
