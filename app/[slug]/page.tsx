@@ -8,6 +8,7 @@ import { AuroraBlobs, Reveal, RevealGrid } from "@/components/ui/motion";
 import { JsonLd } from "@/components/JsonLd";
 import { SITE, SOCIAL } from "@/lib/site";
 import { POSTS, getPostBySlug } from "@/lib/posts";
+import { postCoverSrc } from "@/lib/post-cover";
 import { DEFAULT_OG, pageTitle, socialMetadata } from "@/lib/seo/meta";
 
 /**
@@ -47,7 +48,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: preferredTitle,
     description,
     url,
-    image: post.og.image ?? DEFAULT_OG.url,
+    image: postCoverSrc(post.slug),
   });
   return {
     metadataBase: new URL(SITE.origin),
@@ -86,7 +87,7 @@ export default async function BlogPostPage({ params }: Props) {
         publisher: { "@id": `${SITE.origin}/#organization` },
         articleSection: post.category ?? undefined,
         inLanguage: "en-US",
-        image: post.coverImage ?? undefined,
+        image: `${SITE.origin}${postCoverSrc(post.slug)}`,
       },
       {
         "@type": "WebPage",
@@ -94,9 +95,7 @@ export default async function BlogPostPage({ params }: Props) {
         url: pageUrl,
         name: post.title,
         isPartOf: { "@id": `${SITE.origin}/#website` },
-        primaryImageOfPage: post.coverImage
-          ? { "@id": `${pageUrl}#primaryimage` }
-          : undefined,
+        primaryImageOfPage: { "@id": `${pageUrl}#primaryimage` },
         datePublished: post.datePublished ?? undefined,
         dateModified: post.dateModified ?? undefined,
         description: post.description ?? undefined,
@@ -104,15 +103,13 @@ export default async function BlogPostPage({ params }: Props) {
         inLanguage: "en-US",
         potentialAction: [{ "@type": "ReadAction", target: [pageUrl] }],
       },
-      post.coverImage
-        ? {
-            "@type": "ImageObject",
-            inLanguage: "en-US",
-            "@id": `${pageUrl}#primaryimage`,
-            url: post.coverImage,
-            contentUrl: post.coverImage,
-          }
-        : null,
+      {
+        "@type": "ImageObject",
+        inLanguage: "en-US",
+        "@id": `${pageUrl}#primaryimage`,
+        url: `${SITE.origin}${postCoverSrc(post.slug)}`,
+        contentUrl: `${SITE.origin}${postCoverSrc(post.slug)}`,
+      },
       {
         "@type": "BreadcrumbList",
         "@id": `${pageUrl}#breadcrumb`,
@@ -191,7 +188,7 @@ export default async function BlogPostPage({ params }: Props) {
               <Reveal className="mt-8" delay={0.06}>
                 <figure className="overflow-hidden rounded-[var(--mh-radius-md)] bg-[color:var(--mh-ink-50)] p-1.5 ring-1 ring-[color:var(--mh-border)]">
                   <Image
-                    src={post.coverImage}
+                    src={postCoverSrc(post.slug)}
                     alt={title}
                     width={800}
                     height={520}
@@ -246,7 +243,7 @@ export default async function BlogPostPage({ params }: Props) {
                   {p.coverImage ? (
                     <div className="relative aspect-[16/10] overflow-hidden bg-[color:var(--mh-ink-50)]">
                       <Image
-                        src={p.coverImage}
+                        src={postCoverSrc(p.slug)}
                         alt={p.heading ?? p.title}
                         fill
                         sizes="(max-width: 768px) 100vw, 33vw"

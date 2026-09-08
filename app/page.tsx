@@ -35,6 +35,7 @@ import {
 import { CONTACT, SITE, SOCIAL } from "@/lib/site";
 import { getPageMeta, toMetadata } from "@/lib/pages";
 import { POSTS } from "@/lib/posts";
+import { postCoverSrc } from "@/lib/post-cover";
 import { TESTIMONIALS } from "@/lib/testimonials";
 import { TestimonialCard } from "@/components/TestimonialCard";
 import { HOME_TRANSFORMATIONS } from "@/lib/before-after";
@@ -1297,7 +1298,7 @@ export default function HomePage() {
                 <div className="mh-prog-media">
                   {p.coverImage ? (
                     <Image
-                      src={p.coverImage}
+                      src={postCoverSrc(p.slug)}
                       alt={p.heading || p.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 33vw"

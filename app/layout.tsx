@@ -71,6 +71,13 @@ export const metadata: Metadata = {
     "max-snippet": -1,
     "max-video-preview": -1,
   } as Metadata["robots"],
+  icons: {
+    icon: [{ url: "/favicon.png", type: "image/png" }],
+    apple: [{ url: "/favicon.png", type: "image/png" }],
+  },
+  verification: {
+    google: "9OOudO709sX1-6y62xy3eeil3PooVArGf_KAcKD-bJM",
+  },
 };
 
 /** Site-wide Organization + WebSite graph (identical shape to the
@@ -120,6 +127,18 @@ export default function RootLayout({
       className={`${sans.variable} ${display.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[color:var(--mh-bg)] text-[color:var(--mh-fg)] selection:bg-[color:var(--mh-copper-200)]">
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-NTLDFH6CYS"
+          strategy="beforeInteractive"
+        />
+        <Script id="google-analytics" strategy="beforeInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-NTLDFH6CYS');
+          `}
+        </Script>
         <JsonLd data={SITE_GRAPH} />
         <IntroSplash />
         <Header />

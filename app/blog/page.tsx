@@ -7,6 +7,7 @@ import { JsonLd, buildPageGraph } from "@/components/JsonLd";
 import { SITE, SOCIAL } from "@/lib/site";
 import { getPageMeta, toMetadata } from "@/lib/pages";
 import { POSTS } from "@/lib/posts";
+import { postCoverSrc } from "@/lib/post-cover";
 
 const PAGE = getPageMeta("/blog/")!;
 export const metadata: Metadata = toMetadata(PAGE);
@@ -21,7 +22,7 @@ function card(slug: string, category: string, date: string): PostCard {
     category,
     title,
     excerpt: p.excerpt,
-    image: p.coverImage,
+    image: postCoverSrc(p.slug),
     imageAlt: title,
     date,
   };
