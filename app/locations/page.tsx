@@ -5,7 +5,7 @@ import { BookingButton } from "@/components/BookingButton";
 import { AuroraBlobs, Reveal, RevealGrid } from "@/components/ui/motion";
 import { JsonLd, buildPageGraph } from "@/components/JsonLd";
 import { ArrowRightIcon } from "@/components/icons";
-import { SITE, SOCIAL, CONTACT } from "@/lib/site";
+import { SITE, SOCIAL, CONTACT, siteUrl } from "@/lib/site";
 import { getPageMeta, toMetadata } from "@/lib/pages";
 import { ALL_CITIES } from "@/lib/seo/cities";
 
@@ -195,7 +195,7 @@ export default function Page() {
             {EXPERIENCE.map((step, i) => (
               <a
                 key={step.title}
-                href="/how-it-works/"
+                href={siteUrl("/how-it-works/")}
                 className="mh-index-card group flex flex-col"
               >
                 <span className="mh-index-num">{`0${i + 1}`}</span>
@@ -303,7 +303,7 @@ export default function Page() {
                   {cities.map((city) => (
                     <a
                       key={city.slug}
-                      href={`/locations/${city.slug}/`}
+                      href={siteUrl(`/locations/${city.slug}/`)}
                       className="mh-index-card group/city !gap-2 !p-5"
                     >
                       <div className="flex items-center justify-between gap-2">

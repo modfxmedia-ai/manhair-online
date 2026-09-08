@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import Link from "next/link";
+import { SiteLink as Link } from "@/components/SiteLink";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/cn";
 import { CONTACT, HEADER_CTA, PRIMARY_NAV, SOCIAL, type NavItem } from "@/lib/site";

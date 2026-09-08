@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { SiteLink as Link } from "@/components/SiteLink";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Display, Italic } from "@/components/ui";

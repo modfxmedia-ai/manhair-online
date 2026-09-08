@@ -4,28 +4,37 @@
  * Do not "improve" copy here — this is a preservation project.
  */
 
-const LIVE_WWW_ORIGIN = "https://www.manhaironline.com";
+export const LIVE_WWW_ORIGIN = "https://www.manhaironline.com";
 
-/** Always publish https://www.manhaironline.com for the brand domain. */
-function normalizePublicOrigin(raw: string | undefined): string {
-  if (!raw) return LIVE_WWW_ORIGIN;
-  try {
-    const url = new URL(raw);
-    const host = url.hostname.toLowerCase();
-    if (host === "manhaironline.com" || host === "www.manhaironline.com") {
-      return LIVE_WWW_ORIGIN;
-    }
-    return url.origin.replace(/\/$/, "");
-  } catch {
-    return LIVE_WWW_ORIGIN;
+/**
+ * Turn any internal path into a live-site URL:
+ * `/about/` → `https://www.manhaironline.com/about/`
+ * Leaves tel:, mailto:, #, and third-party http(s) links unchanged.
+ */
+export function siteUrl(href: string): string {
+  if (!href) return `${LIVE_WWW_ORIGIN}/`;
+  const trimmed = href.trim();
+  if (
+    trimmed.startsWith("#") ||
+    trimmed.startsWith("mailto:") ||
+    trimmed.startsWith("tel:") ||
+    trimmed.startsWith("sms:")
+  ) {
+    return trimmed;
   }
+  if (/^https?:\/\//i.test(trimmed)) {
+    return trimmed.replace(
+      /^https?:\/\/(?:www\.)?manhaironline\.com/i,
+      LIVE_WWW_ORIGIN
+    );
+  }
+  const path = trimmed.startsWith("/") ? trimmed : `/${trimmed}`;
+  return `${LIVE_WWW_ORIGIN}${path}`;
 }
 
-const SITE_ORIGIN = normalizePublicOrigin(process.env.NEXT_PUBLIC_SITE_URL);
-
 export const SITE = {
-  /** Canonical origin. Always www for the live brand domain. */
-  origin: SITE_ORIGIN,
+  /** Canonical origin. Always www, matching the live site. */
+  origin: LIVE_WWW_ORIGIN,
   /** Business / organization display name (from Organization JSON-LD). */
   orgName: "Man Hair - Hair Replacement Solutions",
   /** Verbatim site name from og:site_name / <title> suffix. */

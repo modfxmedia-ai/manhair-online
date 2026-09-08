@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { SiteLink as Link } from "@/components/SiteLink";
 import Image from "next/image";
 import { RevealGrid } from "@/components/ui/motion";
 

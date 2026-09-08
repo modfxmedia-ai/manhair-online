@@ -22,73 +22,54 @@ import { TIER1_CITIES, TIER2_CITIES } from "@/lib/seo/cities";
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   const items: MetadataRoute.Sitemap = [];
+  const seen = new Set<string>();
+
+  const add = (
+    url: string,
+    changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"],
+    priority: number,
+    lastModified: Date = now
+  ) => {
+    if (seen.has(url)) return;
+    seen.add(url);
+    items.push({ url, lastModified, changeFrequency, priority });
+  };
 
   for (const p of PAGES) {
     if (p.path === "/landing-page/") continue;
-    items.push({
-      url: p.canonical,
-      lastModified: now,
-      changeFrequency: p.isCategory ? "monthly" : "yearly",
-      priority: p.path === "/" ? 1 : 0.7,
-    });
+    add(p.canonical, p.isCategory ? "monthly" : "yearly", p.path === "/" ? 1 : 0.7);
   }
   for (const post of POSTS) {
-    items.push({
-      url: post.canonical ?? `${SITE.origin}${post.path}`,
-      lastModified: post.dateModified ? new Date(post.dateModified) : now,
-      changeFrequency: "yearly",
-      priority: 0.6,
-    });
+    add(
+      post.canonical ?? `${SITE.origin}${post.path}`,
+      "yearly",
+      0.6,
+      post.dateModified ? new Date(post.dateModified) : now
+    );
   }
   for (const service of SERVICES) {
     const path =
       service.slug === "mens-hair-replacement-systems"
         ? "/mens-hair-replacement-systems/"
         : `/services/${service.slug}/`;
-    items.push({
-      url: `${SITE.origin}${path}`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    });
+    add(`${SITE.origin}${path}`, "monthly", 0.8);
   }
   for (const condition of CONDITIONS) {
-    items.push({
-      url: `${SITE.origin}/hair-loss/${condition.slug}/`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    });
+    add(`${SITE.origin}/hair-loss/${condition.slug}/`, "monthly", 0.7);
   }
   for (const city of TIER1_CITIES) {
-    items.push({
-      url: `${SITE.origin}/locations/${city.slug}/`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    });
+    add(`${SITE.origin}/locations/${city.slug}/`, "monthly", 0.7);
     for (const service of SERVICES) {
-      items.push({
-        url: `${SITE.origin}/locations/${city.slug}/${service.slug}/`,
-        lastModified: now,
-        changeFrequency: "monthly",
-        priority: 0.6,
-      });
+      add(
+        `${SITE.origin}/locations/${city.slug}/${service.slug}/`,
+        "monthly",
+        0.6
+      );
     }
   }
   for (const city of TIER2_CITIES) {
-    items.push({
-      url: `${SITE.origin}/locations/${city.slug}/`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.6,
-    });
+    add(`${SITE.origin}/locations/${city.slug}/`, "monthly", 0.6);
   }
-  items.push({
-    url: `${SITE.origin}/sitemap/`,
-    lastModified: now,
-    changeFrequency: "weekly",
-    priority: 0.5,
-  });
+  add(`${SITE.origin}/sitemap/`, "weekly", 0.5);
   return items;
 }

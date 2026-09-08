@@ -3,7 +3,7 @@ import { Button, Display, Italic } from "@/components/ui";
 import { BookingButton } from "@/components/BookingButton";
 import { AuroraBlobs, Reveal, RevealGrid } from "@/components/ui/motion";
 import { JsonLd, buildPageGraph, buildPersonSchema } from "@/components/JsonLd";
-import { SITE, SOCIAL } from "@/lib/site";
+import { SITE, SOCIAL, siteUrl } from "@/lib/site";
 import { getPageMeta, toMetadata } from "@/lib/pages";
 
 const PAGE = getPageMeta("/about/")!;
@@ -311,7 +311,7 @@ export default function Page() {
             {EXPERIENCE.map((s) => (
               <a
                 key={s.n}
-                href="/how-it-works/"
+                href={siteUrl("/how-it-works/")}
                 className="mh-index-card transition-colors"
               >
                 <span className="mh-index-num">{s.n}</span>

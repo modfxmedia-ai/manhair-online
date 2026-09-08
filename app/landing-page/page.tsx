@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Button, Display, Italic } from "@/components/ui";
 import { AuroraBlobs, Reveal, RevealGrid } from "@/components/ui/motion";
 import { JsonLd, buildPageGraph } from "@/components/JsonLd";
-import { SITE, SOCIAL } from "@/lib/site";
+import { SITE, SOCIAL, siteUrl } from "@/lib/site";
 import { getPageMeta, toMetadata } from "@/lib/pages";
 
 const PAGE = getPageMeta("/landing-page/")!;
@@ -483,7 +483,7 @@ export default function Page() {
             {WORRY_FREE.map((w) => (
               <a
                 key={w.title}
-                href="/how-it-works/"
+                href={siteUrl("/how-it-works/")}
                 className="mh-index-card transition-colors"
               >
                 <div className="relative mb-5 h-14 w-14">

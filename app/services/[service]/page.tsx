@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { SiteLink as Link } from "@/components/SiteLink";
 import { notFound } from "next/navigation";
 import { Button, Card, Display, Italic, SectionLabel } from "@/components/ui";
 import { BookingButton } from "@/components/BookingButton";

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { SiteLink as Link } from "@/components/SiteLink";
 import { BookingButton } from "@/components/BookingButton";
 
 export default function NotFound() {

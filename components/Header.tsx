@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { SiteLink as Link } from "@/components/SiteLink";
 import type { ComponentType } from "react";
 import { CONTACT, HEADER_CTA, PRIMARY_NAV, SOCIAL, type NavItem } from "@/lib/site";
 import { getService } from "@/lib/seo/services";
