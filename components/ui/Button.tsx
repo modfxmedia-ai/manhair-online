@@ -1,7 +1,6 @@
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 import { cn } from "@/lib/cn";
-import { siteUrl } from "@/lib/site";
 
 /**
  * Button — primary CTA and outlined/ghost variants.
@@ -65,11 +64,10 @@ export function Button(
       external,
       ...linkRest
     } = rest as { href: string; external?: boolean };
-    const resolved = siteUrl(href);
     if (external || href.startsWith("http") || href.startsWith("tel:") || href.startsWith("mailto:")) {
       return (
         <a
-          href={resolved}
+          href={href}
           className={cls}
           rel={external ? "noopener noreferrer" : undefined}
           target={external ? "_blank" : undefined}
@@ -80,7 +78,7 @@ export function Button(
       );
     }
     return (
-      <Link href={resolved} className={cls} {...(linkRest as Omit<ComponentProps<typeof Link>, "href" | "className">)}>
+      <Link href={href} className={cls} {...(linkRest as Omit<ComponentProps<typeof Link>, "href" | "className">)}>
         {children}
       </Link>
     );

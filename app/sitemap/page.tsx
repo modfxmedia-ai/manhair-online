@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SiteLink as Link } from "@/components/SiteLink";
+import Link from "next/link";
 import { Display, Italic, SectionLabel } from "@/components/ui";
 import { BookingButton } from "@/components/BookingButton";
 import { AuroraBlobs, Reveal } from "@/components/ui/motion";

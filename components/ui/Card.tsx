@@ -1,7 +1,6 @@
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 import { cn } from "@/lib/cn";
-import { siteUrl } from "@/lib/site";
 
 /**
  * Card — the standard dark surface panel with a hairline border.
@@ -61,7 +60,7 @@ export function Card(props: DivProps | LinkProps) {
     const { href, ...linkRest } = rest as { href: string };
     const cls = classes(accent, padding, className, true);
     return (
-      <Link href={siteUrl(href)} className={cls} {...(linkRest as Omit<ComponentProps<typeof Link>, "href" | "className">)}>
+      <Link href={href} className={cls} {...(linkRest as Omit<ComponentProps<typeof Link>, "href" | "className">)}>
         {children}
       </Link>
     );

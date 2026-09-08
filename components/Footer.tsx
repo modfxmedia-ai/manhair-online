@@ -1,4 +1,4 @@
-import { SiteLink as Link } from "@/components/SiteLink";
+import Link from "next/link";
 import { ContactChip } from "@/components/ui";
 import { BookingButton } from "@/components/BookingButton";
 import { MailIcon, PhoneIcon, SocialIcon } from "@/components/icons";

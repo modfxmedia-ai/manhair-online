@@ -53,19 +53,6 @@ const nextConfig: NextConfig = {
   // a permanent redirect.
   async redirects() {
     return [
-      // Apex → www, matching the live WordPress host.
-      {
-        source: "/",
-        has: [{ type: "host", value: "manhaironline.com" }],
-        destination: `${LIVE_ORIGIN}/`,
-        permanent: true,
-      },
-      {
-        source: "/:path*",
-        has: [{ type: "host", value: "manhaironline.com" }],
-        destination: `${LIVE_ORIGIN}/:path*`,
-        permanent: true,
-      },
       { source: "/before-after", destination: "/results/", permanent: true },
       { source: "/about-us", destination: "/about/", permanent: true },
       { source: "/prices", destination: "/", permanent: true },

@@ -4,7 +4,7 @@ import { Button, Display, Italic } from "@/components/ui";
 import { BookingButton } from "@/components/BookingButton";
 import { AuroraBlobs, Reveal, RevealGrid } from "@/components/ui/motion";
 import { JsonLd, buildPageGraph } from "@/components/JsonLd";
-import { SITE, SOCIAL, CONTACT, siteUrl } from "@/lib/site";
+import { SITE, SOCIAL, CONTACT } from "@/lib/site";
 import { getPageMeta, toMetadata } from "@/lib/pages";
 
 const PAGE = getPageMeta("/orange-county-ca/")!;
@@ -236,7 +236,7 @@ export default function Page() {
             {EXPERIENCE.map((step, i) => (
               <a
                 key={step.title}
-                href={siteUrl("/how-it-works/")}
+                href="/how-it-works/"
                 className="mh-index-card group flex flex-col"
               >
                 <span className="mh-index-num">{`0${i + 1}`}</span>

@@ -22,15 +22,6 @@ function slugFromPath(p) {
   return p.replace(/^\/|\/$/g, "");
 }
 
-/** Match the live site: always https://www.manhaironline.com */
-function toWww(value) {
-  if (!value || typeof value !== "string") return value;
-  return value.replace(
-    /https?:\/\/(?:www\.)?manhaironline\.com/gi,
-    "https://www.manhaironline.com"
-  );
-}
-
 const posts = [];
 for (const p of POST_SLUGS) {
   const slug = slugFromPath(p);
@@ -97,30 +88,22 @@ for (const p of POST_SLUGS) {
     if (modMeta) dateModified = modMeta;
   }
 
-  const og = meta.og
-    ? {
-        ...meta.og,
-        image: toWww(meta.og.image),
-        url: toWww(meta.og.url),
-      }
-    : meta.og;
-
   posts.push({
     slug,
     path: p,
     title: meta.title,
     heading,
     description: meta.description,
-    canonical: toWww(meta.canonical),
+    canonical: meta.canonical,
     robots: meta.robots,
-    og,
+    og: meta.og,
     twitterCard: meta.twitter?.card ?? "summary_large_image",
-    coverImage: toWww(coverImage),
+    coverImage,
     excerpt,
     category,
     datePublished,
     dateModified,
-    bodyHtml: toWww(bodyHtml),
+    bodyHtml,
   });
 }
 
