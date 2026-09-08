@@ -9,6 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
         disallow: [
           "/landing-page/",
+          "/booking/",
           "/wp-admin/",
           "/wp-login.php",
         ],

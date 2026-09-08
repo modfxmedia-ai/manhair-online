@@ -12,7 +12,6 @@ import {
   ArrowRightIcon,
   ArticleIcon,
   BuildingIcon,
-  CalendarIcon,
   ClockIcon,
   CompassIcon,
   CreditCardIcon,
@@ -384,12 +383,6 @@ const MEGA_MENU: Record<string, MegaConfig> = {
         eyebrow: "Company",
         items: [
           {
-            label: "Book a Consultation",
-            href: "/booking/",
-            desc: "Pick a time on the calendar. Free virtual call.",
-            Icon: CalendarIcon,
-          },
-          {
             label: "Cherry Financing",
             href: "/payment-plans/",
             desc: "Treat now, pay later with Cherry.",
@@ -440,11 +433,11 @@ const MEGA_MENU: Record<string, MegaConfig> = {
       },
     ],
     featured: {
-      eyebrow: "Free consult",
-      title: "Pick a time on the calendar.",
-      body: "Virtual call first. Orange studio when you're ready.",
-      cta: { label: "Book a Consultation", href: "/booking/" },
-      Icon: CalendarIcon,
+      eyebrow: "Flexible payment",
+      title: "Pay over time, not upfront.",
+      body: "Cherry financing: easy monthly payments, no hard credit check.",
+      cta: { label: "Cherry Financing", href: "/payment-plans/" },
+      Icon: CreditCardIcon,
     },
   },
   "How It Works": {

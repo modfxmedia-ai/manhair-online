@@ -72,8 +72,11 @@ export const metadata: Metadata = {
     "max-video-preview": -1,
   } as Metadata["robots"],
   icons: {
-    icon: [{ url: "/favicon.png", type: "image/png" }],
-    apple: [{ url: "/favicon.png", type: "image/png" }],
+    icon: [
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.png", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
   },
   verification: {
     google: "9OOudO709sX1-6y62xy3eeil3PooVArGf_KAcKD-bJM",

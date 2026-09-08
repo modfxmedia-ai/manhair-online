@@ -1,25 +1,50 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const OPEN_EVENT = "manhair:open-booking-modal";
 const GHL_FORM_SRC =
   "https://link.manhaironline.com/widget/form/hh9qLIaLPQ8U3Lmqc9Nf";
+const BOOKING_PATH = "/booking/";
 
 /** Dispatches the global event that opens the booking form modal. */
 export function openBookingModal() {
   window.dispatchEvent(new Event(OPEN_EVENT));
 }
 
+function isTrustedOrigin(origin: string) {
+  return (
+    origin.includes("manhaironline.com") ||
+    origin.includes("msgsndr.com") ||
+    origin.includes("leadconnectorhq.com") ||
+    origin.includes("gohighlevel.com")
+  );
+}
+
+function isFormSubmitMessage(data: unknown) {
+  if (data == null) return false;
+  const blob = typeof data === "string" ? data : JSON.stringify(data);
+  return /form[-_ ]?submit|formsubmitted|thank[-_ ]?you/i.test(blob);
+}
+
+function goToBooking() {
+  window.location.assign(BOOKING_PATH);
+}
+
 /**
  * Site-wide booking modal. The form itself is the original GoHighLevel
- * widget; we only style the chrome around it.
+ * widget; we only style the chrome around it. After the opt-in is
+ * submitted, the visitor is sent to the hidden `/booking/` calendar.
  */
 export function BookingModal() {
   const [open, setOpen] = useState(false);
+  const firstLoadAt = useRef(0);
 
   useEffect(() => {
-    const handleOpen = () => setOpen(true);
+    const handleOpen = () => {
+      firstLoadAt.current = 0;
+      setOpen(true);
+    };
     window.addEventListener(OPEN_EVENT, handleOpen);
     return () => window.removeEventListener(OPEN_EVENT, handleOpen);
   }, []);
@@ -36,6 +61,16 @@ export function BookingModal() {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = prevOverflow;
     };
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onMessage = (event: MessageEvent) => {
+      if (!isTrustedOrigin(event.origin)) return;
+      if (isFormSubmitMessage(event.data)) goToBooking();
+    };
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
   }, [open]);
 
   if (!open) return null;
@@ -77,11 +112,16 @@ export function BookingModal() {
           </div>
 
           <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-3 pb-3 sm:px-4 sm:pb-4">
-            <div className="overflow-hidden rounded-2xl bg-white ring-1 ring-[color:var(--mh-border)]">
+            <div className="h-[min(38rem,calc(100dvh-11rem))] overflow-hidden rounded-[20px] bg-white ring-1 ring-[color:var(--mh-border)]">
               <iframe
                 src={GHL_FORM_SRC}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  border: "none",
+                  borderRadius: 20,
+                }}
                 id="inline-hh9qLIaLPQ8U3Lmqc9Nf"
-                title="ManHair Optin"
                 data-layout="{'id':'INLINE'}"
                 data-trigger-type="alwaysShow"
                 data-trigger-value=""
@@ -90,15 +130,20 @@ export function BookingModal() {
                 data-deactivation-type="neverDeactivate"
                 data-deactivation-value=""
                 data-form-name="ManHair Optin"
-                data-height="798"
+                data-height="undefined"
                 data-layout-iframe-id="inline-hh9qLIaLPQ8U3Lmqc9Nf"
                 data-form-id="hh9qLIaLPQ8U3Lmqc9Nf"
                 data-cookie-consent="true"
                 data-cookie-consent-provider="auto"
-                className="block w-full border-0 bg-white"
-                style={{
-                  height: "min(32rem, calc(100dvh - 10rem))",
-                  width: "100%",
+                title="ManHair Optin"
+                onLoad={() => {
+                  if (!firstLoadAt.current) {
+                    firstLoadAt.current = Date.now();
+                    return;
+                  }
+                  if (Date.now() - firstLoadAt.current > 1500) {
+                    goToBooking();
+                  }
                 }}
               />
             </div>

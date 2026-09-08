@@ -30,7 +30,6 @@ export const metadata: Metadata = {
 const CORE_PAGES = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about/" },
-  { label: "Book a Consultation", href: "/booking/" },
   { label: "How It Works", href: "/how-it-works/" },
   { label: "Results (Before & After)", href: "/results/" },
   { label: "Reviews", href: "/reviews/" },

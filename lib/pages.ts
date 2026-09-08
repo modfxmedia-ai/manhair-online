@@ -115,7 +115,7 @@ export const PAGES: PageMeta[] = [
     description:
       "Book a free ManHair consultation online. Pick a time on the calendar for a virtual call, then visit our Orange, CA studio when you are ready.",
     canonical: `${SITE.origin}/booking/`,
-    robots: R,
+    robots: NOINDEX,
     og: og(
       "Book a Free Consultation | Orange County | ManHair",
       "Book a free ManHair consultation online. Pick a time on the calendar for a virtual call, then visit our Orange, CA studio when you are ready.",

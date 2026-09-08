@@ -1,10 +1,12 @@
+"use client";
+
 import type { ReactNode } from "react";
-import Link from "next/link";
 import { cn } from "@/lib/cn";
+import { openBookingModal } from "@/components/BookingModal";
 
 /**
  * Inline text-link version of `BookingButton`, for CTAs embedded in a
- * sentence. Goes to the `/booking/` calendar page.
+ * sentence (e.g. "Call us today"). Opens the booking form modal.
  */
 export function BookingLink({
   className,
@@ -14,8 +16,12 @@ export function BookingLink({
   children: ReactNode;
 }) {
   return (
-    <Link href="/booking/" className={cn("font-inherit", className)}>
+    <button
+      type="button"
+      onClick={openBookingModal}
+      className={cn("cursor-pointer border-0 bg-transparent p-0 font-inherit", className)}
+    >
       {children}
-    </Link>
+    </button>
   );
 }

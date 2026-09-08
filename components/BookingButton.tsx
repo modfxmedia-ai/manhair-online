@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 import { HEADER_CTA } from "@/lib/site";
+import { openBookingModal } from "@/components/BookingModal";
 
 type Variant = "primary" | "ghost";
 type Size = "sm" | "md" | "lg";
@@ -21,8 +21,10 @@ function classes(variant: Variant, size: Size, block: boolean, extra?: string) {
 }
 
 /**
- * Site-wide booking CTA. Navigates to `/booking/` so every “Book a
- * Private Consultation” button opens the calendar page.
+ * Drop-in replacement for `Button` that opens the site-wide booking
+ * form modal instead of navigating anywhere. Same visual API as
+ * `Button` (variant/size/block/className) so it can swap in wherever
+ * a CTA used to link to the old `/contact/` or `/consultation/` pages.
  */
 export function BookingButton({
   variant = "primary",
@@ -38,15 +40,18 @@ export function BookingButton({
   block?: boolean;
   className?: string;
   children?: ReactNode;
-} & Omit<ComponentProps<typeof Link>, "className" | "children" | "href">) {
+} & Omit<ComponentProps<"button">, "className" | "children" | "type">) {
   return (
-    <Link
-      href="/booking/"
+    <button
+      type="button"
       className={classes(variant, size, block, className)}
-      onClick={onClick}
+      onClick={(e) => {
+        onClick?.(e);
+        openBookingModal();
+      }}
       {...rest}
     >
       {children}
-    </Link>
+    </button>
   );
 }
