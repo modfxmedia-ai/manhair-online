@@ -73,10 +73,10 @@ export const metadata: Metadata = {
   } as Metadata["robots"],
   icons: {
     icon: [
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon.png", type: "image/png" },
+      { url: "/favicon-32x32.png?v=3", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.png?v=3", type: "image/png" },
     ],
-    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+    apple: [{ url: "/apple-icon.png?v=3", sizes: "180x180", type: "image/png" }],
   },
   verification: {
     google: "9OOudO709sX1-6y62xy3eeil3PooVArGf_KAcKD-bJM",
