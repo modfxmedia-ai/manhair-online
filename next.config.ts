@@ -53,6 +53,32 @@ const nextConfig: NextConfig = {
   // a permanent redirect.
   async redirects() {
     return [
+      // Apex and Vercel hosts → www, matching the live site.
+      // Query strings are forwarded automatically.
+      {
+        source: "/",
+        has: [{ type: "host", value: "manhaironline.com" }],
+        destination: `${LIVE_ORIGIN}/`,
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "manhaironline.com" }],
+        destination: `${LIVE_ORIGIN}/:path*`,
+        permanent: true,
+      },
+      {
+        source: "/",
+        has: [{ type: "host", value: "(?<host>.+)\\.vercel\\.app" }],
+        destination: `${LIVE_ORIGIN}/`,
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "(?<host>.+)\\.vercel\\.app" }],
+        destination: `${LIVE_ORIGIN}/:path*`,
+        permanent: true,
+      },
       { source: "/before-after", destination: "/results/", permanent: true },
       { source: "/about-us", destination: "/about/", permanent: true },
       { source: "/prices", destination: "/", permanent: true },
