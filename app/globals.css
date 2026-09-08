@@ -3677,6 +3677,26 @@ body {
   border: 0;
 }
 
+/* GHL form_embed.js parks booking iframes off-screen until a
+   resize handshake. Keep this calendar in normal document flow. */
+.mh-booking-embed {
+  width: 100%;
+  min-height: 45rem;
+  background: #fff;
+}
+.mh-booking-iframe {
+  display: block !important;
+  position: relative !important;
+  left: 0 !important;
+  width: 100% !important;
+  min-height: 45rem !important;
+  height: 62.5rem !important;
+  border: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
 /* --- MetricGlyph shared frame ------------------------------------ */
 .mh-metric-glyph {
   width: 2.6rem;

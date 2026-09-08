@@ -139,8 +139,8 @@ export default function Page() {
               </div>
             </div>
 
-            <Reveal className="order-1 lg:order-2 lg:col-span-8" delay={0.06}>
-              <div className="overflow-hidden rounded-[1.25rem] bg-white shadow-[0_24px_64px_-24px_rgba(26,19,14,0.28)] ring-1 ring-[color:var(--mh-border)] md:rounded-[1.5rem]">
+            <div className="order-1 lg:order-2 lg:col-span-8">
+              <div className="rounded-[1.25rem] bg-white shadow-[0_24px_64px_-24px_rgba(26,19,14,0.28)] ring-1 ring-[color:var(--mh-border)] md:rounded-[1.5rem]">
                 <div
                   aria-hidden="true"
                   className="h-1 w-full bg-gradient-to-r from-[color:var(--mh-red-600)] via-[color:var(--mh-copper-500)] to-[color:var(--mh-copper-300)]"
@@ -153,13 +153,9 @@ export default function Page() {
                     Select a day and time
                   </h2>
                 </div>
-                <div className="overflow-x-auto bg-white [-webkit-overflow-scrolling:touch]">
-                  <div className="min-w-[min(100%,20rem)]">
-                    <BookingEmbed />
-                  </div>
-                </div>
+                <BookingEmbed />
               </div>
-            </Reveal>
+            </div>
           </div>
         </div>
       </section>
