@@ -147,6 +147,7 @@ export default function Page() {
                   src={IMG_HERO}
                   alt="Proven hair replacement solutions for men"
                   fill
+                  unoptimized
                   priority
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
@@ -246,6 +247,7 @@ export default function Page() {
                     src={IMG_BEFORE}
                     alt="Before mens hair system"
                     fill
+                  unoptimized
                     sizes="(max-width: 1024px) 50vw, 21vw"
                     className="object-cover"
                   />
@@ -288,6 +290,7 @@ export default function Page() {
                   src={IMG_ALT2}
                   alt="Handcrafted custom made hair systems"
                   fill
+                  unoptimized
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
                 />
@@ -438,6 +441,7 @@ export default function Page() {
                       src={t.img}
                       alt={`${t.name} hair replacement testimony`}
                       fill
+                  unoptimized
                       sizes="64px"
                       className="object-cover"
                     />
@@ -487,6 +491,7 @@ export default function Page() {
                     src={w.img}
                     alt={w.title}
                     fill
+                  unoptimized
                     sizes="56px"
                     className="object-contain"
                   />

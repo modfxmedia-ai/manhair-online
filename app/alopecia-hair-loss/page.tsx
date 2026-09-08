@@ -89,6 +89,7 @@ export default function Page() {
                   src={HERO_IMG}
                   alt="alopecia hair replacement"
                   fill
+                  unoptimized
                   priority
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
@@ -133,6 +134,7 @@ export default function Page() {
                   src={IMG_HAIR}
                   alt="Alopecia hair loss solutions"
                   fill
+                  unoptimized
                   sizes="(max-width: 1024px) 100vw, 42vw"
                   className="object-cover"
                 />
@@ -154,6 +156,7 @@ export default function Page() {
                   src={IMG_CUT}
                   alt="Custom-made hair replacement"
                   fill
+                  unoptimized
                   sizes="(max-width: 1024px) 100vw, 42vw"
                   className="object-cover"
                 />

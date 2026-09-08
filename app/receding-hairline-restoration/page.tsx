@@ -90,6 +90,7 @@ export default function Page() {
                   src={HERO_IMG}
                   alt="Receding hairline restoration"
                   fill
+                  unoptimized
                   priority
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
@@ -168,6 +169,7 @@ export default function Page() {
                   src={IMG_TREATMENT}
                   alt="Hair restoration treatments"
                   fill
+                  unoptimized
                   sizes="(max-width: 1024px) 100vw, 42vw"
                   className="object-cover"
                 />
@@ -189,6 +191,7 @@ export default function Page() {
                   src={IMG_REPLACEMENT}
                   alt="Non surgical hair replacement, Orange County"
                   fill
+                  unoptimized
                   sizes="(max-width: 1024px) 100vw, 42vw"
                   className="object-cover"
                 />

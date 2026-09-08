@@ -120,6 +120,7 @@ export default function Page() {
                   src={HERO_IMG}
                   alt="7 Stages Of Male Pattern Balding"
                   fill
+                  unoptimized
                   priority
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"

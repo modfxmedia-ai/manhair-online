@@ -167,6 +167,7 @@ export default function Page() {
                   src={IMG_PATTERN}
                   alt="Male pattern baldness"
                   fill
+                  unoptimized
                   sizes="(max-width: 1024px) 100vw, 42vw"
                   className="object-cover"
                 />

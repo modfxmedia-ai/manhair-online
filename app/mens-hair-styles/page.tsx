@@ -82,6 +82,7 @@ export default function Page() {
                   src={HERO_IMG}
                   alt="Men's hair styles"
                   fill
+                  unoptimized
                   priority
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
@@ -138,6 +139,7 @@ export default function Page() {
                   src={IMG_INTRO}
                   alt="Toupee hair systems and hair pieces for men"
                   fill
+                  unoptimized
                   sizes="(max-width: 1024px) 100vw, 42vw"
                   className="object-cover"
                 />
@@ -200,6 +202,7 @@ export default function Page() {
                 src={IMG_HAIRCUT}
                 alt="Toupee haircut near you"
                 fill
+                  unoptimized
                 sizes="100vw"
                 className="object-cover"
               />

@@ -6,7 +6,7 @@ import { JsonLd, buildPageGraph } from "@/components/JsonLd";
 import { SITE, SOCIAL } from "@/lib/site";
 import { getPageMeta, toMetadata } from "@/lib/pages";
 
-const PAGE = getPageMeta("/partnerprogram/")!;
+const PAGE = getPageMeta("/partner-program/")!;
 export const metadata: Metadata = toMetadata(PAGE);
 
 const PHONE = "888-610-4799";
@@ -147,6 +147,7 @@ export default function Page() {
                   src={HERO_IMG}
                   alt="mens hair replacement"
                   fill
+                  unoptimized
                   priority
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
@@ -303,6 +304,7 @@ export default function Page() {
                   src={IMG_MISSION}
                   alt="mens non surgical hair replacement"
                   fill
+                  unoptimized
                   sizes="(max-width: 1024px) 100vw, 42vw"
                   className="object-cover"
                 />
