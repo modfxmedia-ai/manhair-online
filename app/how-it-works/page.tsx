@@ -23,24 +23,6 @@ const HIGHLIGHTS = [
   },
 ];
 
-const TRAVEL_STEPS = [
-  {
-    n: "01",
-    title: "Start from home",
-    body: "Book a free virtual consultation. We review photos, talk through your hair loss pattern, and design the system before you travel.",
-  },
-  {
-    n: "02",
-    title: "One trip to Orange",
-    body: "The first fitting, cut-in, and styling happen at our Orange, CA studio. Most clients fly or drive in for that visit, then leave the same day with a finished result.",
-  },
-  {
-    n: "03",
-    title: "Maintain from anywhere",
-    body: "We train you to clean and reattach the system at home. The 3–4 week refresh is a short at-home routine, so you are not flying back for every visit.",
-  },
-];
-
 const STATIONS = [
   {
     n: "01",
@@ -186,30 +168,11 @@ export default function Page() {
       <section className="border-b border-[color:var(--mh-border)] bg-[color:var(--mh-bg)] py-12 md:py-28">
         <div className="mh-container">
           <Reveal>
-            <p className="mh-kicker">Not in California?</p>
-            <Display as={2} size="xl" className="mt-4 max-w-3xl">
-              We work with clients who <Italic>travel in.</Italic>
+            <Display as={2} size="xl" className="max-w-5xl">
+              If you do not live in Orange County, Not a problem! Start with a
+              free consultation <Italic>from anywhere</Italic>
             </Display>
-            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-[color:var(--mh-ink-800)]">
-              You do not have to live in Orange County to get a ManHair system.
-              Start with a free virtual consultation from anywhere. When you are
-              ready, come to our Orange, CA studio for the fitting and cut-in,
-              then we send you home knowing how to care for it. Ongoing
-              reattachment does not require another flight unless you want a
-              studio refresh.
-            </p>
           </Reveal>
-          <RevealGrid className="mt-10 grid gap-4 md:grid-cols-3" gap={0.08}>
-            {TRAVEL_STEPS.map((s) => (
-              <article key={s.n} className="mh-index-card">
-                <span className="mh-index-num">{s.n}</span>
-                <h3 className="font-display text-2xl font-bold text-[color:var(--mh-ink-950)]">
-                  {s.title}
-                </h3>
-                <p className="text-[color:var(--mh-ink-800)]">{s.body}</p>
-              </article>
-            ))}
-          </RevealGrid>
           <Reveal className="mt-10">
             <BookingButton size="lg">Book a Private Consultation</BookingButton>
           </Reveal>
