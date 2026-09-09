@@ -65,9 +65,7 @@ export default function Page() {
                 Pick a time. We&rsquo;ll take it from <Italic>there.</Italic>
               </Display>
               <p className="mx-auto mt-3 max-w-xl text-base leading-relaxed text-[color:var(--mh-ink-800)] md:mt-4">
-                No cost, no pressure. Start from your phone or laptop, then
-                visit our Orange, CA studio when you&rsquo;re ready for a
-                fitting.
+                No cost, no pressure.
               </p>
               <ul className="mt-4 flex flex-wrap items-center justify-center gap-2 md:mt-5">
                 {["Free", "From anywhere", "15–20 minutes"].map((chip) => (

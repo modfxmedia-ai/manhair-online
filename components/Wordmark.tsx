@@ -10,7 +10,7 @@ import { cn } from "@/lib/cn";
  * color filtering is applied.
  */
 
-const LOGO_SRC = "/images/logo-png/manhair-logo-cropped.png";
+const LOGO_SRC = "/images/logo-png/man-logo.png";
 
 type Size = "sm" | "md" | "lg";
 type Tone = "dark" | "light";
@@ -37,10 +37,13 @@ export function Wordmark({
     <Image
       src={LOGO_SRC}
       alt="ManHair: Hair Restoration Orange County, CA"
-      width={1386}
-      height={408}
+      width={2170}
+      height={725}
       priority={priority}
-      className={cn("block h-auto w-auto max-w-none select-none", HEIGHT[size], className)}
+      // `h-auto` is intentionally omitted: it would be generated after the
+      // `h-*` size classes in Tailwind's compiled CSS and win the cascade,
+      // making the logo render at its full natural (800x235) size.
+      className={cn("block w-auto max-w-none select-none", HEIGHT[size], className)}
     />
   );
 }
