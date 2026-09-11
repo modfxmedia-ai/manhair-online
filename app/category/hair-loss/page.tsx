@@ -17,6 +17,7 @@ const BY_SLUG = new Map(POSTS.map((p) => [p.slug, p]));
 
 /* Post order captured verbatim from the live Hair Loss archive. */
 const SLUGS = [
+  "choosing-receding-hairline-solutions-in-jacksonville",
   "non-surgical-hair-replacement-systems-vs-micro-scalp-pigmentation",
   "can-hair-loss-be-a-sign-of-something-serious",
   "what-not-to-do-when-your-hair-is-falling-out-a-guide-for-men",

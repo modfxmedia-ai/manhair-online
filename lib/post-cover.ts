@@ -6,6 +6,10 @@ import { POSTS } from "@/lib/posts";
  * images must be first-party files under /public/images/.
  */
 const COVER_BY_SLUG: Record<string, string> = {
+  "choosing-receding-hairline-solutions-in-jacksonville":
+    "/images/blogs-images/choosing-receding-hairline-solutions-in-jacksonville.jpg",
+  "florida-humidity-tips-for-natural-looking-hair-systems":
+    "/images/blogs-images/florida-humidity-tips-for-natural-looking-hair-systems.webp",
   "5-tactics-that-help-slow-aging-hair-loss-in-men":
     "/images/mens-hair-units/thinning-image.jpg",
   "are-hair-replacement-systems-worth-it":

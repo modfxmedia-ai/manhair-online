@@ -12,32 +12,30 @@ import { postCoverSrc } from "@/lib/post-cover";
 const PAGE = getPageMeta("/blog/")!;
 export const metadata: Metadata = toMetadata(PAGE);
 
-const BY_SLUG = new Map(POSTS.map((p) => [p.slug, p]));
-
-function card(slug: string, category: string, date: string): PostCard {
-  const p = BY_SLUG.get(slug)!;
-  const title = p.heading ?? p.title;
-  return {
-    href: p.path,
-    category,
-    title,
-    excerpt: p.excerpt,
-    image: postCoverSrc(p.slug),
-    imageAlt: title,
-    date,
-  };
+function formatCardDate(iso: string) {
+  return new Date(iso).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  });
 }
 
-/* The live blog widget lists these 6 most-recent posts (category label +
-   publish date captured verbatim from the live page). */
-const BLOG_POSTS: PostCard[] = [
-  card("the-harsh-truth-how-hair-loss-shampoos-can-aggravate-hair-loss", "Uncategorized", "August 29, 2026"),
-  card("non-surgical-hair-replacement-systems-vs-micro-scalp-pigmentation", "Hair Loss", "August 22, 2026"),
-  card("can-hair-loss-be-a-sign-of-something-serious", "Hair Loss", "August 15, 2026"),
-  card("what-not-to-do-when-your-hair-is-falling-out-a-guide-for-men", "Hair Loss", "August 8, 2026"),
-  card("food-fixes-to-strengthen-your-strands", "Uncategorized", "August 1, 2026"),
-  card("what-hair-to-wear", "Uncategorized", "July 25, 2026"),
-];
+const BLOG_POSTS: PostCard[] = [...POSTS]
+  .sort((a, b) => (b.datePublished ?? "").localeCompare(a.datePublished ?? ""))
+  .slice(0, 6)
+  .map((p) => {
+    const title = p.heading ?? p.title;
+    return {
+      href: p.path,
+      category: p.category ?? "Uncategorized",
+      title,
+      excerpt: p.excerpt,
+      image: postCoverSrc(p.slug),
+      imageAlt: title,
+      date: p.datePublished ? formatCardDate(p.datePublished) : undefined,
+    };
+  });
 
 export default function BlogIndex() {
   const graph = buildPageGraph({

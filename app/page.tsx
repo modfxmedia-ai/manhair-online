@@ -201,7 +201,9 @@ const FAQS = [
   },
 ];
 
-const RECENT_POSTS = POSTS.slice(0, 3);
+const RECENT_POSTS = [...POSTS]
+  .sort((a, b) => (b.datePublished ?? "").localeCompare(a.datePublished ?? ""))
+  .slice(0, 3);
 
 const MAP_LOCATIONS = [
   {
